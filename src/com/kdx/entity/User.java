@@ -75,9 +75,20 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 
-	public User(int userId, int sockState, String userdate, String userName, String userPwd, int userType) {
+	public User(int userId,String userName, String userPwd, int userType ,int sockState, String userdate ) {
 		super();
 		this.userId = userId;
+		this.sockState = sockState;
+		this.userdate = userdate;
+		this.userName = userName;
+		this.userPwd = userPwd;
+		this.userType = userType;
+	}
+
+	
+
+	public User( String userName, String userPwd, int sockState, int userType,String userdate) {
+		super();
 		this.sockState = sockState;
 		this.userdate = userdate;
 		this.userName = userName;

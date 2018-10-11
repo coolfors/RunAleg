@@ -138,7 +138,7 @@ public class Courier implements Serializable {
 		this.balance = balance;
 		this.creditPoint = creditPoint;
 		this.deposit = deposit;
-		IDcard = iDcard;
+		this.IDcard = iDcard;
 		this.idImg = idImg;
 		this.sockState = sockState;
 		this.tel = tel;

@@ -28,7 +28,8 @@ public class ArtcleController extends HttpServlet {
 		System.out.println("username :" + request.getParameter("username"));
 		request.setAttribute("q", questions);
 
-		request.getRequestDispatcher("../admin/q.jsp").forward(request, response);
+		request.getRequestDispatcher("admin/q.jsp").forward(request, response);
+		request.getRequestDispatcher("q.jsp").forward(request, response);
 	}
 
 	/**
