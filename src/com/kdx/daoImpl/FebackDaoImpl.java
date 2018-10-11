@@ -32,7 +32,8 @@ public class FebackDaoImpl implements FebackDao {
 	@Override
 	public PageData<Feedback> queryFebackByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from Feedback ", page, pageSize, Feedback.class);
+		return BaseDao.getPage("SELECT feedback.feedbackId,user.userName,feedback.feedbackInfo FROM feedback INNER JOIN user ON feedback.userId = user.userId\r\n" + 
+				" ", page, pageSize, Feedback.class);
 	}
 
 }

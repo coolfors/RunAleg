@@ -16,7 +16,17 @@ public class Feedback implements Serializable {
 
 	private int userId;
 
+	private String userName;
+
 	public Feedback() {
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public int getFeedbackId() {
@@ -43,16 +53,20 @@ public class Feedback implements Serializable {
 		this.userId = userId;
 	}
 
-	public Feedback(int feedbackId, String feedbackInfo, int userId) {
+	public Feedback(int feedbackId, String feedbackInfo, int userId, String userName) {
 		super();
 		this.feedbackId = feedbackId;
 		this.feedbackInfo = feedbackInfo;
 		this.userId = userId;
+		this.userName = userName;
 	}
 
 	@Override
 	public String toString() {
-		return "Feedback [feedbackId=" + feedbackId + ", feedbackInfo=" + feedbackInfo + ", userId=" + userId + "]";
+		return "Feedback [feedbackId=" + feedbackId + ", feedbackInfo=" + feedbackInfo + ", userId=" + userId
+				+ ", userName=" + userName + "]";
 	}
+
+	
 
 }
