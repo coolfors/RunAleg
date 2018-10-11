@@ -8,12 +8,9 @@ import javax.persistence.*;
  * The persistent class for the evaluate database table.
  * 
  */
-@Entity
-@NamedQuery(name="Evaluate.findAll", query="SELECT e FROM Evaluate e")
 public class Evaluate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int evaluateId;
 
 	private String evaInfo;

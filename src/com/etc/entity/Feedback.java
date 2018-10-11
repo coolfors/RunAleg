@@ -7,12 +7,9 @@ import javax.persistence.*;
  * The persistent class for the feedback database table.
  * 
  */
-@Entity
-@NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f")
 public class Feedback implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int feedbackId;
 
 	private String feedbackInfo;

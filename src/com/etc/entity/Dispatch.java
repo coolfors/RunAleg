@@ -8,12 +8,9 @@ import java.util.List;
  * The persistent class for the dispatch database table.
  * 
  */
-@Entity
-@NamedQuery(name = "Dispatch.findAll", query = "SELECT d FROM Dispatch d")
 public class Dispatch implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int disId;
 
 	private int userId;

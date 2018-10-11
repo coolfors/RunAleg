@@ -8,12 +8,9 @@ import java.util.List;
  * The persistent class for the receipt database table.
  * 
  */
-@Entity
-@NamedQuery(name = "Receipt.findAll", query = "SELECT r FROM Receipt r")
 public class Receipt implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int receiptId;
 
 	private String courierAdd;

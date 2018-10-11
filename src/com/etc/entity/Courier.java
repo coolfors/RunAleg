@@ -8,12 +8,9 @@ import java.util.List;
  * The persistent class for the courier database table.
  * 
  */
-@Entity
-@NamedQuery(name = "Courier.findAll", query = "SELECT c FROM Courier c")
 public class Courier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int courierId;
 
 	private double ableDistance;

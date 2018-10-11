@@ -8,12 +8,9 @@ import javax.persistence.*;
  * The persistent class for the userinfo database table.
  * 
  */
-@Entity
-@NamedQuery(name="Userinfo.findAll", query="SELECT u FROM Userinfo u")
 public class Userinfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int userInfoId;
 	
 	private int userId;
