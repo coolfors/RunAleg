@@ -23,7 +23,7 @@ public class Courier implements Serializable {
 
 	private double deposit;
 
-	private int IDcard;
+	private String IDcard;
 
 	private String idImg;
 
@@ -85,11 +85,11 @@ public class Courier implements Serializable {
 		this.deposit = deposit;
 	}
 
-	public int getIDcard() {
+	public String getIDcard() {
 		return this.IDcard;
 	}
 
-	public void setIDcard(int IDcard) {
+	public void setIDcard(String IDcard) {
 		this.IDcard = IDcard;
 	}
 
@@ -130,7 +130,7 @@ public class Courier implements Serializable {
 	}
 
 	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
-			int iDcard, String idImg, int sockState, int tel, int userId) {
+			String iDcard, String idImg, int sockState, int tel, int userId) {
 		super();
 		this.courierId = courierId;
 		this.ableDistance = ableDistance;
