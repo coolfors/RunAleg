@@ -17,7 +17,7 @@ public class DispatchDaoImpl implements DispatchDao {
 	}
 
 	@Override
-	public boolean updateDispatch(Dispatch dis, int disId) {
+	public boolean updateDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
 		return BaseDao.execute("update dispatch set beginAdd=?,endAdd=?,disTel=?,"
 				+ "disPrice=?,goodsType=?,disPS=?,disState=? where disId=?", dis.getBeginAdd(),

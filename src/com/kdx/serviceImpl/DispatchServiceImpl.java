@@ -13,9 +13,9 @@ public class DispatchServiceImpl implements DispatchDao {
 	}
 
 	@Override
-	public boolean updateDispatch(Dispatch dis, int disId) {
+	public boolean updateDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
-		return dd.updateDispatch(dis, disId);
+		return dd.updateDispatch(dis);
 	}
 
 	@Override
