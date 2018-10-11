@@ -122,6 +122,34 @@ public class Receipt implements Serializable {
 				+ "]";
 	}
 
+	public Receipt(String courierAdd, String encryptionKey, String endTime, double getDistance, double sendDistance,
+			String startTime, int state, int courierId, int disId) {
+		super();
+		this.courierAdd = courierAdd;
+		this.encryptionKey = encryptionKey;
+		this.endTime = endTime;
+		this.getDistance = getDistance;
+		this.sendDistance = sendDistance;
+		this.startTime = startTime;
+		this.state = state;
+		this.courierId = courierId;
+		this.disId = disId;
+	}
+
+	public Receipt(int receiptId, int courierId, int disId, String encryptionKey, String startTime, String endTime, int state, String courierAdd, double getDistance,
+			double sendDistance) {
+		super();
+		this.receiptId = receiptId;
+		this.courierAdd = courierAdd;
+		this.encryptionKey = encryptionKey;
+		this.endTime = endTime;
+		this.getDistance = getDistance;
+		this.sendDistance = sendDistance;
+		this.startTime = startTime;
+		this.state = state;
+		this.courierId = courierId;
+		this.disId = disId;
+	}
 	public Receipt(int receiptId, String courierAdd, String encryptionKey, String endTime, double getDistance,
 			double sendDistance, String startTime, int state, int courierId, int disId) {
 		super();
