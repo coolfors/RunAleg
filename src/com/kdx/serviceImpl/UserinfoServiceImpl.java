@@ -10,19 +10,19 @@ public class UserinfoServiceImpl implements UserinfoService {
 	//创建对象
 	UserinfoDao uid= new UserinfoDaoImpl();
 	@Override
-	public boolean addUser(Userinfo uinfo) {
+	public boolean addUserinfo(Userinfo uinfo) {
 		// TODO Auto-generated method stub
 		return uid.addUserinfo(uinfo);
 	}
 
 	@Override
-	public boolean updateUser(Userinfo uinfo) {
+	public boolean updateUserinfo(Userinfo uinfo) {
 		// TODO Auto-generated method stub
 		return uid.updateUserinfo(uinfo);
 	}
 
 	@Override
-	public PageData getUsersByPage(int page, int pageSize) {
+	public PageData getUserinfoByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return uid.queryUserinfoByPage(page, pageSize);
 		

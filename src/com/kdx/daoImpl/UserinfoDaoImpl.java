@@ -25,7 +25,7 @@ public class UserinfoDaoImpl implements UserinfoDao {
 	@Override
 	public PageData queryUserinfoByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
-		return  BaseDao.getPage("select * from userinfo", page, pageSize, Userinfo.class, page,pageSize);
+		return  BaseDao.getPage("select * from userinfo", page, pageSize, Userinfo.class);
 	}
 
 }
