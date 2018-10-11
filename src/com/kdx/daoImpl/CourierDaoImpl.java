@@ -16,7 +16,7 @@ public class CourierDaoImpl implements CourierDao {
 	}
 
 	@Override
-	public boolean updateCourier(Courier cour,int courId) {
+	public boolean updateCourier(Courier cour) {
 		// TODO Auto-generated method stub
 		return BaseDao.execute("update courier set deposit=?,balance=?,Tel=?,ableDistance=?,sockState=?,"
 				+ "idImg=?,creditPoint=?,IDcard=?,address=? where courierId=?", cour.getDeposit(),cour.getBalance(),cour.getTel(),

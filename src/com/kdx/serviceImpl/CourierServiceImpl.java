@@ -15,9 +15,9 @@ public class CourierServiceImpl implements CourierService {
 	}
 
 	@Override
-	public boolean updateCourier(Courier cour, int courId) {
+	public boolean updateCourier(Courier cour) {
 		// TODO Auto-generated method stub
-		return cd.updateCourier(cour, courId);
+		return cd.updateCourier(cour);
 	}
 
 	@Override
