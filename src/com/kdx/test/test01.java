@@ -1,9 +1,9 @@
-package com.etc.test;
+package com.kdx.test;
 
 import java.util.List;
 
-import com.etc.entity.Userinfo;
-import com.etc.util.BaseDao;
+import com.kdx.entity.Userinfo;
+import com.kdx.util.BaseDao;
 
 public class test01 {
 

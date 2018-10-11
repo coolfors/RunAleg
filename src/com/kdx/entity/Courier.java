@@ -1,4 +1,4 @@
-package com.etc.entity;
+package com.kdx.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
