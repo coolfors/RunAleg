@@ -130,7 +130,7 @@ public class Courier implements Serializable {
 	}
 
 	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
-			String iDcard, String idImg, int sockState, int tel, int userId) {
+			int iDcard, String idImg, int sockState, int tel, int userId) {
 		super();
 		this.courierId = courierId;
 		this.ableDistance = ableDistance;
