@@ -5,7 +5,7 @@ import com.kdx.entity.Userinfo;
 import com.kdx.util.PageData;
 
 public interface UserinfoService {
-	boolean addUser(Userinfo uinfo);
-	boolean updateUser(Userinfo uinfo);
-	PageData getUsersByPage(int page, int pageSize);
+	boolean addUserinfo(Userinfo uinfo);
+	boolean updateUserinfo(Userinfo uinfo);
+	PageData getUserinfoByPage(int page, int pageSize);
 }
