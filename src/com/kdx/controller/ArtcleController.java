@@ -29,7 +29,6 @@ public class ArtcleController extends HttpServlet {
 		request.setAttribute("q", questions);
 
 		request.getRequestDispatcher("admin/q.jsp").forward(request, response);
-		request.getRequestDispatcher("q.jsp").forward(request, response);
 	}
 
 	/**
