@@ -1,4 +1,4 @@
-package com.etc.util;
+package com.kdx.util;
 
 
 import java.sql.Connection;
