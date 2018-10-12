@@ -12,11 +12,13 @@ public class Evaluate implements Serializable {
 
 	private int evaluateId;//评价id
 
-	private String evaInfo;//订单号
-
+	private int receiptId;//订单号
+	
 	private int evaScore;//评价分
-
-	private int receiptId;//评价信息
+	
+	private String evaInfo;//评价信息
+	
+	private int evaState;//评价状态
 	
 	public int getReceiptId() {
 		return receiptId;
@@ -50,6 +52,14 @@ public class Evaluate implements Serializable {
 		this.evaScore = evaScore;
 	}
 	
+	public int getEvaState() {
+		return evaState;
+	}
+
+	public void setEvaState(int evaState) {
+		this.evaState = evaState;
+	}
+	
 	/**
 	 * 无参构造
 	 */
@@ -59,16 +69,18 @@ public class Evaluate implements Serializable {
 	/**
 	 * 有参构造
 	 * @param evaluateId
-	 * @param evaInfo
-	 * @param evaScore
 	 * @param receiptId
+	 * @param evaScore
+	 * @param evaInfo
+	 * @param evaState
 	 */
-	public Evaluate(int evaluateId, String evaInfo, int evaScore, int receiptId) {
+	public Evaluate(int evaluateId, int receiptId, int evaScore, String evaInfo, int evaState) {
 		super();
 		this.evaluateId = evaluateId;
-		this.evaInfo = evaInfo;
-		this.evaScore = evaScore;
 		this.receiptId = receiptId;
+		this.evaScore = evaScore;
+		this.evaInfo = evaInfo;
+		this.evaState = evaState;
 	}
 
 	@Override
@@ -76,8 +88,6 @@ public class Evaluate implements Serializable {
 		return "Evaluate [evaluateId=" + evaluateId + ", evaInfo=" + evaInfo + ", evaScore=" + evaScore + ", receiptId="
 				+ receiptId + "]";
 	}
-
-	
 
 	
 }

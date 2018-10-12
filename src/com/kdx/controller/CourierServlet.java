@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kdx.entity.Dispatch;
+import com.kdx.entity.Evaluate;
 import com.kdx.entity.Receipt;
 import com.kdx.service.DispatchService;
+import com.kdx.service.EvaluateService;
 import com.kdx.service.ReceiptService;
 import com.kdx.serviceImpl.DispatchServiceImpl;
+import com.kdx.serviceImpl.EvaluateServiceImpl;
 import com.kdx.serviceImpl.ReceiptServiceImpl;
 import com.kdx.util.PageData;
 
@@ -25,7 +28,8 @@ public class CourierServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DispatchService ds = new DispatchServiceImpl();
 	private ReceiptService rs = new ReceiptServiceImpl();
-       
+    private EvaluateService es = new EvaluateServiceImpl();   
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -50,6 +54,12 @@ public class CourierServlet extends HttpServlet {
 		}
 		else if("waitUpdateReceipt".equals(op)) {
 			waitUpdateReceipt(request,response);
+		}
+		else if("waitEvaluate".equals(op)) {
+			waitEvaluate(request,response);
+		}
+		else if("overEvaluate".equals(op)) {
+			overEvaluate(request,response);
 		}
 			
 	}
@@ -115,6 +125,46 @@ public class CourierServlet extends HttpServlet {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		PageData<Receipt> pd = rs.waitUpdateReceipt(page, pageSize);
+		Gson gson = new Gson();
+		String data = gson.toJson(pd);
+		//System.out.println(data);
+		response.getWriter().println(data);
+	}
+	/**
+	 * 未评价订单，表evaluate
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void waitEvaluate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int page = 1;
+		int pageSize = 6;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		PageData<Evaluate> pd = es.waitEval(page, pageSize);
+		Gson gson = new Gson();
+		String data = gson.toJson(pd);
+		//System.out.println(data);
+		response.getWriter().println(data);
+	}
+	/**
+	 * 已评价订单，表evaluate
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void overEvaluate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int page = 1;
+		int pageSize = 6;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		PageData<Evaluate> pd = es.overEval(page, pageSize);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		//System.out.println(data);
