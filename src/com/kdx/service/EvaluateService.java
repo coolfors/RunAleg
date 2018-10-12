@@ -9,7 +9,7 @@ public interface EvaluateService {
 
 	boolean delEval(int evaluateId);// 删除评价
 
-	boolean updateEval(Evaluate e);// 修改评价
+	boolean updateEval(Evaluate e);// 修改评价1
 
 	PageData<Evaluate> queryEvalByPage(int page, int pageSize);// 查询所有评价
 
