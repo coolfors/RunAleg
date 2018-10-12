@@ -1,6 +1,7 @@
 package com.kdx.daoImpl;
 
 import java.util.Date;
+import java.util.List;
 
 import com.kdx.dao.ArticleDao;
 import com.kdx.entity.Article;
@@ -8,6 +9,12 @@ import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
 
 public class ArticleDaoImpl implements ArticleDao {
+	
+    public List<Article> queryArticle() {
+		@SuppressWarnings("unchecked")
+		List<Article> list =(List<Article>) BaseDao.select("select * from article", Article.class);
+		return list;
+	}
 
 	@Override
 	public boolean addArticle(Article u) {
