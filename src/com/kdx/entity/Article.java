@@ -18,12 +18,11 @@ public class Article {
 	}
 	/**
 	 * 构造文章类
-	 * @param articleId 文章的ID
-	 * @param userId 发表用户
 	 * @param articledate 发表时间
 	 * @param title 文章的标题
 	 * @param content 文章的内容
 	 */
+
 	public Article(int articleId, int userId, String articledate, String title, String content) {
 		super();
 		this.articleId = articleId;
@@ -32,6 +31,7 @@ public class Article {
 		this.title = title;
 		this.content = content;
 	}
+	
 	public void setArticleId(int articleId) {
 		this.articleId = articleId;
 	}
@@ -72,6 +72,22 @@ public class Article {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * 文章添加内容测试
+	 * @param i
+	 * @param articledate2
+	 * @param title2
+	 * @param article
+	 */
+	public Article(int userId, String articledate, String title, String content) {
+		super();
+		this.userId = userId;
+		this.articledate = articledate;
+		this.title = title;
+		this.content = content;
+	}
+	
+	
 	
 }
 

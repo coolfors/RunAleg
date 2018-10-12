@@ -9,6 +9,5 @@ public interface ArticleDao {
 	boolean addArticle(Article Article);
 	boolean updateArticle(Article Article);
 	PageData queryArticleByPage(int page, int pageSize);
-	Article loginArticle(String ArticleName,String ArticlePwd);
 
 }
