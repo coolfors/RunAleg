@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>显示新闻-测试传过来的文章内容</title>
 </head>
 <body>
 	<div>${q}</div>
