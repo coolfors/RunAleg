@@ -1,7 +1,6 @@
 package com.kdx.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
 
 /**
@@ -11,13 +10,13 @@ import javax.persistence.*;
 public class Evaluate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int evaluateId;
+	private int evaluateId;//评价id
 
-	private String evaInfo;
+	private String evaInfo;//订单号
 
-	private int evaScore;
+	private int evaScore;//评价分
 
-	private int receiptId;
+	private int receiptId;//评价信息
 	
 	public int getReceiptId() {
 		return receiptId;
@@ -25,9 +24,6 @@ public class Evaluate implements Serializable {
 
 	public void setReceiptId(int receiptId) {
 		this.receiptId = receiptId;
-	}
-
-	public Evaluate() {
 	}
 
 	public int getEvaluateId() {
@@ -53,7 +49,20 @@ public class Evaluate implements Serializable {
 	public void setEvaScore(int evaScore) {
 		this.evaScore = evaScore;
 	}
-
+	
+	/**
+	 * 无参构造
+	 */
+	public Evaluate() {
+	}
+	
+	/**
+	 * 有参构造
+	 * @param evaluateId
+	 * @param evaInfo
+	 * @param evaScore
+	 * @param receiptId
+	 */
 	public Evaluate(int evaluateId, String evaInfo, int evaScore, int receiptId) {
 		super();
 		this.evaluateId = evaluateId;
