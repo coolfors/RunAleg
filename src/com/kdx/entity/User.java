@@ -13,7 +13,7 @@ public class User implements Serializable {
 
 	private int sockState;
 
-	private String userdate;
+	private String userDate;
 
 	private String userName;
 
@@ -40,12 +40,12 @@ public class User implements Serializable {
 		this.sockState = sockState;
 	}
 
-	public String getUserdate() {
-		return this.userdate;
+	public String getUserDate() {
+		return userDate;
 	}
 
-	public void setUserdate(String userdate) {
-		this.userdate = userdate;
+	public void setUserDate(String userDate) {
+		this.userDate = userDate;
 	}
 
 	public String getUserName() {
@@ -72,22 +72,20 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 
-	public User(int userId,String userName, String userPwd, int userType ,int sockState, String userdate ) {
+	public User(int userId, int sockState, String userDate, String userName, String userPwd, int userType) {
 		super();
 		this.userId = userId;
 		this.sockState = sockState;
-		this.userdate = userdate;
+		this.userDate = userDate;
 		this.userName = userName;
 		this.userPwd = userPwd;
 		this.userType = userType;
 	}
 
-	
-
-	public User( String userName, String userPwd, int sockState, int userType,String userdate) {
+	public User(int sockState, String userDate, String userName, String userPwd, int userType) {
 		super();
 		this.sockState = sockState;
-		this.userdate = userdate;
+		this.userDate = userDate;
 		this.userName = userName;
 		this.userPwd = userPwd;
 		this.userType = userType;
@@ -95,10 +93,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", sockState=" + sockState + ", userdate=" + userdate + ", userName="
+		return "User [userId=" + userId + ", sockState=" + sockState + ", userDate=" + userDate + ", userName="
 				+ userName + ", userPwd=" + userPwd + ", userType=" + userType + "]";
 	}
-
-	
 
 }
