@@ -16,3 +16,4 @@ public interface UserDao {
 	User loginUser(String userName,String userPwd);//用户登录
 
 }
+               
