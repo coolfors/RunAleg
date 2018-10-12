@@ -1,5 +1,6 @@
 package com.kdx.daoImpl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import com.kdx.dao.UserDao;
@@ -45,8 +46,14 @@ u.getUserId()) > 0;
 	@Override
 	public User loginUser(String userName, String userPwd) {
 		// TODO Auto-generated method stub
-		String sql = "select * from user where userName=?,userPwd=?";
-		return (User) BaseDao.select(sql, User.class, userName, userPwd);
+		String sql = "select * from user where userName=? and userPwd=?";
+		List<User> list=(List<User>) BaseDao.select(sql, User.class, userName, userPwd);
+		Iterator<User> it=list.iterator();
+		User u=null;
+		if(it.hasNext()) {
+			u=it.next();
+		}
+		return u;
 
 	}
 
