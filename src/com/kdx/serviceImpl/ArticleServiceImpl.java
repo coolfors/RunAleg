@@ -1,5 +1,7 @@
 package com.kdx.serviceImpl;
 
+import java.util.List;
+
 import com.kdx.dao.ArticleDao;
 import com.kdx.daoImpl.ArticleDaoImpl;
 import com.kdx.entity.Article;
@@ -20,14 +22,24 @@ public class ArticleServiceImpl implements ArticleService {
 		return ud.updateArticle(Article);
 	}
 	@Override
-	public PageData getArticlesByPage(int page, int pageSize) {
-		// TODO Auto-generated method stub
-		return ud.queryArticleByPage(page, pageSize);
-	}
-	@Override
 	public Article loginArticle(String ArticleName, String ArticlePwd) {
 		// TODO Auto-generated method stub
 		return ud.loginArticle(ArticleName, ArticlePwd);
+	}
+	@Override
+	public PageData<Article> queryArticleByPage(int page, int pageSize, String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public PageData getArticlesByPage(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Article> queryArticle() {
+		// TODO Auto-generated method stub
+		return ud.queryArticle();
 	}
 	
 }
