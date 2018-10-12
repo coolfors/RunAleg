@@ -11,7 +11,7 @@
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" href="layui/css/layui.css" media="all">
+<link rel="stylesheet" href="admin/lib/layui/css/layui.css" media="all">
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -86,8 +86,7 @@
 		<h3>所有订单</h3>
 		<table class="table table-bordered">
 			<thead>
-				<tr>
-
+				<!-- <tr>
 					<th>派单id</th>
 					<th>用户id</th>
 					<th>起送地</th>
@@ -97,10 +96,10 @@
 					<th>物品类型</th>
 					<th>物品介绍</th>
 					<th>派单状态</th>
-				</tr>
+				</tr> -->
 			</thead>
 			<tbody>
-				<tr>
+				<!-- <tr>
 					<td>1</td>
 					<td>1</td>
 					<td>厦门中软海晟1楼</td>
@@ -110,68 +109,11 @@
 					<td>花瓶</td>
 					<td>一个大花瓶</td>
 					<td class="see"><a href="">抢单</a></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>2</td>
-					<td>厦门中软海晟1楼</td>
-					<td>厦门中软海晟2楼</td>
-					<td>13011111111</td>
-					<td>12</td>
-					<td>花瓶</td>
-					<td>一个大花瓶</td>
-					<td class="see"><a href="">抢单</a></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>3</td>
-					<td>厦门中软海晟1楼</td>
-					<td>厦门中软海晟2楼</td>
-					<td>13011111111</td>
-					<td>12</td>
-					<td>花瓶</td>
-					<td>一个大花瓶</td>
-					<td class="see"><a href="">抢单</a></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>4</td>
-					<td>厦门中软海晟1楼</td>
-					<td>厦门中软海晟2楼</td>
-					<td>13011111111</td>
-					<td>12</td>
-					<td>花瓶</td>
-					<td>一个大花瓶</td>
-					<td class="see"><a href="">抢单</a></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>5</td>
-					<td>厦门中软海晟1楼</td>
-					<td>厦门中软海晟2楼</td>
-					<td>13011111111</td>
-					<td>12</td>
-					<td>花瓶</td>
-					<td>一个大花瓶</td>
-					<td class="see"><a href="">抢单</a></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>6</td>
-					<td>厦门中软海晟1楼</td>
-					<td>厦门中软海晟2楼</td>
-					<td>13011111111</td>
-					<td>12</td>
-					<td>花瓶</td>
-					<td>一个大花瓶</td>
-					<td class="see"><a href="">抢单</a></td>
-				</tr>
-
-
+				</tr> -->
 			</tbody>
 		</table>
 		<div id="test1" class="text-center"></div>
-		<script src="layui/layui.js" charset="utf-8"></script>
+		<script src="admin/lib/layui/layui.js" charset="utf-8"></script>
 		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 		<script>
 			layui.use([ 'laypage', 'layer' ], function() {
@@ -179,7 +121,7 @@
 				//完整功能
 				laypage.render({
 					elem : 'test1',
-					count : 100,
+					count : 20,
 					layout : [ 'count', 'prev', 'page', 'next', 'limit',
 							'refresh', 'skip' ],
 					jump : function(obj, first) { //跳转
@@ -206,7 +148,7 @@
 						<img src="images/reader driver.png"> <span> 当前订单</span>
 					</h3>
 					<div class="col-md-3 col-xs-6">
-						<a href=""> <img src="images/tubiao_03.png" class="img-circle">
+						<a id="waitSendDispatch"> <img src="images/tubiao_03.png" class="img-circle">
 							<p>待配送订单</p>
 						</a>
 					</div>
@@ -216,7 +158,7 @@
 						</a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a href=""><img src="images/trucks.png" class="img-circle">
+						<a id="allDispatch"><img src="images/trucks.png" class="img-circle">
 						<p>所有订单</p></a>
 					</div>
 					<div class="col-md-3 col-xs-6">
@@ -231,7 +173,7 @@
 						<img src="images/line interaction.png"> <span> 历史订单</span>
 					</h3>
 					<div class="col-md-4 col-xs-6">
-						<a href=""> <img src="images/ttubiao_08.png"
+						<a id="waitEvaluate"> <img src="images/ttubiao_08.png"
 							class="img-circle">
 							<p>待评价订单</p>
 						</a>
@@ -295,5 +237,6 @@
 	<!--尾部-结束-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/user.js"></script>
 </body>
 </html>

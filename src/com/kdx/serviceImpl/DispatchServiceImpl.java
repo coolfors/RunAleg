@@ -25,5 +25,10 @@ public class DispatchServiceImpl implements DispatchService {
 		// TODO Auto-generated method stub
 		return dd.queryDispatch(page, pageSize);
 	}
+	@Override
+	public PageData<Dispatch> waitSendDispatch(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		return dd.waitSendDispatch(page, pageSize);
+	}
 
 }

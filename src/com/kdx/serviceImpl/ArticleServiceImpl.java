@@ -22,11 +22,6 @@ public class ArticleServiceImpl implements ArticleService {
 		return ud.updateArticle(Article);
 	}
 	@Override
-	public Article loginArticle(String ArticleName, String ArticlePwd) {
-		// TODO Auto-generated method stub
-		return ud.loginArticle(ArticleName, ArticlePwd);
-	}
-	@Override
 	public PageData<Article> queryArticleByPage(int page, int pageSize, String key) {
 		// TODO Auto-generated method stub
 		return null;

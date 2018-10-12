@@ -10,7 +10,6 @@ public interface ArticleService {
 	boolean addArticle(Article Article);
 	boolean updateArticle(Article Article);
 	PageData getArticlesByPage(int page, int pageSize);
-	Article loginArticle(String ArticleName,String ArticlePwd);
 	PageData<Article> queryArticleByPage(int page, int pageSize, String key);
 
 }
