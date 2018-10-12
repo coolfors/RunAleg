@@ -23,7 +23,7 @@ public class TestReceipt {
 		 */
 		ReceiptDao rd = new ReceiptDaoImpl();
 
-		PageData<Receipt> pd = rd.queryReceipt(2, 1);
+		PageData<Receipt> pd = rd.queryReceipt(2, 3);
 
 		@SuppressWarnings("unchecked")
 		List<Receipt> list = pd.getData();

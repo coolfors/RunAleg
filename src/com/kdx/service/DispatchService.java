@@ -10,4 +10,6 @@ public interface DispatchService {
 	boolean updateDispatch(Dispatch dis);
 	
 	PageData<Dispatch> queryDispatch(int page,int pageSize);
+	
+	PageData<Dispatch> waitSendDispatch(int page,int pageSize);
 }

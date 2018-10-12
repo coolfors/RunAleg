@@ -1,204 +1,586 @@
 <!DOCTYPE html>
 <html>
-  
-  <head>
-    <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.0</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./js/xadmin.js"></script>
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
+
+<head>
+<meta charset="UTF-8">
+<title>欢迎页面-X-admin2.0</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="./css/font.css">
+<link rel="stylesheet" href="./css/xadmin.css">
+<script type="text/javascript"
+	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="./lib/layui/layui.js"
+	charset="utf-8"></script>
+<script type="text/javascript" src="./js/xadmin.js"></script>
+
+<!--  http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css-->
+<link rel="stylesheet" type="text/css"
+	href="plugin/datatables/bootstrap.min.css" />
+<!--<link rel="stylesheet" href="http://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css"/>-->
+<!--http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.css-->
+<link rel="stylesheet" type="text/css"
+	href="plugin/datatables/dataTables.bootstrap.css  " />
+<!--http://cdn.gbtags.com/datatables/1.10.5/js/jquery.js-->
+<script src="plugin/datatables/jquery.js"></script>
+<!--http://cdn.gbtags.com/datatables/1.10.5/js/jquery.dataTables.min.js-->
+<script src="plugin/datatables/jquery.dataTables.min.js"></script>
+<!--<script src="dt.js"></script>-->
+<!--http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js-->
+<script type="text/javascript" language="javascript"
+	src="plugin/datatables/dataTables.bootstrap.js"></script>
+<!--http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js-->
+<script src="plugin/datatables/bootstrap.min.js"></script>
+<script src="plugin/date/bootstrap-datetimepicker.min.js"></script>
+<script src="plugin/handlebars-v3.0.1.js"></script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  
-  <body class="layui-anim layui-anim-up">
-    <div class="x-nav">
-      <span class="layui-breadcrumb">
-        <a href="">首页</a>
-        <a href="">演示</a>
-        <a>
-          <cite>导航元素</cite></a>
-      </span>
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
-    <div class="x-body">
-      <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
-          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-        </form>
-      </div>
-      <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
-      </xblock>
-      <table class="layui-table">
-        <thead>
-          <tr>
-            <th>
-              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </th>
-            <th>ID</th>
-            <th>用户名</th>
-            <th>性别</th>
-            <th>手机</th>
-            <th>邮箱</th>
-            <th>地址</th>
-            <th>加入时间</th>
-            <th>状态</th>
-            <th>操作</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>小明</td>
-            <td>男</td>
-            <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>北京市 海淀区</td>
-            <td>2017-01-01 11:11:42</td>
-            <td class="td-status">
-              <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-            <td class="td-manage">
-              <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                <i class="layui-icon">&#xe601;</i>
-              </a>
-              <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
-              <a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">
-                <i class="layui-icon">&#xe631;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>小明</td>
-            <td>男</td>
-            <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>北京市 海淀区</td>
-            <td>2017-01-01 11:11:42</td>
-            <td class="td-status">
-              <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-            <td class="td-manage">
-              <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                <i class="layui-icon">&#xe601;</i>
-              </a>
-              <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
-              <a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">
-                <i class="layui-icon">&#xe631;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="page">
-        <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
-          <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
-        </div>
-      </div>
+</head>
 
-    </div>
-    <script>
-      layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#start' //指定元素
-        });
+<body class="layui-anim layui-anim-up">
+	<div class="x-nav">
+		<span class="layui-breadcrumb"> <a href="">首页</a> <a href="">演示</a>
+			<a> <cite>导航元素</cite></a>
+		</span> <a class="layui-btn layui-btn-small"
+			style="line-height: 1.6em; margin-top: 3px; float: right"
+			href="javascript:location.replace(location.href);" title="刷新"> <i
+			class="layui-icon" style="line-height: 30px">ဂ</i></a>
+	</div>
+	<div >
+		是否自动检索：<input type="checkbox" id="autoSearch"> <br>
+		 用户名：<input type="text" class="form-controlSearch" placeholder="请输入关键字查询" data-column="2" id="col2_filter"> <br>
+		类型：<input ype="text" class="form-controlSearch" placeholder="请输入关键字查询" data-column="5" id="col5_filter">
+		<hr>
+		<table id="example" class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th></th>
+					<th>用户编号</th>
+					<th>用户名</th>
+					<th>用户密码</th>
+					<th>状态</th>
+					<th>类型</th>
+					<th>注册日期</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
 
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#end' //指定元素
-        });
-      });
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">新增</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="text" class="form-control" id="userId"
+							placeholder="用户编号">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="userName"
+							placeholder="用户名">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="userPwd"
+							placeholder="用户密码">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="sockState"
+							placeholder="用户状态">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="userType"
+							placeholder="用户类型">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="userDate"
+							placeholder="注册时间" data-date-format="yyyy/mm/dd">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="save">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="tpl" type="text/x-handlebars-template">
+    {{#each func}}
+    <button type="button" class="btn btn-{{this.type}} btn-sm" onclick="{{this.fn}}">{{this.name}}</button>
+    {{/each}}
+</script>
+	<script>
+		var employee = {};
+		var tpl = $("#tpl").html();
+		//预编译模板
+		var template = Handlebars.compile(tpl);
 
-       /*用户-停用*/
-      function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
+		employee.property = {
+			version : "v1.0",
+			name : "employee",
+			tableId : "example",
+			checkAllId : "employeeCheckAll",
+			buttonId : "employeeButtonId",
+			formId : "employeeForm",
+			corporateFormId : "employeeForm",
+			returnStatus : "SUCCESS",
+			returnTitle : "操作成功",
+			statusTitle : "请选择一条数据！",
+			idFailure : "获取id失败",
+			prompt : "提示",
+			pleaseConfirm : "请确认！",
+			wantToDelete : "您确定要删除吗?",
+			sexMan : "男",
+			sexWoman : "女",
+			isTest : "是",
+			noTest : "否",
+			banned : "禁用",
+			enable : "启用"
+		};
 
-              if($(obj).attr('title')=='启用'){
+		//初始化配置
+		employee.gridInit = {
+			searching : true,
+			lengthChange : true,
+			paging : true,
+			scrollCollapse : true,
+			serverSide : false,
+			search : true,
+			processing : true,
+			scrollY : 500,
+			scrollX : "100%",
+			scrollXInner : "100%",
+			scrollCollapse : true,
+			jQueryUI : false,
+			autoWidth : true,
+			autoSearch : true
+		};
 
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
+		//路径配置
+		employee.url = "/"; // / 表示的是网站的根
+		employee.requestUrl = {
+			queryList : employee.url + "RunAleg/UserServlet" //访问servlet 一次请求所有数据
+		};
 
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
+		employee.search = {
+			uuid : ""
+		};
 
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
+		employee.status = [
+				{
+					"searchable" : false,
+					"orderable" : false,
+					"targets" : 0
+				},//第一行不进行排序和搜索
+				//        {"targets": [12], "visible": false},    //设置第13列隐藏/显示
+				//        {"width": "10%", "targets": [1]},  //设置第2列宽度
+				//        {
+				//            对第7列内容进行替换处理
+				//            targets: 6,
+				//            render: function (data, type, row, meta) {
+				//                if (data == "1") {
+				//                    return employee.table.sexMan;
+				//                }
+				//                if (data == "0") {
+				//                    return employee.table.sexWoman;
+				//                }
+				//            }
+				//        },
+				{
+					"targets" : 7,
+					"render" : function(a, b, c, d) {
+						var context = {
+							func : [
+									{
+										"name" : "修改",
+										"fn" : "edit(\'" + c.userId + "\',\'"
+												+ c.userName + "\',\'"
+												+ c.userPwd + "\',\'"
+												+ c.sockState + "\',\'"
+												+ c.userType + "\',\'"
+												+ c.userDate + "\')",
+										"type" : "primary"
+									}, {
+										"name" : "删除",
+										"fn" : "del(\'" + c.name + "\')",
+										"type" : "danger"
+									} ]
+						};
+						var html = template(context);
+						return html;
+					}
+				},
 
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-              }
-              
-          });
-      }
+				{
+					defaultContent : '',
+					targets : [ '_all' ]
+				} //所有列设置默认值为空字符串
+		];
 
-      /*用户-删除*/
-      function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
-          });
-      }
+		employee.filed = [
+				{
+					"data" : "userId",
+					"createdCell" : function(nTd, sData, oData, iRow, iCol) {
+						$(nTd)
+								.html(
+										"<input type='checkbox' name='checkList' value='" + sData + "'>");
+					}
+				}, {
+					"data" : "userId"
+				}, {
+					"data" : "userName"
+				}, {
+					"data" : "userPwd"
+				}, {
+					"data" : "sockState"
+				}, {
+					"data" : "userType"
+				}, {
+					"data" : "userDate"
+				}, {
+					"data" : null
+				} ];
 
+		employee.buttons = '<button class="btn btn-default"  type="button" id="reload" data-toggle="modal" data-target="#employeeModal">刷新表格</button>'
+				+ '<button class="btn btn-primary" type="button" id="batchIds" style="margin-left:20px;" data-toggle="modal" >多选</button>'
+				+ '<button class="btn btn-success" type="button" id="selection" style="margin-left:20px;" data-toggle="modal" >单选</button>'
+				+ '<button class="btn btn-success" type="button" id="search" style="margin-left:20px;" data-toggle="modal" >查询</button>'
+				+ '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>';
+	</script>
 
+	<script>
+		var eloancn = {};
 
-      function delAll (argument) {
+		eloancn.table = {
+			grid : "",
+			statusTitle : "请选择一条数据！"
+		};
 
-        var data = tableCheck.getData();
-  
-        layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-      }
-    </script>
-    <script>var _hmt = _hmt || []; (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();</script>
-  </body>
+		//dataTables方法封装
+		function dataTablesInit(elo) {
+
+			eloancn.table.grid = $('#' + elo.property.tableId)
+					.DataTable(
+							{
+								ajax : {
+									url : elo.requestUrl.queryList,//请求后台路径
+									type : 'POST',
+									data : elo.search,
+									error : function(jqXHR, textStatus,
+											errorMsg) {
+										alert("请求失败");
+									}
+
+								},
+								"searching" : elo.gridInit.searching,//搜索框，默认是开启
+								"lengthChange" : elo.gridInit.lengthChange,//是否允许用户改变表格每页显示的记录数，默认是开启
+								"paging" : elo.gridInit.paging,//是否开启本地分页，默认是开启
+								"processing" : elo.gridInit.processing,//是否显示中文提示
+								"scrollCollapse" : elo.gridInit.scrollCollapse, //是否开启DataTables的高度自适应，当数据条数不够分页数据条数的时候，插件高度是否随数据条数而改变
+								"serverSide" : elo.gridInit.serverSide, //开启服务器模式，默认是关闭
+								"scrollY" : elo.gridInit.scrollY,//设置高
+								"scrollX" : elo.gridInit.scrollX,//设置宽度
+								"scrollXInner" : elo.gridInit.scrollXInner,//设置内宽度
+								"scrollCollapse" : elo.gridInit.scrollCollapse,//设置折叠
+								"jQueryUI" : elo.gridInit.jQueryUI,//jquery 风格
+								"autoWidth" : elo.gridInit.autoWidth, //是否自适应宽度
+								"columns" : elo.filed,//字段
+								"columnDefs" : elo.status,//列表状态
+								"language" : {
+									"sProcessing" : "处理中...",
+									"sLengthMenu" : "显示 _MENU_ 项结果",
+									"sZeroRecords" : "没有匹配结果",
+									"sInfo" : "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+									"sInfoEmpty" : "显示第 0 至 0 项结果，共 0 项",
+									"sInfoFiltered" : "(由 _MAX_ 项结果过滤)",
+									"sInfoPostFix" : "",
+									"sSearch" : "搜索:",
+									"sUrl" : "",
+									"sEmptyTable" : "未搜索到数据",
+									"sLoadingRecords" : "载入中...",
+									"sInfoThousands" : ",",
+									"oPaginate" : {
+										"sFirst" : "首页",
+										"sPrevious" : "上页",
+										"sNext" : "下页",
+										"sLast" : "末页"
+									},
+									"oAria" : {
+										"sSortAscending" : ": 以升序排列此列",
+										"sSortDescending" : ": 以降序排列此列"
+									}
+								},
+								"dom" : "<'row'<'col-sm-2'l><'#"+elo.property.buttonId+".col-sm-10'><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+								"initComplete" : function() {
+									$("#" + elo.property.buttonId).append(
+											elo.buttons);
+									if (elo.gridInit.search) {
+										$search = $("input[type='search']");
+										//隐藏默认的搜索框
+										$search.parent().hide();
+									}
+									//加载完成之后 初始化checkbox
+									checkbox(elo.property.tableId);
+
+									$("#reload").click(function() {
+										reload();
+									});
+
+									$("#batchIds").click(function() {
+										batchIds();
+									});
+
+									$("#selection").click(function() {
+										selection();
+									});
+									$("#search").click(function() {
+										search();
+									});
+									$("#clearSearch").click(function() {
+										clearSearch("form-controlSearch");
+									});
+
+									//checkbox全选
+									$("#" + elo.property.checkAllId)
+											.click(
+													function() {
+														if ($(this).prop(
+																"checked")) {
+															$(
+																	"input[name='checkList']")
+																	.prop(
+																			"checked",
+																			true);
+															$("tr").addClass(
+																	'selected');
+														} else {
+															$(
+																	"input[name='checkList']")
+																	.prop(
+																			"checked",
+																			false);
+															$("tr")
+																	.removeClass(
+																			'selected');
+														}
+													});
+
+								}
+							});
+
+			//错误信息提示
+			$.fn.dataTable.ext.errMode = function(s, h, m) {
+				if (h == 1) {
+					alert("连接服务器失败！");
+				} else if (h == 7) {
+					alert("返回数据错误！");
+				}
+			};
+
+			//回调，如果返回的时候有问题提示信息
+			eloancn.table.grid.on('xhr.dt', function(e, settings, json, xhr) {
+				console.log("重新加载了数据");
+				if (typeof (json.code) != "undefined" && json.code != "0") {
+					alert(json.message);
+				}
+			});
+
+			//鼠标经过高亮
+			var lastIdx = null;
+			eloancn.table.grid
+					.on('mouseover', 'td',
+							function() {
+
+								if (typeof (eloancn.table.grid.cell(this)
+										.index()) != "undefined") {
+									var colIdx = eloancn.table.grid.cell(this)
+											.index().column;
+									if (colIdx !== lastIdx) {
+										$(eloancn.table.grid.cells().nodes())
+												.removeClass('highlight');
+										$(
+												eloancn.table.grid.column(
+														colIdx).nodes())
+												.addClass('highlight');
+									}
+								}
+							});
+
+			eloancn.table.grid.on('mouseleave', function() {
+				$(eloancn.table.grid.cells().nodes()).removeClass('highlight');
+			});
+
+			//自动搜索方法
+			$('.form-controlSearch').on('keyup change', function() {
+				elo.gridInit.autoSearch = $("#autoSearch").prop("checked");
+				if (elo.gridInit.autoSearch) {
+					filterColumn($(this).attr('data-column'));
+				}
+			});
+		}
+
+		//选中一行 checkbox选中
+		function checkbox(tableId) {
+			//每次加载时都先清理
+			$('#' + tableId + ' tbody').off("click", "tr");
+			$('#' + tableId + ' tbody').on("click", "tr", function() {
+				$(this).toggleClass('selected');
+				if ($(this).hasClass("selected")) {
+					$(this).find("input").prop("checked", true);
+				} else {
+					$(this).find("input").prop("checked", false);
+				}
+			});
+
+		}
+
+		//按钮搜索方法
+		function search() {
+
+			var oSettings = "";
+			$("[data-column]").each(
+					function() {
+						var filedValue = $(this).attr('data-column');
+						if (filedValue != "") {
+							console.log($('#col' + filedValue + '_filter')
+									.val());
+							oSettings = eloancn.table.grid.column(filedValue)
+									.search(
+											$('#col' + filedValue + '_filter')
+													.val());
+						}
+					});
+			//搜索的数据一次条件，节省资源
+			eloancn.table.grid.draw(oSettings);
+		}
+
+		//搜索
+		function filterColumn(i) {
+
+			eloancn.table.grid.column(i)
+					.search($('#col' + i + '_filter').val()).draw();
+		}
+
+		//清理搜索数据
+		function clearSearch(id) {
+
+			$("." + id).each(function() {
+				$(this).val("");
+			});
+			//清空查询条件重新读取数据
+			eloancn.table.grid.columns().search("").draw();
+		}
+
+		//获取所有选中行的UUID
+		function batchIds() {
+
+			var uuid = '';
+			var uuids = eloancn.table.grid.rows(".selected").data();
+			if (uuids.length == 0) {
+				alert(eloancn.table.statusTitle);
+			} else {
+				for (var i = 0; i < uuids.length; i++) {
+					uuid = uuid + uuids[i].userId + ",";
+				}
+				alert(uuid);
+			}
+		}
+
+		//单选
+		function selection() {
+
+			if (eloancn.table.grid.rows(".selected").data().length == 1) {
+				var uuid = eloancn.table.grid.row(".selected").data().userId;
+
+				if (uuid == "") {
+					alert(eloancn.table.statusTitle);
+				} else {
+					alert(uuid);
+				}
+
+			} else {
+				alert(eloancn.table.statusTitle);
+			}
+		}
+
+		//刷新页面
+		//重新加载数据
+		function reload() {
+			eloancn.table.grid.ajax.reload();
+		}
+
+		//销毁table
+		function destroyDataTable(tableId) {
+
+			var dttable = $('#' + tableId).DataTable();
+			dttable.destroy();
+		}
+	</script>
+
+	<script>
+		/**
+		 *编辑方法
+		 **/
+		function edit(userId, userName, userPwd, sockState, userType, userDate) {
+			console.log(userId);
+			editFlag = true;
+			$("#myModalLabel").text("修改");
+			$("#userId").val(userId).attr("disabled", true);
+			$("#userName").val(userName);
+			$("#userPwd").val(userPwd);
+			$("#sockState").val(sockState);
+			$("#userType").val(userType);
+			$("#userDate").val(userDate);
+			$("#myModal").modal("show");
+		}
+
+		$("#save").click(function ajax() {
+
+			var url = "add.jsp";
+			if (editFlag) {
+				url = "../UserServlet?op=edit";
+				console.log("這裡是Ajax");
+			}
+			$.ajax({
+				url : url,
+				data : {
+					"userId" : $("#userId").val(),
+					"userName" : $("#userName").val(),
+					"userPwd" : $("#userPwd").val(),
+					"sockState" : $("#sockState").val(),
+					"userType" : $("#userType").val(),
+					"userDate" : $("#userDate").val()
+				},
+				success : function(data) {
+					reload() ;
+					$("#myModal").modal("hide");
+					$("#myModalLabel").text("新增");
+					console.log("结果" + data);
+				}
+			});
+			;
+		});
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			dataTablesInit(employee);
+		});
+	</script>
+</body>
 
 </html>

@@ -1,14 +1,11 @@
 package com.kdx.daoImpl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.kdx.dao.UserDao;
 import com.kdx.entity.User;
 import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
-
-import sun.security.pkcs11.Secmod.DbMode;
 
 /**
  * UserDao的实现类
@@ -24,16 +21,16 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		String sql = "insert into user(userName,userPwd,sockState,userType,userdate) values(?,?,?,?,?)";
 		return BaseDao.execute(sql, u.getUserName(), u.getUserPwd(), u.getSockState(), u.getUserType(),
-				u.getUserdate()) > 0;
+				u.getUserDate()) > 0;
 	}
 
 	// 更新用户
 	@Override
 	public boolean updateUser(User u) {
 		// TODO Auto-generated method stub
-		String sql = "update user set userPwd=?,sockState=?,userType=?,userdate=? where userId=?";
-		return BaseDao.execute(sql, u.getUserPwd(), u.getSockState(), u.getUserType(), u.getUserdate(),
-				u.getUserId()) > 0;
+		String sql = "update user set userName=?,userPwd=?,sockState=?,userType=?,userdate=? where userId=?";
+		return BaseDao.execute(sql, u.getUserName(), u.getUserPwd(), u.getSockState(), u.getUserType(), u.getUserDate(),
+u.getUserId()) > 0;
 
 	}
 
@@ -48,15 +45,17 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User loginUser(String userName, String userPwd) {
 		// TODO Auto-generated method stub
-		String sql = "select * from user where userName=? and userPwd=?";
-		List<User> list = (List<User>) BaseDao.select(sql, User.class, userName, userPwd);
-		Iterator<User> it = list.iterator();
-		User u = null;
-		if (it.hasNext()) {
-			u = it.next();
-		}
-		return u;
+		String sql = "select * from user where userName=?,userPwd=?";
+		return (User) BaseDao.select(sql, User.class, userName, userPwd);
 
+	}
+
+	@Override
+	public List<User> queryUser() {
+		// TODO Auto-generated method stub
+		String sql = "select * from user";
+		return (List<User>) BaseDao.select(sql, User.class);
+		
 	}
 
 }

@@ -36,12 +36,5 @@ public class ArticleDaoImpl implements ArticleDao {
 		// TODO Auto-generated method stub
 		return BaseDao.getPage("select * from Article", page, pageSize, Article.class);
 	}
-	@Override
-	public Article loginArticle(String ArticleName, String ArticlePwd) {
-		// TODO Auto-generated method stub
-		String sql="select * from Article where ArticleName=?,ArticlePwd=?";
-		return (Article)BaseDao.select(sql,Article.class,ArticleName,ArticlePwd);
-	 
-	}
 
 }
