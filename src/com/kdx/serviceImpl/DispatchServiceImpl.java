@@ -1,11 +1,13 @@
 package com.kdx.serviceImpl;
 
 import com.kdx.dao.DispatchDao;
+import com.kdx.daoImpl.DispatchDaoImpl;
 import com.kdx.entity.Dispatch;
+import com.kdx.service.DispatchService;
 import com.kdx.util.PageData;
 
-public class DispatchServiceImpl implements DispatchDao {
-	DispatchDao dd=new DispatchServiceImpl();
+public class DispatchServiceImpl implements DispatchService {
+	DispatchDao dd=new DispatchDaoImpl();
 	@Override
 	public boolean addDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
