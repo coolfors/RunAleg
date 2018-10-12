@@ -1,8 +1,6 @@
 package com.kdx.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
 /**
  * The persistent class for the receipt database table.
@@ -11,25 +9,25 @@ import java.util.List;
 public class Receipt implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int receiptId;
+	private int receiptId;//接单号
 
-	private String courierAdd;
+	private int courierId;//配送员id
+	
+	private int disId;//派单号
+	
+	private String encryptionKey;//订单号加密码
 
-	private String encryptionKey;
+	private String startTime;//起送时间
+	
+	private String endTime;//结束时间
+	
+	private String courierAdd;//配送员位置
+	
+	private double getDistance;//配送员到起送点的距离
 
-	private String endTime;
+	private double sendDistance;//从起送点到目的地的距离
 
-	private double getDistance;
-
-	private double sendDistance;
-
-	private String startTime;
-
-	private int state;
-
-	private int courierId;
-
-	private int disId;
+	private int state;//状态
 
 	public Receipt() {
 	}

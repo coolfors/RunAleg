@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class QusController
  */
 @WebServlet("/ArtcleController")
-public class ArtcleController extends HttpServlet {
+public class ArticleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -27,7 +27,6 @@ public class ArtcleController extends HttpServlet {
 		System.out.println(questions);
 		System.out.println("username :" + request.getParameter("username"));
 		request.setAttribute("q", questions);
-
 		request.getRequestDispatcher("admin/q.jsp").forward(request, response);
 	}
 

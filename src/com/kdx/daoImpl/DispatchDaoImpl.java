@@ -25,6 +25,7 @@ public class DispatchDaoImpl implements DispatchDao {
 				dis.getDisPS(),dis.getDisState(),dis.getDisId())>0;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public PageData<Dispatch> queryDispatch(int page, int pageSize) {
 		// TODO Auto-generated method stub

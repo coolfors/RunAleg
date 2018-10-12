@@ -1,7 +1,6 @@
 package com.kdx.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
 
 /**
@@ -11,13 +10,15 @@ import javax.persistence.*;
 public class Evaluate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int evaluateId;
+	private int evaluateId;//评价id
 
-	private String evaInfo;
-
-	private int evaScore;
-
-	private int receiptId;
+	private int receiptId;//订单号
+	
+	private int evaScore;//评价分
+	
+	private String evaInfo;//评价信息
+	
+	private int evaState;//评价状态
 	
 	public int getReceiptId() {
 		return receiptId;
@@ -25,9 +26,6 @@ public class Evaluate implements Serializable {
 
 	public void setReceiptId(int receiptId) {
 		this.receiptId = receiptId;
-	}
-
-	public Evaluate() {
 	}
 
 	public int getEvaluateId() {
@@ -53,13 +51,36 @@ public class Evaluate implements Serializable {
 	public void setEvaScore(int evaScore) {
 		this.evaScore = evaScore;
 	}
+	
+	public int getEvaState() {
+		return evaState;
+	}
 
-	public Evaluate(int evaluateId, String evaInfo, int evaScore, int receiptId) {
+	public void setEvaState(int evaState) {
+		this.evaState = evaState;
+	}
+	
+	/**
+	 * 无参构造
+	 */
+	public Evaluate() {
+	}
+	
+	/**
+	 * 有参构造
+	 * @param evaluateId
+	 * @param receiptId
+	 * @param evaScore
+	 * @param evaInfo
+	 * @param evaState
+	 */
+	public Evaluate(int evaluateId, int receiptId, int evaScore, String evaInfo, int evaState) {
 		super();
 		this.evaluateId = evaluateId;
-		this.evaInfo = evaInfo;
-		this.evaScore = evaScore;
 		this.receiptId = receiptId;
+		this.evaScore = evaScore;
+		this.evaInfo = evaInfo;
+		this.evaState = evaState;
 	}
 
 	@Override
@@ -67,8 +88,6 @@ public class Evaluate implements Serializable {
 		return "Evaluate [evaluateId=" + evaluateId + ", evaInfo=" + evaInfo + ", evaScore=" + evaScore + ", receiptId="
 				+ receiptId + "]";
 	}
-
-	
 
 	
 }

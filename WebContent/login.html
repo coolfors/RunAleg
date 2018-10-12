@@ -9,12 +9,13 @@
 <body>
 <div class="login-container">
     <h1>会员登录</h1>
-    <form action="" method="post" id="loginForm">
+    <form action="LoginServlet.do" method="get" id="loginForm">
+    	<input type="hidden" id="op" name="op" value="login"/>
         <div>
-			<input type="text" name="phone_number" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number" onfocus=""/>
+			<input type="text" name="userName" class="userName" placeholder="输入用户名" autocomplete="off" id="userName"/>
         </div>
         <div>
-            <input type="password" name="password" class="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
+            <input type="password" name="password" class="password" id="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
         </div>
         <div>
         	<input type="text" placeholder="请输入验证码" style="width:150px; float:left"><img src="images/code1.png" style="float:right; display:inline-block; margin-top:28px;">

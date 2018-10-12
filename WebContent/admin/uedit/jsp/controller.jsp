@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
-
+	//添加文章的控制器
     request.setCharacterEncoding( "utf-8" );
 	response.setHeader("Content-Type" , "text/html");
 	

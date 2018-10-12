@@ -1,8 +1,6 @@
 package com.kdx.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
 /**
  * The persistent class for the dispatch database table.
@@ -11,33 +9,30 @@ import java.util.List;
 public class Dispatch implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int disId;
+	private int disId;//派单id
 
-	private int userId;
+	private int userId;//用户id
 
-	private String beginAdd;
+	private String beginAdd;//起送地点
 
-	private double disPrice;
+	private String endAdd;//目的地点
 
-	private String disPS;
+	private int disTel;//用户联系电话
+	
+	private double disPrice;//配送价格
+	
+	private String goodsType;//物品类型
 
-	private int disState;
+	private String disPS;//物品介绍
 
-	private int disTel;
-
-	private String endAdd;
-
-	private String goodsType;
-
+	private int disState;//派单状态
+	
 	public int getUserId() {
 		return userId;
 	}
 
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
-
-	public Dispatch() {
 	}
 
 	public int getDisId() {
@@ -103,8 +98,23 @@ public class Dispatch implements Serializable {
 	public void setGoodsType(String goodsType) {
 		this.goodsType = goodsType;
 	}
-
-
+	/**
+	 * 鏃犲弬鏋勯��
+	 */
+	public Dispatch() {
+	}
+	/**
+	 * 鏄剧ず鍏ㄩ儴娲惧崟淇℃伅
+	 * @param disId
+	 * @param userId
+	 * @param beginAdd
+	 * @param disPrice
+	 * @param disPS
+	 * @param disState
+	 * @param disTel
+	 * @param endAdd
+	 * @param goodsType
+	 */
 	public Dispatch(int disId, int userId, String beginAdd, double disPrice, String disPS, int disState, int disTel,
 			String endAdd, String goodsType) {
 		super();
@@ -125,5 +135,6 @@ public class Dispatch implements Serializable {
 				+ ", disPS=" + disPS + ", disState=" + disState + ", disTel=" + disTel + ", endAdd=" + endAdd
 				+ ", goodsType=" + goodsType + "]";
 	}
-
+	
+	
 }
