@@ -17,6 +17,18 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
 		return pd;
 	}
+	
+	/**
+	 * 查询已完成订单
+	 */
+	@Override
+	public PageData<Receipt> queryReceiptcom(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		String sql = "select * from receipt where state=2";
+		@SuppressWarnings("unchecked")
+		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
+		return pd;
+	}
 
 	/**
 	 * 根据接单号修改，订单信息
@@ -68,6 +80,17 @@ public class ReceiptDaoImpl implements ReceiptDao {
 	 */
 	@Override
 	public PageData<Receipt> waitUpdateReceipt(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		String sql = "select * from receipt where state = 1";
+		@SuppressWarnings("unchecked")
+		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
+		return pd;
+	}
+	/**
+	 * 待配送订单 state=1
+	 */
+	@Override
+	public PageData<Receipt> Receiptdispatch(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		String sql = "select * from receipt where state = 1";
 		@SuppressWarnings("unchecked")

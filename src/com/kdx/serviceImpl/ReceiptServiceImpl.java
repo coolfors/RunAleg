@@ -8,10 +8,22 @@ import com.kdx.util.PageData;
 
 public class ReceiptServiceImpl implements ReceiptService {
 	ReceiptDao rd= new ReceiptDaoImpl();
+	/**
+	 * 查询所有订单
+	 */
 	@Override
 	public PageData<Receipt> queryReceipt(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return rd.queryReceipt(page, pageSize);
+	}
+	
+	/**
+	 * 用于查询已完成订单
+	 */
+	@Override
+	public PageData<Receipt> queryReceiptcom(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		return rd.queryReceiptcom(page, pageSize);
 	}
 
 	@Override
@@ -42,6 +54,12 @@ public class ReceiptServiceImpl implements ReceiptService {
 	public PageData<Receipt> waitUpdateReceipt(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return rd.waitUpdateReceipt(page, pageSize);
+	}
+	
+	@Override
+	public PageData<Receipt> Receiptdispatch(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		return rd.Receiptdispatch(page, pageSize);
 	}
 
 }
