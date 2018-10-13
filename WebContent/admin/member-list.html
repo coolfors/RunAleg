@@ -53,11 +53,10 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div>
-		是否自动检索：<input type="checkbox" id="autoSearch"> <br> 用户名：<input
-			type="text" class="form-controlSearch" placeholder="请输入关键字查询"
-			data-column="2" id="col2_filter"> <br> 类 型：<input
-			ype="text" class="form-controlSearch" placeholder="请输入关键字查询"
-			data-column="5" id="col5_filter">
+		用户名：<input type="text" class="form-controlSearch"
+			placeholder="请输入关键字查询" data-column="2" id="col2_filter"> <br>
+		类 型：<input ype="text" class="form-controlSearch"
+			placeholder="请输入关键字查询" data-column="5" id="col5_filter">
 		<hr>
 		<table id="example" class="table table-striped table-bordered">
 			<thead>
@@ -85,7 +84,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">新增</h4>
+					<h4 class="modal-title" id="myModalLabel">新增用户</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
@@ -99,6 +98,18 @@
 					<div class="form-group">
 						<input type="text" class="form-control" id="userPwd"
 							placeholder="用户密码">
+					</div>
+					<div class="form-group hid" >
+						<select class="form-control" name="sockState">
+							<option value="0">禁用</option>
+							<option value="1">启用</option>
+						</select>
+					</div>
+					<div class="form-group hid" >
+						<select class="form-control" name="userType">
+							<option value="0">普通用户</option>
+							<option value="1">腿哥</option>
+						</select>
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="userDate"
@@ -223,9 +234,11 @@
 						var context = {
 							func : [ {
 								"name" : "修改",
-								"fn" : "edit(\'" + c.userId + "\',\'"
-										+ c.userName + "\',\'" + c.userPwd
-										+ "\',\'" + c.userDate + "\')",
+								"fn" : "edit(\'" + c.userId + "\',\'" + c.userName + "\',\'"
+										+ c.userPwd + "\',\'"
+										+ c.sockState + "\',\'" + c.userType
+										+ "\',\'" + c.userDate
+										+ "\')",
 								"type" : "primary"
 							} ]
 						};
@@ -268,7 +281,10 @@
 				+ '<button class="btn btn-primary" type="button" id="batchIds" style="margin-left:20px;" data-toggle="modal" >多选</button>'
 				+ '<button class="btn btn-success" type="button" id="selection" style="margin-left:20px;" data-toggle="modal" >单选</button>'
 				+ '<button class="btn btn-success" type="button" id="search" style="margin-left:20px;" data-toggle="modal" >查询</button>'
-				+ '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>';
+				+ '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>'
+				+ '<button class="btn btn-success" type="button" style="margin-left:20px;" data-toggle="modal" data-target="#myModal">添加用户</button>';
+
+		//  $("#mytool").append('<button type="button" class="" data-toggle="modal" >添加</button>');
 	</script>
 
 	<script>
@@ -435,10 +451,8 @@
 
 			//自动搜索方法
 			$('.form-controlSearch').on('keyup change', function() {
-				elo.gridInit.autoSearch = $("#autoSearch").prop("checked");
-				if (elo.gridInit.autoSearch) {
-					filterColumn($(this).attr('data-column'));
-				}
+				filterColumn($(this).attr('data-column'));
+
 			});
 		}
 
@@ -544,13 +558,16 @@
 		/**
 		 *编辑方法
 		 **/
-		function edit(userId, userName, userPwd, userDate) {
+		function edit(userId, userName, userPwd, sockState,userType,userDate) {
 			console.log(userId);
+			var d1 = document.getElementById("hid1");
+			var d2 = document.getElementById("hid2");
 			editFlag = true;
 			$("#myModalLabel").text("修改");
 			$("#userId").val(userId).attr("disabled", true);
 			$("#userName").val(userName);
 			$("#userPwd").val(userPwd);
+			$(".hid").hide();
 			$("#userDate").val(userDate);
 			$("#myModal").modal("show");
 		}
@@ -567,13 +584,13 @@
 					success : function(data) {
 						reload();
 						$("#myModal").modal("hide");
-						$("#myModalLabel").text("新增");
+						$("#myModalLabel").text("新增用户");
 						console.log("结果" + data);
 					}
 				});
 			} else if (userType == "1") {
 				$.ajax({
-					
+
 					url : url,
 					data : {
 						"userId" : userId,
@@ -582,7 +599,7 @@
 					success : function(data) {
 						reload();
 						$("#myModal").modal("hide");
-						$("#myModalLabel").text("新增");
+						$("#myModalLabel").text("新增用户");
 						console.log("结果" + data);
 					}
 				});
@@ -604,7 +621,7 @@
 					success : function(data) {
 						reload();
 						$("#myModal").modal("hide");
-						$("#myModalLabel").text("新增");
+						$("#myModalLabel").text("新增用户");
 						console.log("结果" + data);
 					}
 				});
@@ -618,7 +635,7 @@
 					success : function(data) {
 						reload();
 						$("#myModal").modal("hide");
-						$("#myModalLabel").text("新增");
+						$("#myModalLabel").text("新增用户");
 						console.log("结果" + data);
 					}
 				});
@@ -627,7 +644,7 @@
 		}
 		$("#save").click(function ajax() {
 
-			var url = "add.jsp";
+			var url = "../UserServlet?op=add";
 			if (editFlag) {
 				url = "../UserServlet?op=edit";
 				console.log("這裡是Ajax");
@@ -643,7 +660,7 @@
 				success : function(data) {
 					reload();
 					$("#myModal").modal("hide");
-					$("#myModalLabel").text("新增");
+					$("#myModalLabel").text("新增用户");
 					console.log("结果" + data);
 				}
 			});
