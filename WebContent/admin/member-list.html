@@ -207,7 +207,7 @@
 							func : [ {//a ? b : (c ? d : e) 
 								"name" : (c.userType == 0) ? "普通用户"
 										: ((c.userType == 1) ? "腿哥" : "超级管理员"),
-								"fn" : "sock(\'" + c.userId + "\',\'"
+								"fn" : "usertype(\'" + c.userId + "\',\'"
 										+ c.userType + "\')",
 								"type" : "primary"
 							} ]
@@ -555,14 +555,14 @@
 			$("#myModal").modal("show");
 		}
 
-		function sock(userId, sockState) {
-			var url = "../UserServlet?op=sock";
-			if (sockState == "0") {
+		function usertype(userId, userType) {
+			var url = "../UserServlet?op=type";
+			if (userType == "0") {
 				$.ajax({
 					url : url,
 					data : {
 						"userId" : userId,
-						"sockState" : "1",
+						"userType" : "1",
 					},
 					success : function(data) {
 						reload();
@@ -571,12 +571,13 @@
 						console.log("结果" + data);
 					}
 				});
-			} else if (sockState == "1") {
+			} else if (userType == "1") {
 				$.ajax({
+					
 					url : url,
 					data : {
 						"userId" : userId,
-						"sockState" : "0",
+						"userType" : "0",
 					},
 					success : function(data) {
 						reload();
@@ -591,16 +592,14 @@
 
 		}
 
-		function type(userId, userType) {
-			var url = "../UserServlet?op=type";
-			console.log(userId);
-			console.log(userType);
+		function sock(userId, sockState) {
+			var url = "../UserServlet?op=sock";
 			if (sockState == "1") {
 				$.ajax({
 					url : url,
 					data : {
 						"userId" : userId,
-						"userType" : "0",
+						"sockState" : "0",
 					},
 					success : function(data) {
 						reload();
@@ -614,7 +613,7 @@
 					url : url,
 					data : {
 						"userId" : userId,
-						"userType" : "1",
+						"sockState" : "1",
 					},
 					success : function(data) {
 						reload();
