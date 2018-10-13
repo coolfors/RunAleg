@@ -90,17 +90,19 @@ public class CourierServlet extends HttpServlet {
 			pageIndex="1";
 		}
 		if(pageSize==null) {
-			pageSize="2";
+			pageSize="4";
 		}
+		System.out.println(1);
 		//int page = 1;
 		//int pageSize = 6;
 		/*if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}*/
-		PageData<Dispatch> pd = ds.queryDispatch(Integer.parseInt(pageIndex), 2);
+		PageData<Dispatch> pd = ds.queryDispatch(Integer.parseInt(pageIndex), 4);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
-		response.getWriter().println(data);
+		System.out.println(pd);
+		response.getWriter().print(data);
 	}
 	/**
 	 * 查询待送订单，receipt表中state为0
