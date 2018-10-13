@@ -29,14 +29,14 @@ $(function(){
 		});
 	});
 	
-	//点击a标签事件，显示所有待修改订单，receipt表
+	//点击a标签事件，显示所有配送中订单，receipt表
 	$("#waitUpdateReceipt").click(function(){
 		$("thead").html("<tr><th>接单号</th><th>配送员id</th><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th></tr>");
 		$.get("CourierServlet.do?op=waitUpdateReceipt",function(data,status){
 			var arr = JSON.parse(data);
 			var str = "";
 			$.each(arr.data, function(index,a){
-				str = str + "<tr><td>"+a.receiptId+"</td><td>"+a.courierId+"</td><td>"+a.disId+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>待修改</a></td></tr>";
+				str = str + "<tr><td>"+a.receiptId+"</td><td>"+a.courierId+"</td><td>"+a.disId+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td></tr>";
 			});
 			$("tbody").html(str);
 		});
