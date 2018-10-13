@@ -45,6 +45,7 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		String op = request.getParameter("op");
 		if("allDispatch".equals(op)) {
 			allDispatch(request,response);
@@ -80,12 +81,23 @@ public class CourierServlet extends HttpServlet {
 	 */
 	protected void allDispatch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int page = 1;
-		int pageSize = 6;
-		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		//获取页码信息
+		String pageIndex=request.getParameter("pageIndex");
+		
+		String pageSize=request.getParameter("pageSize");
+		//设置初始默认值为1
+		if(pageIndex==null) {
+			pageIndex="1";
 		}
-		PageData<Dispatch> pd = ds.queryDispatch(page, pageSize);
+		if(pageSize==null) {
+			pageSize="2";
+		}
+		//int page = 1;
+		//int pageSize = 6;
+		/*if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}*/
+		PageData<Dispatch> pd = ds.queryDispatch(Integer.parseInt(pageIndex), 2);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		response.getWriter().println(data);

@@ -122,22 +122,8 @@
 		<div id="test1" class="text-center"></div>
 		<script src="layui/layui.js" charset="utf-8"></script>
 		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-		<script>
-			layui.use([ 'laypage', 'layer' ], function() {
-				var laypage = layui.laypage, layer = layui.layer;
-				//完整功能
-				laypage.render({
-					elem : 'test1',
-					count : 100,
-					layout : [ 'count', 'prev', 'page', 'next', 'limit',
-							'refresh', 'skip' ],
-					jump : function(obj, first) { //跳转
-						if (!first) {
-							location.href = "#";
-						}
-					}
-				});
-			});
+		<script id="layuiJs">
+			 
 		</script>
 	</div>
 	<!-- <div class="container">

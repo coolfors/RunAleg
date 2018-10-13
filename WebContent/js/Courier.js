@@ -3,6 +3,25 @@
  */
 
 $(function(){
+	/*layui.use([ 'laypage', 'layer' ], function() {
+		var laypage = layui.laypage, layer = layui.layer;
+		//完整功能
+		laypage.render({
+			elem : 'test1',
+			count : 100,
+			layout : [ 'count', 'prev', 'page', 'next', 'limit',
+					'refresh', 'skip' ],
+			jump : function(obj, first) { //跳转
+				if (!first) {
+					location.href = "register.html";
+				}
+			}
+		});
+	});*/ 
+});
+
+
+$(function(){
 	//点击标签出发事件：显示所有派单信息，Dispatch
 	$("#allDispatch").click(function(){
 		$("thead").html("<tr><th>派单id</th><th>用户id</th><th>起送地</th><th>到达地</th><th>用户联系电话</th><th>配送价格</th><th>物品类型</th><th>物品介绍</th><th>派单状态</th></tr>");
@@ -13,6 +32,22 @@ $(function(){
 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href=''>"+(a.disState==0?'已接单':'未接单')+"</a></td></tr>";
 			});
 			$("tbody").html(str);
+			layui.use([ 'laypage', 'layer' ], function() {
+				var laypage = layui.laypage, layer = layui.layer;
+				//完整功能
+				laypage.render({
+					elem : 'test1',
+					count : arr.total,
+					curr : arr.page,
+					layout : [ 'count', 'prev', 'page', 'next', 
+						'refresh', 'skip' ],
+						jump : function(obj, first) { //跳转
+							if (!first) {
+								location.href = "CourierServlet.do?op=allDispatch&page="+obj.curr+"&pageSize=";
+							}
+						}
+				});
+			});
 		});
 	});
 	
@@ -39,6 +74,7 @@ $(function(){
 				str = str + "<tr><td>"+a.receiptId+"</td><td>"+a.courierId+"</td><td>"+a.disId+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td></tr>";
 			});
 			$("tbody").html(str);
+			
 		});
 	});
 	

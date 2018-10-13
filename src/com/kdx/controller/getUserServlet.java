@@ -32,6 +32,7 @@ public class getUserServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//设置编码
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		//获取op
 		String op=request.getParameter("op");
