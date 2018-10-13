@@ -40,8 +40,8 @@ public class getUserServlet extends HttpServlet {
 			Gson gson=new Gson();
 			String userJson=request.getParameter("User");
 			//用gson方法得到user对象
-			User u=gson.fromJson(userJson, User.class);
-			response.getWriter().println(u);
+			//User u=gson.fromJson(userJson, User.class);
+			response.getWriter().println(userJson);
 		}
 	}
 
