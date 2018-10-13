@@ -9,7 +9,7 @@
 <body>
 <div class="register-container">
 	<h1>会员注册</h1>
-	<form action="" method="post" id="registerForm">
+	<form action="LoginServlet.do?op=register" method="post" id="registerForm">
     	<div>
 			<input type="text" name="userName" class="userName" placeholder="输入用户名" autocomplete="off" id="userName"/>
 		</div>
@@ -18,15 +18,6 @@
 		</div>
 		<div>
 			<input type="password" name="confirm_password" class="confirm_password" placeholder="再次输入密码" oncontextmenu="return false" onpaste="return false" />
-		</div>
-		<div>
-			<input type="text" name="username" class="username" placeholder="真实姓名" autocomplete="off"/>
-		</div>
-        <div>
-			<input type="text" class="id" placeholder="输入身份证号码" oncontextmenu="return false" onpaste="return false" />
-		</div>
-		<div>
-			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
 		</div>
         <div style="float:left; margin-top:10px;">
 			注册即代表同意<a href="agreement.html" target="_blank">&laquo;会员注册协议&raquo;</a>

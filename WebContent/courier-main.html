@@ -12,9 +12,14 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/Courier.js"></script>
+<script src="js/getUserName.js" type="text/javascript"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
+<script src="js/respond.min.js"></script>
 <![endif]-->
 </head>
 <body>
@@ -28,9 +33,10 @@
 					class="col-sm-4 col-xs-5" style="float: right"> <a
 					href="modify data.html" target="_blank" style="display: none">su23c0e</a>
 					<a href="" style="display: none">退出</a>
-				</span> <span id="showUserName" class="col-sm-4 col-xs-5" style="float: right"> <a
+				</span> <span id="showUserName" class="col-sm-4 col-xs-5"
+					> <!-- <a
 					href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-					href="register.html" target="_blank" id="reg">注册</a>
+					href="register.html" target="_blank" id="reg">注册</a> -->
 				</span>
 			</div>
 		</div>
@@ -66,7 +72,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="driving-knowledge.html">如何下单</a></li>
 						</ul></li>
-						<li><a href="alliance.html">关于我们</a></li>
+					<li><a href="alliance.html">关于我们</a></li>
 					<li><a href="contact-us.html">联系我们</a></li>
 				</ul>
 			</div>
@@ -149,22 +155,25 @@
 						<img src="images/reader driver.png"> <span> 订单详情</span>
 					</h3>
 					<div class="col-md-3 col-xs-6">
-						<a id="waitSendReceipt"> <img src="images/tubiao_03.png" class="img-circle">
+						<a id="waitSendReceipt"> <img src="images/tubiao_03.png"
+							class="img-circle">
 							<p>待送订单</p>
 						</a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a id="waitUpdateReceipt"> <img src="images/tubiao_09.png" class="img-circle">
-						<p>待修改订单</p>
+						<a id="waitUpdateReceipt"> <img src="images/tubiao_09.png"
+							class="img-circle">
+							<p>配送中订单</p>
 						</a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a id="allDispatch"><img src="images/trucks.png" class="img-circle">
-						<p>所有订单</p></a>
+						<a id="allDispatch"><img src="images/trucks.png"
+							class="img-circle">
+							<p>所有订单</p></a>
 					</div>
 					<div class="col-md-3 col-xs-6">
 						<a href=""><img src="images/06.png" class="img-circle">
-						<p>开始抢单</p></a>
+							<p>开始抢单</p></a>
 					</div>
 				</div>
 			</div>
@@ -236,8 +245,5 @@
 		</div>
 	</div>
 	<!--尾部-结束-->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/Courier.js"></script>
 </body>
 </html>

@@ -1,8 +1,6 @@
 package com.kdx.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
 /**
  * The persistent class for the courier database table.
@@ -128,7 +126,20 @@ public class Courier implements Serializable {
 	public void setDeposit(double deposit) {
 		this.deposit = deposit;
 	}
-
+	/**
+	 * 显示所有
+	 * @param courierId
+	 * @param ableDistance
+	 * @param address
+	 * @param balance
+	 * @param creditPoint
+	 * @param deposit
+	 * @param iDcard
+	 * @param idImg
+	 * @param sockState
+	 * @param tel
+	 * @param userId
+	 */
 	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
 			String iDcard, String idImg, int sockState, int tel, int userId) {
 		super();

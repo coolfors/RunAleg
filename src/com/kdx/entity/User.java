@@ -9,17 +9,17 @@ import java.io.Serializable;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int userId;
+	private int userId;//用户id，唯一，无论派单还是跑腿都是唯一的
 
-	private int sockState;
+	private int sockState;//跑腿用户权限
 
-	private String userDate;
+	private String userDate;//注册日期
 
-	private String userName;
+	private String userName;//用户名
 
-	private String userPwd;
+	private String userPwd;//密码
 
-	private int userType;
+	private int userType;//注册类型
 
 	public User() {
 	}
@@ -96,5 +96,21 @@ public class User implements Serializable {
 		return "User [userId=" + userId + ", sockState=" + sockState + ", userDate=" + userDate + ", userName="
 				+ userName + ", userPwd=" + userPwd + ", userType=" + userType + "]";
 	}
+	/**
+	 * 用户注册
+	 * @param userDate  注册时间	
+	 * @param userName	用户名	
+	 * @param userPwd	密码
+	 * @param userType	注册类型
+	 */
+	public User(String userName, String userPwd, int userType,String userDate) {
+		super();
+		this.userName = userName;
+		this.userPwd = userPwd;
+		this.userType = userType;
+		this.userDate = userDate;
+	}
+	
+	
 
 }

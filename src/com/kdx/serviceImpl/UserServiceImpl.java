@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
 	// 分页
 	@Override
-	public PageData getUsersByPage(int page, int pageSize) {
+	public PageData<User> getUsersByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return ud.queryUserByPage(page, pageSize);
 	}
