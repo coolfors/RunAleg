@@ -14,13 +14,12 @@
 $(document).ready(function(){
 	
 	$.ajax({
-		url:"LoginServlet.do?op=login",
+		url:"GetUserNameServlet.do",
 		type:"get",
 		success:function(data){
 			console.log(data);
-			$("#showUserName").html(data);
+			$("#showUserName").innerHTML = data;
 		}
 	})
-	
 })
 	
