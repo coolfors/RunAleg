@@ -60,15 +60,29 @@ public class UserServlet extends HttpServlet {
 			String userId = request.getParameter("userId");
 			String userName = request.getParameter("userName");
 			String userPwd = request.getParameter("userPwd");
-			String sockState = request.getParameter("sockState");
-			String userType = request.getParameter("userType");
 			String userDate = request.getParameter("userDate");
-			User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState), userDate, userName, userPwd,
-					Integer.valueOf(userType));
+			User u = new User(Integer.valueOf(userId), userDate, userName, userPwd);
 			boolean flag = us.updateUser(u);
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
+
+		if (op.equals("sock")) {
+			String userId = request.getParameter("userId");
+			String sockState = request.getParameter("sockState");
+			boolean flag = us.chSockState(Integer.valueOf(userId), Integer.valueOf(sockState));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
+
+		if (op.equals("type")) {
+			String userId = request.getParameter("userId");
+			String userType = request.getParameter("userType");
+			boolean flag = us.chUserType(Integer.valueOf(userId), Integer.valueOf(userType));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
+
 		if ("allDispatch".equals(op)) {// getUsersByPage
 
 			allDispatch(request, response);
@@ -99,8 +113,6 @@ public class UserServlet extends HttpServlet {
 		// 返回json对象
 		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
-
-		System.out.println(jsonString);
 
 		PrintWriter out = response.getWriter();
 
@@ -188,7 +200,6 @@ public class UserServlet extends HttpServlet {
 		String data = gson.toJson(pd);
 		// System.out.println(data);
 		response.getWriter().println(data);
-
 	}
 
 }

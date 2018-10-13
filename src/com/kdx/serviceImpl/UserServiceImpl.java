@@ -52,4 +52,16 @@ public class UserServiceImpl implements UserService {
 		return ud.queryUser();
 	}
 
+	@Override
+	public boolean chSockState(int userId, int sockState) {
+		// TODO Auto-generated method stub
+		return ud.changeState(userId, sockState);
+	}
+
+	@Override
+	public boolean chUserType(int userId, int userType) {
+		// TODO Auto-generated method stub
+		return ud.changeType(userId, userType);
+	}
+
 }

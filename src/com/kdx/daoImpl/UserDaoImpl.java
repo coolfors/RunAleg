@@ -29,9 +29,8 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean updateUser(User u) {
 		// TODO Auto-generated method stub
-		String sql = "update user set userName=?,userPwd=?,sockState=?,userType=?,userdate=? where userId=?";
-		return BaseDao.execute(sql, u.getUserName(), u.getUserPwd(), u.getSockState(), u.getUserType(), u.getUserDate(),
-u.getUserId()) > 0;
+		String sql = "update user set userName=?,userPwd=?,userdate=? where userId=?";
+		return BaseDao.execute(sql, u.getUserName(), u.getUserPwd(), u.getUserDate(), u.getUserId()) > 0;
 
 	}
 
@@ -47,11 +46,11 @@ u.getUserId()) > 0;
 	public User loginUser(String userName, String userPwd) {
 		// TODO Auto-generated method stub
 		String sql = "select * from user where userName=? and userPwd=?";
-		List<User> list=(List<User>) BaseDao.select(sql, User.class, userName, userPwd);
-		Iterator<User> it=list.iterator();
-		User u=null;
-		if(it.hasNext()) {
-			u=it.next();
+		List<User> list = (List<User>) BaseDao.select(sql, User.class, userName, userPwd);
+		Iterator<User> it = list.iterator();
+		User u = null;
+		if (it.hasNext()) {
+			u = it.next();
 		}
 		return u;
 
@@ -62,7 +61,21 @@ u.getUserId()) > 0;
 		// TODO Auto-generated method stub
 		String sql = "select * from user";
 		return (List<User>) BaseDao.select(sql, User.class);
-		
+
+	}
+
+	@Override
+	public boolean changeState(int userId, int sockState) {
+		// TODO Auto-generated method stub
+		String sql = "update user set sockState=? where userId=?";
+		return BaseDao.execute(sql, sockState, userId) > 0;
+	}
+
+	@Override
+	public boolean changeType(int userId, int userType) {
+		// TODO Auto-generated method stub
+		String sql = "update user set userType=? where userId=?";
+		return BaseDao.execute(sql, userType, userId) > 0;
 	}
 
 }

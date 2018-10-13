@@ -52,10 +52,12 @@
 			href="javascript:location.replace(location.href);" title="刷新"> <i
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
-	<div >
-		是否自动检索：<input type="checkbox" id="autoSearch"> <br>
-		 用户名：<input type="text" class="form-controlSearch" placeholder="请输入关键字查询" data-column="2" id="col2_filter"> <br>
-		 类    型：<input ype="text" class="form-controlSearch" placeholder="请输入关键字查询" data-column="5" id="col5_filter">
+	<div>
+		是否自动检索：<input type="checkbox" id="autoSearch"> <br> 用户名：<input
+			type="text" class="form-controlSearch" placeholder="请输入关键字查询"
+			data-column="2" id="col2_filter"> <br> 类 型：<input
+			ype="text" class="form-controlSearch" placeholder="请输入关键字查询"
+			data-column="5" id="col5_filter">
 		<hr>
 		<table id="example" class="table table-striped table-bordered">
 			<thead>
@@ -97,14 +99,6 @@
 					<div class="form-group">
 						<input type="text" class="form-control" id="userPwd"
 							placeholder="用户密码">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="sockState"
-							placeholder="用户状态">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userType"
-							placeholder="用户类型">
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="userDate"
@@ -188,37 +182,52 @@
 				},//第一行不进行排序和搜索
 				//        {"targets": [12], "visible": false},    //设置第13列隐藏/显示
 				//        {"width": "10%", "targets": [1]},  //设置第2列宽度
-				//        {
-				//            对第7列内容进行替换处理
-				//            targets: 6,
-				//            render: function (data, type, row, meta) {
-				//                if (data == "1") {
-				//                    return employee.table.sexMan;
-				//                }
-				//                if (data == "0") {
-				//                    return employee.table.sexWoman;
-				//                }
-				//            }
-				//        },
+				{
+					//            对第7列内容进行替换处理
+					"targets" : 4,
+					"render" : function(a, b, c, d) {
+						var context = {
+							func : [ {
+								"name" : (c.sockState == 1) ? "禁用" : "启用",
+								"fn" : "sock(\'" + c.userId + "\',\'"
+										+ c.sockState + "\')",
+								"type" : "danger"
+							} ]
+						};
+						var html = template(context);
+						return html;
+
+					}
+				},
+				{
+					//            对第7列内容进行替换处理
+					"targets" : 5,
+					"render" : function(a, b, c, d) {
+						var context = {
+							func : [ {//a ? b : (c ? d : e) 
+								"name" : (c.userType == 0) ? "普通用户"
+										: ((c.userType == 1) ? "腿哥" : "超级管理员"),
+								"fn" : "sock(\'" + c.userId + "\',\'"
+										+ c.userType + "\')",
+								"type" : "primary"
+							} ]
+						};
+						var html = template(context);
+						return html;
+
+					}
+				},
 				{
 					"targets" : 7,
 					"render" : function(a, b, c, d) {
 						var context = {
-							func : [
-									{
-										"name" : "修改",
-										"fn" : "edit(\'" + c.userId + "\',\'"
-												+ c.userName + "\',\'"
-												+ c.userPwd + "\',\'"
-												+ c.sockState + "\',\'"
-												+ c.userType + "\',\'"
-												+ c.userDate + "\')",
-										"type" : "primary"
-									}, {
-										"name" : "删除",
-										"fn" : "del(\'" + c.name + "\')",
-										"type" : "danger"
-									} ]
+							func : [ {
+								"name" : "修改",
+								"fn" : "edit(\'" + c.userId + "\',\'"
+										+ c.userName + "\',\'" + c.userPwd
+										+ "\',\'" + c.userDate + "\')",
+								"type" : "primary"
+							} ]
 						};
 						var html = template(context);
 						return html;
@@ -535,19 +544,88 @@
 		/**
 		 *编辑方法
 		 **/
-		function edit(userId, userName, userPwd, sockState, userType, userDate) {
+		function edit(userId, userName, userPwd, userDate) {
 			console.log(userId);
 			editFlag = true;
 			$("#myModalLabel").text("修改");
 			$("#userId").val(userId).attr("disabled", true);
 			$("#userName").val(userName);
 			$("#userPwd").val(userPwd);
-			$("#sockState").val(sockState);
-			$("#userType").val(userType);
 			$("#userDate").val(userDate);
 			$("#myModal").modal("show");
 		}
 
+		function sock(userId, sockState) {
+			var url = "../UserServlet?op=sock";
+			if (sockState == "0") {
+				$.ajax({
+					url : url,
+					data : {
+						"userId" : userId,
+						"sockState" : "1",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增");
+						console.log("结果" + data);
+					}
+				});
+			} else if (sockState == "1") {
+				$.ajax({
+					url : url,
+					data : {
+						"userId" : userId,
+						"sockState" : "0",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增");
+						console.log("结果" + data);
+					}
+				});
+			} else {
+				alert("我是超级管理员！臭小子别乱点");
+			}
+
+		}
+
+		function type(userId, userType) {
+			var url = "../UserServlet?op=type";
+			console.log(userId);
+			console.log(userType);
+			if (sockState == "1") {
+				$.ajax({
+					url : url,
+					data : {
+						"userId" : userId,
+						"userType" : "0",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增");
+						console.log("结果" + data);
+					}
+				});
+			} else {
+				$.ajax({
+					url : url,
+					data : {
+						"userId" : userId,
+						"userType" : "1",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增");
+						console.log("结果" + data);
+					}
+				});
+			}
+
+		}
 		$("#save").click(function ajax() {
 
 			var url = "add.jsp";
@@ -561,18 +639,16 @@
 					"userId" : $("#userId").val(),
 					"userName" : $("#userName").val(),
 					"userPwd" : $("#userPwd").val(),
-					"sockState" : $("#sockState").val(),
-					"userType" : $("#userType").val(),
 					"userDate" : $("#userDate").val()
 				},
 				success : function(data) {
-					reload() ;
+					reload();
 					$("#myModal").modal("hide");
 					$("#myModalLabel").text("新增");
 					console.log("结果" + data);
 				}
 			});
-			;
+
 		});
 	</script>
 

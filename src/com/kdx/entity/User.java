@@ -91,6 +91,15 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 
+	
+	public User(int userId, String userDate, String userName, String userPwd) {
+		super();
+		this.userId = userId;
+		this.userDate = userDate;
+		this.userName = userName;
+		this.userPwd = userPwd;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", sockState=" + sockState + ", userDate=" + userDate + ", userName="

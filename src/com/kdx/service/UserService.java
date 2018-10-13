@@ -21,4 +21,8 @@ public interface UserService {
 	PageData getUsersByPage(int page, int pageSize);// 分页
 
 	User loginUser(String userName, String userPwd);// 用户登录
+
+	boolean chSockState(int userId, int sockState);
+
+	boolean chUserType(int userId, int userType);
 }

@@ -9,6 +9,7 @@ import com.kdx.util.PageData;
 
 /**
  * 测试User的增加，修改，以及登录和分页的功能
+ * 
  * @author Administrator
  *
  */
@@ -31,8 +32,11 @@ public class testusers {
 		 * PageData<User> pd=us.getUsersByPage(3, 4); List<User> list=pd.getData(); for
 		 * (User user : list) { System.out.println(user); }
 		 */
-		User u=us.loginUser("老王", "12345");
-		System.out.println(u);
+		// User u=us.loginUser("老王", "12345");
+		// System.out.println(u);
+
+		boolean flag = us.chSockState(1, 1);
+		System.out.println(flag);
 
 	}
 
