@@ -6,12 +6,10 @@ import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kdx.entity.User;
 import com.kdx.service.UserService;
 import com.kdx.serviceImpl.UserServiceImpl;
@@ -72,13 +70,13 @@ public class LoginServlet extends HttpServlet {
 			out.print("<script>alert('登录失败！');location.href='login.html'</script>");
 		}
 		else {
-			Gson gson=new Gson();
-			String user=gson.toJson(u);
+			//Gson gson=new Gson();
+			//String user=gson.toJson(u);
 			//HttpSession session=request.getSession();
 			//session.setAttribute("User", user);
-			Cookie cookie = new Cookie("User", user);
-			response.addCookie(cookie);
-			out.print("<script>alert('登录成功！');location.href='index.thml'</script>");
+			//Cookie cookie = new Cookie("User", user);
+			//response.addCookie(cookie);
+			out.print("<script>alert('登录成功！');location.href='index.html'</script>");
 		}
 		out.close();
 	}
