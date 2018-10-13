@@ -35,15 +35,13 @@ public class getUserServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		//获取op
 		String op=request.getParameter("op");
-		//得到gson对象
-		Gson gson=new Gson();
-		String userJson=request.getParameter("User");
-		//用gson方法得到user对象
-		User u=gson.fromJson(userJson, User.class);
-		if(op.equals("getUserName")) {
-			request.setAttribute("UserName", u.getUserName());
-		}else if(op.equals("getUserId")) {
-			request.setAttribute("UserId", u.getUserId());
+		if(op.equals("getUser")) {
+			//得到gson对象
+			Gson gson=new Gson();
+			String userJson=request.getParameter("User");
+			//用gson方法得到user对象
+			User u=gson.fromJson(userJson, User.class);
+			response.getWriter().println(u);
 		}
 	}
 
