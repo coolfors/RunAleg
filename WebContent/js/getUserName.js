@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
 	$.get("getUserServlet.do?op=getUser",function(data,status){
 		var str="";
 		if(data==null){
@@ -9,4 +9,18 @@ $(function() {
 		}
 		$("#showUserName").html(str);
 	});
+})*/
+
+$(document).ready(function(){
+	
+	$.ajax({
+		url:"LoginServlet.do?op=login",
+		type:"get",
+		success:function(data){
+			console.log(data);
+			$("#showUserName").html(data);
+		}
+	})
+	
 })
+	
