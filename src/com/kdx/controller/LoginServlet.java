@@ -40,13 +40,16 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String op=request.getParameter("op");
+		String check_code= request.getParameter("check_code");//获取用户文本框内的内容
 		if(op.equals("login")) {
 			login(request,response);
 		}
 		else if(op.equals("register")) {
 			register(request,response);
 		}
-		
+		else if (check_code.toLowerCase().equals("check_code".toLowerCase())) {//验证码
+			login(request,response);
+		}
 	}
 
 	/**
@@ -67,17 +70,21 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String userName=request.getParameter("userName");
 		String password=request.getParameter("password");
+		String check_code= request.getParameter("check_code");//获取用户文本框内的内容
+		String code = (String) request.getSession().getAttribute("code"); // 获取存放在session中的验证码
 		User u = us.loginUser(userName, password);
 		if(u==null) {
-			out.print("<script>alert('登录失败！');location.href='login.html'</script>");
+			out.print("<script>alert('账号或密码错误，登录失败！');location.href='login.html'</script>");
+			System.out.println("123");
+		}else if(!check_code.equalsIgnoreCase(code)) {
+			out.print("<script>alert('验证码错误，登录失败！');location.href='login.html'</script>");
 		}
 		else {
-			
 			Gson gson=new Gson();
-			String user = gson.toJson(u);
-			HttpSession session = request.getSession();
-			session.setAttribute("data", user);
-			response.sendRedirect("LoginName.do");
+			String user=gson.toJson(u);
+			HttpSession session=request.getSession();
+			session.setAttribute("User", user);
+			out.print("<script>alert('登录成功！');location.href='index.html'</script>");
 		}
 		out.close();
 	}
