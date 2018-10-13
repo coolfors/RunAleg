@@ -18,7 +18,7 @@ public interface UserService {
 
 	boolean updateUser(User user);// 更新用户
 
-	PageData getUsersByPage(int page, int pageSize);// 分页
+	PageData<User> getUsersByPage(int page, int pageSize);// 分页
 
 	User loginUser(String userName, String userPwd);// 用户登录
 }
