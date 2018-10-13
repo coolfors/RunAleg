@@ -14,16 +14,3 @@
 	});
 })*/
 
-$(document).ready(function(){
-	
-	$ajax({
-		
-		url:"LoginName.do",
-		type:"post",
-		success:function(userName){
-			$("#showUserName").innerHTML = userName;
-		}
-		
-	})
-	
-})

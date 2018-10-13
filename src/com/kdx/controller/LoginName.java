@@ -1,7 +1,6 @@
 package com.kdx.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,13 +30,10 @@ public class LoginName extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		HttpSession gs=request.getSession();
-		String userName = (String) gs.getAttribute("userName");
-		System.out.println(userName);
-		out.println(userName);
-		out.flush();
-		out.close();
+		HttpSession session=request.getSession();
+		String data = (String) session.getAttribute("data");
+		System.out.println("LoginName1:"+data);
+		response.getWriter().print("<script>alert('登录成功！');location.href='index.html'</script>");
 	}
 
 	/**
@@ -45,6 +41,10 @@ public class LoginName extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
+		/*HttpSession session=request.getSession();
+		String data = (String) session.getAttribute("data");
+		System.out.println("LoginName2:"+data);
+		response.getWriter().print("<script>alert('登录成功！');location.href='index.html'</script>");*/
 	}
 
 }

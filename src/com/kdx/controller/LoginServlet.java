@@ -74,14 +74,10 @@ public class LoginServlet extends HttpServlet {
 		else {
 			
 			Gson gson=new Gson();
-			String user=gson.toJson(u);
-			//System.out.println(user);
-			HttpSession session=request.getSession();
-			session.setAttribute("User", user);
-			//session.setAttribute("userName", userName);
-			
-			out.print("<script>alert('登录成功！');location.href='index.html'</script>");
-			//response.sendRedirect("LoginName.do");
+			String user = gson.toJson(u);
+			HttpSession session = request.getSession();
+			session.setAttribute("data", user);
+			response.sendRedirect("LoginName.do");
 		}
 		out.close();
 	}
