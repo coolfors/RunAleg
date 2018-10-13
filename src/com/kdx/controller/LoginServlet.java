@@ -47,9 +47,6 @@ public class LoginServlet extends HttpServlet {
 		else if(op.equals("register")) {
 			register(request,response);
 		}
-		else if (check_code.toLowerCase().equals("check_code".toLowerCase())) {//验证码
-			login(request,response);
-		}
 	}
 
 	/**
