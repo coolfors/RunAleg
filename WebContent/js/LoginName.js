@@ -1,3 +1,6 @@
+/**
+ * 用于前台显示用户姓名
+ */
 /*$(function() {
 	$.get("getUserServlet.do?op=getUser",function(data,status){
 		var str="";
@@ -13,13 +16,14 @@
 
 $(document).ready(function(){
 	
-	$.ajax({
-		url:"GetUserNameServlet.do",
-		type:"get",
-		success:function(data){
-			console.log(data);
-			$("#showUserName").innerHTML = data;
+	$ajax({
+		
+		url:"LoginName.do",
+		type:"post",
+		success:function(userName){
+			$("#showUserName").innerHTML = userName;
 		}
+		
 	})
-})
 	
+})
