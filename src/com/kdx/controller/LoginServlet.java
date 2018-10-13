@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kdx.entity.User;
 import com.kdx.service.UserService;
 import com.kdx.serviceImpl.UserServiceImpl;
@@ -47,8 +48,10 @@ public class LoginServlet extends HttpServlet {
 				out.print("<script>alert('登录失败！');location.href='login.html'</script>");
 			}
 			else {
+				Gson gson=new Gson();
+				String user=gson.toJson(u);
 				HttpSession session=request.getSession();
-				session.setAttribute("User", u);
+				session.setAttribute("User", user);
 				out.print("<script>alert('登录成功！');location.href='index.html'</script>");
 			}
 		}
