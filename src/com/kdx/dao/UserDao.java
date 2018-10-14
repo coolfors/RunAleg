@@ -14,6 +14,8 @@ public interface UserDao {
 	boolean updateUser(User user);//更新用户
 	PageData<User> queryUserByPage(int page, int pageSize);//分页
 	User loginUser(String userName,String userPwd);//用户登录
+	boolean changeState(int userId, int sockState);//改变状态
+	boolean changeType(int userId, int userType);//改变类型
 
 }
                
