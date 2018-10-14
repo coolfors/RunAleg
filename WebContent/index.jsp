@@ -62,22 +62,22 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">首页</a></li>
-					<li><a href="user-main.html">跑腿吧<span class="sr-only"></span></a></li>
+					<li class="active"><a href="index.jsp">首页</a></li>
+					<li><a href="user-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">发布跑腿<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="freight-info.html">信息发布</a></li>
+							<li><a href="freight-info.jsp">信息发布</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">帮助<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="driving-knowledge.html">如何下单</a></li>
+							<li><a href="driving-knowledge.jsp">如何下单</a></li>
 						</ul></li>
-					<li><a href="alliance.html">关于我们</a></li>
-					<li><a href="contact-us.html">联系我们</a></li>
+					<li><a href="alliance.jsp">关于我们</a></li>
+					<li><a href="contact-us.jsp">联系我们</a></li>
 				</ul>
 			</div>
 		</div>
@@ -148,7 +148,7 @@
 	<div class="container">
 		<ol class="breadcrumb">
 			<li>当前位置：</li>
-			<li><a href="index.html">首页</a></li>
+			<li><a href="index.jsp">首页</a></li>
 			<li><a href="#">联盟简介</a></li>
 			<li class="active">正文</li>
 		</ol>
@@ -222,7 +222,7 @@
 				</div>
 				<div class="col-sm-4">
 					<p>
-						<a href="register.html">加入跑男</a> | <a href="contact-us.html">联系我们</a>
+						<a href="register.html">加入跑男</a> | <a href="contact-us.jsp">联系我们</a>
 					</p>
 					<hr>
 					<p>咨询电话：13015962382</p>
@@ -238,15 +238,6 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<!-- <script src="js/LoginName.js"></script> -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			$.get("LoginName.do", function(data, status) {
-				var arr = JSON.parse(data);
-				console.log(data);
-			}); 
-
-		})
-	</script>
+	
 </body>
 </html>
