@@ -53,7 +53,6 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div >
-		是否自动检索：<input type="checkbox" id="autoSearch"> <br>
 		 用户名：<input type="text" class="form-controlSearch" placeholder="请输入关键字查询" data-column="2" id="col2_filter"> <br>
 		 类    型：<input ype="text" class="form-controlSearch" placeholder="请输入关键字查询" data-column="5" id="col5_filter">
 		<hr>
@@ -426,10 +425,7 @@
 
 			//自动搜索方法
 			$('.form-controlSearch').on('keyup change', function() {
-				elo.gridInit.autoSearch = $("#autoSearch").prop("checked");
-				if (elo.gridInit.autoSearch) {
 					filterColumn($(this).attr('data-column'));
-				}
 			});
 		}
 

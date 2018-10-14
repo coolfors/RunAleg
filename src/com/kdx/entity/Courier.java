@@ -28,9 +28,10 @@ public class Courier implements Serializable {
 	private int sockState;
 
 	private int tel;
-	
+
 	private int userId;
-	
+
+	private String userName;
 
 	public Courier() {
 	}
@@ -126,8 +127,18 @@ public class Courier implements Serializable {
 	public void setDeposit(double deposit) {
 		this.deposit = deposit;
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	/**
 	 * 显示所有
+	 * 
 	 * @param courierId
 	 * @param ableDistance
 	 * @param address
@@ -156,17 +167,27 @@ public class Courier implements Serializable {
 		this.userId = userId;
 	}
 
+	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
+			String iDcard, int sockState, int tel, String userName) {
+		super();
+		this.courierId = courierId;
+		this.ableDistance = ableDistance;
+		this.address = address;
+		this.balance = balance;
+		this.creditPoint = creditPoint;
+		this.deposit = deposit;
+		IDcard = iDcard;
+		this.sockState = sockState;
+		this.tel = tel;
+		this.userName = userName;
+	}
+
 	@Override
 	public String toString() {
 		return "Courier [courierId=" + courierId + ", ableDistance=" + ableDistance + ", address=" + address
 				+ ", balance=" + balance + ", creditPoint=" + creditPoint + ", deposit=" + deposit + ", IDcard="
 				+ IDcard + ", idImg=" + idImg + ", sockState=" + sockState + ", tel=" + tel + ", userId=" + userId
-				+ "]";
+				+ ", userName=" + userName + "]";
 	}
-
-	
-	
-	
-
 
 }
