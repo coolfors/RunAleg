@@ -1,7 +1,10 @@
 package com.kdx.daoImpl;
 
+import java.util.List;
+
 import com.kdx.dao.ReceiptDao;
 import com.kdx.entity.Receipt;
+import com.kdx.entity.User;
 import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
 
@@ -17,7 +20,7 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
 		return pd;
 	}
-	
+
 	/**
 	 * 查询已完成订单
 	 */
@@ -64,6 +67,7 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		String sql = "delete from receipt where receiptId=?";
 		return BaseDao.execute(sql, receiptId) > 0;
 	}
+
 	/**
 	 * 待送订单，订单状态为0
 	 */
@@ -75,6 +79,7 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
 		return pd;
 	}
+
 	/**
 	 * 待修改订单，订单状态为1
 	 */
@@ -86,6 +91,7 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
 		return pd;
 	}
+
 	/**
 	 * 待配送订单 state=1
 	 */
@@ -96,6 +102,13 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		@SuppressWarnings("unchecked")
 		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
 		return pd;
+	}
+
+	@Override
+	public List<Receipt> getReceipt() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT receipt.receiptId,receipt.encryptionKey,user.userName,receipt.disId,receipt.startTime,receipt.endTime,receipt.state,receipt.courierAdd,receipt.getDistance,receipt.sendDistance FROM (receipt,user) INNER JOIN courier ON courier.userId=user.userId AND receipt.courierId=courier.courierId";
+		return (List<Receipt>) BaseDao.select(sql, Receipt.class);
 	}
 
 }

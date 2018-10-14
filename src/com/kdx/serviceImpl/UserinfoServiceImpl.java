@@ -1,4 +1,6 @@
 package com.kdx.serviceImpl;
+import java.util.List;
+
 import com.kdx.dao.UserinfoDao;
 import com.kdx.daoImpl.UserinfoDaoImpl;
 import com.kdx.entity.Userinfo;
@@ -33,6 +35,12 @@ public class UserinfoServiceImpl implements UserinfoService {
 		// TODO Auto-generated method stub
 		return uid.queryUserinfoByPage(page, pageSize);
 		
+	}
+
+	@Override
+	public List<Userinfo> getUserinfo() {
+		// TODO Auto-generated method stub
+		return uid.queryUserinfo();
 	}
 
 }

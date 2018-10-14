@@ -9,24 +9,34 @@ import java.io.Serializable;
 public class Dispatch implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int disId;//派单id
+	private int disId;// 派单id
 
-	private int userId;//用户id
+	private int userId;// 用户id
 
-	private String beginAdd;//起送地点
+	private String userName;// 用户名
 
-	private String endAdd;//目的地点
+	private String beginAdd;// 起送地点
 
-	private int disTel;//用户联系电话
-	
-	private double disPrice;//配送价格
-	
-	private String goodsType;//物品类型
+	private String endAdd;// 目的地点
 
-	private String disPS;//物品介绍
+	private int disTel;// 用户联系电话
 
-	private int disState;//派单状态
-	
+	private double disPrice;// 配送价格
+
+	private String goodsType;// 物品类型
+
+	private String disPS;// 物品介绍
+
+	private int disState;// 派单状态
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -98,13 +108,16 @@ public class Dispatch implements Serializable {
 	public void setGoodsType(String goodsType) {
 		this.goodsType = goodsType;
 	}
+
 	/**
 	 * 鏃犲弬鏋勯��
 	 */
 	public Dispatch() {
 	}
+
 	/**
 	 * 鏄剧ず鍏ㄩ儴娲惧崟淇℃伅
+	 * 
 	 * @param disId
 	 * @param userId
 	 * @param beginAdd
@@ -131,10 +144,9 @@ public class Dispatch implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Dispatch [disId=" + disId + ", userId=" + userId + ", beginAdd=" + beginAdd + ", disPrice=" + disPrice
-				+ ", disPS=" + disPS + ", disState=" + disState + ", disTel=" + disTel + ", endAdd=" + endAdd
-				+ ", goodsType=" + goodsType + "]";
+		return "Dispatch [disId=" + disId + ", userId=" + userId + ", userName=" + userName + ", beginAdd=" + beginAdd
+				+ ", endAdd=" + endAdd + ", disTel=" + disTel + ", disPrice=" + disPrice + ", goodsType=" + goodsType
+				+ ", disPS=" + disPS + ", disState=" + disState + "]";
 	}
-	
-	
+
 }

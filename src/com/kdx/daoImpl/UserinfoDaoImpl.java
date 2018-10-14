@@ -1,6 +1,9 @@
 package com.kdx.daoImpl;
 
+import java.util.List;
+
 import com.kdx.dao.UserinfoDao;
+import com.kdx.entity.User;
 import com.kdx.entity.Userinfo;
 import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
@@ -33,6 +36,13 @@ public class UserinfoDaoImpl implements UserinfoDao {
 	public PageData queryUserinfoByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return  BaseDao.getPage("select * from userinfo", page, pageSize, Userinfo.class);
+	}
+
+	@Override
+	public List<Userinfo> queryUserinfo() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT userinfo.userInfoId,user.userName,userinfo.userTel,userinfo.userAdd,userinfo.userBalance,userinfo.userSex,user.sockState FROM userinfo INNER JOIN user ON userinfo.userId=user.userId";
+		return (List<Userinfo>) BaseDao.select(sql, Userinfo.class);
 	}
 
 }

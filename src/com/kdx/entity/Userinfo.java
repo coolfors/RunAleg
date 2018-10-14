@@ -22,6 +22,26 @@ public class Userinfo implements Serializable {
 
 	private String userTel;
 	
+	private String userName;
+	
+	private int sockState;
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getSockState() {
+		return sockState;
+	}
+
+	public void setSockState(int sockState) {
+		this.sockState = sockState;
+	}
+
 	public Userinfo() {
 	}
 
@@ -83,12 +103,19 @@ public class Userinfo implements Serializable {
 		this.userTel = userTel;
 	}
 
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Userinfo [userInfoId=" + userInfoId + ", userId=" + userId + ", userAdd=" + userAdd + ", userBalance="
-				+ userBalance + ", userSex=" + userSex + ", userTel=" + userTel + "]";
+				+ userBalance + ", userSex=" + userSex + ", userTel=" + userTel + ", userName=" + userName
+				+ ", sockState=" + sockState + "]";
 	}
 
+	
+	
 	
 	
 	

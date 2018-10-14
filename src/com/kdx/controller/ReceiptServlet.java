@@ -1,6 +1,9 @@
 package com.kdx.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,7 @@ import com.google.gson.Gson;
 import com.kdx.entity.Dispatch;
 import com.kdx.entity.Evaluate;
 import com.kdx.entity.Receipt;
+import com.kdx.entity.User;
 import com.kdx.service.DispatchService;
 import com.kdx.service.EvaluateService;
 import com.kdx.service.ReceiptService;
@@ -19,6 +23,7 @@ import com.kdx.serviceImpl.DispatchServiceImpl;
 import com.kdx.serviceImpl.EvaluateServiceImpl;
 import com.kdx.serviceImpl.ReceiptServiceImpl;
 import com.kdx.serviceImpl.UserServiceImpl;
+import com.kdx.util.MyDataTableData;
 import com.kdx.util.PageData;
 
 /**
@@ -75,7 +80,27 @@ public class ReceiptServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		// 查询并返回所有数据 的格式要注意咯
+		List<Receipt> list = rs.getReceipt();
+
+		MyDataTableData<Receipt> mydata = new MyDataTableData<Receipt>();
+		mydata.setData(list);
+
+		// 返回json对象
+		Gson gson = new Gson();
+		String jsonString = new Gson().toJson(mydata);
+
+		System.out.println(jsonString);
+
+		PrintWriter out = response.getWriter();
+
+		out.print(jsonString);
+
+		out.close();
 	}
 
 	/**
@@ -97,7 +122,7 @@ public class ReceiptServlet extends HttpServlet {
 		PageData<Receipt> pd = rs.queryReceiptcom(page, pageSize);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
-		
+
 		response.getWriter().println(data);
 
 	}
@@ -121,7 +146,7 @@ public class ReceiptServlet extends HttpServlet {
 		PageData<Receipt> pd = rs.Receiptdispatch(page, pageSize);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
-		//System.out.println(data);
+		// System.out.println(data);
 		response.getWriter().println(data);
 
 	}

@@ -62,15 +62,13 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>订单编号</th>
-					<th>派单用户</th>
-					<th>起始地址</th>
-					<th>终点地址</th>
-					<th>联系人号码</th>
-					<th>价格</th>
-					<th>物品类型</th>
-					<th>备注</th>
-					<th>订单状态</th>
+					<th>用户信息编号</th>
+					<th>用户名</th>
+					<th>手机号码</th>
+					<th>地址</th>
+					<th>余额</th>
+					<th>性别</th>
+					<th>状态</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -91,28 +89,32 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="text" class="form-control" id="userId"
-							placeholder="用户编号">
+						<input type="text" class="form-control" id="userInfoId"
+							placeholder="用户信息编号">
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="userName"
 							placeholder="用户名">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="userPwd"
+						<input type="text" class="form-control" id="userTel"
 							placeholder="用户密码">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="sockState"
+						<input type="text" class="form-control" id="userAdd"
 							placeholder="用户状态">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="userType"
+						<input type="text" class="form-control" id="userBalance"
 							placeholder="用户类型">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="userDate"
-							placeholder="注册时间" data-date-format="yyyy/mm/dd">
+						<input type="text" class="form-control" id=userSex
+							placeholder="用户类型">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="sockState"
+							placeholder="用户类型">
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -177,7 +179,7 @@
 		//路径配置
 		employee.url = "/"; // / 表示的是网站的根
 		employee.requestUrl = {
-			queryList : employee.url + "RunAleg/DispatchServlet" //访问servlet 一次请求所有数据
+			queryList : employee.url + "RunAleg/UserInfoServlet" //访问servlet 一次请求所有数据
 		};
 
 		employee.search = {
@@ -205,7 +207,7 @@
 				//            }
 				//        },
 				{
-					"targets" : 10,
+					"targets" : 8,
 					"render" : function(a, b, c, d) {
 						var context = {
 							func : [
@@ -237,31 +239,27 @@
 
 		employee.filed = [
 				{
-					"data" : "disId",
+					"data" : "userId",
 					"createdCell" : function(nTd, sData, oData, iRow, iCol) {
 						$(nTd)
 								.html(
 										"<input type='checkbox' name='checkList' value='" + sData + "'>");
 					}
 				}, {
-					"data" : "disId"
+					"data" : "userInfoId"
 				}, {
 					"data" : "userName"
 				}, {
-					"data" : "beginAdd"
+					"data" : "userTel"
 				}, {
-					"data" : "endAdd"
+					"data" : "userAdd"
 				}, {
-					"data" : "disTel"
+					"data" : "userBalance"
 				}, {
-					"data" : "disPrice"
+					"data" : "userSex"
 				}, {
-					"data" : "goodsType"
-				}, {
-					"data" : "disPS"
-				}, {
-					"data" : "disState"
-				}, {
+					"data" : "sockState"
+				},{
 					"data" : null
 				} ];
 
@@ -589,5 +587,6 @@
 		});
 	</script>
 </body>
+
 
 </html>

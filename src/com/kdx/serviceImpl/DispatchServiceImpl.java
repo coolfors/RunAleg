@@ -1,5 +1,7 @@
 package com.kdx.serviceImpl;
 
+import java.util.List;
+
 import com.kdx.dao.DispatchDao;
 import com.kdx.daoImpl.DispatchDaoImpl;
 import com.kdx.entity.Dispatch;
@@ -7,7 +9,8 @@ import com.kdx.service.DispatchService;
 import com.kdx.util.PageData;
 
 public class DispatchServiceImpl implements DispatchService {
-	DispatchDao dd=new DispatchDaoImpl();
+	DispatchDao dd = new DispatchDaoImpl();
+
 	@Override
 	public boolean addDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
@@ -25,10 +28,17 @@ public class DispatchServiceImpl implements DispatchService {
 		// TODO Auto-generated method stub
 		return dd.queryDispatch(page, pageSize);
 	}
+
 	@Override
 	public PageData<Dispatch> waitSendDispatch(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return dd.waitSendDispatch(page, pageSize);
+	}
+
+	@Override
+	public List<Dispatch> getDispatch() {
+		// TODO Auto-generated method stub
+		return dd.getDispatch();
 	}
 
 }
