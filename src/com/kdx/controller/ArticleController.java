@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kdx.entity.Article;
+import com.kdx.entity.Dispatch;
+import com.kdx.entity.Evaluate;
 import com.kdx.service.ArticleService;
 import com.kdx.serviceImpl.ArticleServiceImpl;
+import com.kdx.util.PageData;
 
 /**
  * Servlet implementation class QusController
