@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 <head>
@@ -28,8 +29,13 @@
                 <a href="" style="display:none">退出</a>
             </span>
             <span class="col-sm-4 col-xs-5" style="float:right">
-            	<a href="login.html" target="_blank" id="login">登录</a>&nbsp;
-                <a href="register.html" target="_blank" id="reg">注册</a>
+            	<c:if test="${sessionScope.User==null }">
+						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
+						href="register.html" target="_blank" id="reg">注册</a>
+					</c:if>
+					<c:if test="${sessionScope.User!=null }">
+						<a href="login.html" target="_blank" id="UserInfo">${sessionScope.User.userName}</a>
+					</c:if>
             </span>
         </div>
     </div>
