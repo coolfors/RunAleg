@@ -98,10 +98,11 @@ public class CourierServlet extends HttpServlet {
 		/*if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}*/
-		PageData<Dispatch> pd = ds.queryDispatch(Integer.parseInt(pageIndex), 4);
+		PageData<Dispatch> pd = ds.queryDispatch(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		System.out.println(pd);
+		request.setAttribute("dataJson", data);
 		response.getWriter().print(data);
 	}
 	/**
@@ -122,6 +123,7 @@ public class CourierServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		//System.out.println(data);
+		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
 	/**
@@ -142,6 +144,7 @@ public class CourierServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		//System.out.println(data);
+		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
 	/**
@@ -162,6 +165,7 @@ public class CourierServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		//System.out.println(data);
+		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
 	/**
@@ -182,6 +186,7 @@ public class CourierServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		//System.out.println(data);
+		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
 

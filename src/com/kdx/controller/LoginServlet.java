@@ -77,10 +77,10 @@ public class LoginServlet extends HttpServlet {
 			out.print("<script>alert('验证码错误，登录失败！');location.href='login.html'</script>");
 		}
 		else {
-			Gson gson=new Gson();
-			String user=gson.toJson(u);
+			/*Gson gson=new Gson();
+			String user=gson.toJson(u);*/
 			HttpSession session=request.getSession();
-			session.setAttribute("User", user);
+			session.setAttribute("User", u);
 			out.print("<script>alert('登录成功！');location.href='index.html'</script>");
 		}
 		out.close();

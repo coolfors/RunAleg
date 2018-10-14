@@ -53,22 +53,22 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="user-main.html">跑腿吧<span class="sr-only"></span></a></li>
+                <li><a href="index.jsp">首页</a></li>
+                <li><a href="user-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
                 <li class="active" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">发布跑腿<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="freight-info.html">信息发布</a></li>
+                        <li><a href="freight-info.jsp">信息发布</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="driving-knowledge.html">如何下单</a></li>
+                        <li><a href="driving-knowledge.jsp">如何下单</a></li>
                     </ul>
                 </li>
-                <li><a href="alliance.html">关于我们</a></li>
-                <li><a href="contact-us.html">联系我们</a></li>
+                <li><a href="alliance.jsp">关于我们</a></li>
+                <li><a href="contact-us.jsp">联系我们</a></li>
             </ul>
         </div>
     </div>
@@ -143,19 +143,19 @@
             <div class="new_tab_div" style="display:none" id="list_one2">
             	<ul>
             	<li class="row">
-                	<a href="driving-kn-details.html" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
+                	<a href="driving-kn-details.jsp" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
                 </li>
                 <li class="row">
-                	<a href="driving-kn-details.html" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
+                	<a href="driving-kn-details.jsp" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
                 </li>
                 <li class="row">
-                	<a href="driving-kn-details.html" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
+                	<a href="driving-kn-details.jsp" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
                 </li>
                 <li class="row">
-                	<a href="driving-kn-details.html" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
+                	<a href="driving-kn-details.jsp" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
                 </li>
                 <li class="row">
-                	<a href="driving-kn-details.html" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
+                	<a href="driving-kn-details.jsp" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
                 </li>
             </ul>
 			</div>
@@ -189,7 +189,7 @@
                 <p>快递侠坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！</p>
             </div>
             <div class="col-sm-4">
-                <p><a href="register.html">加入跑男</a> | <a href="contact-us.html">联系我们</a></p>
+                <p><a href="register.html">加入跑男</a> | <a href="contact-us.jsp">联系我们</a></p>
                 <hr>
                 <p>咨询电话：13015962382</p>
                 <p>邮箱：coolfors@163.com</p>
