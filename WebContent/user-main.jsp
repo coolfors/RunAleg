@@ -61,22 +61,22 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="index.html">首页</a></li>
+					<li><a href="index.jsp">首页</a></li>
 					<li class="active"><a href="#">跑腿吧<span class="sr-only"></span></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">发布跑腿<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="freight-info.html">信息发布</a></li>
+							<li><a href="freight-info.jsp">信息发布</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">帮助<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="driving-knowledge.html">如何下单</a></li>
+							<li><a href="driving-knowledge.jsp">如何下单</a></li>
 						</ul></li>
-						<li><a href="alliance.html">关于我们</a></li>
-					<li><a href="contact-us.html">联系我们</a></li>
+						<li><a href="alliance.jsp">关于我们</a></li>
+					<li><a href="contact-us.jsp">联系我们</a></li>
 				</ul>
 			</div>
 		</div>
@@ -171,7 +171,7 @@
 						<p>所有订单</p></a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a href="freight-info.html"><img src="images/06.png" class="img-circle">
+						<a href="freight-info.jsp"><img src="images/06.png" class="img-circle">
 						<p>下单</p></a>
 					</div>
 				</div>
@@ -231,7 +231,7 @@
 				</div>
 				<div class="col-sm-4">
 					<p>
-						<a href="register.html">加入跑男</a> | <a href="contact-us.html">联系我们</a>
+						<a href="register.html">加入跑男</a> | <a href="contact-us.jsp">联系我们</a>
 					</p>
 					<hr>
 					<p>咨询电话：13015962382</p>
