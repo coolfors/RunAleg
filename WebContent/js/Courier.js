@@ -177,7 +177,7 @@ $(function(){
             success: function(data){
                        /* $('#resText').empty();*/   //清空resText里面的所有内容
                         //var html = ''; 
-            	$("thead").html("<tr><th>接单号</th><th>配送员id</th><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>状态</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th></tr>");
+            	$("thead").html("<tr><th>接单号</th><th>配送员id</th><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th></tr>");
         		var jsonStr=JSON.stringify(data);
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
