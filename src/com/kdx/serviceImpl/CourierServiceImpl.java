@@ -35,4 +35,10 @@ public class CourierServiceImpl implements CourierService {
 		return cd.getCourier();
 	}
 
+	@Override
+	public Courier getCourierById(int userId) {
+		// TODO Auto-generated method stub
+		return cd.getCourierById(userId);
+	}
+
 }

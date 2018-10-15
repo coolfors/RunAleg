@@ -58,7 +58,6 @@ public class UserDaoImpl implements UserDao {
 		if (it.hasNext()) {
 			u = it.next();
 		}
-		System.out.println("user:"+u);
 		return u;
 
 	}

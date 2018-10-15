@@ -10,21 +10,19 @@ import java.io.Serializable;
 public class Userinfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int userInfoId;
+	private int userInfoId;//详情信息id
 	
-	private int userId;
+	private int userId;//用户id
 
-	private String userAdd;
+	private String userAdd;//用户地址
 
-	private double userBalance;
+	private double userBalance;//用户余额
 
-	private String userSex;
+	private String userSex;//用户性别
 
-	private String userTel;
+	private String userTel;//用户手机
 	
-	private String userName;
-	
-	private int sockState;
+	private String userName;//用户名
 	
 	public String getUserName() {
 		return userName;
@@ -32,14 +30,6 @@ public class Userinfo implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public int getSockState() {
-		return sockState;
-	}
-
-	public void setSockState(int sockState) {
-		this.sockState = sockState;
 	}
 
 	public Userinfo() {
@@ -102,23 +92,11 @@ public class Userinfo implements Serializable {
 		this.userSex = userSex;
 		this.userTel = userTel;
 	}
-
-	
-	
-	
-	
+		
 	@Override
 	public String toString() {
 		return "Userinfo [userInfoId=" + userInfoId + ", userId=" + userId + ", userAdd=" + userAdd + ", userBalance="
 				+ userBalance + ", userSex=" + userSex + ", userTel=" + userTel + ", userName=" + userName
-				+ ", sockState=" + sockState + "]";
+				+ "]";
 	}
-
-	
-	
-	
-	
-	
-	
-
 }

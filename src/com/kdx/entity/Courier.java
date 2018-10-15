@@ -27,7 +27,7 @@ public class Courier implements Serializable {
 
 	private int sockState;
 
-	private int tel;
+	private String Tel;
 
 	private int userId;
 
@@ -108,12 +108,12 @@ public class Courier implements Serializable {
 		this.sockState = sockState;
 	}
 
-	public int getTel() {
-		return this.tel;
+	public String getTel() {
+		return this.Tel;
 	}
 
-	public void setTel(int tel) {
-		this.tel = tel;
+	public void setTel(String Tel) {
+		this.Tel = Tel;
 	}
 
 	public int getUserId() {
@@ -148,11 +148,11 @@ public class Courier implements Serializable {
 	 * @param iDcard
 	 * @param idImg
 	 * @param sockState
-	 * @param tel
+	 * @param Tel
 	 * @param userId
 	 */
 	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
-			String iDcard, String idImg, int sockState, int tel, int userId) {
+			String iDcard, String idImg, int sockState, String Tel, int userId) {
 		super();
 		this.courierId = courierId;
 		this.ableDistance = ableDistance;
@@ -163,12 +163,12 @@ public class Courier implements Serializable {
 		this.IDcard = iDcard;
 		this.idImg = idImg;
 		this.sockState = sockState;
-		this.tel = tel;
+		this.Tel = Tel;
 		this.userId = userId;
 	}
 
 	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
-			String iDcard, int sockState, int tel, String userName) {
+			String iDcard, int sockState, String Tel, String userName) {
 		super();
 		this.courierId = courierId;
 		this.ableDistance = ableDistance;
@@ -178,7 +178,7 @@ public class Courier implements Serializable {
 		this.deposit = deposit;
 		IDcard = iDcard;
 		this.sockState = sockState;
-		this.tel = tel;
+		this.Tel = Tel;
 		this.userName = userName;
 	}
 
@@ -186,7 +186,7 @@ public class Courier implements Serializable {
 	public String toString() {
 		return "Courier [courierId=" + courierId + ", ableDistance=" + ableDistance + ", address=" + address
 				+ ", balance=" + balance + ", creditPoint=" + creditPoint + ", deposit=" + deposit + ", IDcard="
-				+ IDcard + ", idImg=" + idImg + ", sockState=" + sockState + ", tel=" + tel + ", userId=" + userId
+				+ IDcard + ", idImg=" + idImg + ", sockState=" + sockState + ", Tel=" + Tel + ", userId=" + userId
 				+ ", userName=" + userName + "]";
 	}
 

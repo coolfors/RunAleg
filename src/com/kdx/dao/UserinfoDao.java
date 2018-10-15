@@ -2,7 +2,6 @@ package com.kdx.dao;
 
 import java.util.List;
 
-import com.kdx.entity.User;
 import com.kdx.entity.Userinfo;
 import com.kdx.util.PageData;
 
@@ -21,5 +20,7 @@ public interface UserinfoDao {
 	boolean updateUserinfo(Userinfo uinfo);// 更新用户信息
 	// PageData queryUserinfoByPageLike(int page, int pageSize, String userName);
 
-	PageData queryUserinfoByPage(int page, int pageSize);// 分页
+	PageData<Userinfo> queryUserinfoByPage(int page, int pageSize);// 分页
+	
+	Userinfo getUserInfo(int userId);//根据userId获取详细,用于前台显示
 }

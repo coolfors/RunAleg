@@ -153,9 +153,9 @@
 										<option value="男">男</option>
 										<option value=女">女</option>
 								</select></li>
-								<li><span>手机：</span> <input name="mgrTel" type="text">
+								<li><span>手机：</span> <input name="mgrTel" type="text"  >
 								</li>
-								<li><span>地址：</span> <input name="mgrAdd" type="text">
+								<li><span>地址：</span> <input name="mgrAdd" type="text" >
 								</li>
 								<li>
 									<button class="submit">保存</button>
@@ -184,9 +184,9 @@
 										<option value="男">男</option>
 										<option value=女">女</option>
 								</select></li>
-								<li><span>手机：</span> <input name="userTel" type="text">
+								<li><span>手机：</span> <input name="userTel" type="text" placeholder="${sessionScope.Userinfo.userTel}">
 								</li>
-								<li><span>地址：</span> <input name="userAdd" type="text">
+								<li><span>地址：</span> <input name="userAdd" type="text" placeholder="${sessionScope.Userinfo.userAdd}">
 								</li>
 								<li>
 									<button class="submit">保存</button>
@@ -202,8 +202,8 @@
 							</li>
 							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
 							</li>
-							<li><span>账户押金：</span> <em>待处理</em></li>
-							<li><span>账户余额：</span> <em>待处理</em></li>						
+							<li><span>账户押金：</span> <em>${sessionScope.Courier.deposit}</em></li>
+							<li><span>账户余额：</span> <em>${sessionScope.Courier.balance}</em></li>						
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
@@ -216,15 +216,15 @@
 										<option value="男">男</option>
 										<option value=女">女</option>
 								</select></li>
-								<li><span>身份证：</span> <input name="IDcard" type="text">
+								<li><span>身份证：</span> <input name="IDcard" type="text" placeholder="${sessionScope.Courier.IDcard}">
 								</li>
-								<li><span>手机：</span> <input name="courierTel" type="text">
+								<li><span>手机：</span> <input name="courierTel" type="text" placeholder="${sessionScope.Courier.tel}">
 								</li>
-								<li><span>地址：</span> <input name="courierAdd" type="text">
+								<li><span>地址：</span> <input name="courierAdd" type="text" placeholder="${sessionScope.Courier.address}">
 								</li>
-								<li><span>配送范围：</span> <input name="ableDistance" type="text">
+								<li><span>配送范围：</span> <input name="ableDistance" type="text" placeholder="${sessionScope.Courier.ableDistance}">
 								</li>
-								<li><span>信用分：</span><em>待处理</em>
+								<li><span>信用分：</span><em>${sessionScope.Courier.creditPoint}</em>
 								</li>				
 								<li>
 									<button class="submit">保存</button>
