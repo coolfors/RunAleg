@@ -60,7 +60,7 @@ public class ArticleSevlet extends HttpServlet {
 				String op = request.getParameter("op");
 				response.setContentType("application/json");
 				
-				if ("allDispatch".equals(op)) {// getUsersByPage
+				if ("allArticle".equals(op)) {// getUsersByPage
 					allArticle(request, response);}
 				
 	}

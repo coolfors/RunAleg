@@ -12,7 +12,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	
     public List<Article> queryArticle() {
 		@SuppressWarnings("unchecked")
-		List<Article> list =(List<Article>) BaseDao.select("select * from article", Article.class);
+		List<Article> list =(List<Article>) BaseDao.select("SELECT articleId, userName, articledate, title, content FROM `user` INNER JOIN article WHERE `user`.userId = article.userId", Article.class);
 		return list;
 	}
 

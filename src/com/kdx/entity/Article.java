@@ -10,6 +10,7 @@ package com.kdx.entity;
 public class Article {
 	private int articleId;
 	private int userId;
+	private String userName;
 	private String articledate;
 	private String title;
 	private String content;
@@ -41,6 +42,13 @@ public class Article {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 	public String getArticledate() {
 		return articledate;
 	}
@@ -61,8 +69,8 @@ public class Article {
 	}
 	@Override
 	public String toString() {
-		return "article [articleId=" + articleId + ", userId=" + userId + ", articledate=" + articledate + ", title="
-				+ title + ", content=" + content + "]";
+		return "Article [articleId=" + articleId + ", userId=" + userId + ", userName=" + userName + ", articledate="
+				+ articledate + ", title=" + title + ", content=" + content + "]";
 	}
 	
 	/**
@@ -73,18 +81,18 @@ public class Article {
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	 * 文章添加内容测试
-	 * @param i
-	 * @param articledate2
-	 * @param title2
-	 * @param article
+	 * 构造文章列表
+	 * @param articleId 文章的id
+	 * @param userName 文章的作者
+	 * @param articledate 文章的发布时间
+	 * @param title 文章的标题
 	 */
-	public Article(int userId, String articledate, String title, String content) {
+	public Article(int articleId, String userName, String articledate, String title) {
 		super();
-		this.userId = userId;
+		this.articleId = articleId;
+		this.userName = userName;
 		this.articledate = articledate;
 		this.title = title;
-		this.content = content;
 	}
 	
 	
