@@ -169,9 +169,10 @@
 							<li><span>登陆帐户：</span> <em>${sessionScope.User.userName}</em>
 							</li>
 							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
-							&nbsp;&nbsp;&nbsp;<button class="btn btn-success btn-xs">成为快递侠</button>
+							&nbsp;&nbsp;&nbsp;
+							<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal">成为快递侠</button>
 							</li>
-							<li><span>账户余额：</span> <em>待处理</em></li>
+							<li><span>账户余额：</span> <em>${sessionScope.Userinfo.userBalance}</em></li>
 						</ul>
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
@@ -218,7 +219,7 @@
 								</select></li>
 								<li><span>身份证：</span> <input name="IDcard" type="text" placeholder="${sessionScope.Courier.IDcard}">
 								</li>
-								<li><span>手机：</span> <input name="courierTel" type="text" placeholder="${sessionScope.Courier.courierTel}">
+								<li><span>手机：</span> <input name="courierTel" type="text" placeholder="${sessionScope.Courier.tel}">
 								</li>
 								<li><span>地址：</span> <input name="courierAdd" type="text" placeholder="${sessionScope.Courier.address}">
 								</li>
@@ -238,8 +239,56 @@
 		<!--订单中心-->
 		<div class="space_hx">&nbsp;</div>
 	</div>
-	<!--中间部分-->
-	<!-- <div class="space_hx">&nbsp;</div> -->
+	<!--中间部分结束-->
+	<!-- 模态框（Modal） --><!-- 修改 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="form_data" method="post" action="us.do">
+					<div class="modal-body">
+						<input type="hidden" name="op" value="update" /> <input
+							type="hidden" name="userId" id="userId" />
+						<div class="form-group">
+							<label for="">真实姓名(之后的用户名):</label><input class="form-control" type="text"
+								name="realName" id="realName">
+						</div>
+						<div class="form-group">
+							<label for="">性别:</label> <select id="realSex" name="realSex"
+								class="form-control">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">手机号:</label> <input class="form-control" type="text"
+								name="realTel" id="realTel">
+						</div>
+						<div class="form-group">
+							<label for="">身份证:</label> <input class="form-control" type="text"
+								name="realIDcard" id="realIDcard">
+						</div>
+						<div class="form-group">
+							<label for="">证件照:</label> <input class="form-control" type="file"
+								name="realIDImg" id="realIDImg">
+						</div>
+						<div class="form-group">
+							<label for="">地址:</label> <input class="form-control" type="text"
+								name="realAddress" id="realAddress">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button class="btn btn-primary" type="submit">保存</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	
+		
 	<!--尾部-开始-->
 	<div class="footer"
 		style="background: #525252; width: 100%; padding-bottom: 20px; margin-top: 30px;">
@@ -278,6 +327,5 @@
 		</div>
 	</div>
 	<!--尾部-结束-->
-
 </body>
 </html>

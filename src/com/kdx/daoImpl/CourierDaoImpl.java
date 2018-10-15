@@ -14,7 +14,7 @@ public class CourierDaoImpl implements CourierDao {
 	public boolean addCourier(Courier cour) {
 		// TODO Auto-generated method stub
 		return BaseDao.execute("insert into courier values(null,?,?,?,?,?,?,?,?,?,?)", cour.getUserId(),
-				cour.getDeposit(), cour.getBalance(), cour.getCourierTel(), cour.getAbleDistance(), cour.getSockState(),
+				cour.getDeposit(), cour.getBalance(), cour.getTel(), cour.getAbleDistance(), cour.getSockState(),
 				cour.getIdImg(), cour.getCreditPoint(), cour.getIDcard(), cour.getAddress()) > 0;
 	}
 
@@ -24,7 +24,7 @@ public class CourierDaoImpl implements CourierDao {
 		return BaseDao.execute(
 				"update courier set deposit=?,balance=?,Tel=?,ableDistance=?,sockState=?,"
 						+ "idImg=?,creditPoint=?,IDcard=?,address=? where courierId=?",
-				cour.getDeposit(), cour.getBalance(), cour.getCourierTel(), cour.getAbleDistance(), cour.getSockState(),
+				cour.getDeposit(), cour.getBalance(), cour.getTel(), cour.getAbleDistance(), cour.getSockState(),
 				cour.getIdImg(), cour.getCreditPoint(), cour.getIDcard(), cour.getAddress(), cour.getCourierId()) > 0;
 	}
 
