@@ -27,7 +27,7 @@ public class Courier implements Serializable {
 
 	private int sockState;
 
-	private String Tel;
+	private String courierTel;
 
 	private int userId;
 
@@ -108,12 +108,12 @@ public class Courier implements Serializable {
 		this.sockState = sockState;
 	}
 
-	public String getTel() {
-		return this.Tel;
+	public String getCourierTel() {
+		return courierTel;
 	}
 
-	public void setTel(String Tel) {
-		this.Tel = Tel;
+	public void setCourierTel(String courierTel) {
+		this.courierTel = courierTel;
 	}
 
 	public int getUserId() {
@@ -163,12 +163,12 @@ public class Courier implements Serializable {
 		this.IDcard = iDcard;
 		this.idImg = idImg;
 		this.sockState = sockState;
-		this.Tel = Tel;
+		this.courierTel = Tel;
 		this.userId = userId;
 	}
 
 	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
-			String iDcard, int sockState, String Tel, String userName) {
+			String iDcard, int sockState, String courierTel, String userName) {
 		super();
 		this.courierId = courierId;
 		this.ableDistance = ableDistance;
@@ -178,7 +178,7 @@ public class Courier implements Serializable {
 		this.deposit = deposit;
 		IDcard = iDcard;
 		this.sockState = sockState;
-		this.Tel = Tel;
+		this.courierTel = courierTel;
 		this.userName = userName;
 	}
 
@@ -186,7 +186,7 @@ public class Courier implements Serializable {
 	public String toString() {
 		return "Courier [courierId=" + courierId + ", ableDistance=" + ableDistance + ", address=" + address
 				+ ", balance=" + balance + ", creditPoint=" + creditPoint + ", deposit=" + deposit + ", IDcard="
-				+ IDcard + ", idImg=" + idImg + ", sockState=" + sockState + ", Tel=" + Tel + ", userId=" + userId
+				+ IDcard + ", idImg=" + idImg + ", sockState=" + sockState + ", courierTel=" + courierTel + ", userId=" + userId
 				+ ", userName=" + userName + "]";
 	}
 

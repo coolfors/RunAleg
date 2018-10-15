@@ -80,7 +80,6 @@ public class LoginServlet extends HttpServlet {
 		User user = us.loginUser(userName, password);
 		if(user==null) {
 			out.print("<script>alert('账号或密码错误，登录失败！');location.href='login.html'</script>");
-			//System.out.println("123");
 		}else if(!check_code.equalsIgnoreCase(code)) {
 			out.print("<script>alert('验证码错误，登录失败！');location.href='login.html'</script>");
 		}
@@ -89,7 +88,6 @@ public class LoginServlet extends HttpServlet {
 			String user=gson.toJson(u);*/
 			HttpSession session=request.getSession();
 			session.setAttribute("User", user);
-			//System.out.println(u);
 			//传递普通用户的全部信息
 			Userinfo userInfo = uis.getUserInfo(user.getUserId());
 			session.setAttribute("Userinfo", userInfo);

@@ -218,7 +218,7 @@
 								</select></li>
 								<li><span>身份证：</span> <input name="IDcard" type="text" placeholder="${sessionScope.Courier.IDcard}">
 								</li>
-								<li><span>手机：</span> <input name="courierTel" type="text" placeholder="${sessionScope.Courier.tel}">
+								<li><span>手机：</span> <input name="courierTel" type="text" placeholder="${sessionScope.Courier.courierTel}">
 								</li>
 								<li><span>地址：</span> <input name="courierAdd" type="text" placeholder="${sessionScope.Courier.address}">
 								</li>
