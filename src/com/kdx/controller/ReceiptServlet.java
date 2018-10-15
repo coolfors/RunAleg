@@ -94,7 +94,7 @@ public class ReceiptServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
 	
-		System.out.println(jsonString);
+		//System.out.println(jsonString);
 
 		PrintWriter out = response.getWriter();
 

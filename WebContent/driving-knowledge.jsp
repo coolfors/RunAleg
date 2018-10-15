@@ -119,12 +119,20 @@
         <li class="active"><a href="driving-kn-details.jsp">正文</a></li>
     </ol>
     <div class="row neirong">
+<<<<<<< HEAD
     	<div class="col-sm-8">
 			<ul id="articlelist">
             
                 
                 <!-- 获取文章列表  -->
                 
+=======
+    	<div id="articleList" class="col-sm-8">
+			<ul>
+            	<li class="row">
+                	<a href="driving-kn-details.jsp" class="col-sm-10">如何发布一个跑腿任务</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
+                </li>
+>>>>>>> branch 'master' of https://github.com/coolfors/RunAleg/
             </ul>
             <nav class="text-center">
                 <ul class="pagination">
