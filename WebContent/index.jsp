@@ -190,28 +190,28 @@
 	</div>
 	<!--内容-结束-->
 	<div class="row">
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4  ">
-			<img src="images/first_tip.png " class=" center-block" />
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4  ">
+			<img src="images/first_tip.png " class=" img-responsive center-block" />
 
 		</div>
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 center-block ">
-			<img src="images/middle_tip.png" class=" center-block" />
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block ">
+			<img src="images/middle_tip.png" class=" img-responsive center-block" />
 		</div>
-		<div class=" col-xs-12 col-sm-4 col-md-4 col-lg-4 center-block ">
-			<img src="images/last_tip.png" class=" center-block" />
+		<div class=" col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block ">
+			<img src="images/last_tip.png" class=" img-responsive center-block" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block text-center text-info">
 			<h3>随叫随到</h3>
 			<p>随时下单，无论何时何地，闪送24小时随叫随到，竭诚为您服务。</p>
 
 		</div>
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block text-center text-info">
 			<h3>专人送达，安全无忧</h3>
 			<p>专人即取即送，无中转环节，直达目的地，全程实时监控，先行赔付保障，贴心又安心。。</p>
 		</div>
-		<div class=" col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block ">
+		<div class=" col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block text-center text-info">
 			<h3>闪电速度</h3>
 			<p>下单后，将在最短时间内为您服务到位，无需再担心时效问题。</p>
 		</div>
