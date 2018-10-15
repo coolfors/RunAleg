@@ -15,6 +15,7 @@ import com.kdx.entity.Article;
 import com.kdx.entity.User;
 import com.kdx.service.ArticleService;
 import com.kdx.serviceImpl.ArticleServiceImpl;
+import com.kdx.util.MyDataTableData;
 import com.kdx.util.PageData;
 
 /**
@@ -24,6 +25,7 @@ import com.kdx.util.PageData;
 public class ArticleSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleService at = new ArticleServiceImpl();
+	
 
     /**
      * Default constructor. 
@@ -68,7 +70,28 @@ public class ArticleSevlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+//		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		// 查询并返回所有数据 的格式要注意咯
+		List<Article> list = at.queryArticle();
+
+		MyDataTableData<Article> mydata = new MyDataTableData<Article>();
+		mydata.setData(list);
+
+		// 返回json对象
+		Gson gson = new Gson();
+		String jsonString = new Gson().toJson(mydata);
+
+		System.out.println(jsonString);
+
+		PrintWriter out = response.getWriter();
+
+		out.print(jsonString);
+
+		out.close();
 	}
 	
 
