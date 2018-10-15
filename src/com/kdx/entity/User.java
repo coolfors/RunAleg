@@ -21,8 +21,7 @@ public class User implements Serializable {
 
 	private int userType;//注册类型
 	
-	private int userTel;//用户手机
-
+	/*private int userTel;//用户手机*/
 	public User() {
 	}
 
@@ -74,13 +73,13 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 	
-	public int getUserTel() {
+/*	public int getUserTel() {
 		return userTel;
 	}
 
 	public void setUserTel(int userTel) {
 		this.userTel = userTel;
-	}
+	}*/
 	/**
 	 * 
 	 * @param userId
@@ -120,7 +119,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", sockState=" + sockState + ", userDate=" + userDate + ", userName="
-				+ userName + ", userPwd=" + userPwd + ", userType=" + userType + ", userTel=" + userTel + "]";
+				+ userName + ", userPwd=" + userPwd + ", userType=" + userType + "]";
 	}
 
 	/**
@@ -137,29 +136,4 @@ public class User implements Serializable {
 		this.userType = userType;
 		this.userDate = userDate;
 	}
-	/**
-	 * 构造函数  创建对象
-	 * @param userId
-	 * @param sockState
-	 * @param userDate
-	 * @param userName
-	 * @param userPwd
-	 * @param userType
-	 * @param userTel
-	 */
-	public User(int userId, int sockState, String userDate, String userName, String userPwd, int userType,
-			int userTel) {
-		super();
-		this.userId = userId;
-		this.sockState = sockState;
-		this.userDate = userDate;
-		this.userName = userName;
-		this.userPwd = userPwd;
-		this.userType = userType;
-		this.userTel = userTel;
-	}
-	
-	
-	
-
 }

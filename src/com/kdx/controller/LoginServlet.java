@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 		User u = us.loginUser(userName, password);
 		if(u==null) {
 			out.print("<script>alert('账号或密码错误，登录失败！');location.href='login.html'</script>");
-			System.out.println("123");
+			//System.out.println("123");
 		}else if(!check_code.equalsIgnoreCase(code)) {
 			out.print("<script>alert('验证码错误，登录失败！');location.href='login.html'</script>");
 		}

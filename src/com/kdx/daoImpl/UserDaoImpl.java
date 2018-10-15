@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User loginUser(String userName, String userPwd) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT `user`.*,userinfo.userTel FROM `user` inner JOIN userinfo on `user`.userId = userinfo.userId where `user`.username = ? and `user`.userpwd= ?";
+		String sql = "SELECT * FROM `user` where username = ? and userpwd= ?";
 
 		@SuppressWarnings("unchecked")
 		List<User> list = (List<User>) BaseDao.select(sql, User.class, userName, userPwd);

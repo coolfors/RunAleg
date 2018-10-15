@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
@@ -9,24 +9,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="images/logo.ico">
 <title>快递侠-个人信息</title>
-<meta name="description" content="快递侠实现了跑腿代跑和威客任务的实时连接，通过互联网服务于跑男和兼职群体。坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！">
+<meta name="description"
+	content="快递侠实现了跑腿代跑和威客任务的实时连接，通过互联网服务于跑男和兼职群体。坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！">
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/reset.css"/>
-<link rel="stylesheet" type="text/css" href="css/common.css"/>
-<link rel="stylesheet" type="text/css" href="css/thems.css"/>
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/thems.css" />
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$("#left_menu li ul").css("display","none");
-	$("#left_menu li:first ul").css("display","block");
-	$("#left_menu li .yiji").click(function(){
-		$(this).parents("li").find(".erji").css("display","block");
-		$(this).parent("li").siblings("li").find(".erji").css("display","none");
-	});
-})
+	$(function() {
+		$("#left_menu li ul").css("display", "none");
+		$("#left_menu li:first ul").css("display", "block");
+		$("#left_menu li .yiji")
+				.click(
+						function() {
+							$(this).parents("li").find(".erji").css("display",
+									"block");
+							$(this).parent("li").siblings("li").find(".erji")
+									.css("display", "none");
+						});
+	})
 </script>
 </script>
 <!--[if lt IE 9]>
@@ -35,218 +40,244 @@ $(function(){
 <![endif]-->
 </head>
 <body>
-<!--顶部-开始-->
-<div style=" background:#EBEBEB; width:100%; height:80px; line-height:80px;">
-    <div class="container">
-        <div class="row">
-            <span class="col-sm-7 col-sm-offset-1 col-xs-6 col-xs-offset-1"><img src="images/logo.png" class="img-responsive" alt="新广货运联盟"></span>
-            <span class="col-sm-4 col-xs-5" style="float:right">
-            	<a href="modify data.html" target="_blank" style="display:none">su23c0e</a>
-                <a href="" style="display:none">退出</a>
-            </span>
-            <span class="col-sm-4 col-xs-5" style="float:right">
-            	<c:if test="${sessionScope.User==null }">
+	<!--顶部-开始-->
+	<div
+		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
+		<div class="container">
+			<div class="row">
+				<span class="col-sm-7 col-sm-offset-1 col-xs-6 col-xs-offset-1"><img
+					src="images/logo.png" class="img-responsive" alt="新广货运联盟"></span> <span
+					class="col-sm-4 col-xs-5" style="float: right"> <a
+					href="modify data.html" target="_blank" style="display: none">su23c0e</a>
+					<a href="" style="display: none">退出</a>
+				</span> <span class="col-sm-4 col-xs-5" style="float: right"> <c:if
+						test="${sessionScope.User==null }">
 						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-						href="register.html" target="_blank" id="reg">注册</a>
-					</c:if>
-					<c:if test="${sessionScope.User!=null }">
+							href="register.html" target="_blank" id="reg">注册</a>
+					</c:if> <c:if test="${sessionScope.User!=null }">
 						<ul class="right navbar-nav">
-							<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
-								${sessionScope.User.userName}
-								<b class="caret"></b></a>
+							<li class="dropdown"><a href="" class="dropdown-toggle"
+								data-toggle="dropdown"> ${sessionScope.User.userName} <b
+									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
-									<li><a href="#">余额充值</a></li>								
+									<li><a href="#">余额充值</a></li>
 									<li><a href="login.html">切换账号</a></li>
 								</ul></li>
-						</ul>	
+						</ul>
 					</c:if>
-            </span>
-        </div>
-    </div>
-</div>
-<!--顶部-结束-->
+				</span>
+			</div>
+		</div>
+	</div>
+	<!--顶部-结束-->
 
-<!--导航-开始-->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="index.jsp">首页</a></li>
-                <li><a href="index.jsp">跑腿吧<span class="sr-only"></span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">发布跑腿<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="freight-info.jsp">信息发布</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="driving-knowledge.jsp">如何下单</a></li>
-                    </ul>
-                </li>
-                <li><a href="alliance.jsp">关于我们</a></li>
-                <li class=""><a href="contact-us.jsp">联系我们</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--导航-结束-->
-<!--内容开始  -->
-<!--中间部分-->
-<div class="main">
-	<!--订单中心-->
-    <div class="person clearfix">
-    	<div class="order_l person_l">
-        	<ul id="left_menu" class="left_menu">
-            	<li>
-                	<a class="yiji"><span>个人中心</span><em>&nbsp;</em></a>
-                    <ul class="erji">
-                    	<li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">个人资料</a></strong>
-                        </li>
-                        <li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">公司信息</a></strong>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<a class="yiji"><span>订单中心</span><em>&nbsp;</em></a>
-                    <ul class="erji">
-                    	<li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">我的订单</a></strong>
-                        </li>
-                        <li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">我的账单</a></strong>
-                        </li>
-                        <li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">常发货物</a></strong>
-                        </li>
-                        <li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">常用联系人</a></strong>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="person_r">
-        	<div class="person_h">
-            	<span>个人资料设置</span>
-            </div>
-            <div class="person_rmain">
-            	<strong>帐户信息</strong>
-                <ul>
-                	<li>
-                    	<span>登陆帐户：</span>
-                        <em>${sessionScope.User.userName}</em>
-                    </li>
-                    <li>
-                    	<span>账户类型：</span>
-                        <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>       
-                    </li>
-                </ul>
-                <div class="space_hx">&nbsp;</div>
-                <strong>安全信息</strong>
-                <ul class="p_news">
-                	<li>
-                    	<span>绑定手机：</span>
-                        <em>${sessionScope.User.userTel}</em>
-                        <a href="" class="anniu">修改</a>
-                    </li>
-                    <!-- <li>
-                    	<span>绑定邮箱：</span>
-                        <em>2817820247@qq.com</em>
-                        <a href="" class="anniu">修改</a>
-                    </li> -->
-                    <li>
-                    	<span>密码强度：</span>
-                        <em><img src="Assets/images/icon16.jpg"/></em>
-                        <a href="" class="anniu">修改密码</a>
-                    </li>
-                </ul>
-                <div class="space_hx">&nbsp;</div>
-                <strong>基本信息</strong>
-                <form action="" method="post">
-                <ul>
-                	<li>
-                    	<span>姓名：</span>
-                        <input name="" type="text">
-                    </li>
-                    <li>
-                    	<span>手机：</span>
-                        <input name="" type="text">
-                    </li>
-                    <li>
-                    	<span>固定电话：</span>
-                        <input name="" type="text">
-                    </li>
-                    <li>
-                    	<span>发货地址：</span>
-                        <input name="" type="text">
-                        <input name="" type="text">
-                    </li>
-                    <li>
-                    	<button href="" class="submit">保存</button>
-                    </li>
-                </ul>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--订单中心-->
-    <div class="space_hx">&nbsp;</div>
-</div>
-<!--中间部分-->
-<div class="space_hx">&nbsp;</div>
-<!--尾部-开始-->
-<div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <p>友情链接</p>
-                <hr>
-                <ul>
-                   <li><a href="" target="_blank">中国物流网</a></li>
-                   <li><a href="" target="_blank">中国物流网</a></li>
-                   <li><a href="" target="_blank">中国物流网</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-4">
-                <p>新广货运联盟</p>
-                <hr>
-                <p>新广货运联盟成立于2018年，是一家专业提供互联网物流信息的网站。</p>
-                <p>新广货运联盟实现了车找货、货找车的实时连接，通过互联网服务于广大货运司机和相关货运的各界人士。</p>
-                <p>新广货运联盟坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！</p>
-            </div>
-            <div class="col-sm-4">
-                <p><a href="contact-us.jsp">加盟我们</a> | <a href="contact-us.jsp">联系我们</a></p>
-                <hr>
-                <p>咨询电话：13462264663</p>
-                <p>邮箱：xinguanghuoyun@163.com</p>
-                <p>地址：河南省新乡市八一路35号中同街办事处</p>
-            </div>
-            <div class="col-sm-12 text-center" style="margin-top:20px;">
-            	Copyright ©  新广货运联盟 版权所有 Power by www.xghylm.com  更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!--尾部-结束-->
+	<!--导航-开始-->
+	<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.jsp">首页</a></li>
+				<li><a href="index.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">发布跑腿<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="freight-info.jsp">信息发布</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">帮助<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="driving-knowledge.jsp">如何下单</a></li>
+					</ul></li>
+				<li><a href="alliance.jsp">关于我们</a></li>
+				<li class=""><a href="contact-us.jsp">联系我们</a></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+	<!--导航-结束-->
+	<!--内容开始  -->
+	<!--中间部分-->
+	<div class="main">
+		<!--订单中心-->
+		<div class="person clearfix">
+			<div class="order_l person_l">
+				<ul id="left_menu" class="left_menu">
+					<li><a class="yiji"><span>个人中心</span><em>&nbsp;</em></a>
+						<ul class="erji">
+							<li><i>&nbsp;</i> <strong><a href="">个人资料</a></strong></li>
+							<li><i>&nbsp;</i> <strong><a href="">公司信息</a></strong></li>
+						</ul></li>
+					<li><a class="yiji"><span>订单中心</span><em>&nbsp;</em></a>
+						<ul class="erji">
+							<li><i>&nbsp;</i> <strong><a href="">我的订单</a></strong></li>
+							<li><i>&nbsp;</i> <strong><a href="">我的账单</a></strong></li>
+							<li><i>&nbsp;</i> <strong><a href="">常发货物</a></strong></li>
+							<li><i>&nbsp;</i> <strong><a href="">常用联系人</a></strong></li>
+						</ul></li>
+				</ul>
+			</div>
+			<div class="person_r">
+				<div class="person_h">
+					<span>个人资料设置</span>
+				</div>
+				<div class="person_rmain">
+				<c:if test="${sessionScope.User.userType == 0}">
+						<strong>帐户信息</strong>
+						<ul>
+							<li><span>登陆帐户：</span> <em>${sessionScope.User.userName}</em>
+							</li>
+							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
+							</li>	
+						</ul>
+						<strong>基本信息</strong>
+						<!-- 管理员信息显示修改 -->
+						<form action="" method="post">
+							<ul>
+								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
+								</li>
+								<li><span>性别：</span> <select name="mgrsex" id="mgrsex">
+										<option value="">--请选择性别--</option>
+										<option value="男">男</option>
+										<option value=女">女</option>
+								</select></li>
+								<li><span>手机：</span> <input name="mgrTel" type="text">
+								</li>
+								<li><span>地址：</span> <input name="mgrAdd" type="text">
+								</li>
+								<li>
+									<button class="submit">保存</button>
+								</li>
+							</ul>
+						</form>
+					</c:if>
+					<c:if test="${sessionScope.User.userType == 1}">
+						<strong>帐户信息</strong>
+						<ul>
+							<li><span>登陆帐户：</span> <em>${sessionScope.User.userName}</em>
+							</li>
+							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
+							&nbsp;&nbsp;&nbsp;<button class="btn btn-success btn-xs">成为快递侠</button>
+							</li>
+							<li><span>账户余额：</span> <em>待处理</em></li>
+						</ul>
+						<strong>基本信息</strong>
+						<!-- 普通用户信息显示修改 -->
+						<form action="" method="post">
+							<ul>
+								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
+								</li>
+								<li><span>性别：</span> <select name="sex" id="sex">
+										<option value="">--请选择性别--</option>
+										<option value="男">男</option>
+										<option value=女">女</option>
+								</select></li>
+								<li><span>手机：</span> <input name="userTel" type="text">
+								</li>
+								<li><span>地址：</span> <input name="userAdd" type="text">
+								</li>
+								<li>
+									<button class="submit">保存</button>
+								</li>
+							</ul>
+						</form>
+					</c:if>
+					<!-- 跑腿用户信息显示修改 -->
+					<c:if test="${sessionScope.User.userType == 2}">
+					<strong>帐户信息</strong>
+						<ul>
+							<li><span>登陆帐户：</span> <em>${sessionScope.User.userName}</em>
+							</li>
+							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
+							</li>
+							<li><span>账户押金：</span> <em>待处理</em></li>
+							<li><span>账户余额：</span> <em>待处理</em></li>						
+						</ul>
+						<!-- 跑腿用户信息显示修改 -->
+						<strong>基本信息</strong>
+						<form action="" method="post">
+							<ul>
+								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
+								</li>
+								<li><span>性别：</span> <select name="couriersex" id="sex">
+										<option value="">--请选择性别--</option>
+										<option value="男">男</option>
+										<option value=女">女</option>
+								</select></li>
+								<li><span>身份证：</span> <input name="IDcard" type="text">
+								</li>
+								<li><span>手机：</span> <input name="courierTel" type="text">
+								</li>
+								<li><span>地址：</span> <input name="courierAdd" type="text">
+								</li>
+								<li><span>配送范围：</span> <input name="ableDistance" type="text">
+								</li>
+								<li><span>信用分：</span><em>待处理</em>
+								</li>				
+								<li>
+									<button class="submit">保存</button>
+								</li>
+							</ul>
+						</form>
+					</c:if>
+				</div>
+			</div>
+		</div>
+		<!--订单中心-->
+		<div class="space_hx">&nbsp;</div>
+	</div>
+	<!--中间部分-->
+	<!-- <div class="space_hx">&nbsp;</div> -->
+	<!--尾部-开始-->
+	<div class="footer"
+		style="background: #525252; width: 100%; padding-bottom: 20px; margin-top: 30px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<p>友情链接</p>
+					<hr>
+					<ul>
+						<li><a href="" target="_blank">中国物流网</a></li>
+						<li><a href="" target="_blank">中国物流网</a></li>
+						<li><a href="" target="_blank">中国物流网</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<p>新广货运联盟</p>
+					<hr>
+					<p>新广货运联盟成立于2018年，是一家专业提供互联网物流信息的网站。</p>
+					<p>新广货运联盟实现了车找货、货找车的实时连接，通过互联网服务于广大货运司机和相关货运的各界人士。</p>
+					<p>新广货运联盟坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！</p>
+				</div>
+				<div class="col-sm-4">
+					<p>
+						<a href="contact-us.jsp">加盟我们</a> | <a href="contact-us.jsp">联系我们</a>
+					</p>
+					<hr>
+					<p>咨询电话：13462264663</p>
+					<p>邮箱：xinguanghuoyun@163.com</p>
+					<p>地址：河南省新乡市八一路35号中同街办事处</p>
+				</div>
+				<div class="col-sm-12 text-center" style="margin-top: 20px;">
+					Copyright © 新广货运联盟 版权所有 Power by www.xghylm.com 更多模板：<a
+						href="http://www.mycodes.net/" target="_blank">源码之家</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--尾部-结束-->
 
 </body>
 </html>
