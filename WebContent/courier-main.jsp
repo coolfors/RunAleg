@@ -48,7 +48,7 @@
 								${sessionScope.User.userName}
 								<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">个人信息</a></li>
+									<li><a href="userMessage.jsp">个人信息</a></li>
 									<li><a href="#">余额充值</a></li>								
 									<li><a href="#">切换账号</a></li>
 								</ul></li>
