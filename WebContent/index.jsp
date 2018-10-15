@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -16,6 +16,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="css/layui.css" media="all">
+<!--js -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -33,13 +36,23 @@
 					href="modify data.html" target="_blank" style="display: none">su23c0e</a>
 					<a href="" style="display: none">退出</a>
 				</span> <span id="showUserName" class="col-sm-4 col-xs-5"
-					style="float: right">
-					 <c:if test="${sessionScope.User==null }">
+					style="float: right"> <c:if
+						test="${sessionScope.User==null }">
 						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-						href="register.html" target="_blank" id="reg">注册</a>
-					</c:if>
-					<c:if test="${sessionScope.User!=null }">
-						<a href="login.html" target="_blank" id="UserInfo">${sessionScope.User.userName}</a>
+							href="register.html" target="_blank" id="reg">注册</a>
+					</c:if> <c:if test="${sessionScope.User!=null }">
+						<%-- <a href="" target="_blank" id="UserInfo">${sessionScope.User.userName}</a> --%>
+
+						<ul class="right navbar-nav">
+							<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
+								${sessionScope.User.userName}
+								<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">个人信息</a></li>
+									<li><a href="#">余额充值</a></li>								
+									<li><a href="#">切换账号</a></li>
+								</ul></li>
+						</ul>					
 					</c:if>
 				</span>
 			</div>
@@ -49,38 +62,38 @@
 
 	<!--导航-开始-->
 	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.jsp">首页</a></li>
-					<li><a href="user-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">发布跑腿<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="freight-info.jsp">信息发布</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">帮助<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="driving-knowledge.jsp">如何下单</a></li>
-						</ul></li>
-					<li><a href="alliance.jsp">关于我们</a></li>
-					<li><a href="contact-us.jsp">联系我们</a></li>
-				</ul>
-			</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
 		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="index.jsp">首页</a></li>
+				<li><a href="user-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">发布跑腿<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="freight-info.jsp">信息发布</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">帮助<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="driving-knowledge.jsp">如何下单</a></li>
+					</ul></li>
+				<li><a href="alliance.jsp">关于我们</a></li>
+				<li><a href="contact-us.jsp">联系我们</a></li>
+			</ul>
+		</div>
+	</div>
 	</nav>
 	<!--导航-结束-->
 	<!-- 中间内容开始 -->
@@ -235,9 +248,5 @@
 		</div>
 	</div>
 	<!--尾部-结束-->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<!-- <script src="js/LoginName.js"></script> -->
-	
 </body>
 </html>

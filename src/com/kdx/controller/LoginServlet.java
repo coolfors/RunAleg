@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 			String user=gson.toJson(u);*/
 			HttpSession session=request.getSession();
 			session.setAttribute("User", u);
-			out.print("<script>alert('登录成功！');location.href='index.html'</script>");
+			out.print("<script>alert('登录成功！');location.href='index.jsp'</script>");
 		}
 		out.close();
 	}
