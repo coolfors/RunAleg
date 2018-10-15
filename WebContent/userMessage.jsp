@@ -118,7 +118,6 @@
 					<li><a class="yiji"><span>个人中心</span><em>&nbsp;</em></a>
 						<ul class="erji">
 							<li><i>&nbsp;</i> <strong><a href="">个人资料</a></strong></li>
-							<li><i>&nbsp;</i> <strong><a href="">公司信息</a></strong></li>
 						</ul></li>
 					<li><a class="yiji"><span>订单中心</span><em>&nbsp;</em></a>
 						<ul class="erji">
