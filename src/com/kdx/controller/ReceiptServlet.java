@@ -58,9 +58,9 @@ public class ReceiptServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		// 获取值
 		String op = request.getParameter("op");
-		if ("completeorder".equals(op)) {
+		if ("completeorder".equals(op)) {//用户界面已完成订单
 			completeorder(request, response);
-		} else if ("dispatching".equals(op)) {
+		} else if ("dispatching".equals(op)) {//用户界面正在配送中的订单
 			dispatching(request, response);
 		} else if ("allDispatch".equals(op)) {// getUsersByPage
 
@@ -93,7 +93,7 @@ public class ReceiptServlet extends HttpServlet {
 		// 返回json对象
 		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
-
+	
 		System.out.println(jsonString);
 
 		PrintWriter out = response.getWriter();
@@ -122,6 +122,8 @@ public class ReceiptServlet extends HttpServlet {
 		PageData<Receipt> pd = rs.queryReceiptcom(page, pageSize);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
+		//request.setAttribute("pd", data);
+		//System.out.println(data);
 
 		response.getWriter().println(data);
 
