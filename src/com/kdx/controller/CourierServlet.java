@@ -122,7 +122,7 @@ public class CourierServlet extends HttpServlet {
 			pageIndex = "1";
 		}
 		if (pageSize == null) {
-			pageSize = "4";
+			pageSize = "10";
 		}
 		System.out.println(1);
 		// int page = 1;
@@ -153,9 +153,9 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int page = 1;
-		int pageSize = 6;
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		int pageSize = 10;
+		if (request.getParameter("pageIndex") != null) {
+			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
 		PageData<Dispatch> pd = ds.waitSendDispatch(page, pageSize);
 		Gson gson = new Gson();
@@ -177,9 +177,9 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int page = 1;
-		int pageSize = 6;
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		int pageSize = 10;
+		if (request.getParameter("pageIndex") != null) {
+			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
 		PageData<Receipt> pd = rs.waitUpdateReceipt(page, pageSize);
 		Gson gson = new Gson();
@@ -201,9 +201,9 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int page = 1;
-		int pageSize = 6;
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		int pageSize = 10;
+		if (request.getParameter("pageIndex") != null) {
+			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
 		PageData<Evaluate> pd = es.waitEval(page, pageSize);
 		Gson gson = new Gson();
@@ -225,9 +225,9 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int page = 1;
-		int pageSize = 6;
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		int pageSize = 10;
+		if (request.getParameter("pageIndex") != null) {
+			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
 		PageData<Evaluate> pd = es.overEval(page, pageSize);
 		Gson gson = new Gson();
