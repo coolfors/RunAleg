@@ -167,8 +167,8 @@ public class ReceiptServlet extends HttpServlet {
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+		if (request.getParameter("pageIndex") != null) {
+			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
