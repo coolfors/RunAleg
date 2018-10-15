@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,7 @@ import com.kdx.serviceImpl.ArticleServiceImpl;
 /**
  * Servlet implementation class ArticleSevlet
  */
-@WebServlet("/artlist.show")
+@WebServlet("/artlist.html")
 public class ArticleShowListSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleService at = new ArticleServiceImpl();
@@ -36,23 +37,23 @@ public class ArticleShowListSevlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//设置请求和响应编码
 		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		int articleId = Integer.parseInt(request.getParameter("op"));
+		int articleId = Integer.parseInt(request.getParameter("id"));
 		Article article = at.queryByIdArticle(articleId);
-		request.setAttribute("article", article);
-		response.sendRedirect("driving-kn-details.jsp");
-		
+		String webcontent =article.getContent();
 		//根据id查询文章
-
-				// 获取请求参数
-				// 先获取op
-				String op = request.getParameter("op");
-				if ("query".equals(op)) {
-					// 调用del
-					query(request, response);}
+		// 获取请求参数
+		// 先获取id然后打印到网页上
+		if(articleId != 0) {
+        request.setAttribute("content", webcontent);
+ 		//从当前的控制器跳转到jsp页面，跳转的方法叫做转发
+ 		request.getRequestDispatcher("driving-kn-details.jsp").forward(request, response);
+	    }
+		
 	}
-
 	/**
 	 * @param request
 	 * @param response

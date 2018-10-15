@@ -27,7 +27,7 @@
 						var arr = JSON.parse(data);
 						$.each(arr, function(index,article) {
 							console.log(article.articleId+","+article.title);
-							$("#articlelist").append("<li class='row'><a href='artlist.show?articleId="+article.articleId+"&op=query' class='col-sm-10'>"+article.title+"</a><span class='col-sm-2' style=' float:right'>"+article.articledate+"</span></li>");
+							$("#articlelist").append("<li class='row'><a href='artlist.html?id="+article.articleId+"' class='col-sm-10'>"+article.title+"</a><span class='col-sm-2' style=' float:right'>"+article.articledate+"</span></li>");
 							
 						});
 					})
