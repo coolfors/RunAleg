@@ -93,7 +93,7 @@ public class CourierServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
 
-		System.out.println(jsonString);
+		//System.out.println(jsonString);
 
 		PrintWriter out = response.getWriter();
 
@@ -124,7 +124,7 @@ public class CourierServlet extends HttpServlet {
 		if (pageSize == null) {
 			pageSize = "10";
 		}
-		System.out.println(1);
+		//System.out.println(1);
 		// int page = 1;
 		// int pageSize = 6;
 		/*
@@ -134,9 +134,9 @@ public class CourierServlet extends HttpServlet {
 		PageData<Dispatch> pd = ds.queryDispatch(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
-		System.out.println(pd);
+		//System.out.println(pd);
 		request.setAttribute("dataJson", data);
-		System.out.println(data);
+		//System.out.println(data);
 		//request.getRequestDispatcher("courier-main.jsp").forward(request, response);
 		response.getWriter().println(data);
 	}

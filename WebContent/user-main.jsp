@@ -16,6 +16,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="admin/lib/layui/css/layui.css" media="all">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/user.js"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -101,7 +104,12 @@
 	</div>
 	<div class="container">
 		<!--货源信息-->
-		<h3>所有订单</h3>
+		<h3 id="headName">所有订单</h3>
+		<script type="text/javascript">
+			$(function () {
+				$("#headName").html("jjjj");
+			})
+		</script>
 		<table class="table table-bordered">
 			<thead>
 				<!-- <tr>
@@ -153,7 +161,6 @@
 	</div>
 	<div class="container">
 		<!--货源地图-->
-		<h3>订单详情</h3>
 
 	</div>
 	<!--<hr class="featurette-divider">	-->
@@ -252,9 +259,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!--尾部-结束-->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/user.js"></script>
 </body>
 </html>

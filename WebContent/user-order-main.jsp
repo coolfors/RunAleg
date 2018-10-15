@@ -228,8 +228,11 @@
 							<a href="courier-main.jsp"> <img src="images/ttubiao_12.png"
 							class="img-circle">
 							<p>加入跑男</p>
-						</a>
-						<p>下单</p></a>
+						</c:if>
+						<c:if test="${sessionScope.User.userType==1}">
+							<a href="index.jsp"> <img src="images/ttubiao_12.png"
+							class="img-circle">
+							<p>加入跑男</p>
 						</c:if>
 					</div>
 				</div>

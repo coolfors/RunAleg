@@ -11,6 +11,7 @@ $(function(){
 	})*/
 	//点击标签出发事件：显示所有派单信息，Dispatch
 	$("#allDispatch").click(function(){
+		$("#headName").html("所有订单");
 		$.ajax({//test
             type: "get",
             url: "CourierServlet.do?op=allDispatch",
