@@ -88,6 +88,7 @@ $(function(){
 	
 	//点击a标签事件，显示所有待送订单，receipt表
 	$("#waitSendReceipt").click(function(){
+		$("#headName").html("待送订单");
 		$.ajax({
             type: "get",
             url: "CourierServlet.do?op=waitSendReceipt",
@@ -165,6 +166,7 @@ $(function(){
 	 */
 	//点击a标签事件，显示所有配送中订单，receipt表
 	$("#waitUpdateReceipt").click(function(){
+		$("#headName").html("配送中的订单");
 		$.ajax({
             type: "get",
             url: "CourierServlet.do?op=waitUpdateReceipt",
@@ -240,6 +242,7 @@ $(function(){
 	 */
 	//点击a标签事件，显示所有未评价订单，evaluate表
 	$("#waitEvaluate").click(function(){
+		$("#headName").html("待评价订单");
 		$.ajax({
             type: "get",
             url: "CourierServlet.do?op=waitEvaluate",
@@ -315,6 +318,7 @@ $(function(){
 	 */
 	//点击a标签事件，显示所有已评价订单，evaluate表
 	$("#overEvaluate").click(function(){
+		$("#headName").html("已评价订单");
 		$.ajax({
             type: "get",
             url: "CourierServlet.do?op=overEvaluate",

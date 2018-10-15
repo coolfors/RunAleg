@@ -111,7 +111,7 @@
 	<!--货源信息-->
 	<div class="container">
 		<!--广告-->
-		<a href="" target="_blank"><img src="images/ggt_03.png"
+		<a href="#" target=""><img src="images/ggt_03.png"
 			class="img-responsive" style="width: 100%; height: auto;"></a>
 	</div>
 	<div class="container">
@@ -185,8 +185,8 @@
 							<p>所有订单</p></a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a href=""><img src="images/06.png" class="img-circle">
-							<p>开始抢单</p></a>
+						<a href="user-order-main.jsp"><img src="images/06.png" class="img-circle">
+							<p>我的派单</p></a>
 					</div>
 				</div>
 			</div>

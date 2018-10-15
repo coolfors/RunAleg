@@ -6,6 +6,7 @@ $(function () {
 	 * 用户界面已完成订单
 	 */
 	$("#completeorder").click(function(){
+		$("#headName").html("已完成的订单");
 	$.ajax({
              type: "get",
              url: "rs.do?op=completeorder",
@@ -83,6 +84,7 @@ $(function () {
 	 * 用户界面显示正在配送中订单
 	 */
 	$("#dispatching").click(function(){
+		$("#headName").html("配送中的订单");
 		$.ajax({
 	             type: "get",
 	             url: "rs.do?op=dispatching",
@@ -160,6 +162,7 @@ $(function () {
 	 *
 	 */
 	$("#allDispatch").click(function(){
+		$("#headName").html("所有订单");
 		$.ajax({
 	             type: "get",
 	             url: "rs.do?op=allDispatch",
@@ -237,6 +240,7 @@ $(function () {
 	 * 这边条件还没修改 待配送订单-dispatch中disState为0 的内容
 	 */
 	$("#waitSendDispatch").click(function(){
+		$("#headName").html("待配送订单");
 		$.ajax({
 	             type: "get",
 	             url: "rs.do?op=waitSendDispatch",
@@ -312,6 +316,7 @@ $(function () {
 	 * 显示用户界面所有未评价的表
 	 */
 	$("#waitEvaluate").click(function(){
+		$("#headName").html("待评价订单");
 		$.ajax({
 	             type: "get",
 	             url: "rs.do?op=waitEvaluate",
