@@ -81,7 +81,7 @@
 					<li><a href="login.html">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<c:if test="${sessionScope.User.userType==1}">
-					<li><a href="user-order-main.html">跑腿吧<span class="sr-only"></span></a></li>
+					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<c:if test="${sessionScope.User.userType==2}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
