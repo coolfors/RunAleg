@@ -14,6 +14,7 @@
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
@@ -21,9 +22,10 @@
 <![endif]-->
 <!--  ajax 获取文章列表-->
 <script type="text/javascript">
-				$(function  () {
-					$("#contentshow").html(${requestScope.Article.content})
-			})
+				/* $(function  () {
+					$("#contentshow").html()
+					
+			}) */
 </script>
 </head>
 <body>
@@ -112,7 +114,7 @@
     <div class="row neirong">
     	<div class="col-sm-8">
             <div id= "contentshow">
-              
+             
             <div>
             	<p><span>上一篇： </span><a href="">如何合理的选择物品价格</a></p>
                 <p><span>下一篇： </span><a href="">如何加入跑男团队月入过万</a></p>
@@ -156,7 +158,6 @@
     </div>
 </div>
 <!--尾部-结束-->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

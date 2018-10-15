@@ -27,7 +27,7 @@
 						var arr = JSON.parse(data);
 						$.each(arr, function(index,article) {
 							console.log(article.articleId+","+article.title);
-							$("#articlelist").append("	<li class='row'><a href='artlist.show?op=${article.articleId}' class='col-sm-10'>"+article.title+"</a><span class='col-sm-2' style=' float:right'>"+article.articledate+"</span></li>");
+							$("#articlelist").append("<li class='row'><a href='artlist.show?articleId="+article.articleId+"&op=query' class='col-sm-10'>"+article.title+"</a><span class='col-sm-2' style=' float:right'>"+article.articledate+"</span></li>");
 							
 						});
 					})
@@ -125,7 +125,7 @@
                 
                 <!-- 获取文章列表  -->
                 
-    	<div id="articleList" class="col-sm-8">
+    	</ul></div>
 			<ul>
             	<li class="row">
                 	<a href="driving-kn-details.jsp" class="col-sm-10">如何发布一个跑腿任务</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
@@ -151,16 +151,8 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-sm-3 col-sm-offset-1">
-        	<p class="pic">广告图片</p>
-            <hr>
-            <a href="" target="_blank"><img src="images/93ce5c4da31cd173.jpg" class="text-center img-responsive" style="width:100%; height:100%"></a><hr>
-            <a href="" target="_blank"><img src="images/93ce5c4da31cd173.jpg" class="text-center img-responsive" style="width:100%; height:100%"></a><hr>
-            <a href="" target="_blank"><img src="images/93ce5c4da31cd173.jpg" class="text-center img-responsive" style="width:100%; height:100%"></a><hr>
-        </div>
     </div>
-</div>
-
+ ${article.content};
 <!--尾部-开始-->
 <div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
     <div class="container">

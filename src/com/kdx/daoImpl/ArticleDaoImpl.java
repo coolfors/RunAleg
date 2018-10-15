@@ -42,7 +42,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	@Override
 	public Article queryByIdArticle(int articleId) {
 		// TODO Auto-generated method stub
-		List<Article> list = (List<Article>) BaseDao.select("SELECT content FROM article WHERE articleId = ?" ,Article.class,articleId);
+		List<Article> list = (List<Article>) BaseDao.select("SELECT content FROM article WHERE articleId like ?" ,Article.class,articleId);
 		Iterator<Article> it = list.iterator();
 		Article article = null;
 		if (it.hasNext()) {

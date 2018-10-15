@@ -10,13 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kdx.entity.Article;
-import com.kdx.entity.User;
 import com.kdx.service.ArticleService;
 import com.kdx.serviceImpl.ArticleServiceImpl;
-import com.kdx.util.MyDataTableData;
-import com.kdx.util.PageData;
 
 /**
  * Servlet implementation class ArticleSevlet
@@ -32,6 +28,7 @@ public class ArticleShowListSevlet extends HttpServlet {
      */
     public ArticleShowListSevlet() {
         // TODO Auto-generated constructor stub
+    	
     }
 
 	/**
@@ -45,7 +42,29 @@ public class ArticleShowListSevlet extends HttpServlet {
 		Article article = at.queryByIdArticle(articleId);
 		request.setAttribute("article", article);
 		response.sendRedirect("driving-kn-details.jsp");
-							
+		
+		//根据id查询文章
+
+				// 获取请求参数
+				// 先获取op
+				String op = request.getParameter("op");
+				if ("query".equals(op)) {
+					// 调用del
+					query(request, response);}
+	}
+
+	/**
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		Article article = at.queryByIdArticle(articleId);
+		request.setAttribute("article", article);
+		request.getRequestDispatcher("driving-knowledge.jsp").forward(request, response);
 	}
 
 	/**
