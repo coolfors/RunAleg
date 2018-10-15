@@ -6,6 +6,8 @@ import com.kdx.util.PageData;
 
 public interface ArticleDao {
 	List<Article> queryArticle();
+	Article queryByIdArticle(int  articleId);
+	
 	boolean addArticle(Article Article);
 	boolean updateArticle(Article Article);
 	PageData queryArticleByPage(int page, int pageSize);

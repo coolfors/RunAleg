@@ -14,10 +14,17 @@
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
+<!--  ajax 获取文章列表-->
+<script type="text/javascript">
+				$(function  () {
+					$("#contentshow").html(${requestScope.Article.content})
+			})
+</script>
 </head>
 <body>
 <!--顶部-开始-->
@@ -104,13 +111,8 @@
     </ol>
     <div class="row neirong">
     	<div class="col-sm-8">
-            <div>
-                <h2 class="text-center">如何发布一个跑腿任务</h2>
-                <p>1、填写发货地址</p>
-                <p>2、填写收货地址</p>
-                <p>3、填写物品名称以及备注</p>
-                <p>4、选择物品类型</p>
-                <p>5、选择合理的物品价格</p>
+            <div id= "contentshow">
+              
             <div>
             	<p><span>上一篇： </span><a href="">如何合理的选择物品价格</a></p>
                 <p><span>下一篇： </span><a href="">如何加入跑男团队月入过万</a></p>

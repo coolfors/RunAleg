@@ -14,10 +14,25 @@
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
+<!--  ajax 获取文章列表-->
+<script type="text/javascript">
+				$(function  () {
+					$.get("art.show",function(data,status) {
+						var arr = JSON.parse(data);
+						$.each(arr, function(index,article) {
+							console.log(article.articleId+","+article.title);
+							$("#articlelist").append("	<li class='row'><a href='artlist.show?op=${article.articleId}' class='col-sm-10'>"+article.title+"</a><span class='col-sm-2' style=' float:right'>"+article.articledate+"</span></li>");
+							
+						});
+					})
+			})
+</script>
 </head>
 <body>
 <!--顶部-开始-->
@@ -105,22 +120,11 @@
     </ol>
     <div class="row neirong">
     	<div class="col-sm-8">
-			<ul>
-            	<li class="row">
-                	<a href="driving-kn-details.jsp" class="col-sm-10">如何发布一个跑腿任务</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
-                </li>
-                <li class="row">
-                	<a href="driving-kn-details.jsp" class="col-sm-10">如何发布一个跑腿任务</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
-                </li>
-                <li class="row">
-                	<a href="driving-kn-details.jsp" class="col-sm-10">如何发布一个跑腿任务</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
-                </li>
-                <li class="row">
-                	<a href="driving-kn-details.jsp" class="col-sm-10">如何发布一个跑腿任务</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
-                </li>
-                <li class="row">
-                	<a href="driving-kn-details.jsp" class="col-sm-10">如何发布一个跑腿任务</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
-                </li>
+			<ul id="articlelist">
+            
+                
+                <!-- 获取文章列表  -->
+                
             </ul>
             <nav class="text-center">
                 <ul class="pagination">
@@ -186,7 +190,6 @@
     </div>
 </div>
 <!--尾部-结束-->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

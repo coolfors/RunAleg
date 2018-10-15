@@ -36,5 +36,10 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return ud.queryArticle();
 	}
+	@Override
+	public Article queryByIdArticle(int articleId) {
+		// TODO Auto-generated method stub
+		return ud.queryByIdArticle(articleId);
+	}
 	
 }
