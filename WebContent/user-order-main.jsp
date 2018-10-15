@@ -109,7 +109,7 @@
 	</div>
 	<div class="container">
 		<!--货源信息-->
-		<h3>所有订单</h3>
+		<h3 id="headName"></h3>
 		<table class="table table-bordered">
 			<thead>
 				<!-- <tr>
@@ -189,8 +189,16 @@
 						<p>所有订单</p></a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a href="freight-info.jsp"><img src="images/06.png" class="img-circle">
+						<!-- <a href="freight-info.jsp"><img src="images/06.png" class="img-circle">
+						<p>下单</p></a> -->
+						<c:if test="${sessionScope.User==null}">
+							<a href="login.html"><img src="images/06.png" class="img-circle">
 						<p>下单</p></a>
+						</c:if>
+						<c:if test="${sessionScope.User.userType==1||sessionScope.User.userType==2}">
+							<a href="freight-info.jsp"><img src="images/06.png" class="img-circle">
+						<p>下单</p></a>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -212,10 +220,17 @@
 						</a>
 					</div>
 					<div class="col-md-4 col-xs-6">
-						<a href="register.html"> <img src="images/ttubiao_12.png"
+						<!-- <a href="register.html"> <img src="images/ttubiao_12.png"
+							class="img-circle">
+							<p>加入跑男</p>
+						</a> -->
+						<c:if test="${sessionScope.User.userType==2}">
+							<a href="courier-main.jsp"> <img src="images/ttubiao_12.png"
 							class="img-circle">
 							<p>加入跑男</p>
 						</a>
+						<p>下单</p></a>
+						</c:if>
 					</div>
 				</div>
 			</div>
