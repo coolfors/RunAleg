@@ -97,6 +97,7 @@ public class UserServlet extends HttpServlet {
 		mydata.setData(list);
 
 		// 返回json对象
+		@SuppressWarnings("unused")
 		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
 

@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="images/logo.ico">
-<title>快递侠-首页</title>
+<title>快递侠-个人信息</title>
 <meta name="description" content="快递侠实现了跑腿代跑和威客任务的实时连接，通过互联网服务于跑男和兼职群体。坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！">
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@ $(function(){
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
 									<li><a href="#">余额充值</a></li>								
-									<li><a href="#">切换账号</a></li>
+									<li><a href="login.html">切换账号</a></li>
 								</ul></li>
 						</ul>	
 					</c:if>
@@ -134,18 +134,6 @@ $(function(){
                         </li>
                         <li>
                         	<i>&nbsp;</i>
-                            <strong><a href="">代收货款</a></strong>
-                        </li>
-                        <li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">资金流水</a></strong>
-                        </li>
-                        <li>
-                        	<i>&nbsp;</i>
-                            <strong><a href="">询价历史</a></strong>
-                        </li>
-                        <li>
-                        	<i>&nbsp;</i>
                             <strong><a href="">常发货物</a></strong>
                         </li>
                         <li>
@@ -165,26 +153,26 @@ $(function(){
                 <ul>
                 	<li>
                     	<span>登陆帐户：</span>
-                        <em>2817820247@qq.com</em>
+                        <em>${sessionScope.User.userName}</em>
                     </li>
                     <li>
-                    	<span>所属公司：</span>
-                        <a href="">请填写公司资料申请成为供应商</a>
+                    	<span>账户类型：</span>
+                        <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>       
                     </li>
                 </ul>
                 <div class="space_hx">&nbsp;</div>
                 <strong>安全信息</strong>
                 <ul class="p_news">
-                	<!--<li>
+                	<li>
                     	<span>绑定手机：</span>
-                        <em>18825089267</em>
+                        <em>${sessionScope.User.userTel}</em>
                         <a href="" class="anniu">修改</a>
-                    </li>-->
-                    <li>
+                    </li>
+                    <!-- <li>
                     	<span>绑定邮箱：</span>
                         <em>2817820247@qq.com</em>
                         <a href="" class="anniu">修改</a>
-                    </li>
+                    </li> -->
                     <li>
                     	<span>密码强度：</span>
                         <em><img src="Assets/images/icon16.jpg"/></em>
