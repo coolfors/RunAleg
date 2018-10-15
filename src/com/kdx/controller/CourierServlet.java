@@ -157,7 +157,7 @@ public class CourierServlet extends HttpServlet {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		PageData<Receipt> pd = rs.waitSendReceipt(page, pageSize);
+		PageData<Dispatch> pd = ds.waitSendDispatch(page, pageSize);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
