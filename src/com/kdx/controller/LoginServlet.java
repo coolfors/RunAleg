@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
 import com.kdx.entity.User;
 import com.kdx.service.UserService;
 import com.kdx.serviceImpl.UserServiceImpl;
@@ -40,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String op=request.getParameter("op");
+		@SuppressWarnings("unused")
 		String check_code= request.getParameter("check_code");//获取用户文本框内的内容
 		if(op.equals("login")) {
 			login(request,response);
@@ -81,7 +81,8 @@ public class LoginServlet extends HttpServlet {
 			String user=gson.toJson(u);*/
 			HttpSession session=request.getSession();
 			session.setAttribute("User", u);
-			out.print("<script>alert('登录成功！');location.href='index.html'</script>");
+			System.out.println(u);
+			out.print("<script>alert('登录成功！');location.href='index.jsp'</script>");
 		}
 		out.close();
 	}

@@ -8,11 +8,27 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="images/logo.ico">
-<title>快递侠-首页</title>
+<title>快递侠-个人信息</title>
 <meta name="description" content="快递侠实现了跑腿代跑和威客任务的实时连接，通过互联网服务于跑男和兼职群体。坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！">
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/thems.css"/>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#left_menu li ul").css("display","none");
+	$("#left_menu li:first ul").css("display","block");
+	$("#left_menu li .yiji").click(function(){
+		$(this).parents("li").find(".erji").css("display","block");
+		$(this).parent("li").siblings("li").find(".erji").css("display","none");
+	});
+})
+</script>
+</script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -79,104 +95,124 @@
                     </ul>
                 </li>
                 <li><a href="alliance.jsp">关于我们</a></li>
-                <li class="active"><a href="contact-us.jsp">联系我们</a></li>
+                <li class=""><a href="contact-us.jsp">联系我们</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <!--导航-结束-->
-
-<div class="container">
-    <div class="row neirong">
-    	<div class="col-sm-6">
-			<h3>联系我们</h3>
-            <hr>
-            <p>感谢您来到快递侠，若您有加盟意向或者有什么宝贵建议，请您为我们留言或者通过以下方式联系我们，我们将尽快给您回复，并为您及时解答各方面的问题，谢谢。</p>
-            <p><span>地址：</span>厦门市软件园</p>
-            <p><span>电话：</span>13011111111</p>
-            <p><span>邮箱：</span>coolfors@163.com</p>
+<!--内容开始  -->
+<!--中间部分-->
+<div class="main">
+	<!--订单中心-->
+    <div class="person clearfix">
+    	<div class="order_l person_l">
+        	<ul id="left_menu" class="left_menu">
+            	<li>
+                	<a class="yiji"><span>个人中心</span><em>&nbsp;</em></a>
+                    <ul class="erji">
+                    	<li>
+                        	<i>&nbsp;</i>
+                            <strong><a href="">个人资料</a></strong>
+                        </li>
+                        <li>
+                        	<i>&nbsp;</i>
+                            <strong><a href="">公司信息</a></strong>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<a class="yiji"><span>订单中心</span><em>&nbsp;</em></a>
+                    <ul class="erji">
+                    	<li>
+                        	<i>&nbsp;</i>
+                            <strong><a href="">我的订单</a></strong>
+                        </li>
+                        <li>
+                        	<i>&nbsp;</i>
+                            <strong><a href="">我的账单</a></strong>
+                        </li>
+                        <li>
+                        	<i>&nbsp;</i>
+                            <strong><a href="">常发货物</a></strong>
+                        </li>
+                        <li>
+                        	<i>&nbsp;</i>
+                            <strong><a href="">常用联系人</a></strong>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div class="col-sm-6">
-        	<h3>留言板</h3>
-            <hr>
-        	<form action="" method="post">
-                <!-- <label class="control-label" for="biaoti">称呼</label>
-                <input type="text" id="biaoti" class="form-control" placeholder="请输入您的姓名或昵称"> -->
-                <label class="control-label" for="neirong">内容</label>
-                <textarea class="form-control" id="neirong" placeholder="请输入您想说的话或者宝贵建议" rows="5"></textarea>
-                <input class="btn btn-info form-control" style="width:20%; margin-top:10px; float:right;" type="submit" value="确定">
-            </form>
-        </div>
-		<div class="col-sm-12">
-        	<h3>留言问答</h3>
-            <hr>
-			<div>
-            	<div class="liuyan">
-                	<div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">内容：</span>
-                        <span class="col-sm-11 col-xs-8">快递侠是外卖服务吗</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">留言人：</span>
-                        <span class="col-sm-11 col-xs-8">马小兵</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">回复：</span>
-                        <span class="col-sm-11 col-xs-8">加油!很不错的平台，以后可以躺床上不用下楼了</span>
-                    </div>
-                </div>
-                <div class="liuyan">
-                	<div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">内容：</span>
-                        <span class="col-sm-11 col-xs-8">快递侠兼职真的能够月入千元吗？</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">留言人：</span>
-                        <span class="col-sm-11 col-xs-8">马小兵</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">回复：</span>
-                        <span class="col-sm-11 col-xs-8">我们适合大众群体，包括顺利赚路费的，以及学生党</span>
-                    </div>
-                </div>
-                <div class="liuyan">
-                	<div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">内容：</span>
-                        <span class="col-sm-11 col-xs-8">新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接？</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">留言人：</span>
-                        <span class="col-sm-11 col-xs-8">马小兵</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">回复：</span>
-                        <span class="col-sm-11 col-xs-8">新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接</span>
-                    </div>
-                </div>
+        <div class="person_r">
+        	<div class="person_h">
+            	<span>个人资料设置</span>
             </div>
-            <nav class="text-center">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                        	<span aria-hidden="true">&laquo;</span>
-                        </a>
+            <div class="person_rmain">
+            	<strong>帐户信息</strong>
+                <ul>
+                	<li>
+                    	<span>登陆帐户：</span>
+                        <em>${sessionScope.User.userName}</em>
                     </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
                     <li>
-                        <a href="#" aria-label="Next">
-                        	<span aria-hidden="true">&raquo;</span>
-                        </a>
+                    	<span>账户类型：</span>
+                        <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>       
                     </li>
                 </ul>
-            </nav>
+                <div class="space_hx">&nbsp;</div>
+                <strong>安全信息</strong>
+                <ul class="p_news">
+                	<li>
+                    	<span>绑定手机：</span>
+                        <em>${sessionScope.User.userTel}</em>
+                        <a href="" class="anniu">修改</a>
+                    </li>
+                    <!-- <li>
+                    	<span>绑定邮箱：</span>
+                        <em>2817820247@qq.com</em>
+                        <a href="" class="anniu">修改</a>
+                    </li> -->
+                    <li>
+                    	<span>密码强度：</span>
+                        <em><img src="Assets/images/icon16.jpg"/></em>
+                        <a href="" class="anniu">修改密码</a>
+                    </li>
+                </ul>
+                <div class="space_hx">&nbsp;</div>
+                <strong>基本信息</strong>
+                <form action="" method="post">
+                <ul>
+                	<li>
+                    	<span>姓名：</span>
+                        <input name="" type="text">
+                    </li>
+                    <li>
+                    	<span>手机：</span>
+                        <input name="" type="text">
+                    </li>
+                    <li>
+                    	<span>固定电话：</span>
+                        <input name="" type="text">
+                    </li>
+                    <li>
+                    	<span>发货地址：</span>
+                        <input name="" type="text">
+                        <input name="" type="text">
+                    </li>
+                    <li>
+                    	<button href="" class="submit">保存</button>
+                    </li>
+                </ul>
+                </form>
+            </div>
         </div>
     </div>
+    <!--订单中心-->
+    <div class="space_hx">&nbsp;</div>
 </div>
-
+<!--中间部分-->
+<div class="space_hx">&nbsp;</div>
 <!--尾部-开始-->
 <div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
     <div class="container">
@@ -211,7 +247,6 @@
     </div>
 </div>
 <!--尾部-结束-->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

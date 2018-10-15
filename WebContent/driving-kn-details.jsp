@@ -35,7 +35,16 @@
 						href="register.html" target="_blank" id="reg">注册</a>
 					</c:if>
 					<c:if test="${sessionScope.User!=null }">
-						<a href="login.html" target="_blank" id="UserInfo">${sessionScope.User.userName}</a>
+						<ul class="right navbar-nav">
+							<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
+								${sessionScope.User.userName}
+								<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="userMessage.jsp">个人信息</a></li>
+									<li><a href="#">余额充值</a></li>								
+									<li><a href="login.html">切换账号</a></li>
+								</ul></li>
+						</ul>	
 					</c:if>
             </span>
         </div>

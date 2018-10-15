@@ -136,7 +136,9 @@ public class CourierServlet extends HttpServlet {
 		String data = gson.toJson(pd);
 		System.out.println(pd);
 		request.setAttribute("dataJson", data);
-		response.getWriter().print(data);
+		System.out.println(data);
+		//request.getRequestDispatcher("courier-main.jsp").forward(request, response);
+		response.getWriter().println(data);
 	}
 
 	/**
