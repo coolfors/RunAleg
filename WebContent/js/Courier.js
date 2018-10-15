@@ -11,7 +11,7 @@ $(function(){
 	})*/
 	//点击标签出发事件：显示所有派单信息，Dispatch
 	$("#allDispatch").click(function(){
-		$.ajax({
+		$.ajax({//test
             type: "get",
             url: "CourierServlet.do?op=allDispatch",
             /*data: {username:$("#username").val(),
