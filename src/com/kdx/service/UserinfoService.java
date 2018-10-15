@@ -2,7 +2,6 @@ package com.kdx.service;
 
 import java.util.List;
 
-import com.kdx.entity.User;
 import com.kdx.entity.Userinfo;
 import com.kdx.util.PageData;
 
@@ -20,5 +19,7 @@ public interface UserinfoService {
 
 	boolean updateUserinfo(Userinfo uinfo);// 更新用户信息
 
-	PageData getUserinfoByPage(int page, int pageSize);// 分页
+	PageData<Userinfo> getUserinfoByPage(int page, int pageSize);// 分页
+	
+	Userinfo getUserInfo(int userId);//根据useid获取详细信息，前台显示
 }

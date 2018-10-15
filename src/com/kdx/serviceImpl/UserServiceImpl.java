@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return ud.loginUser(userName, userPwd);
 	}
-
+	//前台显示用户信息
 	@Override
 	public List<User> getUser() {
 		// TODO Auto-generated method stub

@@ -31,7 +31,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 
 	//分页
 	@Override
-	public PageData getUserinfoByPage(int page, int pageSize) {
+	public PageData<Userinfo> getUserinfoByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return uid.queryUserinfoByPage(page, pageSize);
 		
@@ -41,6 +41,12 @@ public class UserinfoServiceImpl implements UserinfoService {
 	public List<Userinfo> getUserinfo() {
 		// TODO Auto-generated method stub
 		return uid.queryUserinfo();
+	}
+
+	@Override
+	public Userinfo getUserInfo(int userId) {
+		// TODO Auto-generated method stub
+		return uid.getUserInfo(userId);
 	}
 
 }

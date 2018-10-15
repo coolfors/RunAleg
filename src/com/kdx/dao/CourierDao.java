@@ -14,4 +14,7 @@ public interface CourierDao {
 	boolean updateCourier(Courier cour);
 
 	PageData<Courier> queryCourier(int page, int pageSize);
+	
+	//根据id,获取courier全部信息，用于前台显示
+	Courier getCourierById(int userId);
 }

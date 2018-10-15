@@ -1,9 +1,9 @@
 package com.kdx.daoImpl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import com.kdx.dao.UserinfoDao;
-import com.kdx.entity.User;
 import com.kdx.entity.Userinfo;
 import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
@@ -32,17 +32,33 @@ public class UserinfoDaoImpl implements UserinfoDao {
 	}
 	
 	//分页
+	@SuppressWarnings("unchecked")
 	@Override
-	public PageData queryUserinfoByPage(int page, int pageSize) {
+	public PageData<Userinfo> queryUserinfoByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
 		return  BaseDao.getPage("select * from userinfo", page, pageSize, Userinfo.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Userinfo> queryUserinfo() {
 		// TODO Auto-generated method stub
 		String sql = "SELECT userinfo.userInfoId,user.userName,userinfo.userTel,userinfo.userAdd,userinfo.userBalance,userinfo.userSex,user.sockState FROM userinfo INNER JOIN user ON userinfo.userId=user.userId";
 		return (List<Userinfo>) BaseDao.select(sql, Userinfo.class);
+	}
+	//根据id获取userinfo详细信息  用于前台显示
+	@Override
+	public Userinfo getUserInfo(int userId) {
+		// TODO Auto-generated method stub
+		String sql="select * from userinfo where userid = ?";
+		@SuppressWarnings("unchecked")
+		List<Userinfo> list = (List<Userinfo>) BaseDao.select(sql, Userinfo.class, userId);
+		Iterator<Userinfo> it = list.iterator();
+		Userinfo userInfo = null;
+		if (it.hasNext()) {
+			userInfo = it.next();
+		}
+		return userInfo;
 	}
 
 }
