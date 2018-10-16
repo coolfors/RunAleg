@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Courier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int courierId;
+	private String courierId;
 
 	private double ableDistance;
 
@@ -36,11 +36,11 @@ public class Courier implements Serializable {
 	public Courier() {
 	}
 
-	public int getCourierId() {
+	public String getCourierId() {
 		return this.courierId;
 	}
 
-	public void setCourierId(int courierId) {
+	public void setCourierId(String courierId) {
 		this.courierId = courierId;
 	}
 
@@ -151,7 +151,7 @@ public class Courier implements Serializable {
 	 * @param Tel
 	 * @param userId
 	 */
-	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
+	public Courier(String courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
 			String iDcard, String idImg, int sockState, String Tel, int userId) {
 		super();
 		this.courierId = courierId;
@@ -167,7 +167,7 @@ public class Courier implements Serializable {
 		this.userId = userId;
 	}
 
-	public Courier(int courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
+	public Courier(String courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
 			String iDcard, int sockState, String tel, String userName) {
 		super();
 		this.courierId = courierId;

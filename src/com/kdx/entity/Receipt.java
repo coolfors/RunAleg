@@ -9,13 +9,13 @@ import java.io.Serializable;
 public class Receipt implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int receiptId;// 接单号
+	private String receiptId;// 接单号
 
-	private int courierId;// 配送员id
+	private String courierId;// 配送员id
 
 	private String userName;// 配送员名称
 
-	private int disId;// 派单号
+	private String disId;// 派单号
 
 	private String encryptionKey;// 订单号加密码
 
@@ -34,11 +34,11 @@ public class Receipt implements Serializable {
 	public Receipt() {
 	}
 
-	public int getReceiptId() {
+	public String getReceiptId() {
 		return this.receiptId;
 	}
 
-	public void setReceiptId(int receiptId) {
+	public void setReceiptId(String receiptId) {
 		this.receiptId = receiptId;
 	}
 
@@ -106,19 +106,19 @@ public class Receipt implements Serializable {
 		this.state = state;
 	}
 
-	public int getCourierId() {
+	public String getCourierId() {
 		return courierId;
 	}
 
-	public void setCourierId(int courierId) {
+	public void setCourierId(String courierId) {
 		this.courierId = courierId;
 	}
 
-	public int getDisId() {
+	public String getDisId() {
 		return disId;
 	}
 
-	public void setDisId(int disId) {
+	public void setDisId(String disId) {
 		this.disId = disId;
 	}
 
@@ -131,7 +131,7 @@ public class Receipt implements Serializable {
 	}
 
 	public Receipt(String courierAdd, String encryptionKey, String endTime, double getDistance, double sendDistance,
-			String startTime, int state, int courierId, int disId) {
+			String startTime, int state, String courierId, String disId) {
 		super();
 		this.courierAdd = courierAdd;
 		this.encryptionKey = encryptionKey;
@@ -144,7 +144,7 @@ public class Receipt implements Serializable {
 		this.disId = disId;
 	}
 
-	public Receipt(int receiptId, int courierId, int disId, String encryptionKey, String startTime, String endTime,
+	public Receipt(String receiptId, String courierId, String disId, String encryptionKey, String startTime, String endTime,
 			int state, String courierAdd, double getDistance, double sendDistance) {
 		super();
 		this.receiptId = receiptId;
@@ -159,8 +159,8 @@ public class Receipt implements Serializable {
 		this.disId = disId;
 	}
 
-	public Receipt(int receiptId, String courierAdd, String encryptionKey, String endTime, double getDistance,
-			double sendDistance, String startTime, int state, int courierId, int disId) {
+	public Receipt(String receiptId, String courierAdd, String encryptionKey, String endTime, double getDistance,
+			double sendDistance, String startTime, int state, String courierId, String disId) {
 		super();
 		this.receiptId = receiptId;
 		this.courierAdd = courierAdd;

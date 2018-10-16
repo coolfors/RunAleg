@@ -65,7 +65,7 @@ public class UserInfoServlet extends HttpServlet {
 			String userBalance = request.getParameter("userBalance");
 			String userSex = request.getParameter("userSex");
 
-			Userinfo uinfo = new Userinfo(Integer.valueOf(userInfoId), userAdd, Double.valueOf(userBalance), userSex,
+			Userinfo uinfo = new Userinfo(userInfoId, userAdd, Double.valueOf(userBalance), userSex,
 					userTel);
 
 			// userDate, userName, userPwd,

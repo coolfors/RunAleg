@@ -10,9 +10,9 @@ import java.io.Serializable;
 public class Userinfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int userInfoId;//详情信息id
+	private String userInfoId;//详情信息id
 	
-	private int userId;//用户id
+	private String userId;//用户id
 
 	private String userAdd;//用户地址
 
@@ -35,11 +35,11 @@ public class Userinfo implements Serializable {
 	public Userinfo() {
 	}
 
-	public int getUserInfoId() {
+	public String getUserInfoId() {
 		return this.userInfoId;
 	}
 
-	public void setUserInfoId(int userInfoId) {
+	public void setUserInfoId(String userInfoId) {
 		this.userInfoId = userInfoId;
 	}
 
@@ -75,15 +75,15 @@ public class Userinfo implements Serializable {
 		this.userTel = userTel;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-	public Userinfo(int userInfoId, int userId, String userAdd, double userBalance, String userSex, String userTel) {
+	public Userinfo(String userInfoId, String userId, String userAdd, double userBalance, String userSex, String userTel) {
 		super();
 		this.userInfoId = userInfoId;
 		this.userId = userId;
@@ -95,7 +95,7 @@ public class Userinfo implements Serializable {
 	
 	
 		
-	public Userinfo(int userId, String userAdd, double userBalance, String userSex, String userTel) {
+	public Userinfo(String userId, String userAdd, double userBalance, String userSex, String userTel) {
 		super();
 		this.userId = userId;
 		this.userAdd = userAdd;

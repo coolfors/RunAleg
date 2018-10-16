@@ -70,7 +70,7 @@ public class UserServlet extends HttpServlet {
 			String userId = request.getParameter("userId");
 			String userName = request.getParameter("userName");
 			String userDate = request.getParameter("userDate");
-			User u = new User(Integer.valueOf(userId), userDate, userName);
+			User u = new User(userId, userDate, userName);
 			boolean flag = us.updateUser(u);
 			PrintWriter out = response.getWriter();
 			out.print(flag);
@@ -126,7 +126,7 @@ public class UserServlet extends HttpServlet {
 		String userType = request.getParameter("userType");
 		String userDate = request.getParameter("userDate");
 		userPwd = MD5Util.getEncodeByMd5(userPwd);
-		User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState), userDate, userName, userPwd,
+		User u = new User(userId, Integer.valueOf(sockState), userDate, userName, userPwd,
 				Integer.valueOf(userType));
 		boolean flag = us.addUser(u);
 		PrintWriter out = response.getWriter();
@@ -176,7 +176,7 @@ public class UserServlet extends HttpServlet {
 
 			boolean flag = true;
 
-			if (list.size() > 0 && Integer.parseInt(userId) != list.get(0).getUserId()) {
+			if (list.size() > 0 && userId != list.get(0).getUserId()) {
 				flag = false;
 			}
 

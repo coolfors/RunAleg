@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.kdx.entity.Article;
 import com.kdx.service.ArticleService;
 import com.kdx.serviceImpl.ArticleServiceImpl;
+import com.kdx.util.UUIDUtils;
 /**
  * Servlet implementation class QusController
  */
@@ -45,7 +46,8 @@ public class ArticleController extends HttpServlet {
 		String articledate = df.format( new Date());
 		String title = request.getParameter("title");
 		//添加数据到数据库
-		Article at = new Article(8,articledate, title, article);
+		String uuid=UUIDUtils.getUUID();
+		Article at = new Article(uuid,articledate, title, article);
 		ArticleService as = new ArticleServiceImpl();
 		boolean flag  = as.addArticle(at);
 		if(flag) {

@@ -9,9 +9,9 @@ import java.io.Serializable;
 public class Dispatch implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int disId;// 派单id
+	private String disId;// 派单id
 
-	private int userId;// 用户id
+	private String userId;// 用户id
 
 	private String userName;// 用户名
 
@@ -37,19 +37,19 @@ public class Dispatch implements Serializable {
 		this.userName = userName;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-	public int getDisId() {
+	public String getDisId() {
 		return this.disId;
 	}
 
-	public void setDisId(int disId) {
+	public void setDisId(String disId) {
 		this.disId = disId;
 	}
 
@@ -128,7 +128,7 @@ public class Dispatch implements Serializable {
 	 * @param endAdd
 	 * @param goodsType
 	 */
-	public Dispatch(int disId, int userId, String beginAdd, double disPrice, String disPS, int disState, int disTel,
+	public Dispatch(String disId, String userId, String beginAdd, double disPrice, String disPS, int disState, int disTel,
 			String endAdd, String goodsType) {
 		super();
 		this.disId = disId;

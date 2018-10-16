@@ -44,7 +44,7 @@ public class CourierDaoImpl implements CourierDao {
 	}
 	//根据id,获取courier全部信息，用于前台显示
 	@Override
-	public Courier getCourierById(int userId) {
+	public Courier getCourierById(String userId) {
 		// TODO Auto-generated method stub
 		String sql = "select * from courier where userid = ?";
 		@SuppressWarnings("unchecked")

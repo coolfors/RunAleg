@@ -22,9 +22,13 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean addUser(User u) {
 		// TODO Auto-generated method stub
-
-		String sql = "insert into user(userName,userPwd,userType,userdate) values(?,?,?,?)";
+		Object obj=BaseDao.select("select * from user where userName=?", User.class, u.getUserName());
+		if(obj!=null) {
+			return false;
+		}else {
+		String sql = "insert into user(userName,sockState,userPwd,userType,userdate) values(?,0,?,?,?)";
 		return BaseDao.execute(sql, u.getUserName(), u.getUserPwd(), u.getUserType(), u.getUserDate()) > 0;
+		}
 
 	}
 

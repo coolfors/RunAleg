@@ -8,13 +8,13 @@ package com.kdx.entity;
  */
 
 public class Article {
-	private int articleId;
-	private int userId;
+	private String articleId;
+	private String userId;
 	private String userName;
 	private String articledate;
 	private String title;
 	private String content;
-	public int getArticleId() {
+	public String getArticleId() {
 		return articleId;
 	}
 	/**
@@ -24,7 +24,7 @@ public class Article {
 	 * @param content 文章的内容
 	 */
 
-	public Article(int articleId, int userId, String articledate, String title, String content) {
+	public Article(String articleId, String userId, String articledate, String title, String content) {
 		super();
 		this.articleId = articleId;
 		this.userId = userId;
@@ -33,13 +33,13 @@ public class Article {
 		this.content = content;
 	}
 	
-	public void setArticleId(int articleId) {
+	public void setArticleId(String articleId) {
 		this.articleId = articleId;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -87,7 +87,7 @@ public class Article {
 	 * @param title
 	 * @param content
 	 */
-	public Article(int userId, String articledate, String title, String content) {
+	public Article(String userId, String articledate, String title, String content) {
 		super();
 		this.userId = userId;
 		this.articledate = articledate;

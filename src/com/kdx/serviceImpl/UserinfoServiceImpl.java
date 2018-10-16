@@ -44,7 +44,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	}
 
 	@Override
-	public Userinfo getUserInfo(int userId) {
+	public Userinfo getUserInfo(String userId) {
 		// TODO Auto-generated method stub
 		return uid.getUserInfo(userId);
 	}
