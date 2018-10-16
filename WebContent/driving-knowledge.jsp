@@ -22,16 +22,17 @@
 <![endif]-->
 <!--  ajax 获取文章列表-->
 <script type="text/javascript">
-				$(function  () {
-					$.get("art.show",function(data,status) {
-						var arr = JSON.parse(data);
-						$.each(arr, function(index,article) {
-							console.log(article.articleId+","+article.title);
-							$("#articlelist").append("<li class='row'><a href='artlist.html?id="+article.articleId+"' class='col-sm-10'>"+article.title+"</a><span class='col-sm-2' style=' float:right'>"+article.articledate+"</span></li>");
-							
-						});
-					})
+		$(function  () {
+			$.get("art.show",function(data,status) {
+				var arr = JSON.parse(data);
+				var con ="";
+				$.each(arr, function(index,article) {
+					console.log(article.articleId+","+article.title); 
+					con += "<li class='row'><a href='artlist.html?id="+article.articleId+"' class='col-sm-10'>"+article.title+"</a><span class='col-sm-2' style=' float:right'>"+article.articledate+"</span></li>";
+				});
+				$("#articlelist").html(con);
 			})
+	})
 </script>
 </head>
 <body>
@@ -152,7 +153,6 @@
             </nav>
         </div>
     </div>
- ${article.content};
 <!--尾部-开始-->
 <div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
     <div class="container">

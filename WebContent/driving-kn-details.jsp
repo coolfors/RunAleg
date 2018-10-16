@@ -123,7 +123,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 <!--尾部-开始-->
 <div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
