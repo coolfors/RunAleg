@@ -72,13 +72,13 @@
 				<ul class="nav navbar-nav">
 					<li><a href="index.jsp">首页</a></li>
 					<c:if test="${sessionScope.User==null}">
-					<li><a href="login.html">跑腿吧<span class="sr-only"></span></a></li>
+					<li class="active"><a href="login.html">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<c:if test="${sessionScope.User.userType==1}">
-					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+					<li class="active"><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<c:if test="${sessionScope.User.userType==2}">
-					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+					<li class="active"><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"

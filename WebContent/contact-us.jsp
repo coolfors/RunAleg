@@ -107,11 +107,11 @@
         <div class="col-sm-6">
         	<h3>留言板</h3>
             <hr>
-        	<form action="" method="post">
+        	<form action="FeedBackServlet.do?op=FeedBack" method="post">
                 <!-- <label class="control-label" for="biaoti">称呼</label>
                 <input type="text" id="biaoti" class="form-control" placeholder="请输入您的姓名或昵称"> -->
                 <label class="control-label" for="neirong">内容</label>
-                <textarea class="form-control" id="neirong" placeholder="请输入您想说的话或者宝贵建议" rows="5"></textarea>
+                <textarea class="form-control" id="neirong" name="neirong" placeholder="请输入您想说的话或者宝贵建议" rows="5"></textarea>
                 <input class="btn btn-info form-control" style="width:20%; margin-top:10px; float:right;" type="submit" value="确定">
             </form>
         </div>
