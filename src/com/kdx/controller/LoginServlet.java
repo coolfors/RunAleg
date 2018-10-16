@@ -119,9 +119,10 @@ public class LoginServlet extends HttpServlet {
 		//获取系统当前时间
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String userDate = df.format( new Date());
+		//创建对象
 		User user = new User(userName, password, userType,userDate);
 		boolean flag = us.addUser(user);
-		System.out.println(user);
+		//注册成跳转登录页面
 		if(flag==true)
 		{
 			out.print("<script>alert('注册成功！');location.href='login.html'</script>");
