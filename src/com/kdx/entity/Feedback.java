@@ -67,6 +67,13 @@ public class Feedback implements Serializable {
 				+ ", userName=" + userName + "]";
 	}
 
+	public Feedback(int feedbackId, String feedbackInfo, int userId) {
+		super();
+		this.feedbackId = feedbackId;
+		this.feedbackInfo = feedbackInfo;
+		this.userId = userId;
+	}
+
 	
 
 }

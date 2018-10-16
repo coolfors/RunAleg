@@ -22,5 +22,5 @@ public interface UserService {
 
 	User loginUser(String userName, String userPwd);// 用户登录
 	
-
+	User getUserById(int userId);
 }

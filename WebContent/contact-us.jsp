@@ -13,6 +13,7 @@
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="admin/lib/layui/css/layui.css" media="all">
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -65,7 +66,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="index.jsp">首页</a></li>
-                <li><a href="index.jsp">跑腿吧<span class="sr-only"></span></a></li>
+                <c:if test="${sessionScope.User==null}">
+					<li><a href="login.html">跑腿吧<span class="sr-only"></span></a></li>
+				</c:if>
+				<c:if test="${sessionScope.User.userType==1}">
+					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				</c:if>
+				<c:if test="${sessionScope.User.userType==2}">
+					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				</c:if>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">发布跑腿<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -99,11 +108,18 @@
         <div class="col-sm-6">
         	<h3>留言板</h3>
             <hr>
-        	<form action="" method="post">
+        	<form action=
+        	<c:if test="${sessionScope.User==null}">
+        		"login.html"
+        	</c:if>
+        	<c:if test="${sessionScope.User!=null}">
+        		"FeedBackServlet.do?op=FeedBack&UserId=${sessionScope.User.userId}"
+        	</c:if>
+        	 method="post">
                 <!-- <label class="control-label" for="biaoti">称呼</label>
                 <input type="text" id="biaoti" class="form-control" placeholder="请输入您的姓名或昵称"> -->
                 <label class="control-label" for="neirong">内容</label>
-                <textarea class="form-control" id="neirong" placeholder="请输入您想说的话或者宝贵建议" rows="5"></textarea>
+                <textarea class="form-control" id="neirong" name="neirong" placeholder="请输入您想说的话或者宝贵建议" rows="5"></textarea>
                 <input class="btn btn-info form-control" style="width:20%; margin-top:10px; float:right;" type="submit" value="确定">
             </form>
         </div>

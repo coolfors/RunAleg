@@ -58,7 +58,6 @@ public class UserDaoImpl implements UserDao {
 		if (it.hasNext()) {
 			u = it.next();
 		}
-		System.out.println("user:"+u);
 		return u;
 
 	}
@@ -85,7 +84,16 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update user set userType=? where userId=?";
 		return BaseDao.execute(sql, userType, userId) > 0;
 	}
-	
-	
+	@Override
+	public User getUserById(int userId) {
+		// TODO Auto-generated method stub
+		List<User> list=(List<User>) BaseDao.select("select * from user where userId=?", User.class, userId);
+		Iterator<User> it=list.iterator();
+		User u=null;
+		if(it.hasNext()) {
+			u=it.next();
+		}
+		return u;
+	}
 
 }

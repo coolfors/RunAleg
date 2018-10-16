@@ -26,6 +26,6 @@ public interface UserDao {
 
 	boolean changeType(int userId, int userType);// 改变类型
 	
-	
+	User getUserById(int userId);
 
 }
