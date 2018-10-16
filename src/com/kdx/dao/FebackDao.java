@@ -11,5 +11,5 @@ public interface FebackDao {
 	
 	boolean updateFeback(Feedback f);
 	
-	PageData<Feedback> queryFebackByPage(int page,int pageSize);
+	PageData<Feedback> queryFebackByPage(int page,int pageSize,int userId);
 }

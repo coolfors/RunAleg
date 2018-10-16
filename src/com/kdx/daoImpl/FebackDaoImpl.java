@@ -30,10 +30,9 @@ public class FebackDaoImpl implements FebackDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public PageData<Feedback> queryFebackByPage(int page, int pageSize) {
+	public PageData<Feedback> queryFebackByPage(int page, int pageSize,int userId) {
 		// TODO Auto-generated method stub
-		return BaseDao.getPage("SELECT feedback.feedbackId,user.userName,feedback.feedbackInfo FROM feedback INNER JOIN user ON feedback.userId = user.userId\r\n" + 
-				" ", page, pageSize, Feedback.class);
+		return BaseDao.getPage("select * from feedback where userId=?", page, pageSize, Feedback.class,userId);
 	}
 
 }

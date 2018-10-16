@@ -127,7 +127,26 @@
         	<h3>留言问答</h3>
             <hr>
 			<div>
-            	<div class="liuyan">
+				<c:if test="${sessionScope.User!=null&&requestScope.pd==null}">
+					<jsp:forward page="FeedBackServlet.do?op=getFeedBack&UserId=${sessionScope.User.userId}"></jsp:forward>
+				</c:if>
+				<c:forEach var="a" items="${requestScope.pd.data}">
+							<div class="liuyan">
+                	<div class="row">
+                    	<span class="col-sm-1 col-xs-4 text-right">内容：</span>
+                        <span class="col-sm-11 col-xs-8">${a.feedbackInfo}</span>
+                    </div>
+                    <div class="row">
+                    	<span class="col-sm-1 col-xs-4 text-right">留言人：</span>
+                        <span class="col-sm-11 col-xs-8">${sessionScope.User.userName}</span>
+                    </div>
+                    <div class="row">
+                    	<span class="col-sm-1 col-xs-4 text-right">回复：</span>
+                        <span class="col-sm-11 col-xs-8">${a.managerAns==null?"暂未回复":a.managerAns}</span>
+                    </div>
+                </div>
+							</c:forEach>
+            	<!-- <div class="liuyan">
                 	<div class="row">
                     	<span class="col-sm-1 col-xs-4 text-right">内容：</span>
                         <span class="col-sm-11 col-xs-8">快递侠是外卖服务吗</span>
@@ -141,7 +160,7 @@
                         <span class="col-sm-11 col-xs-8">加油!很不错的平台，以后可以躺床上不用下楼了</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
             <div id="test1" class="text-center"></div>
 
@@ -149,16 +168,21 @@
 					<script>
 					layui.use('laypage', function(){
 						  var laypage = layui.laypage;
-						  
+						  var c =${ pd.total};
+
+			   				var l = ${pd.pageSize};
+
+			   				var p = ${ pd.page};
 						  //执行一个laypage实例
 						  laypage.render({
 						    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-						    ,count: 5 //数据总数，从服务端得到
-						    ,limit: 5	//每页显示的数据数
-						    ,curr:5		//当前页面
+						    ,count: c //数据总数，从服务端得到
+						    ,limit: l	//每页显示的数据数
+						    ,layout :['count','prev', 'page', 'next', 'refresh']
+						    ,curr: p	//当前页面
 						    ,jump: function(obj,first){	//跳转
 						    	if(!first){
-						    		location.href="qs.action?op=getAnswerPage_JSTL&pageIndex="+obj.curr;
+						    		location.href="FeedBackServlet.do?op=getFeedBack&UserId=${sessionScope.User.userId}&pageIndex="+obj.curr+"&pageSize=5";
 						    	}
 						    }
 						  });
