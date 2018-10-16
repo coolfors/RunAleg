@@ -13,6 +13,7 @@
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="layui/css/layui.css" media="all">
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -107,7 +108,14 @@
         <div class="col-sm-6">
         	<h3>留言板</h3>
             <hr>
-        	<form action="FeedBackServlet.do?op=FeedBack" method="post">
+        	<form action=
+        	<c:if test="${sessionScope.User==null}">
+        		"login.html"
+        	</c:if>
+        	<c:if test="${sessionScope.User!=null}">
+        		"FeedBackServlet.do?op=FeedBack&UserId=${sessionScope.User.userId}"
+        	</c:if>
+        	 method="post">
                 <!-- <label class="control-label" for="biaoti">称呼</label>
                 <input type="text" id="biaoti" class="form-control" placeholder="请输入您的姓名或昵称"> -->
                 <label class="control-label" for="neirong">内容</label>
@@ -133,55 +141,29 @@
                         <span class="col-sm-11 col-xs-8">加油!很不错的平台，以后可以躺床上不用下楼了</span>
                     </div>
                 </div>
-                <div class="liuyan">
-                	<div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">内容：</span>
-                        <span class="col-sm-11 col-xs-8">快递侠兼职真的能够月入千元吗？</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">留言人：</span>
-                        <span class="col-sm-11 col-xs-8">马小兵</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">回复：</span>
-                        <span class="col-sm-11 col-xs-8">我们适合大众群体，包括顺利赚路费的，以及学生党</span>
-                    </div>
-                </div>
-                <div class="liuyan">
-                	<div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">内容：</span>
-                        <span class="col-sm-11 col-xs-8">新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接？</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">留言人：</span>
-                        <span class="col-sm-11 col-xs-8">马小兵</span>
-                    </div>
-                    <div class="row">
-                    	<span class="col-sm-1 col-xs-4 text-right">回复：</span>
-                        <span class="col-sm-11 col-xs-8">新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接新广货运联盟实现了车找货、货找车的实时连接</span>
-                    </div>
-                </div>
             </div>
-            <nav class="text-center">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                        	<span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                        	<span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
+            <div id="test1" class="text-center"></div>
+
+					<script src="layui/layui.js"></script>
+					<script>
+					layui.use('laypage', function(){
+						  var laypage = layui.laypage;
+						  
+						  //执行一个laypage实例
+						  laypage.render({
+						    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+						    ,count: 5 //数据总数，从服务端得到
+						    ,limit: 5	//每页显示的数据数
+						    ,curr:5		//当前页面
+						    ,jump: function(obj,first){	//跳转
+						    	if(!first){
+						    		location.href="qs.action?op=getAnswerPage_JSTL&pageIndex="+obj.curr;
+						    	}
+						    }
+						  });
+						});
+					</script>
     </div>
 </div>
 

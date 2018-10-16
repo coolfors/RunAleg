@@ -25,5 +25,7 @@ public interface UserDao {
 	boolean changeState(int userId, int sockState);// 改变状态
 
 	boolean changeType(int userId, int userType);// 改变类型
+	
+	User getUserById(int userId);
 
 }
