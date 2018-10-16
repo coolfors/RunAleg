@@ -81,19 +81,20 @@ public class Article {
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	 * 构造文章列表
-	 * @param articleId 文章的id
-	 * @param userName 文章的作者
-	 * @param articledate 文章的发布时间
-	 * @param title 文章的标题
+	 * 
+	 * @param userId
+	 * @param articledate
+	 * @param title
+	 * @param content
 	 */
-	public Article(int articleId, String userName, String articledate, String title) {
+	public Article(int userId, String articledate, String title, String content) {
 		super();
-		this.articleId = articleId;
-		this.userName = userName;
+		this.userId = userId;
 		this.articledate = articledate;
 		this.title = title;
+		this.content = content;
 	}
+	
 	
 	
 	

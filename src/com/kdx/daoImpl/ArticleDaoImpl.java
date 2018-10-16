@@ -1,5 +1,6 @@
 package com.kdx.daoImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -21,14 +22,17 @@ public class ArticleDaoImpl implements ArticleDao {
 	@Override
 	public boolean addArticle(Article u) {
 		// TODO Auto-generated method stub
-		String sql="insert into Article(UserId,articledate,title,content) values(?,?,?,?)";
-		return BaseDao.execute(sql,u.getUserId(),new Date().toLocaleString(),u.getTitle(),u.getContent())>0;
+		String sql="insert into article(UserId,articledate,title,content) values(?,?,?,?)";
+		//插入系统时间
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String articledate = df.format( new Date());
+		return BaseDao.execute(sql,u.getUserId(),articledate,u.getTitle(),u.getContent())>0;
 	}
 
 	@Override
 	public boolean updateArticle(Article u) {
 		// TODO Auto-generated method stub
-		String sql="update Article set title=?,content=? where ArticleId=?";
+		String sql="update article set title=?,content=? where ArticleId=?";
 		return BaseDao.execute(sql,u.getTitle(),u.getContent(),u.getUserId())>0;
 		 
 	}
