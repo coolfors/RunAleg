@@ -57,4 +57,35 @@ public class UserServiceImpl implements UserService {
 		return ud.getUserById(userId);
 	}
 
+	@Override
+	public boolean updateState(int userId, int sockState) {
+		// TODO Auto-generated method stub
+		return ud.changeState(userId, sockState);
+	}
+
+	@Override
+	public boolean updateType(int userId, int userType) {
+		// TODO Auto-generated method stub
+		return ud.changeType(userId, userType);
+	}
+
+	@Override
+	public List<User> queryUsersByName(String userName) {
+		// TODO Auto-generated method stub
+		return ud.queryUserName(userName);
+	}
+
+	@Override
+	public List<User> queryUsersById(int userId) {
+		// TODO Auto-generated method stub
+		return ud.queryUserId(userId);
+	}
+
+	@Override
+	public boolean resetPwd(int userId, String userPwd) {
+		// TODO Auto-generated method stub
+		return ud.resetPwd(userId, userPwd);
+	}
+
+
 }

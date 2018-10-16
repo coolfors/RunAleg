@@ -92,7 +92,18 @@ public class Userinfo implements Serializable {
 		this.userSex = userSex;
 		this.userTel = userTel;
 	}
+	
+	
 		
+	public Userinfo(int userId, String userAdd, double userBalance, String userSex, String userTel) {
+		super();
+		this.userId = userId;
+		this.userAdd = userAdd;
+		this.userBalance = userBalance;
+		this.userSex = userSex;
+		this.userTel = userTel;
+	}
+
 	@Override
 	public String toString() {
 		return "Userinfo [userInfoId=" + userInfoId + ", userId=" + userId + ", userAdd=" + userAdd + ", userBalance="

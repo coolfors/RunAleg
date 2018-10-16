@@ -3,13 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="icon" href="images/logo.ico">
 <title>快递侠联盟-注册页面</title>
 <link rel="stylesheet" href="css/login.css" />
+</head>
 <body>
 <div class="register-container">
 	<h1>会员注册</h1>
-	<form action="LoginServlet.do?op=register" method="post" id="registerForm">
+	<form action="LoginServlet.do" method="post" id="registerForm">
+		<input type="hidden" id="op" name="op" value="register"/>
     	<div>
 			<input type="text" name="userName" class="userName" placeholder="输入用户名" autocomplete="off" id="userName"/>
 		</div>

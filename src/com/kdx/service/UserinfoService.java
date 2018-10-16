@@ -22,4 +22,5 @@ public interface UserinfoService {
 	PageData<Userinfo> getUserinfoByPage(int page, int pageSize);// 分页
 	
 	Userinfo getUserInfo(int userId);//根据useid获取详细信息，前台显示
+	boolean updateState(String userName, int sockState);// 改变状态
 }

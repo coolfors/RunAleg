@@ -22,5 +22,15 @@ public interface UserService {
 
 	User loginUser(String userName, String userPwd);// 用户登录
 	
+	boolean updateState(int userId, int sockState);// 改变状态
+
+	boolean updateType(int userId, int userType);// 改变类型
+
+	List<User> queryUsersByName(String userName);
+
+	List<User> queryUsersById(int userId);
+	
+	boolean resetPwd(int userId, String userPwd);
+
 	User getUserById(int userId);
 }

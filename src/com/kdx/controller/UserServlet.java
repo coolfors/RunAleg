@@ -20,6 +20,7 @@ import com.kdx.service.UserService;
 import com.kdx.serviceImpl.DispatchServiceImpl;
 import com.kdx.serviceImpl.EvaluateServiceImpl;
 import com.kdx.serviceImpl.UserServiceImpl;
+import com.kdx.util.MD5Util;
 import com.kdx.util.MyDataTableData;
 import com.kdx.util.PageData;
 
@@ -56,16 +57,37 @@ public class UserServlet extends HttpServlet {
 		// String v=request.getParameter("表单中的文本名，select名字等等/参数名"); 接收请求参数的值
 		String op = request.getParameter("op");
 		response.setContentType("application/json");
+
+		if (op.equals("add")) {
+			addUser(request, response);
+		}
+
+		if ("reset".equals(op)) {
+			resetUserPwd(request, response);
+		}
+
 		if (op.equals("edit")) {
 			String userId = request.getParameter("userId");
 			String userName = request.getParameter("userName");
-			String userPwd = request.getParameter("userPwd");
-			String sockState = request.getParameter("sockState");
-			String userType = request.getParameter("userType");
 			String userDate = request.getParameter("userDate");
-			User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState), userDate, userName, userPwd,
-					Integer.valueOf(userType));
+			User u = new User(Integer.valueOf(userId), userDate, userName);
 			boolean flag = us.updateUser(u);
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
+
+		if (op.equals("sock")) {
+			String userId = request.getParameter("userId");
+			String sockState = request.getParameter("sockState");
+			boolean flag = us.updateState(Integer.valueOf(userId), Integer.valueOf(sockState));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
+
+		if (op.equals("type")) {
+			String userId = request.getParameter("userId");
+			String userType = request.getParameter("userType");
+			boolean flag = us.updateType(Integer.valueOf(userId), Integer.valueOf(userType));
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
@@ -79,6 +101,39 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 
+	private void resetUserPwd(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		String userId = request.getParameter("userId");
+		String userPwd = "123";
+		userPwd = MD5Util.getEncodeByMd5(userPwd);
+		boolean flag = us.resetPwd(Integer.valueOf(userId), userPwd);
+		PrintWriter out = response.getWriter();
+		out.print(flag);
+	}
+
+	private void addUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		String userId = request.getParameter("userId");
+		String userName = request.getParameter("userName");
+		String userPwd = request.getParameter("userPwd");
+		String sockState = request.getParameter("sockState");
+		String userType = request.getParameter("userType");
+		String userDate = request.getParameter("userDate");
+		userPwd = MD5Util.getEncodeByMd5(userPwd);
+		User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState), userDate, userName, userPwd,
+				Integer.valueOf(userType));
+		boolean flag = us.addUser(u);
+		PrintWriter out = response.getWriter();
+		out.print(flag);
+
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -89,6 +144,52 @@ public class UserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
+		String op = request.getParameter("op");
+		if ("queryAdd".equals(op)) {
+
+			String userId = request.getParameter("userId");
+
+			List<User> list = us.queryUsersById(Integer.parseInt(userId));
+
+			boolean flag = false;
+
+			if (list.size() < 1) {
+				flag = true;
+			}
+
+			Gson gson = new Gson();
+
+			String jsonString = gson.toJson(flag);
+
+			PrintWriter out = response.getWriter();
+
+			out.print(jsonString);
+
+			out.close();
+		}
+		if ("queryEdit".equals(op)) {
+			String userName = request.getParameter("userName");
+
+			String userId = request.getParameter("userId");
+
+			List<User> list = us.queryUsersByName(userName);
+
+			boolean flag = true;
+
+			if (list.size() > 0 && Integer.parseInt(userId) != list.get(0).getUserId()) {
+				flag = false;
+			}
+
+			Gson gson = new Gson();
+
+			String jsonString = gson.toJson(flag);
+
+			PrintWriter out = response.getWriter();
+
+			out.print(jsonString);
+
+			out.close();
+		}
 
 		// 查询并返回所有数据 的格式要注意咯
 		List<User> list = us.getUser();
@@ -97,11 +198,8 @@ public class UserServlet extends HttpServlet {
 		mydata.setData(list);
 
 		// 返回json对象
-		@SuppressWarnings("unused")
 		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
-
-		System.out.println(jsonString);
 
 		PrintWriter out = response.getWriter();
 

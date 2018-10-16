@@ -61,4 +61,11 @@ public class UserinfoDaoImpl implements UserinfoDao {
 		return userInfo;
 	}
 
+	@Override
+	public boolean changeState(String userName, int sockState) {
+		// TODO Auto-generated method stub
+		String sql = "update user set sockState=? where userName=?";
+		return BaseDao.execute(sql, sockState, userName) > 0;
+	}
+
 }

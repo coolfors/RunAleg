@@ -49,4 +49,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 		return uid.getUserInfo(userId);
 	}
 
+	@Override
+	public boolean updateState(String userName, int sockState) {
+		// TODO Auto-generated method stub
+		return uid.changeState(userName, sockState);
+	}
+
 }

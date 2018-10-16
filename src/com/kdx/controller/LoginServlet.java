@@ -2,6 +2,7 @@ package com.kdx.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,7 @@ import com.kdx.service.UserinfoService;
 import com.kdx.serviceImpl.CourierServiceImpl;
 import com.kdx.serviceImpl.UserServiceImpl;
 import com.kdx.serviceImpl.UserinfoServiceImpl;
+import com.kdx.util.MD5Util;
 
 /**
  * Servlet implementation class LoginServlet
@@ -47,16 +49,13 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String op=request.getParameter("op");
-		@SuppressWarnings("unused")
-		String check_code= request.getParameter("check_code");//获取用户文本框内的内容
-		if(op.equals("login")) {
+		if("login".equals(op)) {
 			login(request,response);
 		}
-		else if(op.equals("register")) {
+		//注册表单的传送
+		else if("register".equals(op)) {
 			register(request,response);
-		}else if(op.equals("exchange")) {
-			exchange(request, response);
-		}
+		};
 	}
 
 	/**
@@ -64,6 +63,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 	/**
 	 * 登录
@@ -76,10 +76,11 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
 		String userName=request.getParameter("userName");
-		String password=request.getParameter("password");
+		String password =MD5Util.getEncodeByMd5(request.getParameter("password"));
 		String check_code= request.getParameter("check_code");//获取用户文本框内的内容
 		String code = (String) request.getSession().getAttribute("code"); // 获取存放在session中的验证码
 		User user = us.loginUser(userName, password);
+		System.out.println(user);
 		if(user==null) {
 			out.print("<script>alert('账号或密码错误，登录失败！');location.href='login.html'</script>");
 		}else if(!check_code.equalsIgnoreCase(code)) {
@@ -110,32 +111,25 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter out=response.getWriter();
+		//获取表单传送的参数值
 		String userName = request.getParameter("userName");
-		String password = request.getParameter("password");
+		String password =MD5Util.getEncodeByMd5(request.getParameter("password"));
 		int userType = 1;
-		@SuppressWarnings("deprecation")
-		String userDate = new Date().toLocaleString();
+		//获取系统当前时间
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String userDate = df.format( new Date());
 		User user = new User(userName, password, userType,userDate);
 		boolean flag = us.addUser(user);
-		if(flag) {
-			request.getRequestDispatcher("login.html").forward(request, response);
+		System.out.println(user);
+		if(flag==true)
+		{
+			out.print("<script>alert('注册成功！');location.href='login.html'</script>");
+		}		
+		else {
+			out.print("<script>alert('注册失败！');location.href='register.html'</script>");
 		}
-	}
-	/**
-	 * 切换登录用户
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	protected void exchange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();
-		session.removeAttribute("User");
-		session.removeAttribute("Userinfo");
-		session.removeAttribute("Courier");
-		response.getWriter().print("<script>location.href='index.jsp'</script>");
-		
+				
 	}
 
 }

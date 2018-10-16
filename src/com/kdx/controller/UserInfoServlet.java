@@ -50,19 +50,29 @@ public class UserInfoServlet extends HttpServlet {
 		// String v=request.getParameter("表单中的文本名，select名字等等/参数名"); 接收请求参数的值
 		String op = request.getParameter("op");
 		response.setContentType("application/json");
+
+		if (op.equals("sock")) {
+			String userName = request.getParameter("userName");
+			String sockState = request.getParameter("sockState");
+			boolean flag = uis.updateState(userName, Integer.valueOf(sockState));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
 		if (op.equals("edit")) {
-			// String userId = request.getParameter("userId");
-			// String userName = request.getParameter("userName");
-			// String userPwd = request.getParameter("userPwd");
-			// String sockState = request.getParameter("sockState");
-			// String userType = request.getParameter("userType");
-			// String userDate = request.getParameter("userDate");
-			// User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState),
+			String userInfoId = request.getParameter("userInfoId");
+			String userTel = request.getParameter("userTel");
+			String userAdd = request.getParameter("userAdd");
+			String userBalance = request.getParameter("userBalance");
+			String userSex = request.getParameter("userSex");
+
+			Userinfo uinfo = new Userinfo(Integer.valueOf(userInfoId), userAdd, Double.valueOf(userBalance), userSex,
+					userTel);
+
 			// userDate, userName, userPwd,
 			// Integer.valueOf(userType));
-			// boolean flag = us.updateUser(u);
-			// PrintWriter out = response.getWriter();
-			// out.print(flag);
+			boolean flag = uis.updateUserinfo(uinfo);
+			PrintWriter out = response.getWriter();
+			out.print(flag);
 		}
 	}
 

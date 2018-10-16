@@ -30,18 +30,26 @@
 <script src="plugin/datatables/jquery.dataTables.min.js"></script>
 <!--<script src="dt.js"></script>-->
 <!--http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js-->
-<script src="plugin/datatables/dataTables.bootstrap.js"></script>
+<script type="text/javascript" language="javascript"
+	src="plugin/datatables/dataTables.bootstrap.js"></script>
 <!--http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js-->
 <script src="plugin/datatables/bootstrap.min.js"></script>
 <script src="plugin/date/bootstrap-datetimepicker.min.js"></script>
 <script src="plugin/handlebars-v3.0.1.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/messages_zh.js"></script>
 <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
+<style>
+.error {
+	color: red;
+}
+</style>
 <body class="layui-anim layui-anim-up">
 	<div class="x-nav">
 		<span class="layui-breadcrumb"> <a href="">首页</a> <a href="">演示</a>
@@ -51,9 +59,11 @@
 			href="javascript:location.replace(location.href);" title="刷新"> <i
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
-	<div >
-		 用户名：<input type="text" class="form-control" placeholder="请输入关键字查询" data-column="2" id="col2_filter"> <br>
-		 类    型：<input type="text" class="form-control" placeholder="请输入关键字查询" data-column="5" id="col5_filter">
+	<div>
+		用户名：<input type="text" class="form-controlSearch"
+			placeholder="请输入关键字查询" data-column="2" id="col2_filter"> <br>
+		类 型：<input ype="text" class="form-controlSearch"
+			placeholder="请输入关键字查询" data-column="5" id="col5_filter">
 		<hr>
 		<table id="example" class="table table-striped table-bordered">
 			<thead>
@@ -70,49 +80,80 @@
 			</thead>
 		</table>
 	</div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<!-- Modal1 -->
+	<div class="modal fade" id="modal-container" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">新增</h4>
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel1">重置密码</h4>
 				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<input type="text" class="form-control" id="userId"
-							placeholder="用户编号">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userName"
-							placeholder="用户名">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userPwd"
-							placeholder="用户密码">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="sockState"
-							placeholder="用户状态">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userType"
-							placeholder="用户类型">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userDate"
-							placeholder="注册时间" data-date-format="yyyy/mm/dd">
-					</div>
-				</div>
+				<div class="modal-body">是否把密码重置为初始密码：123456</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="save">保存</button>
+					<button type="button" class="btn btn-primary" id="resPwd">重置</button>
 				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- Modal2 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="commentForm" novalidate="novalidate">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">新增用户</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="userId">用户编号:</label> <input type="text"
+								class="form-control" id="userId" name="userId"
+								placeholder="用户编号">
+						</div>
+						<div class="form-group">
+							<label for="userName">用户名:</label> <input type="text"
+								class="form-control" id="userName" name="userName"
+								placeholder="用户名">
+						</div>
+						<div class="form-group">
+							<label for="userPwd">用户密码:</label> <input type="text"
+								class="form-control" id="userPwd" name="userPwd"
+								placeholder="用户密码">
+						</div>
+						<div class="form-group hid">
+							<label for="sockState">用户状态:</label> <select class="form-control"
+								id="sockState" name="sockState">
+								<option value="0">禁用</option>
+								<option value="1">启用</option>
+							</select>
+						</div>
+						<div class="form-group hid">
+							<label for="userType">用户类型:</label> <select class="form-control"
+								id="userType" name="userType">
+								<option value="1">普通用户</option>
+								<option value="2">腿哥</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="userDate">注册时间:</label> <input type="date"
+								class="form-control" id="userDate" name="userDate"
+								placeholder="注册时间" data-date-format="yyyy/mm/dd">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">保存</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -186,18 +227,47 @@
 				},//第一行不进行排序和搜索
 				//        {"targets": [12], "visible": false},    //设置第13列隐藏/显示
 				//        {"width": "10%", "targets": [1]},  //设置第2列宽度
-				//        {
-				//            对第7列内容进行替换处理
-				//            targets: 6,
-				//            render: function (data, type, row, meta) {
-				//                if (data == "1") {
-				//                    return employee.table.sexMan;
-				//                }
-				//                if (data == "0") {
-				//                    return employee.table.sexWoman;
-				//                }
-				//            }
-				//        },
+				{
+					//            对第4列内容进行替换处理
+					"targets" : [ 3 ],
+					"visible" : false,
+
+				},
+				{
+					//            对第5列内容进行替换处理
+					"targets" : 4,
+					"render" : function(a, b, c, d) {
+						var context = {
+							func : [ {
+								"name" : (c.sockState == 1) ? "禁用" : "启用",
+								"fn" : "sock(\'" + c.userId + "\',\'"
+										+ c.sockState + "\')",
+								"type" : "danger"
+							} ]
+						};
+						var html = template(context);
+						return html;
+
+					}
+				},
+				{
+					//            对第7列内容进行替换处理
+					"targets" : 5,
+					"render" : function(a, b, c, d) {
+						var context = {
+							func : [ {//a ? b : (c ? d : e) 
+								"name" : (c.userType == 1) ? "普通用户"
+										: ((c.userType == 2) ? "腿哥" : "超级管理员"),
+								"fn" : "usertype(\'" + c.userId + "\',\'"
+										+ c.userType + "\')",
+								"type" : "primary"
+							} ]
+						};
+						var html = template(context);
+						return html;
+
+					}
+				},
 				{
 					"targets" : 7,
 					"render" : function(a, b, c, d) {
@@ -213,8 +283,8 @@
 												+ c.userDate + "\')",
 										"type" : "primary"
 									}, {
-										"name" : "删除",
-										"fn" : "del(\'" + c.name + "\')",
+										"name" : "重置密码",
+										"fn" : "reset(\'" + c.userId + "\')",
 										"type" : "danger"
 									} ]
 						};
@@ -257,7 +327,10 @@
 				+ '<button class="btn btn-primary" type="button" id="batchIds" style="margin-left:20px;" data-toggle="modal" >多选</button>'
 				+ '<button class="btn btn-success" type="button" id="selection" style="margin-left:20px;" data-toggle="modal" >单选</button>'
 				+ '<button class="btn btn-success" type="button" id="search" style="margin-left:20px;" data-toggle="modal" >查询</button>'
-				+ '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>';
+				+ '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>'
+				+ '<button class="btn btn-success" type="button" style="margin-left:20px;" data-toggle="modal" data-target="#myModal" onclick="add()">添加用户</button>';
+
+		//  $("#mytool").append('<button type="button" class="" data-toggle="modal" >添加</button>');
 	</script>
 
 	<script>
@@ -349,7 +422,7 @@
 										search();
 									});
 									$("#clearSearch").click(function() {
-										clearSearch("form-control");
+										clearSearch("form-controlSearch");
 									});
 
 									//checkbox全选
@@ -423,8 +496,9 @@
 			});
 
 			//自动搜索方法
-			$('.form-control').on('keyup change', function() {
-					filterColumn($(this).attr('data-column'));
+			$('.form-controlSearch').on('keyup change', function() {
+				filterColumn($(this).attr('data-column'));
+
 			});
 		}
 
@@ -518,6 +592,16 @@
 			eloancn.table.grid.ajax.reload();
 		}
 
+		function clear() {
+
+			$("#userId").val("").attr("disabled", false);
+			$("#userName").val("");
+			$("#userPwd").val("");
+			$(".hid").show();
+			$("#userDate").val("");
+			editFlag = false;
+		}
+
 		//销毁table
 		function destroyDataTable(tableId) {
 
@@ -527,48 +611,229 @@
 	</script>
 
 	<script>
+		$().ready(function() {
+			// 在键盘按下并释放及提交后验证提交表单
+			$("#commentForm").validate({
+				submitHandler : function(form) {
+					var url = "../UserServlet?op=add";
+					if (editFlag) {
+						url = "../UserServlet?op=edit";
+					}
+					$.ajax({
+						url : url,
+						data : {
+							"userId" : $("#userId").val(),
+							"userName" : $("#userName").val(),
+							"userPwd" : $("#userPwd").val(),
+							"sockState" : $("#sockState").val(),
+							"userType" : $("#userType").val(),
+							"userDate" : $("#userDate").val()
+						},
+						success : function(data) {
+							reload();
+							$("#myModal").modal("hide");
+							clear();
+							$("#myModalLabel").text("新增用户");
+
+						}
+					});
+				},
+				rules : {
+					userId : {
+						required : true,
+						remote : { //验证用户名是否存在
+							type : "POST",
+							url : "../UserServlet?op=queryAdd", //servlet
+							data : {
+								userId : function() {
+
+									return $("#userId").val();
+								}
+							}
+						}
+
+					},
+					userName : {
+						required : true,
+						minlength : 2,
+						remote : { //验证用户名是否存在
+							type : "POST",
+							url : "../UserServlet?op=queryEdit", //servlet
+							data : {
+								userName : function() {
+
+									return $("#userName").val();
+								},
+								userId : function() {
+
+									return $("#userId").val();
+								}
+							}
+						}
+
+					},
+					userDate : {
+						required : true,
+						date : true
+					}
+				},
+				messages : {
+					userId : {
+						required : "请输入用户编号",
+						remote : "用户编号已存在"
+					},
+					userName : {
+						required : "请输入用户名",
+						minlength : "用户名必需由两个字母组成",
+						remote : "用户名已存在"
+					},
+					userDate : {
+						required : "请输入日期",
+						date : "必须输入正确格式的日期"
+					}
+				}
+			})
+		});
+
 		/**
 		 *编辑方法
 		 **/
 		function edit(userId, userName, userPwd, sockState, userType, userDate) {
-			console.log(userId);
+			$("#commentForm").data('validator').resetForm();
+			var d1 = document.getElementById("hid1");
+			var d2 = document.getElementById("hid2");
 			editFlag = true;
 			$("#myModalLabel").text("修改");
 			$("#userId").val(userId).attr("disabled", true);
 			$("#userName").val(userName);
 			$("#userPwd").val(userPwd);
-			$("#sockState").val(sockState);
-			$("#userType").val(userType);
+			$(".hid").hide();
 			$("#userDate").val(userDate);
 			$("#myModal").modal("show");
 		}
 
-		$("#save").click(function ajax() {
+		function reset(userId) {
+			$("#modal-container").modal("show");
 
-			var url = "add.jsp";
-			if (editFlag) {
-				url = "../UserServlet?op=edit";
-				console.log("這裡是Ajax");
+			$("#resPwd").click(function() {
+				$.ajax({
+					url : "../UserServlet?op=reset",
+					data : {
+						"userId" : userId
+					},
+					success : function(data) {
+						reload();
+						$("#modal-container").modal("hide");
+					}
+				});
+			})
+		}
+
+		function add() {
+			$("#commentForm").data('validator').resetForm();
+			$("#myModalLabel").text("新增用户");
+			clear();
+			editFlag = false;
+		}
+
+		function usertype(userId, userType) {
+			var url = "../UserServlet?op=type";
+			if (userType == "1") {
+				$.ajax({
+					url : url,
+					data : {
+						"userId" : userId,
+						"userType" : "2",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增用户");
+						console.log("结果" + data);
+					}
+				});
+			} else if (userType == "2") {
+				$.ajax({
+
+					url : url,
+					data : {
+						"userId" : userId,
+						"userType" : "1",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增用户");
+						console.log("结果" + data);
+					}
+				});
+			} else {
+				alert("我是超级管理员！臭小子别乱点");
 			}
-			$.ajax({
-				url : url,
-				data : {
-					"userId" : $("#userId").val(),
-					"userName" : $("#userName").val(),
-					"userPwd" : $("#userPwd").val(),
-					"sockState" : $("#sockState").val(),
-					"userType" : $("#userType").val(),
-					"userDate" : $("#userDate").val()
-				},
-				success : function(data) {
-					reload() ;
-					$("#myModal").modal("hide");
-					$("#myModalLabel").text("新增");
-					console.log("结果" + data);
-				}
-			});
-			;
+
+		}
+
+		function sock(userId, sockState) {
+			var url = "../UserServlet?op=sock";
+			if (sockState == "1") {
+				$.ajax({
+					url : url,
+					data : {
+						"userId" : userId,
+						"sockState" : "0",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增用户");
+						console.log("结果" + data);
+					}
+				});
+			} else {
+				$.ajax({
+					url : url,
+					data : {
+						"userId" : userId,
+						"sockState" : "1",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增用户");
+						console.log("结果" + data);
+					}
+				});
+			}
+
+		}
+		/* function ajax() {
+
+		var url = "../UserServlet?op=add";
+		if (editFlag) {
+			url = "../UserServlet?op=edit";
+			console.log("這裡是Ajax");
+		}
+		$.ajax({
+			url : url,
+			data : {
+				"userId" : $("#userId").val(),
+				"userName" : $("#userName").val(),
+				"userPwd" : $("#userPwd").val(),
+				"sockState" : $("#sockState").val(),
+				"userType" : $("#userType").val(),
+				"userDate" : $("#userDate").val()
+			},
+			success : function(data) {
+				reload();
+				$("#myModal").modal("hide");
+				clear();
+				$("#myModalLabel").text("新增用户");
+				console.log("结果" + data);
+
+			}
 		});
+
+		};  */
 	</script>
 
 	<script>

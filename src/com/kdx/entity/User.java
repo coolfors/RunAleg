@@ -136,4 +136,13 @@ public class User implements Serializable {
 		this.userType = userType;
 		this.userDate = userDate;
 	}
+
+	public User(int userId, String userDate, String userName) {
+		super();
+		this.userId = userId;
+		this.userDate = userDate;
+		this.userName = userName;
+	}
+
+	
 }

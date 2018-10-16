@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User loginUser(String userName, String userPwd) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM user where username = ? and userpwd= ? and sockState=0";
+		String sql = "SELECT * FROM user where username = ? and userpwd= ?";
 
 		@SuppressWarnings("unchecked")
 		List<User> list = (List<User>) BaseDao.select(sql, User.class, userName, userPwd);
@@ -94,6 +94,30 @@ public class UserDaoImpl implements UserDao {
 			u=it.next();
 		}
 		return u;
+	}
+
+	@Override
+	public List<User> queryUserName(String userName) {
+		// TODO Auto-generated method stub
+		String sql = "select * from user where userName = ?";
+		List<User> list = (List<User>) BaseDao.select(sql, User.class, userName);
+		return list;
+	}
+
+	@Override
+	public List<User> queryUserId(int userId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from user where userId = ?";
+		List<User> list = (List<User>) BaseDao.select(sql, User.class, userId);
+		return list;
+	}
+
+	@Override
+	public boolean resetPwd(int userId, String userPwd) {
+		// TODO Auto-generated method stub
+		String sql = "update user set userPwd = ? where userId = ?";
+		return BaseDao.execute(sql, userPwd, userId) > 0;
+		
 	}
 
 }
