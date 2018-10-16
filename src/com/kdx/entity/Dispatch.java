@@ -19,7 +19,7 @@ public class Dispatch implements Serializable {
 
 	private String endAdd;// 目的地点
 
-	private int disTel;// 用户联系电话
+	private String disTel;// 用户联系电话
 
 	private double disPrice;// 配送价格
 
@@ -85,11 +85,13 @@ public class Dispatch implements Serializable {
 		this.disState = disState;
 	}
 
-	public int getDisTel() {
-		return this.disTel;
+	
+
+	public String getDisTel() {
+		return disTel;
 	}
 
-	public void setDisTel(int disTel) {
+	public void setDisTel(String disTel) {
 		this.disTel = disTel;
 	}
 
@@ -109,14 +111,16 @@ public class Dispatch implements Serializable {
 		this.goodsType = goodsType;
 	}
 
+	
+	
 	/**
-	 * 鏃犲弬鏋勯��
+	 * 无参构造
 	 */
 	public Dispatch() {
 	}
 
 	/**
-	 * 鏄剧ず鍏ㄩ儴娲惧崟淇℃伅
+	 * 有参构造
 	 * 
 	 * @param disId
 	 * @param userId
@@ -128,7 +132,7 @@ public class Dispatch implements Serializable {
 	 * @param endAdd
 	 * @param goodsType
 	 */
-	public Dispatch(int disId, int userId, String beginAdd, double disPrice, String disPS, int disState, int disTel,
+	public Dispatch(int disId, int userId, String beginAdd, double disPrice, String disPS, int disState, String disTel,
 			String endAdd, String goodsType) {
 		super();
 		this.disId = disId;
@@ -142,11 +146,39 @@ public class Dispatch implements Serializable {
 		this.goodsType = goodsType;
 	}
 
+	/**
+	 * 有参构造 用于用户下订单
+	 * @param userId
+	 * @param userName
+	 * @param beginAdd
+	 * @param endAdd
+	 * @param disTel
+	 * @param disPrice
+	 * @param goodsType
+	 * @param disPS
+	 * @param disState
+	 */
+	public Dispatch(int userId, String beginAdd,String endAdd,String disPS,String disTel,String goodsType,double disPrice,
+			 int disState) {
+		super();
+		this.userId = userId;
+
+		this.beginAdd = beginAdd;
+		this.endAdd = endAdd;
+		this.disTel = disTel;
+		this.disPrice = disPrice;
+		this.goodsType = goodsType;
+		this.disPS = disPS;
+		this.disState = disState;
+	}
+
 	@Override
 	public String toString() {
 		return "Dispatch [disId=" + disId + ", userId=" + userId + ", userName=" + userName + ", beginAdd=" + beginAdd
 				+ ", endAdd=" + endAdd + ", disTel=" + disTel + ", disPrice=" + disPrice + ", goodsType=" + goodsType
 				+ ", disPS=" + disPS + ", disState=" + disState + "]";
 	}
+
+	
 
 }

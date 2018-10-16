@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css">
 <link rel="stylesheet" href="css/LocationRange.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/freight-info.css">
-<!--[if lt IE 9]>
+ <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
@@ -104,34 +104,34 @@
          <div class="row">
             <!--货源发布-->
             <div class="new_tab_div" id="list_one1">
-            	<form action="" method="post" class="bd">
+            	<form action="DispatchSerevlet.do?op=addDispatch" method="post" class="bd">
                     <div class="form-group row">
                         <label class="col-sm-2 control-label"><span>*&nbsp;</span>起送地</label>
                         <div class="list_div area-wraper col-sm-4">
-                           <input autocomplete="off" type="text" id="begincity" name="begincity" class="list_select form-control" value="" placeholder="出发城市">
+                           <input autocomplete="off" type="text" id="beginAdd" name="beginAdd" class="list_select form-control" value="" placeholder="出发城市">
                            
                         </div>
                         <label class="col-sm-2 control-label">到达地</label>
                         <div class="list_div list_div_last col-sm-4">
-                            <input type="text" id="get_addr" name="get_addr" class="list_select1 form-control" value="" placeholder="出发地详细地址">
+                            <input type="text" id="endAdd" name="endAdd" class="list_select1 form-control" value="" placeholder="出发地详细地址">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 control-label"><span>*&nbsp;</span>物品介绍</label>
                         <div class="list_div list_div_last col-sm-4">
-                            <input type="text" class="form-control" name="goodstype" id="goodstype" value="" placeholder="请填写货物名称">
+                            <input type="text" class="form-control" name="disPS" id="disPS" value="" placeholder="请填写货物名称">
                         </div>
+                        
                         <label class="col-sm-2 control-label">联系电话</label>
-                       
                         <div class="list_div col-sm-2">
-                            <input name="weight_unit" maxlength="11" id="weight" class="form-control" type="tel" value="" placeholder="填写阿拉伯数字">
+                            <input name="disTel" maxlength="11" id="disTel" class="form-control" type="tel" value="" placeholder="填写阿拉伯数字">
                         </div>
                     </div>
                    
                      <div class="form-group row">
                         <label class="col-sm-2 control-label"><span>*&nbsp;</span>物品类型</label>
                         <div class="list_div list_div_last col-sm-4">
-                            <select name="car_num" id="car_num" class="list_type form-control">
+                            <select name="goodsType" id="goodsType" class="list_type form-control">
                                 <option value="请选择" selected>请选择</option>
                                 <option value="1">美食</option>
                                 <option value="2">文件</option>
@@ -139,23 +139,25 @@
                                 <option value="4">手机</option>
                                 <option value="5">钥匙</option>
                                 <option value="6">鲜花</option>
+                                <option value="7">其他</option>
                                 
                             </select>
                         </div>
-                        <label class="col-sm-2 control-label">小费</label>
+                        <input type="hidden" id="userId" name="userId" value="${sessionScope.User.userId}">
+                        <label class="col-sm-2 control-label">报酬</label>
                         <div class="list_div col-sm-4">
-                            <input name="weight_unit" type="text" class="form-control" placeholder="请输入运费金额">
+                            <input  id="disPrice" name="disPrice" type="text" class="form-control" placeholder="请输入运费金额">
                         </div>
                     </div>
                     
                     <div class="new_tab_bottom form-group row">
-                        <input class=" btn btn-info col-sm-1 col-sm-offset-9" type="submit" value="下单并付款">
+                        <input class=" btn btn-info col-sm-1 col-sm-offset-9" type="button" value="下单并付款" data-toggle="modal" data-target="#myModal">
                         <input class=" btn btn-warning col-sm-1" type="reset" value="重置">
                     </div>
                 </form>
             </div>
             <!--车源发布-->
-            <div class="new_tab_div" style="display:none" id="list_one2">
+            <!-- <div class="new_tab_div" style="display:none" id="list_one2">
             	<ul>
             	<li class="row">
                 	<a href="driving-kn-details.jsp" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
@@ -173,10 +175,48 @@
                 	<a href="driving-kn-details.jsp" class="col-sm-10">李克强:加快新旧动能转换</a><span class="col-sm-2" style=" float:right">2016-02-14</span>
                 </li>
             </ul>
-			</div>
+			</div> -->
                 </div>
             </div>
          </div> 
+         <!-- 模态代码开始 -->
+        <div class="container">
+
+  <!-- 按钮：用于打开模态框 -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    打开模态框
+  </button> -->
+   
+  <!-- 模态框 -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+   
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">确认支付页面</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+   
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+        <label>支付密码</label>
+          <input type="password" id="surepwd" name="surepwd" placeholder="请输入支付密码">
+        </div>
+   
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal">确认支付</button>
+        </div>
+   
+      </div>
+    </div>
+  </div>
+  
+</div>
+         
+         <!-- 模态代码结束 -->
+         
     </div>
     <div class="container row">
     	<p style="text-align:right; color:red; margin-right:15px;">* 发布的信息只保留15天！</p>

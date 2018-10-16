@@ -85,5 +85,7 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update user set userType=? where userId=?";
 		return BaseDao.execute(sql, userType, userId) > 0;
 	}
+	
+	
 
 }
