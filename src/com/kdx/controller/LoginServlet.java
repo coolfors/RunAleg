@@ -54,6 +54,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		else if(op.equals("register")) {
 			register(request,response);
+		}else if(op.equals("exchange")) {
+			exchange(request, response);
 		}
 	}
 
@@ -118,6 +120,22 @@ public class LoginServlet extends HttpServlet {
 		if(flag) {
 			request.getRequestDispatcher("login.html").forward(request, response);
 		}
+	}
+	/**
+	 * 切换登录用户
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void exchange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession session=request.getSession();
+		session.removeAttribute("User");
+		session.removeAttribute("Userinfo");
+		session.removeAttribute("Courier");
+		response.getWriter().print("<script>location.href='index.jsp'</script>");
+		
 	}
 
 }

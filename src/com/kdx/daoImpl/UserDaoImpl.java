@@ -42,14 +42,14 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public PageData<User> queryUserByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from user", page, pageSize, User.class);
+		return BaseDao.getPage("select * from user ", page, pageSize, User.class);
 	}
 
 	// 用户登录
 	@Override
 	public User loginUser(String userName, String userPwd) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM `user` where username = ? and userpwd= ?";
+		String sql = "SELECT * FROM user where username = ? and userpwd= ? and sockState=0";
 
 		@SuppressWarnings("unchecked")
 		List<User> list = (List<User>) BaseDao.select(sql, User.class, userName, userPwd);
