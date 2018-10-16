@@ -41,7 +41,7 @@
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
 									<li><a href="#">余额充值</a></li>								
-									<li><a href="login.html">切换账号</a></li>
+									<li><a href="LoginServlet.do?op=exchange">退出账号</a></li>
 								</ul></li>
 						</ul>	
 					</c:if>
