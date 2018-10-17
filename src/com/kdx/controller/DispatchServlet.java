@@ -12,14 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kdx.entity.Dispatch;
-import com.kdx.entity.Evaluate;
-import com.kdx.entity.Userinfo;
 import com.kdx.service.DispatchService;
-import com.kdx.service.UserinfoService;
 import com.kdx.serviceImpl.DispatchServiceImpl;
-import com.kdx.serviceImpl.UserinfoServiceImpl;
 import com.kdx.util.MyDataTableData;
-import com.kdx.util.PageData;
 
 /**
  * Servlet implementation class UserServlet
@@ -67,7 +62,7 @@ public class DispatchServlet extends HttpServlet {
 //			 out.print(flag);
 		}
 		else if (op.equals("addDispatch")) {
-			String disId = "hasdfsdhgh21";
+			String disId = "nmjkyuxc1";
 			String userId = request.getParameter("userId");// 用户id
 
 			String beginAdd = request.getParameter("beginAdd");// 起送地点
@@ -86,7 +81,7 @@ public class DispatchServlet extends HttpServlet {
 			
 			//String surepwd = request.getParameter("surepwd");// 用户输入的支付密码
 			// 创建对象
-			Dispatch dis = new Dispatch(disId, userId, beginAdd, endAdd, Integer.parseInt(disTel), Double.parseDouble(disPrice), goodsType, disPS, 0);
+			Dispatch dis = new Dispatch(disId, userId, beginAdd, endAdd, disTel, Double.parseDouble(disPrice), goodsType, disPS, 0);
 			boolean flag = ds.addDispatch(dis);
 			if(flag) {
 				response.getWriter().print("<script>alert('下单成功')</script>");

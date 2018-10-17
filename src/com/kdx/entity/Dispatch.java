@@ -19,7 +19,7 @@ public class Dispatch implements Serializable {
 
 	private String endAdd;// 目的地点
 
-	private int disTel;// 用户联系电话
+	private String disTel;// 用户联系电话
 
 	private double disPrice;// 配送价格
 
@@ -85,11 +85,11 @@ public class Dispatch implements Serializable {
 		this.disState = disState;
 	}
 
-	public int getDisTel() {
+	public String getDisTel() {
 		return this.disTel;
 	}
 
-	public void setDisTel(int disTel) {
+	public void setDisTel(String disTel) {
 		this.disTel = disTel;
 	}
 
@@ -128,7 +128,7 @@ public class Dispatch implements Serializable {
 	 * @param endAdd
 	 * @param goodsType
 	 */
-	public Dispatch(String disId, String userId, String beginAdd, double disPrice, String disPS, int disState, int disTel,
+	public Dispatch(String disId, String userId, String beginAdd, double disPrice, String disPS, int disState, String disTel,
 			String endAdd, String goodsType) {
 		super();
 		this.disId = disId;
@@ -155,7 +155,7 @@ public class Dispatch implements Serializable {
 	 * @param disPS
 	 * @param disState
 	 */
-	public Dispatch(String disId, String userId, String beginAdd, String endAdd, int disTel, double disPrice,
+	public Dispatch(String disId, String userId, String beginAdd, String endAdd, String disTel, double disPrice,
 			String goodsType, String disPS, int disState) {
 		super();
 		this.disId = disId;

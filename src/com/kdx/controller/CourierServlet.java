@@ -74,6 +74,8 @@ public class CourierServlet extends HttpServlet {
 			editCourier(request, response);
 		}else if(op.equals("sendReceipt")) {
 			sendReceipt(request, response);
+		}else if(op.equals("updateCourierMessage")) {
+			updateCourierMessage(request,response);
 		}
 
 	}
@@ -278,6 +280,17 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// 获取页码信息
 
+	}
+	/**
+	 * 前台修改腿哥信息，courier表
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void updateCourierMessage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
 	}
 
 }
