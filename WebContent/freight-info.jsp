@@ -217,7 +217,7 @@
                     <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 						<button id="doPay" name="doPay" type="submit"
-							class="btn btn-secondary" data-dismiss="modal">确认支付</button>
+							class="btn btn-secondary" data-dismiss="modal" onclick="pay(surePwd)">确认支付</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->
@@ -306,6 +306,22 @@ $(document).ready(function() {
      },{enableHighAccuracy: true})//指示浏览器获取高精度的位置，默认false  
      
 });  
+</script>
+<script>
+
+/**
+ * 判断用户是否在登录状态
+ */
+	$("#sure").click(function(){
+		var  u = $("#userId").val();
+		console.log(u);
+		if(u==""){
+			alert('请先登录再下单');
+			window.location.href="login.html";
+		}
+	});
+
+
 </script>
 	<script src="js/jquery_002_002.js" type="text/javascript"></script>
 	<script src="js/areaData1.js" type="text/javascript"></script>
