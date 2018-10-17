@@ -55,7 +55,9 @@ public class LoginServlet extends HttpServlet {
 		//注册表单的传送
 		else if("register".equals(op)) {
 			register(request,response);
-		};
+		}else if(op.equals("exchange")) {
+			exchange(request, response);
+		}
 	}
 
 	/**
@@ -132,5 +134,14 @@ public class LoginServlet extends HttpServlet {
 		}
 				
 	}
+	protected void exchange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession session=request.getSession();
+		session.removeAttribute("User");
+		session.removeAttribute("Userinfo");
+		session.removeAttribute("Courier");
+		response.getWriter().print("<script>location.href='index.jsp';</script>");
+	}
+
 
 }

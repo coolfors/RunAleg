@@ -3,10 +3,10 @@ package com.kdx.test;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.kdx.dao.Receipt_aboutDao;
-import com.kdx.daoImpl.Receipt_aboutDaoImpl;
+//import com.kdx.dao.Receipt_aboutDao;
+//import com.kdx.daoImpl.Receipt_aboutDaoImpl;
 import com.kdx.entity.Dispatch;
-import com.kdx.entity.Receipt_about;
+//import com.kdx.entity.Receipt_about;
 import com.kdx.service.DispatchService;
 import com.kdx.serviceImpl.DispatchServiceImpl;
 import com.kdx.util.PageData;
@@ -33,12 +33,12 @@ public class test01 {
     	String data = gson.toJson(pd);
     	System.out.println(data);*/	
 		
-		Receipt_aboutDao rd=new Receipt_aboutDaoImpl();
-		PageData<Receipt_about> pd=rd.disReceipt(1, 5);
-		List<Receipt_about> list=pd.getData();
-		for (Receipt_about receipt_about : list) {
-			System.out.println(receipt_about);
-		}
+//		Receipt_aboutDao rd=new Receipt_aboutDaoImpl();
+//		PageData<Receipt_about> pd=rd.disReceipt(1, 5);
+//		List<Receipt_about> list=pd.getData();
+//		for (Receipt_about receipt_about : list) {
+//			System.out.println(receipt_about);
+//		}
 		
 	
 	
