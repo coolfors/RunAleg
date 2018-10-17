@@ -56,5 +56,14 @@ public class CourierDaoImpl implements CourierDao {
 		}
 		return courier;
 	}
+	/**
+	 * 跑腿前台修改
+	 */
+	@Override
+	public boolean updateCourierInForward(Courier cour) {
+		// TODO Auto-generated method stub
+		String sql = "update courier set Tel=?,ableDistance=?,address=? where userId=?";
+		return BaseDao.execute(sql, cour.getTel(),cour.getAbleDistance(),cour.getAddress(),cour.getUserId())>0;
+	}
 
 }
