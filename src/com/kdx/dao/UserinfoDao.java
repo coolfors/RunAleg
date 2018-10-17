@@ -25,4 +25,6 @@ public interface UserinfoDao {
 	Userinfo getUserInfo(int userId);//根据userId获取详细,用于前台显示
 	
 	boolean changeState(String userName, int sockState);// 改变状态
+
+	boolean updateUserinfoByQt(Userinfo uinfo);//前台修改用户信息
 }

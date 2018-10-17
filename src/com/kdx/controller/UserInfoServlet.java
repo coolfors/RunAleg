@@ -58,7 +58,7 @@ public class UserInfoServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
-		if (op.equals("edit")) {
+		else if (op.equals("edit")) {
 			String userInfoId = request.getParameter("userInfoId");
 			String userTel = request.getParameter("userTel");
 			String userAdd = request.getParameter("userAdd");
@@ -86,6 +86,7 @@ public class UserInfoServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
+		String op = request.getParameter("op");
 
 		// 查询并返回所有数据 的格式要注意咯
 		List<Userinfo> list = uis.getUserinfo();
@@ -101,9 +102,27 @@ public class UserInfoServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		out.print(jsonString);
-
-		out.close();
+//		out.print(jsonString);
+		
+		
+		if (("userinfoEdit").equals(op)){
+			
+			int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+			String userInfoSex = request.getParameter("sexInfo");
+			String userTel = request.getParameter("userTelInfo");
+			String userAdd = request.getParameter("userAddInfo");
+			
+			Userinfo editInfo = new Userinfo(userInfoId,userTel, userAdd, userInfoSex);
+			
+			// userDate, userName, userPwd,
+			// Integer.valueOf(userType));
+			boolean flag = uis.updateUserinfoByQt(editInfo);
+			
+			if(flag) {
+				out.print("<script>alert('修改成功！');location.href='userMessage.jsp'</script>");
+				out.close();
+			}
+		}
 	}
 
 }

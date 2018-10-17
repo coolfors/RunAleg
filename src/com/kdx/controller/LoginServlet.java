@@ -94,6 +94,7 @@ public class LoginServlet extends HttpServlet {
 			//传递普通用户的全部信息
 			Userinfo userInfo = uis.getUserInfo(user.getUserId());
 			session.setAttribute("Userinfo", userInfo);
+			System.out.println(userInfo);
 			//传递跑腿用户的全部信息
 			Courier courier = cs.getCourierById(user.getUserId());
 			session.setAttribute("Courier", courier);
