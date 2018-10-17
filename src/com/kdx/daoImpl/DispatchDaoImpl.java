@@ -1,5 +1,6 @@
 package com.kdx.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kdx.dao.DispatchDao;
@@ -13,7 +14,7 @@ public class DispatchDaoImpl implements DispatchDao {
 	@Override
 	public boolean addDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
-		return BaseDao.execute("insert into dispatch values(null,?,?,?,?," + "?,?,?,?)", dis.getUserId(),
+		return BaseDao.execute("insert into dispatch values(?,?,?,?,?,?,?,?,?)", dis.getDisId(),dis.getUserId(),
 				dis.getBeginAdd(), dis.getEndAdd(), dis.getDisTel(), dis.getDisPrice(), dis.getGoodsType(),
 				dis.getDisPS(), dis.getDisState()) > 0;
 	}
@@ -53,6 +54,17 @@ public class DispatchDaoImpl implements DispatchDao {
 		// TODO Auto-generated method stub
 		String sql = "SELECT dispatch.disId,user.userName,dispatch.beginAdd,dispatch.endAdd,dispatch.disTel,dispatch.disPrice,dispatch.goodsType,dispatch.disPS,dispatch.disState FROM dispatch INNER JOIN user ON dispatch.userId=user.userId";
 		return (List<Dispatch>) BaseDao.select(sql, Dispatch.class);
+	}
+	@Override
+	public List<String> getBeginAndEnaAdd(String disId) {
+		// TODO Auto-generated method stub
+		List<Dispatch> list=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class, disId);
+		List<String> strlist=new ArrayList<>();
+		for (Dispatch dis : list) {
+			strlist.add(dis.getBeginAdd());
+			strlist.add(dis.getEndAdd());
+		}
+		return strlist;
 	}
 
 }

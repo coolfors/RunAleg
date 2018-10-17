@@ -40,6 +40,16 @@ public class CourierServiceImpl implements CourierService {
 		// TODO Auto-generated method stub
 		return cd.getCourierById(userId);
 	}
+	@Override
+	public String getCourierAdd(String courierId) {
+		// TODO Auto-generated method stub
+		return cd.getCourierAdd(courierId);
+	}
+	@Override
+	public boolean updateAdd(String courierId, String add) {
+		// TODO Auto-generated method stub
+		return cd.updateAdd(courierId, add);
+	}
 
 	@Override
 	public boolean updateCourierInForward(Courier cour) {

@@ -124,4 +124,13 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> againPwd(String userId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from user where userId = ?";
+		return (List<User>) BaseDao.select(sql, User.class, userId);
+		
+	}
+
 }

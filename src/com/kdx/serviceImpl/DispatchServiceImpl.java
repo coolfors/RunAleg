@@ -40,5 +40,10 @@ public class DispatchServiceImpl implements DispatchService {
 		// TODO Auto-generated method stub
 		return dd.getDispatch();
 	}
+	@Override
+	public List<String> getBeginAndEnaAdd(String disId) {
+		// TODO Auto-generated method stub
+		return dd.getBeginAndEnaAdd(disId);
+	}
 
 }

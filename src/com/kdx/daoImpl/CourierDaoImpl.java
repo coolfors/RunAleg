@@ -57,6 +57,21 @@ public class CourierDaoImpl implements CourierDao {
 		}
 		return courier;
 	}
+	@Override
+	public String getCourierAdd(String courierId) {
+		// TODO Auto-generated method stub
+		List<Courier> list=(List<Courier>) BaseDao.select("select * from courier where courierId=?", Courier.class, courierId);
+		String add=null;
+		for (Courier courier : list) {
+			add=courier.getAddress();
+		}
+		return add;
+	}
+	@Override
+	public boolean updateAdd(String courierId,String add) {
+		// TODO Auto-generated method stub
+		return BaseDao.execute("update courier set address=? where courierId=?", add,courierId)>0;
+	}
 	/**
 	 * 跑腿前台修改
 	 */
@@ -65,6 +80,7 @@ public class CourierDaoImpl implements CourierDao {
 		// TODO Auto-generated method stub
 		String sql = "update courier set Tel=?,ableDistance=?,address=? where userId=?";
 		return BaseDao.execute(sql, cour.getTel(),cour.getAbleDistance(),cour.getAddress(),cour.getUserId())>0;
+
 	}
 
 }

@@ -129,7 +129,7 @@ public class LoginServlet extends HttpServlet {
 		if(flag==true)
 		{
 			out.print("<script>alert('注册成功！');location.href='login.html'</script>");
-		}		
+		}
 		else {
 			out.print("<script>alert('注册失败！');location.href='register.html'</script>");
 		}

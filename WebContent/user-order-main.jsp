@@ -20,8 +20,13 @@
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 </head>
 <body>
+<div id="allmap" hidden="hidden"></div>
+	<input id="lng" name="lng" hidden="hidden" value="" />
+	<input id="lat" name="lat" hidden="hidden" value="" />
+	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
@@ -224,15 +229,34 @@
 							class="img-circle">
 							<p>加入跑男</p>
 						</a> -->
-						<c:if test="${sessionScope.User.userType==2}">
+						
+						<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 							<a href="courier-main.jsp"> <img src="images/ttubiao_12.png"
 							class="img-circle">
 							<p>加入跑男</p>
 						</c:if>
-						<c:if test="${sessionScope.User.userType==1}">
-							<a href="index.jsp"> <img src="images/ttubiao_12.png"
+						<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+							<!-- <a href="index.jsp"> <img src="images/ttubiao_12.png"
+							class="img-circle">
+							<p>加入跑男</p> -->
+							<a href="user-order-main.jsp" onclick="getMes1()"> <img src="images/ttubiao_12.png"
 							class="img-circle">
 							<p>加入跑男</p>
+							<script type="text/javascript">
+							function getMes1() {
+								alert("您的跑腿申请正在审核中！");
+							}
+							</script>
+						</c:if>
+						<c:if test="${sessionScope.User.userType==1}">
+						<a href="user-order-main.jsp" onclick="getMes2()"> <img src="images/ttubiao_12.png"
+							class="img-circle">
+							<p>加入跑男</p>
+							<script type="text/javascript">
+							function getMes2() {
+								alert("您现在是普通用户，快提交申请成为跑腿用户吧！");
+							}
+							</script>
 						</c:if>
 					</div>
 				</div>
@@ -283,6 +307,8 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/Receipt.js"></script>
-	
+	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+		<script src="js/GPS_GetLng&LatByBrow.js"></script>
+	</c:if>
 </body>
 </html>

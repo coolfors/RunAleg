@@ -80,6 +80,8 @@ public class CourierServlet extends HttpServlet {
 		}
 		else if(op.equals("sendReceipt")) {
 			sendReceipt(request, response);
+		}else if(op.equals("updateAdd")) {
+			updateAdd(request, response);
 		}
 		else if (op.equals("xiugai")) {
 			updateCourierMessage(request,response);
@@ -309,6 +311,24 @@ public class CourierServlet extends HttpServlet {
 			request.getSession().setAttribute("Courier", courier);
 			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 		}
+	}
+	/**
+	 * 用于更新courier的当前位置
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void updateAdd(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//获取经纬度和跑腿员id
+		String lng=request.getParameter("lng");
+		String lat=request.getParameter("lat");
+		String courierId=request.getParameter("CourierId");
+		String point=lng+","+lat;
+		//执行修改语句将位置信息更新到数据库
+		cs.updateAdd(courierId, point);
 	}
 
 }

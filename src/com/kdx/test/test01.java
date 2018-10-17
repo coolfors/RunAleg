@@ -9,7 +9,7 @@ public class test01 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		AffairService as = new AffairServiceImpl();
+/*		AffairService as = new AffairServiceImpl();
 		String courierId = IDNumber.getIDNumber();//生成跑腿编号
 		String userId = "KDX2018101733697";
 		String balance = "0.00";
@@ -19,6 +19,6 @@ public class test01 {
 		String userName = "sadjki";
 		Courier cour = new Courier(courierId, address,Double.parseDouble(balance), realIDcard,tel, userId, userName);
 		boolean flag = as.toBeCourier(cour);
-		System.out.println(flag);
+		System.out.println(flag);*/
 	}
 }
