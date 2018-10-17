@@ -35,15 +35,15 @@ public class BeCourier extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String courierId = IDNumber.getIDNumber();//生成跑腿编号
-		String userId = request.getParameter("userId");//用户Id
+		String courierId = IDNumber.getIDNumber();//生成跑腿编号  y
+		String userId = request.getParameter("userId");//用户Id  
 		String balance = request.getParameter("balance");//余额
 		String tel = request.getParameter("tel");//手机号
 		String address = request.getParameter("address");//地址
-		String idImg = request.getParameter("idImg");//头像
-		String realIDcard = request.getParameter("realIDcard");
-		String userName = request.getParameter("realName");
-		Courier cour = new Courier(courierId, address,Double.parseDouble(balance), realIDcard, idImg, tel, userId, userName);
+//		String idImg = request.getParameter("idImg");//头像 y
+		String realIDcard = request.getParameter("realIDcard"); // y
+		String userName = request.getParameter("realName");//y
+		Courier cour = new Courier(courierId, address, Double.parseDouble(balance),realIDcard,tel, userId, userName);
 		boolean flag = as.toBeCourier(cour);
 		if(flag) {
 			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
