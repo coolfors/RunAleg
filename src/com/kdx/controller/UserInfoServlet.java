@@ -107,7 +107,7 @@ public class UserInfoServlet extends HttpServlet {
 		
 		if (("userinfoEdit").equals(op)){
 			
-			int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+			String userInfoId = request.getParameter("userInfoId");
 			String userInfoSex = request.getParameter("sexInfo");
 			String userTel = request.getParameter("userTelInfo");
 			String userAdd = request.getParameter("userAddInfo");
