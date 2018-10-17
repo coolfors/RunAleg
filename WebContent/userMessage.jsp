@@ -134,7 +134,7 @@
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="mgrsex" id="mgrsex">
-										<option value="">--请选择性别--</option>
+										<option value="">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value="女">女</option>
 								</select></li>
@@ -167,7 +167,7 @@
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="sexInfo" id="sex">
-										<option value="">--请选择性别--</option>
+										<option value="">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value="女">女</option>
 								</select></li>
@@ -195,7 +195,7 @@
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
 						<form action="CourierServlet.do?op=updateCourierMessage" method="get">
-						<input type="hidden" name="courierId" value="${sessionScope.User.userId}"/>
+							<input type="hidden" name="courierId" value="${sessionScope.User.userId}"/>
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>

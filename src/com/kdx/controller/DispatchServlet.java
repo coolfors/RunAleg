@@ -12,14 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kdx.entity.Dispatch;
-import com.kdx.entity.Evaluate;
-import com.kdx.entity.Userinfo;
 import com.kdx.service.DispatchService;
-import com.kdx.service.UserinfoService;
 import com.kdx.serviceImpl.DispatchServiceImpl;
-import com.kdx.serviceImpl.UserinfoServiceImpl;
 import com.kdx.util.MyDataTableData;
-import com.kdx.util.PageData;
 
 /**
  * Servlet implementation class UserServlet
@@ -53,18 +48,18 @@ public class DispatchServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		response.setContentType("application/json");
 		if (op.equals("edit")) {
-			// String userId = request.getParameter("userId");
-			// String userName = request.getParameter("userName");
-			// String userPwd = request.getParameter("userPwd");
-			// String sockState = request.getParameter("sockState");
-			// String userType = request.getParameter("userType");
-			// String userDate = request.getParameter("userDate");
-			// User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState),
-			// userDate, userName, userPwd,
-			// Integer.valueOf(userType));
-			// boolean flag = us.updateUser(u);
-			// PrintWriter out = response.getWriter();
-			// out.print(flag);
+//			 String userId = request.getParameter("userId");
+//			 String userName = request.getParameter("userName");
+//			 String userPwd = request.getParameter("userPwd");
+//			 String sockState = request.getParameter("sockState");
+//			 String userType = request.getParameter("userType");
+//			 String userDate = request.getParameter("userDate");
+//			 User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState),
+//			 userDate, userName, userPwd,
+//			 Integer.valueOf(userType));
+//			 boolean flag = us.updateUser(u);
+//			 PrintWriter out = response.getWriter();
+//			 out.print(flag);
 		}
 		else if (op.equals("addDispatch")) {
 			String disId = "nmjkyuxc1";//订单

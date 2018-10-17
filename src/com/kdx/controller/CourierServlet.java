@@ -62,19 +62,26 @@ public class CourierServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		if ("allDispatch".equals(op)) {
 			allDispatch(request, response);
-		} else if ("waitSendReceipt".equals(op)) {
+		} 
+		else if ("waitSendReceipt".equals(op)) {
 			waitSendReceipt(request, response);
-		} else if ("waitUpdateReceipt".equals(op)) {
+		} 
+		else if ("waitUpdateReceipt".equals(op)) {
 			waitUpdateReceipt(request, response);
-		} else if ("waitEvaluate".equals(op)) {
+		} 
+		else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
-		} else if ("overEvaluate".equals(op)) {
+		} 
+		else if ("overEvaluate".equals(op)) {
 			overEvaluate(request, response);
-		} else if (op.equals("edit")) {
+		} 
+		else if (op.equals("edit")) {
 			editCourier(request, response);
-		}else if(op.equals("sendReceipt")) {
+		}
+		else if(op.equals("sendReceipt")) {
 			sendReceipt(request, response);
-		}else if (op.equals("updateCourierMessage")) {
+		}
+		else if (op.equals("updateCourierMessage")) {
 			updateCourierMessage(request,response);
 		}
 
@@ -279,9 +286,8 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 获取页码信息
-
+		
 	}
-
 	/**
 	 * 前台修改腿哥信息，courier表
 	 * @param request
@@ -301,4 +307,5 @@ public class CourierServlet extends HttpServlet {
 			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 		}
 	}
+
 }
