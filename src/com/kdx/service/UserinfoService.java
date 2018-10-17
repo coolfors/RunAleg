@@ -23,4 +23,6 @@ public interface UserinfoService {
 	
 	Userinfo getUserInfo(String userId);//根据useid获取详细信息，前台显示
 	boolean updateState(String userName, int sockState);// 改变状态
+
+	boolean updateUserinfoByQt(Userinfo editInfo);
 }

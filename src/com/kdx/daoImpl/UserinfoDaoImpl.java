@@ -30,6 +30,15 @@ public class UserinfoDaoImpl implements UserinfoDao {
 		return BaseDao.execute("update userinfo set userId=?,userTel=?,userAdd=?,userBalance=?,userSex=? where userInfoId=?", 
 				uinfo.getUserId(),uinfo.getUserTel(),uinfo.getUserAdd(),uinfo.getUserBalance(),uinfo.getUserSex(),uinfo.getUserInfoId())>0;
 	}
+	//更新前台用户信息
+	@Override
+	public boolean updateUserinfoByQt(Userinfo uinfo) {
+		// TODO Auto-generated method stub
+		
+		return BaseDao.execute("update userinfo set userSex=?,userTel=?,userAdd=? where userId=?", 
+				uinfo.getUserSex(),uinfo.getUserTel(),uinfo.getUserAdd(),uinfo.getUserId())>0;
+	}
+	
 	
 	//分页
 	@SuppressWarnings("unchecked")

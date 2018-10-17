@@ -19,21 +19,6 @@
 <link rel="stylesheet" type="text/css" href="css/thems.css" />
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$("#left_menu li ul").css("display", "none");
-		$("#left_menu li:first ul").css("display", "block");
-		$("#left_menu li .yiji")
-				.click(
-						function() {
-							$(this).parents("li").find(".erji").css("display",
-									"block");
-							$(this).parent("li").siblings("li").find(".erji")
-									.css("display", "none");
-						});
-	})
-</script>
-</script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -46,7 +31,7 @@
 		<div class="container">
 			<div class="row">
 				<span class="col-sm-7 col-sm-offset-1 col-xs-6 col-xs-offset-1"><img
-					src="images/logo.png" class="img-responsive" alt="新广货运联盟"></span> <span
+					src="images/logo.png" class="img-responsive" alt="快递侠"></span> <span
 					class="col-sm-4 col-xs-5" style="float: right"> <a
 					href="modify data.html" target="_blank" style="display: none">su23c0e</a>
 					<a href="" style="display: none">退出</a>
@@ -133,28 +118,29 @@
 					<span>个人资料设置</span>
 				</div>
 				<div class="person_rmain">
-				<c:if test="${sessionScope.User.userType == 0}">
+					<c:if test="${sessionScope.User.userType == 0}">
 						<strong>帐户信息</strong>
 						<ul>
 							<li><span>登陆帐户：</span> <em>${sessionScope.User.userName}</em>
 							</li>
 							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
-							</li>	
+							</li>
 						</ul>
 						<strong>基本信息</strong>
 						<!-- 管理员信息显示修改 -->
 						<form action="" method="post">
+						
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="mgrsex" id="mgrsex">
 										<option value="">--请选择性别--</option>
 										<option value="男">男</option>
-										<option value=女">女</option>
+										<option value="女">女</option>
 								</select></li>
-								<li><span>手机：</span> <input name="mgrTel" type="text"  >
+								<li><span>手机：</span> <input name="mgrTel" type="text" placeholder="${sessionScope.Userinfo.userTel}">
 								</li>
-								<li><span>地址：</span> <input name="mgrAdd" type="text" >
+								<li><span>地址：</span> <input name="mgrAdd" type="text" placeholder="${sessionScope.Userinfo.userTel}">
 								</li>
 								<li>
 									<button class="submit">保存</button>
@@ -168,42 +154,43 @@
 							<li><span>登陆帐户：</span> <em>${sessionScope.User.userName}</em>
 							</li>
 							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
-							&nbsp;&nbsp;&nbsp;
-							<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal">成为快递侠</button>
-							</li>
+								&nbsp;&nbsp;&nbsp;
+								<button class="btn btn-success btn-xs" data-toggle="modal"
+									data-target="#myModal">成为快递侠</button></li>
 							<li><span>账户余额：</span> <em>${sessionScope.Userinfo.userBalance}</em></li>
 						</ul>
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
-						<form action="" method="post">
+						<form action="UserInfoServlet?op=userinfoEdit" method="post">
+							<input type="hidden" name="userInfoId" value="${sessionScope.User.userId}"/>
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
-								<li><span>性别：</span> <select name="sex" id="sex">
+								<li><span>性别：</span> <select name="sexInfo" id="sex">
 										<option value="">--请选择性别--</option>
 										<option value="男">男</option>
-										<option value=女">女</option>
+										<option value="女">女</option>
 								</select></li>
-								<li><span>手机：</span> <input name="userTel" type="text" placeholder="${sessionScope.Userinfo.userTel}">
-								</li>
-								<li><span>地址：</span> <input name="userAdd" type="text" placeholder="${sessionScope.Userinfo.userAdd}">
-								</li>
+								<li><span>手机：</span> <input name="userTelInfo" type="text"
+									value="${sessionScope.Userinfo.userTel}"></li>
+								<li><span>常用地址：</span> <input name="userAddInfo" type="text"
+									value="${sessionScope.Userinfo.userAdd}"></li>
 								<li>
-									<button class="submit">保存</button>
+									<button class="submit">修改</button>
 								</li>
 							</ul>
 						</form>
 					</c:if>
 					<!-- 跑腿用户信息显示修改 -->
 					<c:if test="${sessionScope.User.userType == 2}">
-					<strong>帐户信息</strong>
+						<strong>帐户信息</strong>
 						<ul>
 							<li><span>登陆帐户：</span> <em>${sessionScope.User.userName}</em>
 							</li>
 							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
 							</li>
 							<li><span>账户押金：</span> <em>${sessionScope.Courier.deposit}</em></li>
-							<li><span>账户余额：</span> <em>${sessionScope.Courier.balance}</em></li>						
+							<li><span>账户余额：</span> <em>${sessionScope.Courier.balance}</em></li>
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
@@ -216,16 +203,17 @@
 										<option value="男">男</option>
 										<option value=女">女</option>
 								</select></li>
-								<li><span>身份证：</span> <input name="IDcard" type="text" placeholder="${sessionScope.Courier.IDcard}">
-								</li>
-								<li><span>手机：</span> <input name="courierTel" type="text" placeholder="${sessionScope.Courier.tel}">
-								</li>
-								<li><span>地址：</span> <input name="courierAdd" type="text" placeholder="${sessionScope.Courier.address}">
-								</li>
-								<li><span>配送范围：</span> <input name="ableDistance" type="text" placeholder="${sessionScope.Courier.ableDistance}">
+								<li><span>身份证：</span> <input name="IDcard" type="text"
+									placeholder="${sessionScope.Courier.IDcard}"></li>
+								<li><span>手机：</span> <input name="courierTel" type="text"
+									placeholder="${sessionScope.Courier.tel}"></li>
+								<li><span>地址：</span> <input name="courierAdd" type="text"
+									placeholder="${sessionScope.Courier.address}"></li>
+								<li><span>配送范围：</span> <input name="ableDistance"
+									type="text" placeholder="${sessionScope.Courier.ableDistance}">
 								</li>
 								<li><span>信用分：</span><em>${sessionScope.Courier.creditPoint}</em>
-								</li>				
+								</li>
 								<li>
 									<button class="submit">保存</button>
 								</li>
@@ -239,7 +227,8 @@
 		<div class="space_hx">&nbsp;</div>
 	</div>
 	<!--中间部分结束-->
-	<!-- 模态框（Modal） --><!-- 修改 -->
+	<!-- 模态框（Modal） -->
+	<!-- 修改 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -249,8 +238,8 @@
 						<input type="hidden" name="op" value="update" /> <input
 							type="hidden" name="userId" id="userId" />
 						<div class="form-group">
-							<label for="">真实姓名(之后的用户名):</label><input class="form-control" type="text"
-								name="realName" id="realName">
+							<label for="">真实姓名(之后的用户名):</label><input class="form-control"
+								type="text" name="realName" id="realName">
 						</div>
 						<div class="form-group">
 							<label for="">性别:</label> <select id="realSex" name="realSex"
@@ -260,21 +249,26 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="">手机号:</label> <input class="form-control" type="text"
-								name="realTel" id="realTel">
+							<label for="">手机号:</label> <input class="form-control"
+								type="text" name="realTel" id="realTel">
 						</div>
 						<div class="form-group">
-							<label for="">身份证:</label> <input class="form-control" type="text"
-								name="realIDcard" id="realIDcard">
+							<label for="">身份证:</label> <input class="form-control"
+								type="text" name="realIDcard" id="realIDcard">
 						</div>
-						<div class="form-group">
-							<label for="">证件照:</label> <input class="form-control" type="file"
-								name="realIDImg" id="realIDImg">
+						<div class="form-group ">
+							<label for="">证件照:</label>
+							<!--  <input class="form-control" type="file"
+								name="realIDImg" id="realIDImg"> -->
+							<input id="avatarSlect" type="file">
+							<img id="avatarPreview" src="/static/images/sample.png" title="点击更换图片">
+
 						</div>
 						<div class="form-group">
 							<label for="">地址:</label> <input class="form-control" type="text"
 								name="realAddress" id="realAddress">
 						</div>
+						
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -286,8 +280,8 @@
 		</div>
 		<!-- /.modal -->
 	</div>
-	
-		
+
+
 	<!--尾部-开始-->
 	<div class="footer"
 		style="background: #525252; width: 100%; padding-bottom: 20px; margin-top: 30px;">

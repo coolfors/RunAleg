@@ -17,10 +17,14 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css">
 <link rel="stylesheet" href="css/LocationRange.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/freight-info.css">
+<!-- 引入地图js -->
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script> 
+<script src="http://api.map.baidu.com/api?v=2.0&ak=Dc8o3GUube9RVOhmeuuhfNL9QRyzhuaj" type="text/javascript"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
+
 </head>
 <body>
 <!--顶部-开始-->
@@ -105,7 +109,7 @@
 <div class="container biao">
     <div style="border:1px solid #F5841C; margin-left:0; margin-right:0;">
          <ul class="new_tab_ul row">
-             <li class="new_tab_f hover col-lg-6 col-md-6 col-sm-6" id="one1" style=" background:#fff;" onclick="setTab(&#39;one&#39;,1,2)">
+             <li class="new_tab_f hover col-lg-6 col-md-6 col-sm-6" id="one1" style="background:#fff;" onclick="setTab(&#39;one&#39;,1,2)">
             	 <a href="javascript:;" style="color:#F5841C;">发布代跑腿</a>
              </li>
              <li class="new_tab_f col-lg-6 col-md-6 col-sm-6" id="one2" onclick="setTab(&#39;one&#39;,2,2)">
@@ -119,12 +123,11 @@
                     <div class="form-group row">
                         <label class="col-sm-2 control-label"><span>*&nbsp;</span>起送地</label>
                         <div class="list_div area-wraper col-sm-4">
-                           <input autocomplete="off" type="text" id="begincity" name="begincity" class="list_select form-control" value="" placeholder="出发城市">
-                           
+                           <input  type="text" id="begincity" name="begincity" class="list_select form-control" value="" placeholder="出发城市">
                         </div>
                         <label class="col-sm-2 control-label">到达地</label>
                         <div class="list_div list_div_last col-sm-4">
-                            <input type="text" id="get_addr" name="get_addr" class="list_select1 form-control" value="" placeholder="出发地详细地址">
+                            <input type="text" id="get_addr" name="get_addr" class="list_select1 form-control" value="" placeholder="目的地详细地址">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -188,11 +191,9 @@
                 </div>
             </div>
          </div> 
-    </div>
     <div class="container row">
     	<p style="text-align:right; color:red; margin-right:15px;">* 发布的信息只保留15天！</p>
     </div>
-</div>
 
 <!--尾部-开始-->
 <div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
@@ -230,33 +231,34 @@
 <!--尾部-结束-->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/laydate.js"></script>
-<script type="text/javascript">
-!function(){
-	laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
-	laydate({elem: '#demo'});//绑定元素
-}();
+<script type="text/javascript">  
 
-</script>
+</script>  
 <script type="text/javascript">
+    /*  定位*/
+    $(function(){  
+    $("#begincity").click(function(ev){  
+        $(ev.currentTarget).text("正在获取位置......");  
+        //创建百度地图控件  
+        var geolocation = new BMap.Geolocation();  
+        geolocation.getCurrentPosition(function(r){  
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){  
+                //以指定的经度与纬度创建一个坐标点  
+                var pt = new BMap.Point(r.point.lng,r.point.lat);  
+                //创建一个地理位置解析器  
+                var geoc = new BMap.Geocoder();  
+                geoc.getLocation(pt, function(rs){//解析格式：城市，区县，街道  
+                    var addComp = rs.addressComponents;  
+                    $(ev.currentTarget).text(addComp.city + ", " + addComp.district + ", " + addComp.street);  
+                });      
+            }  
+            else {  
+                $(ev.currentTarget).text('定位失败');  
+            }          
+        },{enableHighAccuracy: true})//指示浏览器获取高精度的位置，默认false  
+    });  
+});  
     var app_url ='';
-    $(document).ready(function(){	
-
-	       $.post(app_url+"goods/",{num:0,type:8},function(data){
-				if(data.resid){
-						  $('#demo1').html(data.msg);
-					}
-				},'json');
-			
-		    $.post(app_url+"goods_count/",{},function(data){
-			if(data.resid){
-				      $('#zxhz').html(data.msg);	
-					  $('#zxcy').html(data.msgs);
-				}
-			},'json');
-
-		});  
-
     function setTab(name,cursel,n){
 		for(i=1;i<=n;i++){
 			if(cursel==i){
@@ -501,14 +503,6 @@
 			var mobileno = $('#car_mobileno').val();
 			var begincity = $('#car_begincity').val();
 			var endcity = $('#car_endcity').val();
-			var verify = $('#car_verify').val();
-			var cartype = $('#cartype').val();
-			var car_num = $('#car_num').val();
-			var carlength = $('#carlength').val();
-			var weight = $('#weight').val();
-			var weight_unit = $('#weight_unit').val();
-			var volume = $('#volume').val();
-			var runtime = $('#runtime').val();
 			var mob = $('#mob').val();
 			if(begincity.length <= 0){
 				$('.city').show().html("出发城市不能为空！");
@@ -525,20 +519,7 @@
 			      $('.city').hide();
 			}
 			
-			if(weight.length > 5){
-				$('.weight').show().html("重量填写过大");
-				$('#weight').focus();
-				return false;
-			}else{
-			    $('.weight').hide();
-			}
-			if(volume.length > 5){
-				$('.weight').show().html("体积填写过大");
-				$('#volume').focus();
-				return false;
-			}else{
-			    $('.weight').hide();
-			}
+			
 			if(runtime.length <= 0){
 				$('.runtime').show().html("发车时间不能为空!");
 				$('#runtime').focus();
@@ -555,13 +536,10 @@
 				return false;
 			}	
 			
-			if(verify.length != 4){
-				$('.yz_ts').show().html('请输入正确验证码!');
-				$('#car_verify').focus();
-				return false;
-			}	
+			
 						
-			$.post(app_url+"car_send/",{mobileno:mobileno,begincity:begincity,endcity:endcity,verify:verify,cartype:cartype,car_num:car_num,carlength:carlength,weight:weight,weight_unit:weight_unit,volume:volume,runtime:runtime,ips:"61.52.245.52"},function(data){
+			$.post(app_url+"car_send/",{mobileno:mobileno,begincity:begincity,endcity:endcity,verify:verify,cartype:cartype,car_num:car_num,carlength:carlength,weight:weight,
+				weight_unit:weight_unit,volume:volume,runtime:runtime,ips:"61.52.245.52"},function(data){
 				if(data.resid==1){
 					$('.header').hide();
 				    $('.new_importance_tab').append(data.xinxi);
@@ -576,92 +554,11 @@
 			},'json');
 		});
 		
-		$('.dl_btnLogin').click(function(){
-			var mobile = $('#dl_mobileno').val();
-			var verify  = $('#dl_verify').val();
-			if(mobile.length <= 0){
-				$('.dl_yz_ts').show().html('手机要号码不能为空');
-				$('#dl_mobileno').focus();
-				return false;
-			}
-			if(verify.length <= 0){
-				$('.dl_yz_ts').show().html('验证码不能为空');
-				$('#dl_verify').focus();
-				return false;
-			}
-		//	return  false;
-			$.post(app_url+"register/",{mobileno:mobile,code:verify},function(data){
-			if(data.resid==1){
-			        $('#main').append('<iframe frameborder="0" width="1px" height="1px" src=""></iframe>');
-					$('.head').hide();
-					window.location.href=app_url;
-					$('.denglu').append(data.msg);
-					 
-				}else{
-					$('.dl_yz_ts').show().html(data.msg);
-				}
-			},'json');
-		 
-		 });	
+		
 })
 	function gb(){ 
 		$('#tc').hide();	
 		window.location.href=app_url;	
-	}	
-	
-    function qiang(billno){
-	
-           	$.post(app_url+"car_bill_qiang/",{billno:billno},function(data){
-				if(data.resid==2){
-				   
-					$('#A' + billno).show().html(data.msg);
-                    $('#C' + billno).show().html("已查看");
-
-				}else{
-					$('#A' + billno).show().html(data.msg);
-				}
-			},'json');
-		 
-	//	$('#A' + billno).html('<div class="main_4_1">车主电话:15510686838</div><div class="main_4_2"><a>拨号</a></div>');		
-	}
-	
-	function yuding(billno){
-	
-           	$.post(app_url+"getcarsdetail/",{billno:billno},function(data){
-				if(data){
-
-					$('#b' + billno).show().html(data.msg);
-					$('#z' + billno).show().html('已查看');
-
-				}
-			},'json');
-		 
-	//	$('#A' + billno).html('<div class="main_4_1">车主电话:15510686838</div><div class="main_4_2"><a>拨号</a></div>');		
-	}
-	
-	function carsdetail(billno){
-	
-           	$.post(app_url+"carsdetail/",{billno:billno},function(data){
-				if(data){
-
-					$('#b' + billno).show().html(data.msg);
-
-				}
-			},'json');
-		 
-	//	$('#A' + billno).html('<div class="main_4_1">车主电话:15510686838</div><div class="main_4_2"><a>拨号</a></div>');		
-	}	
-	
-	function show(billno){
-	 
-           	$.post(app_url+"goods_qiang/",{bill:billno},function(data){
-				if(data.qianlist){
-					$('#add'+billno).toggle().html(data.qianlist);
-				}else{
-				    $('#add'+billno).toggle().html(data.msg);
-					
-				}
-			},'json');
 	}	
 	
 	function msn(){

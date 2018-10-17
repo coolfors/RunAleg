@@ -104,6 +104,22 @@ public class Userinfo implements Serializable {
 		this.userTel = userTel;
 	}
 
+	/**
+	 * 前台修改个人信息
+	 * @param userId
+	 * @param userSex
+	 * @param userTel
+	 * @param userAdd
+	 */
+	public Userinfo(int userId,  String userTel, String userAdd,String userSex) {
+		super();
+		this.userId = userId;
+		this.userAdd = userAdd;
+		this.userSex = userSex;
+		this.userTel = userTel;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Userinfo [userInfoId=" + userInfoId + ", userId=" + userId + ", userAdd=" + userAdd + ", userBalance="

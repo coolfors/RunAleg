@@ -55,4 +55,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 		return uid.changeState(userName, sockState);
 	}
 
+	@Override
+	public boolean updateUserinfoByQt(Userinfo editInfo) {
+		// TODO Auto-generated method stub
+		return uid.updateUserinfoByQt(editInfo);
+	}
+
 }

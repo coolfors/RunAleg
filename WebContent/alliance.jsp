@@ -127,40 +127,42 @@
 </div>
 <!--内容-结束-->
 
-
 <!--尾部-开始-->
-<div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <p>友情链接</p>
-                <hr>
-                <ul>
-                   <li><a href="" target="_blank">中国物流网</a></li>
-                   <li><a href="" target="_blank">中国物流网</a></li>
-                   <li><a href="" target="_blank">中国物流网</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-4">
-                <p>快递侠</p>
-                <hr>
-                <p>快递侠成立于2018年，是一家专业提供跑腿业务的平台。</p>
-                <p>快递侠的跑腿业务提供一个平台给任何普通用户以及需要兼职的用户群体。</p>
-                <p>快递侠坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！</p>
-            </div>
-            <div class="col-sm-4">
-                <p><a href="register.html">加入跑男</a> | <a href="contact-us.jsp">联系我们</a></p>
-                <hr>
-                <p>咨询电话：13015962382</p>
-                <p>邮箱：coolfors@163.com</p>
-                <p>地址：厦门市软件园</p>
-            </div>
-            <div class="col-sm-12 text-center" style="margin-top:20px;">
-            	Copyright ©  快递侠 版权所有 Power by 快递侠
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="footer"
+		style="background: #525252; width: 100%; padding-bottom: 20px; margin-top: 30px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<p>友情链接</p>
+					<hr>
+					<ul>
+						<li><a href="" target="_blank">中国物流网</a></li>
+						<li><a href="" target="_blank">中国物流网</a></li>
+						<li><a href="" target="_blank">中国物流网</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<p>快递侠</p>
+					<hr>
+					<p>快递侠成立于2018年，是一家专业提供跑腿业务的平台。</p>
+					<p>快递侠的跑腿业务提供一个平台给任何普通用户以及需要兼职的用户群体。</p>
+					<p>快递侠坚持社会效益始终第一的原则，服务质量期待你的关注，希望一路与你同行，共创美好的未来！</p>
+				</div>
+				<div class="col-sm-4">
+					<p>
+						<a href="register.html">加入跑男</a> | <a href="contact-us.jsp">联系我们</a>
+					</p>
+					<hr>
+					<p>咨询电话：13015962382</p>
+					<p>邮箱：coolfors@163.com</p>
+					<p>地址：厦门市软件园</p>
+				</div>
+				<div class="col-sm-12 text-center" style="margin-top: 20px;">
+					Copyright © 快递侠 版权所有 Power by 快递侠</div>
+			</div>
+		</div>
+	</div>
+	<!--尾部-结束-->
 <!--尾部-结束-->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

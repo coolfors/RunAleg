@@ -46,7 +46,7 @@ public class CourierDaoImpl implements CourierDao {
 	@Override
 	public Courier getCourierById(String userId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from courier where userid = ?";
+		String sql = "select * from courier where userId = ?";
 		@SuppressWarnings("unchecked")
 		List<Courier> list = (List<Courier>) BaseDao.select(sql, Courier.class, userId);
 		Iterator<Courier> it = list.iterator();
