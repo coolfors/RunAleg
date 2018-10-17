@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>根据地址查询经纬度</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
+</head>
+<body style="background:#CBE1FF">
+    <div style="width:730px;margin:auto;">   
+        要查询的地址：<input id="text_" type="text" value="宁波天一广场" style="margin-right:100px;"/>
+        查询结果(经纬度)：<input id="result_" type="text" />
+        <input type="button" value="查询" onclick="searchByStationName();"/>
+        <div id="container" 
+            style="position: absolute;
+                margin-top:30px; 
+                width: 730px; 
+                height: 590px; 
+                top: 50; 
+                border: 1px solid gray;
+                overflow:hidden;">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+	
+	var localSearch = new BMap.LocalSearch(map);
+	localSearch.enableAutoViewport(); //允许自动调节窗体大小
+	function searchByStationName() {
+　　var keyword = document.getElementById("text_").value;
+　　localSearch.setSearchCompleteCallback(function (searchResult) {
+　　　　var poi = searchResult.getPoi(0);
+　　　　document.getElementById("result_").value = poi.point.lng + "," + poi.point.lat; //获取经度和纬度，将结果显示在文本框中
+　　　　map.centerAndZoom(poi.point, 13);
+　　});
+　　localSearch.search(keyword);
+}
+</script>
+</html>
