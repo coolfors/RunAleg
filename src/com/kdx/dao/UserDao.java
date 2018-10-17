@@ -26,7 +26,7 @@ public interface UserDao {
 
 	boolean changeType(int userId, int userType);// 改变类型
 	
-	User getUserById(int userId);//根据用户id获取用户
+	User getUserById(String userId);//根据用户id获取用户
 	List<User> queryUserName(String userName);//用户名搜索用户
 
 	List<User> queryUserId(int userId);//查询用户id

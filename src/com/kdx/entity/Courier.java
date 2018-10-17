@@ -214,7 +214,7 @@ public class Courier implements Serializable {
 	 * @param userId
 	 * @param userName
 	 */
-	public Courier(String courierId, String address, double balance, String iDcard, String idImg, String tel,
+	public Courier(String courierId, String address, double balance, String iDcard, String tel,String idImg,
 			String userId, String userName) {
 		super();
 		this.courierId = courierId;

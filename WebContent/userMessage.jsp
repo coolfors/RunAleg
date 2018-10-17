@@ -167,13 +167,12 @@
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
 						<form action="UserInfoServlet?op=userinfoEdit" method="post">
-							<input type="hidden" name="userInfoId"
-								value="${sessionScope.User.userId}" />
+							<input type="hidden" name="userInfoId" value="${sessionScope.User.userId}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="sexInfo" id="sex">
-										<option value="">${sessionScope.Userinfo.userSex}</option>
+										<option value="${sessionScope.Userinfo.userSex}">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value="女">女</option>
 								</select></li>
@@ -200,25 +199,24 @@
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
-						<form action="CourierServlet.do?op=updateCourierMessage"
-							method="get">
-							<input type="hidden" name="courierId"
-								value="${sessionScope.User.userId}" />
+						<form action="CourierServlet.do" method="get">
+						<input type="hidden" name="op" value="xiugai" />
+							<input type="hidden" name="courierId" value="${sessionScope.User.userId}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
-								<li><span>性别：</span> <select name="couriersex" id="sex">
-										<option value="">${sessionScope.Userinfo.userSex}</option>
+								<li><span>性别：</span> <select name="couriersex" id="couriersex">
+										<option value="${sessionScope.Userinfo.userSex}">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
-										<option value=女">女</option>
+										<option value="女">女</option>
 								</select></li>
 								<li><span>身份证：</span> <em>${sessionScope.Courier.IDcard}</em></li>
 								<li><span>手机：</span> <input name="courierTel" type="text"
-									placeholder="${sessionScope.Courier.tel}"></li>
+									value="${sessionScope.Courier.tel}"></li>
 								<li><span>地址：</span> <input name="courierAdd" type="text"
-									placeholder="${sessionScope.Courier.address}"></li>
+									value="${sessionScope.Courier.address}"></li>
 								<li><span>配送范围：</span> <input name="ableDistance"
-									type="text" placeholder="${sessionScope.Courier.ableDistance}">
+									type="text" value="${sessionScope.Courier.ableDistance}">
 								</li>
 								<li><span>信用分：</span><em>${sessionScope.Courier.creditPoint}</em>
 								</li>
@@ -241,29 +239,33 @@
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="form_data" method="get" action="BeCourier.do">
+				<form id="form_data" method="post" action="BeCourier.do">
+					<input type="hidden" name="op" value="toBeCourier" />
+					<input type="hidden" name="userId" value="${sessionScope.User.userId}" />
+					<input type="hidden" name="tel" value="${sessionScope.Userinfo.userTel}"/>
+					<input type="hidden" name="address" value="${sessionScope.Userinfo.userAdd}"/>
+					<input type="hidden" name="balance" value="${sessionScope.Userinfo.userBalance}"/>
 					<div class="modal-body">
-						<input type="hidden" name="userId" value="${sessionScope.user.useId}"/>
-						<input type="hidden" name="tel" value="${sessionScope.Userinfo.userTel}"  />
-						<input type="hidden" name="address" value="${sessionScope.userinfo.useAdd}"  />
-						<input type="hidden" name="balance" value="${sessionScope.userinfo.userBalance}"  />
 						<div class="form-group ">
 							<label for="">证件照:</label>
-							<img id="idImg" name="idImg" src="" style="width: 80px;height: 60px"  />
-							<input type="file" id="selectImg" onchange="fun(this)"/>
+							<img id="idImg" src="" style="width: 80px;height: 60px"  />
+							<input type="file" id="selectImg" name="idImg" onchange="fun(this)" value=""/>
 						</div>
+						
 						<div class="form-group">
 							<label for="">真实姓名:</label><input class="form-control"
 								type="text" name="realName" id="realName">
 						</div>
+						
 						<div class="form-group">
 							<label for="">身份证:</label> <input class="form-control"
 								type="text" name="realIDcard" id="realIDcard">
 						</div>
+						
 						<div class="form-group">
 							<label for="">押金:</label><em>500</em>
 							<button class="btn-link" id="pay" name="pay">点击付款</button>
-						</div>
+						</div>					
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

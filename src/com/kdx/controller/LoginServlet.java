@@ -84,7 +84,6 @@ public class LoginServlet extends HttpServlet {
 		String check_code= request.getParameter("check_code");//获取用户文本框内的内容
 		String code = (String) request.getSession().getAttribute("code"); // 获取存放在session中的验证码
 		User user = us.loginUser(userName, password);
-		System.out.println(user);
 		if(user==null) {
 			out.print("<script>alert('账号或密码错误，登录失败！');location.href='login.html'</script>");
 		}else if(!check_code.equalsIgnoreCase(code)) {
@@ -98,11 +97,9 @@ public class LoginServlet extends HttpServlet {
 			//传递普通用户的全部信息
 			Userinfo userInfo = uis.getUserInfo(user.getUserId());
 			session.setAttribute("Userinfo", userInfo);
-			System.out.println(userInfo);
 			//传递跑腿用户的全部信息
 			Courier courier = cs.getCourierById(user.getUserId());
 			session.setAttribute("Courier", courier);
-			System.out.println(courier);
 			out.print("<script>alert('登录成功！');location.href='index.jsp'</script>");
 		}
 		out.close();

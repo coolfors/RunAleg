@@ -24,20 +24,8 @@
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]--> 
-<!-- <script type="text/javascript" > 
-$(document).ready(function() {
-
-	$("#toModal").hide();
-
-});
-</script>  -->
 </head>
 <body>
-<div id="allmap" hidden="hidden"></div>
-	<input id="lng" name="lng" hidden="hidden" value="" />
-	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
-	
 	<!--顶部-开始-->
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
@@ -229,11 +217,7 @@ $(document).ready(function() {
                     <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 						<button id="doPay" name="doPay" type="submit"
-
-							cclass="btn btn-secondary" data-dismiss="modal" onclick="pay(surePwd)">确认支付</button>
-
-							
-
+							class="btn btn-secondary" data-dismiss="modal">确认支付</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->
@@ -292,15 +276,12 @@ $(document).ready(function() {
 	<script src="js/messages_zh.js"></script>
 
 <script type="text/javascript">
-<<<<<<< HEAD
-=======
 $(document).ready(function() {
 
 	$("#toModal").hide();
 
 });
 
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
  /*  定位*/
  $(function(){    
      //创建百度地图控件  
@@ -326,37 +307,10 @@ $(document).ready(function() {
      
 });  
 </script>
-<<<<<<< HEAD
 	<script src="js/jquery_002_002.js" type="text/javascript"></script>
 	<script src="js/areaData1.js" type="text/javascript"></script>
 	<script src="js/LocationRange.js" type="text/javascript"></script>
 	<script src="js/jquery_003.js" type="text/javascript"></script>
 	<script src="js/freight.js" type="text/javascript"></script>
-	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
-		<script src="js/GPS_GetLng&LatByBrow.js"></script>
-	</c:if>
-=======
-<script>
-
-/**
- * 判断用户是否在登录状态
- */
-	$("#sure").click(function(){
-		var  u = $("#userId").val();
-		console.log(u);
-		if(u==""){
-			alert('请先登录再下单');
-			window.location.href="login.html";
-		}
-	});
-
-
-</script>
-	<script src="js/jquery_002_002.js" type="text/javascript"></script>
-	<script src="js/areaData1.js" type="text/javascript"></script>
-	<script src="js/LocationRange.js" type="text/javascript"></script>
-	<script src="js/jquery_003.js" type="text/javascript"></script>
-	<script src="js/freight.js" type="text/javascript"></script>
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
 </body>
 </html>

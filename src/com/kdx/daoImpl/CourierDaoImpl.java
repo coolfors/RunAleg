@@ -53,6 +53,7 @@ public class CourierDaoImpl implements CourierDao {
 		Courier courier = null;
 		while(it.hasNext()) {
 			courier = it.next();
+			System.out.println("daoimpl:"+courier);
 		}
 		return courier;
 	}

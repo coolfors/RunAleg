@@ -60,7 +60,7 @@ public class FeedBackServlet extends HttpServlet {
 		String neirong=request.getParameter("neirong");
 		UserService us=new UserServiceImpl();
 		FebackService fs=new FebackServiceImpl();
-		User u=us.getUserById(Integer.parseInt(UserId));
+		User u=us.getUserById(UserId);
 		String uuid=UUIDUtils.getUUID();
 		Feedback f=new Feedback(uuid, neirong, u.getUserId(),null);
 		boolean flag=fs.addFeback(f);

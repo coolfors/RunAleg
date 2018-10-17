@@ -15,7 +15,6 @@ import com.kdx.service.CourierService;
 import com.kdx.service.DispatchService;
 import com.kdx.serviceImpl.CourierServiceImpl;
 import com.kdx.serviceImpl.DispatchServiceImpl;
-import com.kdx.entity.Userinfo;
 import com.kdx.util.BaseDao;
 import com.kdx.util.IDNumber;
 import com.kdx.util.UUIDUtils;
@@ -76,8 +75,8 @@ public class AffairDaoImpl implements AffairDao {
 				// 在java中可以对支持事务的数据库完成事务的处理
 				conn.setAutoCommit(false);
 				//执行删除userinfo操作
-				String sql1 = "delete from userinfo where userId = ?";
-				BaseDao.execute(sql1, Userinfo.class, cour.getUserId());
+//				String sql1 = "delete from userinfo where userId = ?";
+//				BaseDao.execute(sql1, conn, cour.getUserId());
 				
 				//执行增加Courier的操作
 				String sql2="insert into courier values(?,?,500,?,?,null,0,?,100,?,?)";
@@ -85,7 +84,7 @@ public class AffairDaoImpl implements AffairDao {
 				
 				//执行修改user中usertype;
 				String sql3="update user set userType = 2,userName = ? where userId = ?";
-				BaseDao.execute(sql3, Courier.class, cour.getUserId(),cour.getUserName());			
+				BaseDao.execute(sql3, conn,cour.getUserName(),cour.getUserId());			
 				//手动提交
 				conn.commit();
 				flag=true;

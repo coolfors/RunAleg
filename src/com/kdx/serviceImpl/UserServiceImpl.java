@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 		return ud.queryUser();
 	}
 	@Override
-	public User getUserById(int userId) {
+	public User getUserById(String userId) {
 		// TODO Auto-generated method stub
 		return ud.getUserById(userId);
 	}

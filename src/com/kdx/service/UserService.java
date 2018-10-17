@@ -32,7 +32,9 @@ public interface UserService {
 	
 	boolean resetPwd(int userId, String userPwd);
 
-	User getUserById(int userId);
 
+	User getUserById(String userId);
+	
 	List<User> againPwd(String userId);
 } 
+

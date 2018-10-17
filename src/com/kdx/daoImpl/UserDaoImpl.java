@@ -89,7 +89,7 @@ public class UserDaoImpl implements UserDao {
 		return BaseDao.execute(sql, userType, userId) > 0;
 	}
 	@Override
-	public User getUserById(int userId) {
+	public User getUserById(String userId) {
 		// TODO Auto-generated method stub
 		List<User> list=(List<User>) BaseDao.select("select * from user where userId=?", User.class, userId);
 		Iterator<User> it=list.iterator();
