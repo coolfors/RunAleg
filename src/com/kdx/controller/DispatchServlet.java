@@ -67,7 +67,7 @@ public class DispatchServlet extends HttpServlet {
 //			 out.print(flag);
 		}
 		else if (op.equals("addDispatch")) {
-			String disId = "hahskj1321";
+			String disId = "hasdfsdhgh21";
 			String userId = request.getParameter("userId");// 用户id
 
 			String beginAdd = request.getParameter("beginAdd");// 起送地点

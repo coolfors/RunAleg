@@ -111,7 +111,7 @@ public class Userinfo implements Serializable {
 	 * @param userTel
 	 * @param userAdd
 	 */
-	public Userinfo(int userId,  String userTel, String userAdd,String userSex) {
+	public Userinfo(String userId,  String userTel, String userAdd,String userSex) {
 		super();
 		this.userId = userId;
 		this.userAdd = userAdd;
