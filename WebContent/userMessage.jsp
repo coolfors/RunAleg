@@ -129,7 +129,7 @@
 						<strong>基本信息</strong>
 						<!-- 管理员信息显示修改 -->
 						<form action="" method="post">
-						
+
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
@@ -138,10 +138,10 @@
 										<option value="男">男</option>
 										<option value="女">女</option>
 								</select></li>
-								<li><span>手机：</span> <input name="mgrTel" type="text" placeholder="${sessionScope.Userinfo.userTel}">
-								</li>
-								<li><span>地址：</span> <input name="mgrAdd" type="text" placeholder="${sessionScope.Userinfo.userTel}">
-								</li>
+								<li><span>手机：</span> <input name="mgrTel" type="text"
+									placeholder="${sessionScope.Userinfo.userTel}"></li>
+								<li><span>地址：</span> <input name="mgrAdd" type="text"
+									placeholder="${sessionScope.Userinfo.userTel}"></li>
 								<li>
 									<button class="submit">保存</button>
 								</li>
@@ -162,7 +162,8 @@
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
 						<form action="UserInfoServlet?op=userinfoEdit" method="post">
-							<input type="hidden" name="userInfoId" value="${sessionScope.User.userId}"/>
+							<input type="hidden" name="userInfoId"
+								value="${sessionScope.User.userId}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
@@ -173,8 +174,8 @@
 								</select></li>
 								<li><span>手机：</span> <input name="userTelInfo" type="text"
 									value="${sessionScope.Userinfo.userTel}"></li>
-								<li><span>常用地址：</span> <input name="userAddInfo" type="text"
-									value="${sessionScope.Userinfo.userAdd}"></li>
+								<li><span>常用地址：</span> <input name="userAddInfo"
+									type="text" value="${sessionScope.Userinfo.userAdd}"></li>
 								<li>
 									<button class="submit">修改</button>
 								</li>
@@ -194,8 +195,10 @@
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
-						<form action="CourierServlet.do?op=updateCourierMessage" method="get">
-							<input type="hidden" name="courierId" value="${sessionScope.User.userId}"/>
+						<form action="CourierServlet.do?op=updateCourierMessage"
+							method="get">
+							<input type="hidden" name="courierId"
+								value="${sessionScope.User.userId}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
@@ -235,23 +238,25 @@
 			<div class="modal-content">
 				<form id="form_data" method="post" action="us.do">
 					<div class="modal-body">
-						<input type="hidden" name="op" value="toBeCourier" /> 
-						<input type="hidden" name="userId" id="userId" />
+						<input type="hidden" name="op" value="toBeCourier" /> <input
+							type="hidden" name="userId" id="userId" />
+						<!-- 显示图片 -->
+						<!-- <div style="width: 80px; height: 60px;">
+							<img id="idImg" src="" />
+						</div> -->
 						<div class="form-group ">
 							<label for="">证件照:</label>
-							<!--  <input class="form-control" type="file"
-								name="realIDImg" id="realIDImg"> -->
-							<input id="avatarSlect" type="file">
-							<!-- <img id="avatarPreview" src="/static/images/sample.png" title="点击更换图片"> -->
+							<img id="idImg" name="idImg" src="" style="width: 80px;height: 60px"  />
+							<input type="file" id="selectImg" onchange="fun(this)"/>
 						</div>
 						<div class="form-group">
-							<label for="">真实姓名(之后的用户名):</label><input class="form-control"
+							<label for="">真实姓名:</label><input class="form-control"
 								type="text" name="realName" id="realName">
 						</div>
 						<div class="form-group">
 							<label for="">身份证:</label> <input class="form-control"
 								type="text" name="realIDcard" id="realIDcard">
-						</div>					
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -303,5 +308,12 @@
 		</div>
 	</div>
 	<!--尾部-结束-->
+	<script type="text/javascript">
+		
+		 function fun(o){
+		 	document.getElementById("idImg").src=window.URL.createObjectURL(o.files[0]);
+		 }
+		
+	</script>
 </body>
 </html>

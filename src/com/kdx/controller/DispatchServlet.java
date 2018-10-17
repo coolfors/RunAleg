@@ -63,7 +63,7 @@ public class DispatchServlet extends HttpServlet {
 //			 out.print(flag);
 		}
 		else if (op.equals("addDispatch")) {
-			String disId = IDNumber.getIDNumber();//订单
+			String disId = IDNumber.getIDNumber();//得到编号
 			String userId = request.getParameter("userId");// 用户id
 
 			String beginAdd = request.getParameter("beginAdd");// 起送地点
