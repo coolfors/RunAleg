@@ -74,6 +74,8 @@ public class CourierServlet extends HttpServlet {
 			editCourier(request, response);
 		}else if(op.equals("sendReceipt")) {
 			sendReceipt(request, response);
+		}else if (op.equals("updateCourierMessage")) {
+			updateCourierMessage(request,response);
 		}
 
 	}
@@ -280,4 +282,23 @@ public class CourierServlet extends HttpServlet {
 
 	}
 
+	/**
+	 * 前台修改腿哥信息，courier表
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void updateCourierMessage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String userId = request.getParameter("courierId");
+		String tel = request.getParameter("courierTel");
+		String address = request.getParameter("courierAdd");
+		String ableDistance = request.getParameter("ableDistance");
+		Courier cour = new Courier(Double.parseDouble(ableDistance), address, tel, userId);
+		boolean flag = cs.updateCourierInForward(cour);
+		if(flag) {
+			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
+		}
+	}
 }

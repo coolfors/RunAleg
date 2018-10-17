@@ -15,4 +15,7 @@ public interface CourierService {
 	List<Courier> getCourier();
 	
 	Courier getCourierById(String userId);//根据id,获取courier全部信息，用于前台显示
+	
+	//前台修改腿哥信息
+	boolean updateCourierInForward(Courier cour);
 }

@@ -29,7 +29,7 @@ public class Courier implements Serializable {
 
 	private String tel;
 
-	private int userId;
+	private String userId;
 
 	private String userName;
 
@@ -116,11 +116,11 @@ public class Courier implements Serializable {
 		this.tel = tel;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -152,7 +152,7 @@ public class Courier implements Serializable {
 	 * @param userId
 	 */
 	public Courier(String courierId, double ableDistance, String address, double balance, int creditPoint, double deposit,
-			String iDcard, String idImg, int sockState, String Tel, int userId) {
+			String iDcard, String idImg, int sockState, String Tel, String userId) {
 		super();
 		this.courierId = courierId;
 		this.ableDistance = ableDistance;
@@ -189,5 +189,21 @@ public class Courier implements Serializable {
 				+ IDcard + ", idImg=" + idImg + ", sockState=" + sockState + ", tel=" + tel + ", userId=" + userId
 				+ ", userName=" + userName + "]";
 	}
+	/**
+	 * 前台修改腿哥信息
+	 * @param ableDistance
+	 * @param address
+	 * @param tel
+	 * @param userId
+	 */
+	public Courier(double ableDistance, String address, String tel, String userId) {
+		super();
+		this.ableDistance = ableDistance;
+		this.address = address;
+		this.tel = tel;
+		this.userId = userId;
+	}
+	
+	
 
 }
