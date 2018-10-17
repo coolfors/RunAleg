@@ -235,40 +235,23 @@
 			<div class="modal-content">
 				<form id="form_data" method="post" action="us.do">
 					<div class="modal-body">
-						<input type="hidden" name="op" value="update" /> <input
-							type="hidden" name="userId" id="userId" />
-						<div class="form-group">
-							<label for="">真实姓名(之后的用户名):</label><input class="form-control"
-								type="text" name="realName" id="realName">
-						</div>
-						<div class="form-group">
-							<label for="">性别:</label> <select id="realSex" name="realSex"
-								class="form-control">
-								<option value="男">男</option>
-								<option value="女">女</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="">手机号:</label> <input class="form-control"
-								type="text" name="realTel" id="realTel">
-						</div>
-						<div class="form-group">
-							<label for="">身份证:</label> <input class="form-control"
-								type="text" name="realIDcard" id="realIDcard">
-						</div>
+						<input type="hidden" name="op" value="toBeCourier" /> 
+						<input type="hidden" name="userId" id="userId" />
 						<div class="form-group ">
 							<label for="">证件照:</label>
 							<!--  <input class="form-control" type="file"
 								name="realIDImg" id="realIDImg"> -->
 							<input id="avatarSlect" type="file">
-							<img id="avatarPreview" src="/static/images/sample.png" title="点击更换图片">
-
+							<!-- <img id="avatarPreview" src="/static/images/sample.png" title="点击更换图片"> -->
 						</div>
 						<div class="form-group">
-							<label for="">地址:</label> <input class="form-control" type="text"
-								name="realAddress" id="realAddress">
+							<label for="">真实姓名(之后的用户名):</label><input class="form-control"
+								type="text" name="realName" id="realName">
 						</div>
-						
+						<div class="form-group">
+							<label for="">身份证:</label> <input class="form-control"
+								type="text" name="realIDcard" id="realIDcard">
+						</div>					
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

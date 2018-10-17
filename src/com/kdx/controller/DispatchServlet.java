@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.kdx.entity.Dispatch;
 import com.kdx.service.DispatchService;
 import com.kdx.serviceImpl.DispatchServiceImpl;
+import com.kdx.util.IDNumber;
 import com.kdx.util.MyDataTableData;
 
 /**
@@ -62,7 +63,7 @@ public class DispatchServlet extends HttpServlet {
 //			 out.print(flag);
 		}
 		else if (op.equals("addDispatch")) {
-			String disId = "nmjkyuxc1";//订单
+			String disId = IDNumber.getIDNumber();//订单
 			String userId = request.getParameter("userId");// 用户id
 
 			String beginAdd = request.getParameter("beginAdd");// 起送地点

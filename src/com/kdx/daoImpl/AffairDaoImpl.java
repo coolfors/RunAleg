@@ -9,6 +9,7 @@ import java.util.UUID;
 import com.kdx.dao.AffairDao;
 import com.kdx.entity.User;
 import com.kdx.util.BaseDao;
+import com.kdx.util.IDNumber;
 import com.kdx.util.UUIDUtils;
 
 public class AffairDaoImpl implements AffairDao {
@@ -28,8 +29,8 @@ public class AffairDaoImpl implements AffairDao {
 				System.out.println(u.getUserName());
 				flag=false;
 			}else {
-				String uuid1=UUIDUtils.getUUID();
-				String uuid2=UUIDUtils.getUUID();
+				String uuid1=IDNumber.getIDNumber();
+				String uuid2=IDNumber.getIDNumber();
 				//执行增加user的操作
 				String sql1 = "insert into user(userId,userName,sockState,userPwd,userType,userdate) values(?,?,0,?,1,?)";
 				BaseDao.execute(sql1, conn,uuid1, u.getUserName(),u.getUserPwd(),u.getUserDate());
