@@ -236,14 +236,12 @@
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="form_data" method="post" action="us.do">
+				<form id="form_data" method="get" action="BeCourier.do">
 					<div class="modal-body">
-						<input type="hidden" name="op" value="toBeCourier" /> <input
-							type="hidden" name="userId" id="userId" />
-						<!-- 显示图片 -->
-						<!-- <div style="width: 80px; height: 60px;">
-							<img id="idImg" src="" />
-						</div> -->
+						<input type="hidden" name="userId" value="${sessionScope.user.useId}"/>
+						<input type="hidden" name="tel" value="${sessionScope.Userinfo.userTel}"  />
+						<input type="hidden" name="address" value="${sessionScope.userinfo.useAdd}"  />
+						<input type="hidden" name="balance" value="${sessionScope.userinfo.userBalance}"  />
 						<div class="form-group ">
 							<label for="">证件照:</label>
 							<img id="idImg" name="idImg" src="" style="width: 80px;height: 60px"  />
@@ -256,6 +254,10 @@
 						<div class="form-group">
 							<label for="">身份证:</label> <input class="form-control"
 								type="text" name="realIDcard" id="realIDcard">
+						</div>
+						<div class="form-group">
+							<label for="">押金:</label><em>500</em>
+							<button class="btn-link" id="pay" name="pay">点击付款</button>
 						</div>
 					</div>
 					<div class="modal-footer">

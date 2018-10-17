@@ -203,6 +203,31 @@ public class Courier implements Serializable {
 		this.tel = tel;
 		this.userId = userId;
 	}
+	/**
+	 * 用户升级为跑腿
+	 * @param courierId
+	 * @param address
+	 * @param balance
+	 * @param iDcard
+	 * @param idImg
+	 * @param tel
+	 * @param userId
+	 * @param userName
+	 */
+	public Courier(String courierId, String address, double balance, String iDcard, String idImg, String tel,
+			String userId, String userName) {
+		super();
+		this.courierId = courierId;
+		this.address = address;
+		this.balance = balance;
+		IDcard = iDcard;
+		this.idImg = idImg;
+		this.tel = tel;
+		this.userId = userId;
+		this.userName = userName;
+	}
+	
+	
 	
 	
 

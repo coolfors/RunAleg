@@ -71,12 +71,12 @@ public class AffairDaoImpl implements AffairDao {
 				BaseDao.execute(sql1, Userinfo.class, cour.getUserId());
 				
 				//执行增加Courier的操作
-				String sql2="insert into courier values(?,?,?,?,?,?,0,?,100,?,?)";
-				BaseDao.execute(sql2, conn, cour.getCourierId(),cour.getUserId(),cour.getDeposit(),cour.getBalance(),cour.getTel(),cour.getAbleDistance(),cour.getIdImg(),cour.getIDcard(),cour.getAddress());
+				String sql2="insert into courier values(?,?,500,?,?,null,0,?,100,?,?)";
+				BaseDao.execute(sql2, conn, cour.getCourierId(),cour.getUserId(),cour.getBalance(),cour.getTel(),cour.getIdImg(),cour.getIDcard(),cour.getAddress());
 				
 				//执行修改user中usertype;
-				String sql3="update user set userType = 2 where userId = ?";
-				BaseDao.execute(sql3, Courier.class, cour.getUserId());			
+				String sql3="update user set userType = 2,userName = ? where userId = ?";
+				BaseDao.execute(sql3, Courier.class, cour.getUserId(),cour.getUserName());			
 				//手动提交
 				conn.commit();
 				flag=true;
