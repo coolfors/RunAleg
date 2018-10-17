@@ -10,11 +10,11 @@ import javax.persistence.*;
 public class Feedback implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int feedbackId;
+	private String feedbackId;
 
 	private String feedbackInfo;
 
-	private int userId;
+	private String userId;
 
 	private String managerAns;
 
@@ -29,11 +29,11 @@ public class Feedback implements Serializable {
 		this.managerAns = managerAns;
 	}
 
-	public int getFeedbackId() {
+	public String getFeedbackId() {
 		return this.feedbackId;
 	}
 
-	public void setFeedbackId(int feedbackId) {
+	public void setFeedbackId(String feedbackId) {
 		this.feedbackId = feedbackId;
 	}
 
@@ -45,15 +45,15 @@ public class Feedback implements Serializable {
 		this.feedbackInfo = feedbackInfo;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-	public Feedback(int feedbackId, String feedbackInfo, int userId, String managerAns) {
+	public Feedback(String feedbackId, String feedbackInfo, String userId, String managerAns) {
 		super();
 		this.feedbackId = feedbackId;
 		this.feedbackInfo = feedbackInfo;

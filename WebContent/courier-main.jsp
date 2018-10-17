@@ -174,7 +174,7 @@
 						</a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a id="waitUpdateReceipt"> <img src="images/tubiao_09.png"
+						<a id="sendReceipt"> <img src="images/tubiao_09.png"
 							class="img-circle">
 							<p>配送中订单</p>
 						</a>

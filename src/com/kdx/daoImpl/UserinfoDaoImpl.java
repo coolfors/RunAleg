@@ -57,7 +57,7 @@ public class UserinfoDaoImpl implements UserinfoDao {
 	}
 	//根据id获取userinfo详细信息  用于前台显示
 	@Override
-	public Userinfo getUserInfo(int userId) {
+	public Userinfo getUserInfo(String userId) {
 		// TODO Auto-generated method stub
 		String sql="select * from userinfo where userid = ?";
 		@SuppressWarnings("unchecked")

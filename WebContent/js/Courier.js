@@ -28,7 +28,7 @@ $(function(){
    			var arr = JSON.parse(jsonStr);
         		var str = "";
    			$.each(arr.data, function(index,a){
-				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href=''>"+(a.disState==0?'已接单':'未接单')+"</a></td></tr>";
+				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href='BuildReceipt.do?op=buildReceipt&'>"+(a.disState==0?'已接单':'未接单')+"</a></td></tr>";
    			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -160,22 +160,93 @@ $(function(){
             }
         });
 	});
+	//显示所有配送中的订单，有手机号码
+	$("#sendReceipt").click(function(){
+	
+		
+		$("#headName").html("配送中的订单");
+		$.ajax({
+            type: "get",
+            url: "CourierServlet.do?op=sendReceipt",
+            data: {username:$("#username").val(),
+            content:$("#content").val()
+               },
+            dataType: "json",
+            success: function(data){
+            	$("thead").html("<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th></tr>");
+        		var jsonStr=JSON.stringify(data);
+        		//alert(jsonStr);
+   			var arr = JSON.parse(jsonStr);
+        		var str = "";
+   			$.each(arr.data, function(index,a){
+				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td></tr>";
+   				   			});
+   			$("tbody").html(str);
+   			layui.use('laypage', function() {
+   				var laypage = layui.laypage;
+
+   				var c = arr.total;
+
+   				var l = arr.pageSize;
+
+   				var p = arr.page;
+
+   				//执行一个laypage实例
+   				laypage.render({
+   					elem : 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+   					,
+   					count : c, //数据总数，从服务端得到
+   					limit : l,
+   					skip : '#5e7cdf',
+   					layout : ['count','prev', 'page', 'next','limit', 'skip', 'refresh' ],
+   					curr : p,
+   					jump : function(obj, first) {
+   						if (!first) {
+   							$.ajax({
+   					             type: "get",
+   					             url: "CourierServlet.do?op=sendReceipt&pageIndex="+obj.curr+"&pageSize="+obj.limit,
+   					            
+   					             dataType: "json",
+   					             success: function(data){
+   					                         $('#resText').empty();   //清空resText里面的所有内容
+   					                         //var html = ''; 
+   					         		var jsonStr=JSON.stringify(data);
+   					         		//alert(jsonStr);
+   					    			var arr = JSON.parse(jsonStr);
+   					    			//alert(arr.page);
+   					         		var str = "";
+   					    			$.each(arr.data, function(index,a){
+   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td></tr>";
+   					    				   					    			});
+   					    			$("tbody").html(str);
+   					    			
+   					             }
+   					         });
+   							//location.href = "CourierServlet.do?op=allDispatch&pageIndex="+obj.curr+"&pageSize="+obj.limit;
+   							
+   						}
+   					}
+   				});
+   			});
+            }
+        });
+	});
 	
 	/**
 	 * 设置一个用于遍历waitreceipt的函数waitUpdateReceipt
 	 */
-	//点击a标签事件，显示所有配送中订单，receipt表
+	/*//点击a标签事件，显示所有配送中订单，receipt表
 	$("#waitUpdateReceipt").click(function(){
 		$("#headName").html("配送中的订单");
 		$.ajax({
             type: "get",
             url: "CourierServlet.do?op=waitUpdateReceipt",
-            /*data: {username:$("#username").val(),
+            data: {username:$("#username").val(),
             content:$("#content").val()
-               },*/
+               },
             dataType: "json",
             success: function(data){
-                       /* $('#resText').empty();*/   //清空resText里面的所有内容
+                        $('#resText').empty();   //清空resText里面的所有内容
                         //var html = ''; 
             	$("thead").html("<tr><th>接单号</th><th>配送员id</th><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th></tr>");
         		var jsonStr=JSON.stringify(data);
@@ -209,12 +280,12 @@ $(function(){
    							$.ajax({
    					             type: "get",
    					             url: "CourierServlet.do?op=waitUpdateReceipt&pageIndex="+obj.curr+"&pageSize="+obj.limit,
-   					             /*data: {username:$("#username").val(),
+   					             data: {username:$("#username").val(),
    					             content:$("#content").val()
-   					                },*/
+   					                },
    					             dataType: "json",
    					             success: function(data){
-   					                        /* $('#resText').empty();*/   //清空resText里面的所有内容
+   					                         $('#resText').empty();   //清空resText里面的所有内容
    					                         //var html = ''; 
    					         		var jsonStr=JSON.stringify(data);
    					         		//alert(jsonStr);
@@ -236,7 +307,7 @@ $(function(){
    			});
             }
         });
-	});
+	});*/
 	/**
 	 * 设置一个用于遍历waitEvaluate的函数waitEvaluate
 	 */

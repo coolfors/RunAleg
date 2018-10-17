@@ -1,14 +1,14 @@
 package com.kdx.entity;
 
 public class Questions {
-	private int qid;
+	private String qid;
 	private String question;
 
-	public int getQid() {
+	public String getQid() {
 		return qid;
 	}
 
-	public void setQid(int qid) {
+	public void setQid(String qid) {
 		this.qid = qid;
 	}
 

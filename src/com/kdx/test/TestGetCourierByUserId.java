@@ -10,7 +10,7 @@ public class TestGetCourierByUserId {
 		// TODO Auto-generated method stub
 		
 		CourierDao cd = new CourierDaoImpl();
-		Courier courier = cd.getCourierById(16);
+		Courier courier = cd.getCourierById("16");
 		System.out.println(courier);
 		
 	}

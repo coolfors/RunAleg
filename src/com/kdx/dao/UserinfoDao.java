@@ -22,7 +22,7 @@ public interface UserinfoDao {
 
 	PageData<Userinfo> queryUserinfoByPage(int page, int pageSize);// 分页
 	
-	Userinfo getUserInfo(int userId);//根据userId获取详细,用于前台显示
+	Userinfo getUserInfo(String userId);//根据userId获取详细,用于前台显示
 	
 	boolean changeState(String userName, int sockState);// 改变状态
 

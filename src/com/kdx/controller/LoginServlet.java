@@ -15,9 +15,11 @@ import javax.servlet.http.HttpSession;
 import com.kdx.entity.Courier;
 import com.kdx.entity.User;
 import com.kdx.entity.Userinfo;
+import com.kdx.service.AffairService;
 import com.kdx.service.CourierService;
 import com.kdx.service.UserService;
 import com.kdx.service.UserinfoService;
+import com.kdx.serviceImpl.AffairServiceImpl;
 import com.kdx.serviceImpl.CourierServiceImpl;
 import com.kdx.serviceImpl.UserServiceImpl;
 import com.kdx.serviceImpl.UserinfoServiceImpl;
@@ -55,7 +57,9 @@ public class LoginServlet extends HttpServlet {
 		//注册表单的传送
 		else if("register".equals(op)) {
 			register(request,response);
-		};
+		}else if(op.equals("exchange")) {
+			exchange(request, response);
+		}
 	}
 
 	/**
@@ -113,6 +117,7 @@ public class LoginServlet extends HttpServlet {
 	protected void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
+		AffairService as=new AffairServiceImpl();
 		//获取表单传送的参数值
 		String userName = request.getParameter("userName");
 		String password =MD5Util.getEncodeByMd5(request.getParameter("password"));
@@ -122,7 +127,7 @@ public class LoginServlet extends HttpServlet {
 		String userDate = df.format( new Date());
 		//创建对象
 		User user = new User(userName, password, userType,userDate);
-		boolean flag = us.addUser(user);
+		boolean flag = as.addUserAndInfo(user);
 		//注册成跳转登录页面
 		if(flag==true)
 		{
@@ -133,5 +138,14 @@ public class LoginServlet extends HttpServlet {
 		}
 				
 	}
+	protected void exchange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession session=request.getSession();
+		session.removeAttribute("User");
+		session.removeAttribute("Userinfo");
+		session.removeAttribute("Courier");
+		response.getWriter().print("<script>location.href='index.jsp';</script>");
+	}
+
 
 }

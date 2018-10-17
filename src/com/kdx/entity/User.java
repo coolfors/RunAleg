@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int userId;//用户id，唯一，无论派单还是跑腿都是唯一的
+	private String userId;//用户id，唯一，无论派单还是跑腿都是唯一的
 
 	private int sockState;//跑腿用户权限
 
@@ -25,11 +25,11 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -89,7 +89,7 @@ public class User implements Serializable {
 	 * @param userPwd
 	 * @param userType
 	 */
-	public User(int userId, int sockState, String userDate, String userName, String userPwd, int userType) {
+	public User(String userId, int sockState, String userDate, String userName, String userPwd, int userType) {
 		super();
 		this.userId = userId;
 		this.sockState = sockState;
@@ -137,7 +137,7 @@ public class User implements Serializable {
 		this.userDate = userDate;
 	}
 
-	public User(int userId, String userDate, String userName) {
+	public User(String userId, String userDate, String userName) {
 		super();
 		this.userId = userId;
 		this.userDate = userDate;
