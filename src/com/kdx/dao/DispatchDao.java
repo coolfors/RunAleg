@@ -8,7 +8,7 @@ import com.kdx.util.PageData;
 public interface DispatchDao {
 	List<Dispatch> getDispatch();
 
-	boolean addDispatch(Dispatch dis);
+	boolean addDispatch(Dispatch dis);//添加订单
 
 	boolean updateDispatch(Dispatch dis);
 

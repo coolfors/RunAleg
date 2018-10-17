@@ -10,7 +10,9 @@ import com.kdx.util.PageData;
 
 public class DispatchServiceImpl implements DispatchService {
 	DispatchDao dd = new DispatchDaoImpl();
-
+	/**
+	 * 添加订单
+	 */
 	@Override
 	public boolean addDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
