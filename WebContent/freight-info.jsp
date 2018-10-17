@@ -18,10 +18,12 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css">
 <link rel="stylesheet" href="css/LocationRange.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/freight-info.css">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>  
+<script src="http://api.map.baidu.com/api?v=2.0&ak=Dc8o3GUube9RVOhmeuuhfNL9QRyzhuaj" type="text/javascript"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
-<![endif]-->
+<![endif]--> 
 </head>
 <body>
 	<!--顶部-开始-->
@@ -279,6 +281,31 @@ $(document).ready(function() {
 	$("#toModal").hide();
 
 });
+
+ /*  定位*/
+ $(function(){    
+     //创建百度地图控件  
+     var geolocation = new BMap.Geolocation();  
+     geolocation.getCurrentPosition(function(r){  
+         if(this.getStatus() == BMAP_STATUS_SUCCESS){  
+             //以指定的经度与纬度创建一个坐标点  
+             var pt = new BMap.Point(r.point.lng,r.point.lat);  
+             //创建一个地理位置解析器  
+             var geoc = new BMap.Geocoder();  
+             geoc.getLocation(pt, function(rs){//解析格式：城市，区县，街道  
+                 var addComp = rs.addressComponents;  
+                 //默认当前起始点和终点地址为当前设备位置
+      $("#beginAdd").val(addComp.city + ", " + addComp.district + ", " + addComp.street);
+      $("#endAdd").val(addComp.city + ", " + addComp.district + ", " + addComp.street)
+      
+             });      
+         }  
+         else {  
+             $(ev.currentTarget).text('定位失败');  
+         }          
+     },{enableHighAccuracy: true})//指示浏览器获取高精度的位置，默认false  
+     
+});  
 </script>
 	<script src="js/jquery_002_002.js" type="text/javascript"></script>
 	<script src="js/areaData1.js" type="text/javascript"></script>
