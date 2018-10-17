@@ -81,7 +81,7 @@ public class CourierServlet extends HttpServlet {
 		else if(op.equals("sendReceipt")) {
 			sendReceipt(request, response);
 		}
-		else if (op.equals("updateCourierMessage")) {
+		else if (op.equals("xiugai")) {
 			updateCourierMessage(request,response);
 		}
 
@@ -211,9 +211,9 @@ public class CourierServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	protected void sendReceipt(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {/*
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int page = 1;
+/*		int page = 1;
 		int pageSize = 10;
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
@@ -223,8 +223,8 @@ public class CourierServlet extends HttpServlet {
 		String data = gson.toJson(pd);
 		// System.out.println(data);
 		request.setAttribute("dataJson", data);
-		response.getWriter().println(data);
-	*/}
+		response.getWriter().println(data);*/
+	}
 
 	/**
 	 * 未评价订单，表evaluate
@@ -304,6 +304,9 @@ public class CourierServlet extends HttpServlet {
 		Courier cour = new Courier(Double.parseDouble(ableDistance), address, tel, userId);
 		boolean flag = cs.updateCourierInForward(cour);
 		if(flag) {
+			request.getSession().removeAttribute("Courier");
+			Courier courier = cs.getCourierById(cour.getUserId());
+			request.getSession().setAttribute("Courier", courier);
 			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 		}
 	}

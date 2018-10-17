@@ -66,12 +66,12 @@ public class AffairDaoImpl implements AffairDao {
 				// 在java中可以对支持事务的数据库完成事务的处理
 				conn.setAutoCommit(false);
 				//执行删除userinfo操作
-				String sql1 = "delete from userinfo where userId = ?";
-				BaseDao.execute(sql1, conn, cour.getUserId());
+//				String sql1 = "delete from userinfo where userId = ?";
+//				BaseDao.execute(sql1, conn, cour.getUserId());
 				
 				//执行增加Courier的操作
-				String sql2="insert into courier values(?,?,500,?,?,null,0,null,100,?,?)";
-				BaseDao.execute(sql2, conn, cour.getCourierId(),cour.getUserId(),cour.getBalance(),cour.getTel(),cour.getIDcard(),cour.getAddress());
+				String sql2="insert into courier values(?,?,500,?,?,null,0,?,100,?,?)";
+				BaseDao.execute(sql2, conn, cour.getCourierId(),cour.getUserId(),cour.getBalance(),cour.getTel(),cour.getIdImg(),cour.getIDcard(),cour.getAddress());
 				
 				//执行修改user中usertype;
 				String sql3="update user set userType = 2,userName = ? where userId = ?";

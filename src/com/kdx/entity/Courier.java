@@ -214,14 +214,14 @@ public class Courier implements Serializable {
 	 * @param userId
 	 * @param userName
 	 */
-	public Courier(String courierId, String address, double balance, String iDcard, String tel,
+	public Courier(String courierId, String address, double balance, String iDcard, String tel,String idImg,
 			String userId, String userName) {
 		super();
 		this.courierId = courierId;
 		this.address = address;
 		this.balance = balance;
 		IDcard = iDcard;
-//		this.idImg = idImg;
+		this.idImg = idImg;
 		this.tel = tel;
 		this.userId = userId;
 		this.userName = userName;

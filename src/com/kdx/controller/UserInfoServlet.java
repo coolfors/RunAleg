@@ -106,19 +106,18 @@ public class UserInfoServlet extends HttpServlet {
 		
 		
 		if (("userinfoEdit").equals(op)){
-			
+			request.getSession().removeAttribute("");
 			String userInfoId = request.getParameter("userInfoId");
 			String userInfoSex = request.getParameter("sexInfo");
 			String userTel = request.getParameter("userTelInfo");
-			String userAdd = request.getParameter("userAddInfo");
-			
-			Userinfo editInfo = new Userinfo(userInfoId,userTel, userAdd, userInfoSex);
-			
+			String userAdd = request.getParameter("userAddInfo");			
+			Userinfo editInfo = new Userinfo(userInfoId,userTel, userAdd, userInfoSex);		
 			// userDate, userName, userPwd,
 			// Integer.valueOf(userType));
 			boolean flag = uis.updateUserinfoByQt(editInfo);
-			
 			if(flag) {
+				request.getSession().removeAttribute("Userinfo");
+				request.getSession().setAttribute("Userinfo",editInfo);
 				request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 			}
 		}
