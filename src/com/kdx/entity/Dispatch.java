@@ -110,13 +110,13 @@ public class Dispatch implements Serializable {
 	}
 
 	/**
-	 * 鏃犲弬鏋勯��
+	 * 无参构造
 	 */
 	public Dispatch() {
 	}
 
 	/**
-	 * 鏄剧ず鍏ㄩ儴娲惧崟淇℃伅
+	 * 
 	 * 
 	 * @param disId
 	 * @param userId
@@ -140,6 +140,33 @@ public class Dispatch implements Serializable {
 		this.disTel = disTel;
 		this.endAdd = endAdd;
 		this.goodsType = goodsType;
+	}
+	
+	
+	/**
+	 * 用户下单
+	 * @param disId
+	 * @param userId
+	 * @param beginAdd
+	 * @param endAdd
+	 * @param disTel
+	 * @param disPrice
+	 * @param goodsType
+	 * @param disPS
+	 * @param disState
+	 */
+	public Dispatch(String disId, String userId, String beginAdd, String endAdd, int disTel, double disPrice,
+			String goodsType, String disPS, int disState) {
+		super();
+		this.disId = disId;
+		this.userId = userId;
+		this.beginAdd = beginAdd;
+		this.endAdd = endAdd;
+		this.disTel = disTel;
+		this.disPrice = disPrice;
+		this.goodsType = goodsType;
+		this.disPS = disPS;
+		this.disState = disState;
 	}
 
 	@Override
