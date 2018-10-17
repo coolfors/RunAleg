@@ -33,5 +33,5 @@ public interface UserDao {
 	
 	boolean resetPwd(int userId, String userPwd);//重置密码
 	
-
+	List<User> againPwd(String userId);
 }

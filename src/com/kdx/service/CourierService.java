@@ -19,4 +19,7 @@ public interface CourierService {
 	String getCourierAdd(String courierId);
 	
 	boolean updateAdd(String courierId,String add);//更新courier的当前位置信息
+
+	//前台修改腿哥信息
+	boolean updateCourierInForward(Courier cour);
 }

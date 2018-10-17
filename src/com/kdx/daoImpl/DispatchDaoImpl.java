@@ -14,7 +14,7 @@ public class DispatchDaoImpl implements DispatchDao {
 	@Override
 	public boolean addDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
-		return BaseDao.execute("insert into dispatch values(null,?,?,?,?," + "?,?,?,?)", dis.getUserId(),
+		return BaseDao.execute("insert into dispatch values(?,?,?,?,?,?,?,?,?)", dis.getDisId(),dis.getUserId(),
 				dis.getBeginAdd(), dis.getEndAdd(), dis.getDisTel(), dis.getDisPrice(), dis.getGoodsType(),
 				dis.getDisPS(), dis.getDisState()) > 0;
 	}

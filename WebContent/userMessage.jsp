@@ -134,19 +134,19 @@
 						<strong>基本信息</strong>
 						<!-- 管理员信息显示修改 -->
 						<form action="" method="post">
-						
+
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="mgrsex" id="mgrsex">
-										<option value="">--请选择性别--</option>
+										<option value="">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value="女">女</option>
 								</select></li>
-								<li><span>手机：</span> <input name="mgrTel" type="text" placeholder="${sessionScope.Userinfo.userTel}">
-								</li>
-								<li><span>地址：</span> <input name="mgrAdd" type="text" placeholder="${sessionScope.Userinfo.userTel}">
-								</li>
+								<li><span>手机：</span> <input name="mgrTel" type="text"
+									placeholder="${sessionScope.Userinfo.userTel}"></li>
+								<li><span>地址：</span> <input name="mgrAdd" type="text"
+									placeholder="${sessionScope.Userinfo.userTel}"></li>
 								<li>
 									<button class="submit">保存</button>
 								</li>
@@ -167,19 +167,20 @@
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
 						<form action="UserInfoServlet?op=userinfoEdit" method="post">
-							<input type="hidden" name="userInfoId" value="${sessionScope.User.userId}"/>
+							<input type="hidden" name="userInfoId"
+								value="${sessionScope.User.userId}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="sexInfo" id="sex">
-										<option value="">--请选择性别--</option>
+										<option value="">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value="女">女</option>
 								</select></li>
 								<li><span>手机：</span> <input name="userTelInfo" type="text"
 									value="${sessionScope.Userinfo.userTel}"></li>
-								<li><span>常用地址：</span> <input name="userAddInfo" type="text"
-									value="${sessionScope.Userinfo.userAdd}"></li>
+								<li><span>常用地址：</span> <input name="userAddInfo"
+									type="text" value="${sessionScope.Userinfo.userAdd}"></li>
 								<li>
 									<button class="submit">修改</button>
 								</li>
@@ -199,17 +200,19 @@
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
-						<form action="" method="post">
+						<form action="CourierServlet.do?op=updateCourierMessage"
+							method="get">
+							<input type="hidden" name="courierId"
+								value="${sessionScope.User.userId}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="couriersex" id="sex">
-										<option value="">--请选择性别--</option>
+										<option value="">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value=女">女</option>
 								</select></li>
-								<li><span>身份证：</span> <input name="IDcard" type="text"
-									placeholder="${sessionScope.Courier.IDcard}"></li>
+								<li><span>身份证：</span> <em>${sessionScope.Courier.IDcard}</em></li>
 								<li><span>手机：</span> <input name="courierTel" type="text"
 									placeholder="${sessionScope.Courier.tel}"></li>
 								<li><span>地址：</span> <input name="courierAdd" type="text"
@@ -238,42 +241,29 @@
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="form_data" method="post" action="us.do">
+				<form id="form_data" method="get" action="BeCourier.do">
 					<div class="modal-body">
-						<input type="hidden" name="op" value="update" /> <input
-							type="hidden" name="userId" id="userId" />
+						<input type="hidden" name="userId" value="${sessionScope.user.useId}"/>
+						<input type="hidden" name="tel" value="${sessionScope.Userinfo.userTel}"  />
+						<input type="hidden" name="address" value="${sessionScope.userinfo.useAdd}"  />
+						<input type="hidden" name="balance" value="${sessionScope.userinfo.userBalance}"  />
+						<div class="form-group ">
+							<label for="">证件照:</label>
+							<img id="idImg" name="idImg" src="" style="width: 80px;height: 60px"  />
+							<input type="file" id="selectImg" onchange="fun(this)"/>
+						</div>
 						<div class="form-group">
-							<label for="">真实姓名(之后的用户名):</label><input class="form-control"
+							<label for="">真实姓名:</label><input class="form-control"
 								type="text" name="realName" id="realName">
-						</div>
-						<div class="form-group">
-							<label for="">性别:</label> <select id="realSex" name="realSex"
-								class="form-control">
-								<option value="男">男</option>
-								<option value="女">女</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="">手机号:</label> <input class="form-control"
-								type="text" name="realTel" id="realTel">
 						</div>
 						<div class="form-group">
 							<label for="">身份证:</label> <input class="form-control"
 								type="text" name="realIDcard" id="realIDcard">
 						</div>
-						<div class="form-group ">
-							<label for="">证件照:</label>
-							<!--  <input class="form-control" type="file"
-								name="realIDImg" id="realIDImg"> -->
-							<input id="avatarSlect" type="file">
-							<img id="avatarPreview" src="/static/images/sample.png" title="点击更换图片">
-
-						</div>
 						<div class="form-group">
-							<label for="">地址:</label> <input class="form-control" type="text"
-								name="realAddress" id="realAddress">
+							<label for="">押金:</label><em>500</em>
+							<button class="btn-link" id="pay" name="pay">点击付款</button>
 						</div>
-						
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -325,8 +315,18 @@
 		</div>
 	</div>
 	<!--尾部-结束-->
+<<<<<<< HEAD
 	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
+=======
+	<script type="text/javascript">
+		
+		 function fun(o){
+		 	document.getElementById("idImg").src=window.URL.createObjectURL(o.files[0]);
+		 }
+		
+	</script>
+>>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
 </body>
 </html>

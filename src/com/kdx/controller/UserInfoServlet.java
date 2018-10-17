@@ -119,8 +119,7 @@ public class UserInfoServlet extends HttpServlet {
 			boolean flag = uis.updateUserinfoByQt(editInfo);
 			
 			if(flag) {
-				out.print("<script>alert('修改成功！');location.href='userMessage.jsp'</script>");
-				out.close();
+				request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 			}
 		}
 	}

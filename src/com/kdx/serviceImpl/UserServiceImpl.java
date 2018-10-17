@@ -87,5 +87,11 @@ public class UserServiceImpl implements UserService {
 		return ud.resetPwd(userId, userPwd);
 	}
 
+	@Override
+	public List<User> againPwd(String userId) {
+		// TODO Auto-generated method stub
+		return ud.againPwd(userId);
+	}
+
 
 }

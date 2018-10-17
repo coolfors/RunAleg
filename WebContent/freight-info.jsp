@@ -229,7 +229,11 @@ $(document).ready(function() {
                     <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 						<button id="doPay" name="doPay" type="submit"
-							class="btn btn-secondary" data-dismiss="modal">确认支付</button>
+
+							cclass="btn btn-secondary" data-dismiss="modal" onclick="pay(surePwd)">确认支付</button>
+
+							
+
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->
@@ -288,6 +292,15 @@ $(document).ready(function() {
 	<script src="js/messages_zh.js"></script>
 
 <script type="text/javascript">
+<<<<<<< HEAD
+=======
+$(document).ready(function() {
+
+	$("#toModal").hide();
+
+});
+
+>>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
  /*  定位*/
  $(function(){    
      //创建百度地图控件  
@@ -313,6 +326,7 @@ $(document).ready(function() {
      
 });  
 </script>
+<<<<<<< HEAD
 	<script src="js/jquery_002_002.js" type="text/javascript"></script>
 	<script src="js/areaData1.js" type="text/javascript"></script>
 	<script src="js/LocationRange.js" type="text/javascript"></script>
@@ -321,5 +335,28 @@ $(document).ready(function() {
 	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
+=======
+<script>
+
+/**
+ * 判断用户是否在登录状态
+ */
+	$("#sure").click(function(){
+		var  u = $("#userId").val();
+		console.log(u);
+		if(u==""){
+			alert('请先登录再下单');
+			window.location.href="login.html";
+		}
+	});
+
+
+</script>
+	<script src="js/jquery_002_002.js" type="text/javascript"></script>
+	<script src="js/areaData1.js" type="text/javascript"></script>
+	<script src="js/LocationRange.js" type="text/javascript"></script>
+	<script src="js/jquery_003.js" type="text/javascript"></script>
+	<script src="js/freight.js" type="text/javascript"></script>
+>>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.kdx.service;
 
+import com.kdx.entity.Courier;
 import com.kdx.entity.User;
 
 public interface AffairService {
@@ -16,4 +17,7 @@ public interface AffairService {
 	 * @return
 	 */
 	boolean buildeReceipt(String disId,String courierId,double getGoodsDistance,double sendGoodsDistance);
+
+	//升级为Courier
+		boolean toBeCourier(Courier cour);
 }
