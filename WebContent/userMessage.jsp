@@ -194,17 +194,17 @@
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
-						<form action="" method="post">
+						<form action="CourierServlet.do?op=updateCourierMessage" method="get">
+						<input type="hidden" name="courierId" value="${sessionScope.User.userId}"/>
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
 								<li><span>性别：</span> <select name="couriersex" id="sex">
-										<option value="">--请选择性别--</option>
+										<option value="">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value=女">女</option>
 								</select></li>
-								<li><span>身份证：</span> <input name="IDcard" type="text"
-									placeholder="${sessionScope.Courier.IDcard}"></li>
+								<li><span>身份证：</span> <em>${sessionScope.Courier.IDcard}</em></li>
 								<li><span>手机：</span> <input name="courierTel" type="text"
 									placeholder="${sessionScope.Courier.tel}"></li>
 								<li><span>地址：</span> <input name="courierAdd" type="text"
