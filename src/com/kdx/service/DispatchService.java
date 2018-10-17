@@ -16,4 +16,6 @@ public interface DispatchService {
 	PageData<Dispatch> queryDispatch(int page, int pageSize);
 
 	PageData<Dispatch> waitSendDispatch(int page, int pageSize);
+	
+	List<String> getBeginAndEnaAdd(String disId);
 }

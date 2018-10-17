@@ -17,4 +17,8 @@ public interface CourierDao {
 	
 	//根据id,获取courier全部信息，用于前台显示
 	Courier getCourierById(String userId);
+	
+	String getCourierAdd(String courierId);
+	
+	boolean updateAdd(String courierId,String add);
 }

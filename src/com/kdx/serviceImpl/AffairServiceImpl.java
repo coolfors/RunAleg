@@ -12,5 +12,10 @@ public class AffairServiceImpl implements AffairService {
 		// TODO Auto-generated method stub
 		return ad.addUserAndInfo(u);
 	}
+	@Override
+	public boolean buildeReceipt(String disId, String courierId,double getGoodsDistance,double sendGoodsDistance) {
+		// TODO Auto-generated method stub
+		return ad.buildeReceipt(disId, courierId,getGoodsDistance,sendGoodsDistance);
+	}
 
 }
