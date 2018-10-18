@@ -12,7 +12,7 @@ public class Receipt_aboutServiceImpl implements Receipt_aboutService {
 	 * courier配送中	
 	 */
 	@Override
-	public PageData<Receipt_about> sendReceipt(int page, int pageSize,int  courierId) {
+	public PageData<Receipt_about> sendReceipt(int page, int pageSize,String  courierId) {
 		// TODO Auto-generated method stub
 		return rad.sendReceipt(page, pageSize,courierId);
 	}
@@ -20,7 +20,7 @@ public class Receipt_aboutServiceImpl implements Receipt_aboutService {
 	 * courier待配送
 	 */
 	@Override
-	public PageData<Receipt_about> waitsendReceipt(int page, int pageSize, int courierId) {
+	public PageData<Receipt_about> waitsendReceipt(int page, int pageSize, String courierId) {
 	// TODO Auto-generated method stub
 	return rad.waitsendReceipt(page, pageSize, courierId);
 	}

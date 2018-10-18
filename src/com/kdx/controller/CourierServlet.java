@@ -177,7 +177,7 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
-		int  courierId=Integer.valueOf(request.getParameter("courierId"));
+		String  courierId=request.getParameter("courierId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
@@ -225,7 +225,7 @@ public class CourierServlet extends HttpServlet {
 		int page = 1;
 		int pageSize = 10;
 		
-		int  courierId=Integer.valueOf(request.getParameter("courierId"));
+		String  courierId=request.getParameter("courierId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}

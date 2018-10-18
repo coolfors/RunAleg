@@ -11,7 +11,7 @@ $(function(){
 			var arr = JSON.parse(data);
 			var str = "";
 			$.each(arr.data,function(index,a){
-				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href=''>"+(a.disState==0?'已接单':'未接单')+"</a></td></tr>";
+				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href=''>"+(a.disState==0?'已接单':'未接单')+"</a></td><td><button href=''>查看位置</button></td></tr>";
 			});
 			$("tbody").html(str);
 		});
@@ -21,12 +21,12 @@ $(function(){
 	 * 这边条件还没修改 待配送订单-dispatch中disState为0 的内容
 	 */
 	$("#waitSendDispatch").click(function(){
-		$("thead").html("<tr><th>派单id</th><th>用户id</th><th>起送地</th><th>到达地</th><th>用户联系电话</th><th>配送价格</th><th>物品类型</th><th>物品介绍</th><th>派单状态</th></tr>");
+		$("thead").html("<tr><th>派单id</th><th>用户id</th><th>起送地</th><th>到达地</th><th>用户联系电话</th><th>配送价格</th><th>物品类型</th><th>物品介绍</th><th>派单状态</th><th>查看位置</th></tr>");
 		$.get("us.action?op=waitSendDispatch",function(data,status){
 			var arr = JSON.parse(data);
 			var str = "";
 			$.each(arr.data,function(index,a){
-				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href=''>"+(a.disState==0?'待配送订单':'未接单')+"</a></td></tr>";
+				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href=''>"+(a.disState==0?'待配送订单':'未接单')+"</a></td><td><button href=''>查看位置</button></td></tr>";
 			});
 			$("tbody").html(str);
 		});
