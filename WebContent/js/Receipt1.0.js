@@ -163,9 +163,10 @@ $(function () {
 	 */
 	$("#allDispatch").click(function(){
 		$("#headName").html("所有订单");
+		var userId=$("#userId").val();
 		$.ajax({
 	             type: "get",
-	             url: "rs.do?op=allDispatch",
+	             url: "rs.do?op=allDispatch&userId="+userId,
 	             /*data: {username:$("#username").val(),
 	             content:$("#content").val()
 	                },*/
