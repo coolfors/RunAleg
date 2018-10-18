@@ -17,4 +17,5 @@ public interface DispatchDao {
 	PageData<Dispatch> waitSendDispatch(int page, int pageSize);// 待配送订单
 	
 	List<String> getBeginAndEnaAdd(String disId);
+	PageData<Dispatch> queryDispatch(int page,int pageSize,int userId);//user 用户的所有订单(显示自己的所有订单)
 }

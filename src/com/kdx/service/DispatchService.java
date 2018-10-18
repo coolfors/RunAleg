@@ -18,4 +18,5 @@ public interface DispatchService {
 	PageData<Dispatch> waitSendDispatch(int page, int pageSize);
 	
 	List<String> getBeginAndEnaAdd(String disId);
+	PageData<Dispatch> queryDispatch(int page,int pageSize,int userId);//user 用户的所有订单(显示自己的所有订单)
 }

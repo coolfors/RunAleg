@@ -165,6 +165,7 @@
 			});
 		</script> -->
 	</div>
+	<input type="hidden" id="UserId" name="UserId" value="${sessionScope.User.userId}"/>
 	<!-- <div class="container">
 		货源地图
 		<h3>送单详情</h3>
