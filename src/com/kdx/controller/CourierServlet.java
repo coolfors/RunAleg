@@ -2,6 +2,7 @@ package com.kdx.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -89,8 +90,31 @@ public class CourierServlet extends HttpServlet {
 		}
 		else if (op.equals("xiugai")) {
 			updateCourierMessage(request,response);
+		}else if("getState".equals(op)) {
+			getState(request,response);
 		}
 
+	}
+
+	private void getState(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+
+		String receiptId = request.getParameter("receiptId");
+		System.out.println(receiptId);
+		String disId = request.getParameter("disId");
+		System.out.println(disId);
+		
+		
+		boolean flag = rs.changeState(disId, receiptId);
+		
+		PrintWriter out = response.getWriter();
+
+		out.print(flag);
+
+		out.close();
 	}
 
 	/**

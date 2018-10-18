@@ -24,5 +24,7 @@ public interface ReceiptDao {
 	PageData<Receipt> waitUpdateReceipt(int page, int pageSize);// 待修改订单
 
 	PageData<Receipt> Receiptdispatch(int page, int pageSize);// 配送中的订单
+	
+	boolean changeState(String disId,String receiptId);
 
 }
