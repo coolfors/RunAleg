@@ -132,5 +132,13 @@ public class UserDaoImpl implements UserDao {
 		return (List<User>) BaseDao.select(sql, User.class, userId);
 		
 	}
+	
+	//根据用户名查找用户类型
+	@Override
+	public List<User> findUserType(String userName) {
+		// TODO Auto-generated method stub
+		String sql = "select * from user where userName = ?";
+		return (List<User>) BaseDao.select(sql, User.class, userName);
+	}
 
 }

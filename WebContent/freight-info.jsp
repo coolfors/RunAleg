@@ -345,7 +345,6 @@ $(document).ready(function() {
  */
 	$("#sure").click(function(){
 		var  u = $("#userId").val();
-		console.log(u);
 		if(u==""){
 			alert('请先登录再下单');
 			window.location.href="login.html";

@@ -34,4 +34,6 @@ public interface UserDao {
 	boolean resetPwd(int userId, String userPwd);//重置密码
 	
 	List<User> againPwd(String userId);
+	
+	List<User> findUserType(String userName);//根据用户名查找用户类型
 }

@@ -93,5 +93,11 @@ public class UserServiceImpl implements UserService {
 		return ud.againPwd(userId);
 	}
 
+	//根据用户名查找用户类型
+	@Override
+	public List<User> findUserType(String userName) {
+		// TODO Auto-generated method stub
+		return ud.findUserType(userName);
+	}
 
 }

@@ -36,5 +36,6 @@ public interface UserService {
 	User getUserById(String userId);
 	
 	List<User> againPwd(String userId);
+	List<User> findUserType(String userName);//根据用户名查找用户类型
 } 
 
