@@ -37,6 +37,7 @@ public class ReceiptServlet extends HttpServlet {
 	private DispatchService ds = new DispatchServiceImpl();
 	private EvaluateService es = new EvaluateServiceImpl();
 	private UserService us = new UserServiceImpl();
+	private ReceiptService ras=new ReceiptServiceImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -131,7 +132,7 @@ public class ReceiptServlet extends HttpServlet {
 
 	/**
 	 * 用户界面配送中的订单
-	 * 
+	 * user配送中的订单(根据用户自己的userId来查询)
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -142,10 +143,11 @@ public class ReceiptServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 6;
+		String userId=request.getParameter("userId");
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		PageData<Receipt> pd = rs.Receiptdispatch(page, pageSize);
+		PageData<Receipt> pd = rs.sendReceipt(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
@@ -155,7 +157,7 @@ public class ReceiptServlet extends HttpServlet {
 
 	/**
 	 * 所有订单-dispatch自己的所有订单
-	 * 
+	 * user 用户的所有订单(显示自己的所有订单)
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -167,7 +169,7 @@ public class ReceiptServlet extends HttpServlet {
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
-		int  userId=Integer.valueOf(request.getParameter("userId"));
+		String   userId=request.getParameter("userId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
@@ -195,6 +197,7 @@ public class ReceiptServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
+		String  userId=request.getParameter("userId");
 		// 如果用户传递的参数不为空
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -202,7 +205,7 @@ public class ReceiptServlet extends HttpServlet {
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Dispatch> pd = ds.waitSendDispatch(page, pageSize);
+		PageData<Receipt> pd = ras.waitSendReceipt(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);

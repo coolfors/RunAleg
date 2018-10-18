@@ -29,6 +29,26 @@ public class ReceiptServiceImpl implements ReceiptService {
 		return rd.queryReceiptcom(page, pageSize);
 	}
 
+	/**
+	 * 
+	 * user待送订单(根据用户自己的userId来查询)
+	 */
+
+	@Override
+	public PageData<Receipt> waitSendReceipt(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		return rd.waitSendReceipt(page, pageSize, userId);
+	}
+
+	/**
+	 * user配送中的订单(根据用户自己的userId来查询)
+	 */
+	@Override
+	public PageData<Receipt> sendReceipt(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		return rd.sendReceipt(page, pageSize, userId);
+	}
+
 	@Override
 	public boolean updateReceipt(Receipt r) {
 		// TODO Auto-generated method stub
@@ -72,9 +92,9 @@ public class ReceiptServiceImpl implements ReceiptService {
 	}
 
 	@Override
-	public boolean changeState(String disId , String receiptId) {
+	public boolean changeState(String disId, String receiptId) {
 		// TODO Auto-generated method stub
-		return rd.changeState(disId,receiptId);
+		return rd.changeState(disId, receiptId);
 	}
 
 }

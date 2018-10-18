@@ -82,7 +82,26 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		PageData<Receipt> pd = BaseDao.getPage(sql, page, pageSize, Receipt.class);
 		return pd;
 	}
-
+	/**
+	 * user待送订单(根据用户自己的userId来查询)
+	 */
+	@Override
+	public PageData<Receipt> waitSendReceipt(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		String sql="SELECT receipt.disId, courier.tel, receipt.encryptionKey, receipt.startTime, receipt.endTime, receipt.courierAdd, receipt.state, receipt.getDistance, receipt.sendDistance FROM receipt INNER JOIN courier ON receipt.courierId = courier.courierId WHERE receipt.state=0 and courier.userId=?";
+		return BaseDao.getPage(sql, page, pageSize, Receipt.class, userId);
+	}
+	/**
+	 *  user配送中的订单(根据用户自己的userId来查询)
+	 *   
+	 */
+	@Override
+	public PageData<Receipt> sendReceipt(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		String sql="SELECT receipt.disId, courier.tel, receipt.encryptionKey, receipt.startTime, receipt.endTime, receipt.courierAdd, receipt.state, receipt.getDistance, receipt.sendDistance FROM receipt INNER JOIN courier ON receipt.courierId = courier.courierId WHERE receipt.state=1 and courier.userId=?";
+		
+		return BaseDao.getPage(sql, page, pageSize, Receipt.class, userId);
+	}
 	/**
 	 * 待修改订单，订单状态为1
 	 */
