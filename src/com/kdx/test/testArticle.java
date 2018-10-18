@@ -3,12 +3,15 @@ package com.kdx.test;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.kdx.entity.Article;
 import com.kdx.service.ArticleService;
 import com.kdx.serviceImpl.ArticleServiceImpl;
 import com.kdx.util.PageData;
+import com.kdx.util.UUIDUtils;
 
 public class testArticle {
 
@@ -20,8 +23,19 @@ public class testArticle {
 		Article al =us.queryByIdArticle(16);
 		System.out.println(al.getContent());*/
 
-		System.out.println(createHtml("aa", "11")); 
+//		System.out.println(createHtml("aa", "11")); 
 		
+		String article = "文章的内容";
+		String articleId = "sss";
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String articledate = df.format( new Date());
+		String title = "如何成为快递侠";
+		//添加数据到数据库
+		String uuid=UUIDUtils.getUUID();
+		Article at = new Article(uuid,articledate, title, article);
+		ArticleService as = new ArticleServiceImpl();
+		boolean flag  = as.addArticle(at);
+		System.out.println(flag);
 	}
 	public static boolean createHtml(String content,String id){
 
