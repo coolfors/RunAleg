@@ -60,9 +60,9 @@ public class FeedBackServlet extends HttpServlet {
 		String neirong=request.getParameter("neirong");
 		UserService us=new UserServiceImpl();
 		FebackService fs=new FebackServiceImpl();
-		User u=us.getUserById(UserId);
+		User u=us.getUserById(UserId);//feedbackId
 		String uuid=UUIDUtils.getUUID();
-		Feedback f=new Feedback(uuid, neirong, u.getUserId(),null);
+		Feedback f=new Feedback(uuid, neirong, UserId, null);
 		boolean flag=fs.addFeback(f);
 		if(flag) {
 			response.getWriter().print("<script>alert('感谢您的留言！');location.href='contact-us.jsp'</script>");
@@ -84,7 +84,7 @@ public class FeedBackServlet extends HttpServlet {
 			pageSize="5";
 		}
 		FebackService fs=new FebackServiceImpl();
-		PageData<Feedback> pd=fs.queryFebackByPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize), Integer.parseInt(UserId));
+		PageData<Feedback> pd=fs.queryFebackByPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize), UserId);
 		request.setAttribute("pd", pd);
 		request.getRequestDispatcher("contact-us.jsp").forward(request, response);
 	}

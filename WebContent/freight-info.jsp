@@ -221,7 +221,7 @@
                     <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 						<button id="doPay" name="doPay" type="submit"
-							class="btn btn-secondary" data-dismiss="modal">确认支付</button>
+							class="btn btn-secondary" data-dismiss="modal" onclick="pay(surePwd)">确认支付</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->

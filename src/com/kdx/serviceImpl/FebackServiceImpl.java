@@ -27,7 +27,7 @@ public class FebackServiceImpl implements FebackService {
 	}
 
 	@Override
-	public PageData<Feedback> queryFebackByPage(int page, int pageSize,int userId) {
+	public PageData<Feedback> queryFebackByPage(int page, int pageSize,String userId) {
 		// TODO Auto-generated method stub
 		return fd.queryFebackByPage(page, pageSize,userId);
 	}

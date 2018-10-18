@@ -30,11 +30,15 @@
 <script src="plugin/datatables/jquery.dataTables.min.js"></script>
 <!--<script src="dt.js"></script>-->
 <!--http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js-->
-<script src="plugin/datatables/dataTables.bootstrap.js"></script>
+<script type="text/javascript" language="javascript"
+	src="plugin/datatables/dataTables.bootstrap.js"></script>
 <!--http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js-->
 <script src="plugin/datatables/bootstrap.min.js"></script>
 <script src="plugin/date/bootstrap-datetimepicker.min.js"></script>
 <script src="plugin/handlebars-v3.0.1.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/messages_zh.js"></script>
 <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -52,10 +56,10 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div>
-		用户名：<input type="text" class="form-control"
-			placeholder="请输入关键字查询" data-column="2" id="col2_filter"> <br>
-		类 型：<input type="text" class="form-control"
-			placeholder="请输入关键字查询" data-column="5" id="col5_filter">
+		用户名：<input type="text" class="form-control" placeholder="请输入关键字查询"
+			data-column="2" id="col2_filter"> <br> 类 型：<input
+			type="text" class="form-control" placeholder="请输入关键字查询"
+			data-column="5" id="col5_filter">
 		<hr>
 		<table id="example" class="table table-striped table-bordered">
 			<thead>
@@ -79,47 +83,53 @@
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">新增</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<input type="text" class="form-control" id="userInfoId"
-							placeholder="用户信息编号">
+				<form id="commentForm" novalidate="novalidate">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">完善用户信息</h4>
 					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userName"
-							placeholder="用户名">
+					<div class="modal-body">
+						<div class="form-group hid">
+							<label for="userInfoId ">用户信息编号:</label> <input type="text"
+								class="form-control" id="userInfoId" name="userInfoId"
+								placeholder="用户信息编号">
+						</div>
+						<div class="form-group hid2">
+							<label for="userName">用户名:</label> <select class="form-control"
+								id="userName" name="userName">
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="userTel">用户号码:</label> <input type="text"
+								class="form-control" id="userTel" name="userTel"
+								placeholder="用户号码">
+						</div>
+						<div class="form-group">
+							<label for="userAdd">用户地址:</label> <input type="text"
+								class="form-control" id="userAdd" name="userAdd"
+								placeholder="用户地址">
+						</div>
+						<div class="form-group">
+							<label for="userBalance">用户余额:</label> <input type="text"
+								class="form-control" id="userBalance" name="userBalance"
+								placeholder="用户余额">
+						</div>
+						<div class="form-group">
+							<label for="userSex">用户性别:</label> <select class="form-control"
+								id="userSex" name="userSex">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select>
+						</div>
 					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userTel"
-							placeholder="用户密码">
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">保存</button>
 					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userAdd"
-							placeholder="用户状态">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="userBalance"
-							placeholder="用户类型">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id=userSex
-							placeholder="用户类型">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="sockState"
-							placeholder="用户类型">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="save">保存</button>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -178,7 +188,7 @@
 		//路径配置
 		employee.url = "/"; // / 表示的是网站的根
 		employee.requestUrl = {
-			queryList : employee.url + "RunAleg/UserInfoServlet" //访问servlet 一次请求所有数据
+			queryList : employee.url + "RunAleg2.0/UserInfoServlet" //访问servlet 一次请求所有数据
 		};
 
 		employee.search = {
@@ -206,24 +216,44 @@
 				//            }
 				//        },
 				{
+					//            对第6列内容进行替换处理
+					"targets" : 5,
+					"render" : function(a, b, c, d) {
+						return c.userBalance + "元";
+
+					}
+
+				},
+				{
+					//            对第6列内容进行替换处理
+					"targets" : 7,
+					"render" : function(a, b, c, d) {
+						var context = {
+							func : [ {
+								"name" : (c.sockState == 0) ? "待核验" : "启用",
+								"fn" : "sock(\'" + c.userName + "\',\'"
+										+ c.sockState + "\')",
+								"type" : "danger"
+							} ]
+						};
+						var html = template(context);
+						return html;
+
+					}
+				},
+				{
 					"targets" : 8,
 					"render" : function(a, b, c, d) {
 						var context = {
-							func : [
-									{
-										"name" : "修改",
-										"fn" : "edit(\'" + c.userId + "\',\'"
-												+ c.userName + "\',\'"
-												+ c.userPwd + "\',\'"
-												+ c.sockState + "\',\'"
-												+ c.userType + "\',\'"
-												+ c.userDate + "\')",
-										"type" : "primary"
-									}, {
-										"name" : "删除",
-										"fn" : "del(\'" + c.name + "\')",
-										"type" : "danger"
-									} ]
+							func : [ {
+								"name" : "修改",
+								"fn" : "edit(\'" + c.userInfoId + "\',\'"
+										+ c.userName + "\',\'" + c.userTel
+										+ "\',\'" + c.userAdd + "\',\'"
+										+ c.userBalance + "\',\'" + c.userSex
+										+ "\')",
+								"type" : "primary"
+							} ]
 						};
 						var html = template(context);
 						return html;
@@ -258,7 +288,7 @@
 					"data" : "userSex"
 				}, {
 					"data" : "sockState"
-				},{
+				}, {
 					"data" : null
 				} ];
 
@@ -266,7 +296,8 @@
 				+ '<button class="btn btn-primary" type="button" id="batchIds" style="margin-left:20px;" data-toggle="modal" >多选</button>'
 				+ '<button class="btn btn-success" type="button" id="selection" style="margin-left:20px;" data-toggle="modal" >单选</button>'
 				+ '<button class="btn btn-success" type="button" id="search" style="margin-left:20px;" data-toggle="modal" >查询</button>'
-				+ '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>';
+				+ '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>'
+				+ '<button class="btn btn-success" type="button" style="margin-left:20px;" data-toggle="modal" data-target="#myModal" onclick="add()">完善用户信息</button>';
 	</script>
 
 	<script>
@@ -525,6 +556,17 @@
 		//重新加载数据
 		function reload() {
 			eloancn.table.grid.ajax.reload();
+
+		}
+
+		function clear() {
+			$(".hid").show();
+			$(".hid2").show();
+			$("#userName").val("");
+			$("#userTel").val("");
+			$("#userAdd").val("");
+			$("#userBalance").val("");
+			editFlag = false;
 		}
 
 		//销毁table
@@ -536,48 +578,145 @@
 	</script>
 
 	<script>
+		$().ready(function() {
+			// 在键盘按下并释放及提交后验证提交表单
+			$("#commentForm").validate({
+				submitHandler : function(form) {
+					var url = "../UserInfoServlet?op=add";
+					if (editFlag) {
+						url = "../UserInfoServlet?op=edit";
+					}
+					$.ajax({
+						url : url,
+						data : {
+							"userInfoId" : $("#userInfoId").val(),
+							"userName" : $("#userName").val(),
+							"userTel" : $("#userTel").val(),
+							"userAdd" : $("#userAdd").val(),
+							"userBalance" : $("#userBalance").val(),
+							"userSex" : $("#userSex").val(),
+						},
+						success : function(data) {
+							reload();
+							clear();
+							$("#myModal").modal("hide");
+							$("#myModalLabel").text("新增用户信息");
+
+						}
+					});
+				},
+				rules : {
+					userBalance : {
+						required : true,
+						min : 0,
+						number : true
+					},
+					userTel : {
+						required : true,
+						minlength : 11,
+						isMobile : true
+					}
+				},
+				messages : {
+					userName : {
+						required : "请输入用户名",
+						minlength : "用户名最小长度为2",
+						remote : "用户名已存在"
+					},
+					userBalance : {
+						required : "请输入余额",
+						min : "输入值不能小于 0",
+						number : "必须输入合法的数字"
+					},
+					userTel : {
+						required : "请输入手机号",
+						minlength : "不能小于11个字符",
+						isMobile : "请正确填写手机号码"
+
+					}
+				}
+			})
+		});
+
+		//手机号码验证  
+		jQuery.validator
+				.addMethod(
+						"isMobile",
+						function(value, element) {
+							var length = value.length;
+							var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+							return this.optional(element)
+									|| (length == 11 && mobile.test(value));
+						}, "请正确填写手机号码");
 		/**
 		 *编辑方法
 		 **/
-		function edit(userId, userName, userPwd, sockState, userType, userDate) {
-			console.log(userId);
+		function edit(userInfoId, userName, userTel, userAdd, userBalance,
+				userSex) {
+			$("#commentForm").data('validator').resetForm();
+			clear();
 			editFlag = true;
 			$("#myModalLabel").text("修改");
-			$("#userId").val(userId).attr("disabled", true);
-			$("#userName").val(userName);
-			$("#userPwd").val(userPwd);
-			$("#sockState").val(sockState);
-			$("#userType").val(userType);
-			$("#userDate").val(userDate);
+			$(".hid2").hide();
+			$("#userInfoId").val(userInfoId).attr("disabled", true);
+			$("#userTel").val(userTel);
+			$("#userAdd").val(userAdd);
+			$("#userBalance").val(userBalance);
+			$("#userSex").val(userSex);
 			$("#myModal").modal("show");
 		}
 
-		$("#save").click(function ajax() {
+		function add() {
+			clear();
+			$("#commentForm").data('validator').resetForm();
+			$("#myModalLabel").text("完善用户信息");
+			$(".hid").hide();
+			editFlag = false;
+			$.get("../UserInfoServlet?op=findName", function(data) {
+				//var array = JSON.parse(data);
+				//遍历
+				var info = "";
+				$.each(data, function(index, u) {
+					//girl 其实就是集合中的每个对象名			
+					info += "<option value=\"" + u.userId + "\" >" + u.userName
+							+ "</option>";
+				});
+				$("#userName").html(info);
 
-			var url = "add.jsp";
-			if (editFlag) {
-				url = "../UserServlet?op=edit";
-				console.log("這裡是Ajax");
-			}
-			$.ajax({
-				url : url,
-				data : {
-					"userId" : $("#userId").val(),
-					"userName" : $("#userName").val(),
-					"userPwd" : $("#userPwd").val(),
-					"sockState" : $("#sockState").val(),
-					"userType" : $("#userType").val(),
-					"userDate" : $("#userDate").val()
-				},
-				success : function(data) {
-					reload();
-					$("#myModal").modal("hide");
-					$("#myModalLabel").text("新增");
-					console.log("结果" + data);
-				}
 			});
-			;
-		});
+		}
+
+		function sock(userName, sockState) {
+			var url = "../UserInfoServlet?op=sock";
+			if (sockState == "1") {
+				$.ajax({
+					url : url,
+					data : {
+						"userName" : userName,
+						"sockState" : "0",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("完善用户信息");
+					}
+				});
+			} else {
+				$.ajax({
+					url : url,
+					data : {
+						"userName" : userName,
+						"sockState" : "1",
+					},
+					success : function(data) {
+						reload();
+						$("#myModal").modal("hide");
+						$("#myModalLabel").text("新增用户");
+					}
+				});
+			}
+
+		}
 	</script>
 
 	<script>
