@@ -65,15 +65,15 @@ public class UserinfoServiceImpl implements UserinfoService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public boolean updateUserinfoBalance(Double balance, String userId) {
 		// TODO Auto-generated method stub
 		return uid.updateUserinfoBalance(balance, userId);
-=======
+	}
+
 	public List<Userinfo> queryUserName() {
 		// TODO Auto-generated method stub
 		return uid.queryUserName();
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
+
 	}
 
 }

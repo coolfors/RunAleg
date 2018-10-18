@@ -22,13 +22,11 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 			var userId1 = $("#userInfoId").val();
-			//alert(userId);
 			$.get("AlipayService?userId=" + userId1, function(data, statue) {
 			});
 		})
 		$(document).ready(function() {
 			var userId2 = $("#courierId").val();
-			alert("kk"+userId2);
 			$.get("AlipayService?userId=" + userId2, function(data, statue) {
 			});
 		})

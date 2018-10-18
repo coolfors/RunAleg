@@ -27,10 +27,10 @@ public interface UserinfoService {
 	
 	boolean updateUserinfoByQt(Userinfo editInfo);
 	
-<<<<<<< HEAD
+
 	boolean updateUserinfoBalance(Double balance,String userId);//前台充值
-=======
+
 	List<Userinfo> queryUserName();
 	
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
+
 }
