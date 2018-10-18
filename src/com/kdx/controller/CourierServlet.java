@@ -366,12 +366,11 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//获取经纬度和跑腿员id
-		String lng=request.getParameter("lng");
-		String lat=request.getParameter("lat");
+		String add=request.getParameter("add");
 		String courierId=request.getParameter("CourierId");
-		String point=lng+","+lat;
 		//执行修改语句将位置信息更新到数据库
-		cs.updateAdd(courierId, point);
+		cs.updateAdd(courierId, add);
 	}
+	
 
 }

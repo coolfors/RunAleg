@@ -24,4 +24,6 @@ public interface CourierService {
 
 	//前台修改腿哥信息
 	boolean updateCourierInForward(Courier cour);
+	
+	Courier getCourierByCourierId(String courierId);
 }

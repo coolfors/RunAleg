@@ -20,17 +20,26 @@ function doGPS() {
 			map.panTo(r.point);
 			// 经度：r.point.lng
 			//纬度：r.point.lat 
+			var pt = new BMap.Point(r.point.lng,r.point.lat);  
+            //创建一个地理位置解析器  
+            var geoc = new BMap.Geocoder();  
+            var add="";
+            geoc.getLocation(pt, function(rs){//解析格式：城市，区县，街道  
+                var addComp = rs.addressComponents;  
+                //alert(addComp.city + ", " + addComp.district + ", " + addComp.street);  
+                //console.log(addComp.city + ", " + addComp.district + ", " + addComp.street); 
+               // console.log('您的位置：'+r.point.lng+','+r.point.lat);
+                //alert('您的位置：'+r.point.lng+','+r.point.lat);
+                add=addComp.city + "," + addComp.district + "," + addComp.street;
+              //获得courierId
+    			var courierId=document.getElementById("CourierId").value;
+    			//用ajax方式更新数据库
+    			$.get("CourierServlet.do?op=updateAdd&add="+add+"&CourierId="+courierId,function (data,status) {
+    				
+    			});
+            });  
 			//alert('您的位置：'+r.point.lng+','+r.point.lat);
-			//获取经纬度
-			var lng=r.point.lng;
-			var lat=r.point.lat;
-			var courierId=document.getElementById("CourierId").value;
-			document.getElementById("lng").value=lng;
-			document.getElementById("lat").value=lat;
-			//用ajax方式更新数据库
-			$.get("CourierServlet.do?op=updateAdd&lng="+lng+"&lat="+lat+"&CourierId="+courierId,function (data,status) {
-				
-			});
+			
 			//location.href="CourierServlet.do?op=updateAdd&lng="+lng+"&lat="+lat+"&CourierId="+courierId;
 			//getl();
 		}

@@ -69,6 +69,8 @@ public class ReceiptServlet extends HttpServlet {
 			waitSendDispatch(request, response);
 		} else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
+		}else if(op.equals("setGetDistance")) {
+			
 		}
 		
 		if (op.equals("sock")) {
@@ -246,5 +248,11 @@ public class ReceiptServlet extends HttpServlet {
 		response.getWriter().println(data);
 
 	}
+			protected void setGetDistance(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
+				// TODO Auto-generated method stub
+				
+
+			}
 
 }

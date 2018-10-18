@@ -131,7 +131,7 @@ public class AffairDaoImpl implements AffairDao {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String Date = df.format( new Date());
 				//执行增加增加receipt的操作
-				String sql2="insert into receipt values(?,?,?,?,?,XXX,0,?,?,?)";
+				String sql2="insert into receipt values(?,?,?,?,?,'XXX',0,?,?,?)";
 				//配送员当前位置
 				String add=cs.getCourierAdd(courierId);
 				

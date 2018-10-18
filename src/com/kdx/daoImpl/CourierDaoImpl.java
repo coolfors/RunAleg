@@ -89,6 +89,14 @@ public class CourierDaoImpl implements CourierDao {
 		String sql = "update courier set sockState=? where courierId=?";
 		return BaseDao.execute(sql, sockState, courierId) > 0;
 	}
-
+	@Override
+	public Courier getCourierByCourierId(String courierId) {
+		// TODO Auto-generated method stub
+		List<Courier> list=(List<Courier>) BaseDao.select("select * from courier where courierId=?", Courier.class, courierId);
+		Iterator<Courier> it=list.iterator();
+		Courier cour=null;
+		cour=it.next();
+		return cour;
+	}
 
 }
