@@ -98,10 +98,10 @@
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==2}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
                 <li class="dropdown">
