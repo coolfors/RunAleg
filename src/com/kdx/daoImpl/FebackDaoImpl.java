@@ -11,8 +11,8 @@ public class FebackDaoImpl implements FebackDao {
 	@Override
 	public boolean addFeback(Feedback f) {
 		// TODO Auto-generated method stub
-		String sql = "insert into feedback(userId,feedbackInfo) values( ?, ? )";
-		return BaseDao.execute(sql, f.getUserId(), f.getFeedbackInfo()) > 0;
+		String sql = "insert into feedback(feedbackId,userId,feedbackInfo) values( ?,?, ? )";
+		return BaseDao.execute(sql, f.getFeedbackId(), f.getUserId(), f.getFeedbackInfo()) > 0;
 	}
 
 	@Override
@@ -30,9 +30,9 @@ public class FebackDaoImpl implements FebackDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public PageData<Feedback> queryFebackByPage(int page, int pageSize,int userId) {
+	public PageData<Feedback> queryFebackByPage(int page, int pageSize, String userId) {
 		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from feedback where userId=?", page, pageSize, Feedback.class,userId);
+		return BaseDao.getPage("select * from feedback where userId=?", page, pageSize, Feedback.class, userId);
 	}
 
 }

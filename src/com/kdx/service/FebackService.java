@@ -10,5 +10,5 @@ public interface FebackService {
 	
 	boolean updateFeback(Feedback f);
 	
-	PageData<Feedback> queryFebackByPage(int page,int pageSize,int userId);
+	PageData<Feedback> queryFebackByPage(int page,int pageSize,String userId);
 }
