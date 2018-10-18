@@ -106,14 +106,8 @@ $(function(){
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
         		var str = "";
-        		var disId=$("#disId").val();
-        		var courierId=$("#courierId").val();
    			$.each(arr.data, function(index,a){
-<<<<<<< HEAD
-   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href='#' onclick='getDistance("+a.beginAdd+","+a.endAdd+","+disId+","+courierId+")'>"+(a.disState==0?'待送':'未接单')+"</a></td></tr>";
-=======
    				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href='#'>"+"待送"+"</a></td></tr>";
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg
    		   		
    			});
    			$("tbody").html(str);
