@@ -40,11 +40,9 @@
 	//		+ "\"timeout_express\":\"10m\"," 
 	//		+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 	//请求参数可查阅【电脑网站支付的API文档-alipay.trade.page.pay-请求参数】章节
-
+	
 	//请求
 	String result = alipayClient.pageExecute(alipayRequest).getBody();
-	
-	
 	
 	//输出
 	out.println(result);

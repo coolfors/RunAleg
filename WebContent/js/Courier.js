@@ -4,7 +4,163 @@
 
 
 
+function getDistance(beginAdd, endAdd, disId, courierId) {
+		/*$.get("GpsServlet.do?op=getDistance&beginAdd="+beginAdd+"&endAdd="+endAdd+"&disId="+disId+"&courierId="+courierId,function (data,status) {
+			if(status==success){
+				if(data==1){
+					alert("抢单成功!");
+					$("#"+disId+"").html("<font color = 'blue'>抢单成功</font>");
+				}else{
+					alert("抢单失败，下次出手快点哦！");
+					$("#"+disId+"").html("<font color = 'red'>抢单失败</font>");
+				}
+			}
+		});*/
+		var map = new BMap.Map("allmap");
+		var point = new BMap.Point(116.331398, 39.897445);
+		map.centerAndZoom(point, 12);
+
+		var geolocation = new BMap.Geolocation();
+		geolocation.getCurrentPosition(function(r) {
+			if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+				var mk = new BMap.Marker(r.point);
+				map.addOverlay(mk);
+				map.panTo(r.point);
+				// 经度：r.point.lng
+				//纬度：r.point.lat 
+				//alert('您的位置：'+r.point.lng+','+r.point.lat);
+				//获取经纬度
+				var lng = r.point.lng;
+				var lat = r.point.lat;
+				//起点的经纬度
+				//var beginP=document.getElementById("BeginPoint").value;
+				searchByStationName(beginAdd);
+				var begins = document.getElementById("targetAdd").value.split(",");
+				//alert(document.getElementById("targetAdd").value);
+				//alert(searchByStationName(beginAdd));
+				//终点的经纬度
+				//var endP=document.getElementById("EndPoint").value;
+				var resultTest = searchByStationName(endAdd);
+				console.log("resultTest :"+resultTest);
+				var ends = document.getElementById("targetAdd").value.split(",");
+				//骑手位置的经纬度
+				var courP = document.getElementById("CourierPoint").value;
+				var cours=courP.split(",");
+				//构建起点map
+				var pointA = new BMap.Point(begins[0], begins[1]);
+				//构建终点map
+				var pointB = new BMap.Point(ends[0], ends[1]);
+				//构建派送员map
+				var pointC = new BMap.Point(cours[0], cours[1]);
+				//计算配送员到取货地点的距离
+				var distanceGet = (map.getDistance(pointC, pointA)).toFixed(2);
+				//计算取货地点到终点的距离
+				//alert(distanceGet);
+				var distanceSend = (map.getDistance(pointA, pointB)).toFixed(2);
+				//alert(distanceSend);
+				//获取disId
+				/*var disId=document.getElementById("disId").value;
+				var courierId=document.getElementById("courierId").value;*/
+				//用ajax方式更新数据库
+				$.get("BuildReceipt.do?op=buildReceipt&getDistance=" + distanceGet + "&sendDistance=" + distanceSend + "&disId=" + disId + "&courierId=" + courierId, function(data, status) {
+					if(status == "success") {
+						if(data == true) {
+							alert("抢单成功!");
+							$("#" + disId + "").html("<font color = 'blue'>抢单成功</font>");
+						} else {
+							alert("抢单失败，下次出手快点哦！");
+							$("\"#" + disId + "\"").html("<font color = 'red'>抢单失败</font>");
+						}
+					}
+				});
+				//location.href="CourierServlet.do?op=updateAdd&lng="+lng+"&lat="+lat+"&CourierId="+courierId;
+				//getl();
+			} else {
+				alert('failed' + this.getStatus());
+			}
+		}, {
+			enableHighAccuracy: true
+		})
+		//关于状态码
+		//BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
+		//BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
+		//BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
+		//BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
+		//BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
+		//BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
+		//BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
+		//BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
+		//BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
+	}
+
+function searchByStationName(placeName) {
+	//alert(placeName);
+	var map = new BMap.Map("container");
+    map.centerAndZoom("宁波", 12);
+    map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
+    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+
+    map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+    map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+    map.addControl(new BMap.OverviewMapControl({ isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开
+
+    var localSearch = new BMap.LocalSearch(map);
+    localSearch.enableAutoViewport();
+	var keyword = placeName; //输入的地址名
+	//promise+generator用于获取回调函数中的值
+	//function getResult(){
+		
+		//return new Promise(function(resolve) {
+			
+			localSearch.setSearchCompleteCallback(function(searchResult) {
+				
+				var poi = searchResult.getPoi(0);
+				//得到经纬度
+				var result1 = poi.point.lng + "," + poi.point.lat;
+				//alert("1:"+result1);
+//				alert(result+"111");
+				//resolve(result1);
+				document.getElementById("targetAdd").value =result1;
+				//alert('aaa');
+				//显示地图
+				/*document.getElementById("result_").value = poi.point.lng + "," + poi.point.lat;
+		map.centerAndZoom(poi.point, 13);
+		var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地方对应的经纬度
+		map.addOverlay(marker);
+		var content = document.getElementById("text_").value + "<br/><br/>经度：" + poi.point.lng + "<br/>纬度：" + poi.point.lat;
+		var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'>" + content + "</p>");
+		marker.addEventListener("click", function () { this.openInfoWindow(infoWindow); });*/
+				// marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+				//alert(result);
+				//alert(document.getElementById("targetAdd").value);
+				//this.openInfoWindow(infoWindow);
+				console.log("result1 "+result1);
+				return result1;
+			});
+			localSearch.search(keyword);
+		//},function(){
+			
+	//}
+	/*function *compute(){
+		var x=yield getResult();
+	}
+	var result=compute();
+	//返回经纬度
+	result.next().value.then(function(value){
+		var str=result.next(value);
+	});*/
+	//alert(str);
+	
+	//alert(result+"222");
+	
+}
+
+
+
 $(function(){
+	
+	
+
 	
 	/*$(document).ready(function() {
 		getallDis(1,4);
@@ -29,7 +185,9 @@ $(function(){
    			var courierId=$("#CourierId").val();
         		var str = "";
    			$.each(arr.data, function(index,a){
-				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance("+a.beginAdd+","+a.endAdd+","+a.disId+","+courierId+")'>"+"未接单"+"</a></td></tr>";
+				//str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance('"+a.beginAdd+"','"+a.endAdd+"','"+a.disId+"','"+courierId+"')'>"+"未接单"+"</a></td></tr>";
+   				
+   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance(\""+a.beginAdd+"\",\""+a.endAdd+"\",1,1)'>"+"未接单"+"</a></td></tr>";
    			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -103,13 +261,13 @@ $(function(){
             success: function(data){
                        /* $('#resText').empty();*/   //清空resText里面的所有内容
                         //var html = ''; 
-            	$("thead").html("<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th></tr>");var jsonStr=JSON.stringify(data);
+            	$("thead").html("<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th><th>查看位置</th></tr>");var jsonStr=JSON.stringify(data);
         		var courierId=$("#CourierId").val();
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
         		var str = "";
    			$.each(arr.data, function(index,a){
-   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td></tr>";
+   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td><td><button href=''>查看位置</button></td></tr>";
    			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -148,7 +306,7 @@ $(function(){
    					    			//alert(arr.page);
    					         		var str = "";
    					    			$.each(arr.data, function(index,a){
-   					    				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td></tr>";});
+   					    				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td><td><button href=''>查看位置</button></td></tr>";});
    					    			$("tbody").html(str);
    					    			
    					             }
@@ -176,13 +334,13 @@ $(function(){
                },
             dataType: "json",
             success: function(data){
-            	$("thead").html("<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th></tr>");
+            	$("thead").html("<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th><th>查看位置</th></tr>");
         		var jsonStr=JSON.stringify(data);
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
         		var str = "";
    			$.each(arr.data, function(index,a){
-				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td></tr>";
+				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td><td><button href=''>查看位置</button></td></tr>";
    				   			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -219,7 +377,7 @@ $(function(){
    					    			//alert(arr.page);
    					         		var str = "";
    					    			$.each(arr.data, function(index,a){
-   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td></tr>";
+   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td><td><button href=''>查看位置</button></td></tr>";
    					    				   					    			});
    					    			$("tbody").html(str);
    					    			
@@ -463,87 +621,7 @@ $(function(){
             }
         });
 	});
-	function getDistance(beginAdd,endAdd,disId,courierId) {
-		/*$.get("GpsServlet.do?op=getDistance&beginAdd="+beginAdd+"&endAdd="+endAdd+"&disId="+disId+"&courierId="+courierId,function (data,status) {
-			if(status==success){
-				if(data==1){
-					alert("抢单成功!");
-					$("#"+disId+"").html("<font color = 'blue'>抢单成功</font>");
-				}else{
-					alert("抢单失败，下次出手快点哦！");
-					$("#"+disId+"").html("<font color = 'red'>抢单失败</font>");
-				}
-			}
-		});*/
-		var map = new BMap.Map("allmap");
-		var point = new BMap.Point(116.331398,39.897445);
-		map.centerAndZoom(point,12);
-		
-		var geolocation = new BMap.Geolocation();
-		geolocation.getCurrentPosition(function(r){
-			if(this.getStatus() == BMAP_STATUS_SUCCESS){
-				var mk = new BMap.Marker(r.point);
-				map.addOverlay(mk);
-				map.panTo(r.point);
-				// 经度：r.point.lng
-				//纬度：r.point.lat 
-				//alert('您的位置：'+r.point.lng+','+r.point.lat);
-				//获取经纬度
-				var lng=r.point.lng;
-				var lat=r.point.lat;
-				//起点的经纬度
-				//var beginP=document.getElementById("BeginPoint").value;
-				var begins=beginAdd.split(",");
-				//终点的经纬度
-				//var endP=document.getElementById("EndPoint").value;
-				var ends=endAdd.split(",");
-				//骑手位置的经纬度
-				var courP=document.getElementById("CourierPoint").value;
-				var cours=endP.split(",");
-				//构建起点map
-				var pointA=new BMap.Point(begins[0],begins[1]);
-				//构建终点map
-				var pointB=new BMap.Point(ends[0],end[1]);
-				//构建派送员map
-				var pointC=new BMap.Point(cours[0],cours[1]);
-				//计算配送员到取货地点的距离
-				var distanceGet=(map.getDistance(pointC,pointA)).toFixed(2);
-				//计算取货地点到终点的距离
-				var distanceSend=(map.getDistance(pointA,pointB)).toFixed(2);
-				//获取disId
-				/*var disId=document.getElementById("disId").value;
-				var courierId=document.getElementById("courierId").value;*/
-				//用ajax方式更新数据库
-				$.get("BuildReceipt.do?op=buildReceipt&getDistance="+distanceGet+"&sendDistance="+distanceSend+"&disId="+disId+"&courierId="+courierId,function (data,status) {
-					if(status==success){
-						if(data==true){
-							alert("抢单成功!");
-							$("#"+disId+"").html("<font color = 'blue'>抢单成功</font>");
-						}else{
-							alert("抢单失败，下次出手快点哦！");
-							$("#"+disId+"").html("<font color = 'red'>抢单失败</font>");
-						}
-					}
-				});
-				//location.href="CourierServlet.do?op=updateAdd&lng="+lng+"&lat="+lat+"&CourierId="+courierId;
-				//getl();
-			}
-			else {
-				alert('failed'+this.getStatus());
-			}        
-		},{enableHighAccuracy: true})
-		//关于状态码
-		//BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
-		//BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
-		//BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
-		//BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
-		//BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
-		//BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
-		//BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
-		//BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
-		//BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
-		var indoorManager = new BMapLib.IndoorManager(map);
-	}
+	
 	
 	
 	

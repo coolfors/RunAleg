@@ -92,13 +92,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return ud.againPwd(userId);
 	}
-	
-	//根据用户姓名得到用户类型
-	@Override
-	public List<User> getUserType(String userName) {
-		// TODO Auto-generated method stub
-		return ud.getUserType(userName);
-	}
 
+	//根据用户名查找用户类型
+	@Override
+	public List<User> findUserType(String userName) {
+		// TODO Auto-generated method stub
+		return ud.findUserType(userName);
+	}
 
 }

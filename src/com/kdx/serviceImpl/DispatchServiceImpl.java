@@ -46,18 +46,19 @@ public class DispatchServiceImpl implements DispatchService {
 		// TODO Auto-generated method stub
 		return dd.getBeginAndEnaAdd(disId);
 	}
+	//user 用户的所有订单(显示自己的所有订单)
+		@Override
+		public PageData<Dispatch> queryDispatch(int page, int pageSize, String userId) {
+			// TODO Auto-generated method stub
+			return dd.queryDispatch(page, pageSize, userId);
+		}
 
-	// user 用户的所有订单(显示自己的所有订单)
-	@Override
-	public PageData<Dispatch> queryDispatch(int page, int pageSize, int userId) {
-		// TODO Auto-generated method stub
-		return dd.queryDispatch(page, pageSize, userId);
-	}
+
 
 	@Override
 	public boolean updateState(String disId, int disState) {
 		// TODO Auto-generated method stub
-		return dd.changeState(disId, disState);
+		return dd.updateState(disId, disState);
 	}
 
 }

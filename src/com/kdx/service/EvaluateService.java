@@ -15,6 +15,8 @@ public interface EvaluateService {
 
 	PageData<Evaluate> waitEval(int page, int pageSize);// 待评价订单
 
-	PageData<Evaluate> overEval(int page, int pageSize);// 已评价订单
+	PageData<Evaluate> overEval(int page, int pageSize,String userId);// 已评价订单
+	PageData<Evaluate> waitEvaluate(int page, int pageSize,String courierId);// courier待评价订单
+	PageData<Evaluate> overEvaluate(int page, int pageSize,String courierId);// courier已评价订单
 	
 }

@@ -133,9 +133,9 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
-	//根据用户姓名得到用户类型
+	//根据用户名查找用户类型
 	@Override
-	public List<User> getUserType(String userName) {
+	public List<User> findUserType(String userName) {
 		// TODO Auto-generated method stub
 		String sql = "select * from user where userName = ?";
 		return (List<User>) BaseDao.select(sql, User.class, userName);
