@@ -100,6 +100,7 @@ function pay(surePwd) {
 				},
 				success : function(data) {
 					alert('下单成功');
+                    window.location.href="user-order-main.jsp";
 				}
 			});
 			}else{

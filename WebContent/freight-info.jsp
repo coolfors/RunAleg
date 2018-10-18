@@ -39,6 +39,10 @@ $(document).ready(function() {
 	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	
 	<!--顶部-开始-->
+	<div id="allmap" hidden="hidden"></div>
+	<input id="lng" name="lng" hidden="hidden" value="" />
+	<input id="lat" name="lat" hidden="hidden" value="" />
+	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
 		<div class="container">
@@ -282,6 +286,9 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<!--尾部-结束-->
+	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+		<script src="js/GPS_GetLng&LatByBrow.js"></script>
+	</c:if>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/laydate.js"></script>
@@ -292,15 +299,13 @@ $(document).ready(function() {
 	<script src="js/messages_zh.js"></script>
 
 <script type="text/javascript">
-<<<<<<< HEAD
-=======
+
 $(document).ready(function() {
 
 	$("#toModal").hide();
 
 });
 
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
  /*  定位*/
  $(function(){    
      //创建百度地图控件  
@@ -326,7 +331,6 @@ $(document).ready(function() {
      
 });  
 </script>
-<<<<<<< HEAD
 	<script src="js/jquery_002_002.js" type="text/javascript"></script>
 	<script src="js/areaData1.js" type="text/javascript"></script>
 	<script src="js/LocationRange.js" type="text/javascript"></script>
@@ -335,7 +339,7 @@ $(document).ready(function() {
 	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
-=======
+
 <script>
 
 /**
@@ -357,6 +361,5 @@ $(document).ready(function() {
 	<script src="js/LocationRange.js" type="text/javascript"></script>
 	<script src="js/jquery_003.js" type="text/javascript"></script>
 	<script src="js/freight.js" type="text/javascript"></script>
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
 </body>
 </html>

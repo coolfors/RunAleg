@@ -19,5 +19,5 @@ public interface AffairService {
 	boolean buildeReceipt(String disId,String courierId,double getGoodsDistance,double sendGoodsDistance);
 
 	//升级为Courier
-		boolean toBeCourier(Courier cour);
+	boolean toBeCourier(Courier cour);
 }
