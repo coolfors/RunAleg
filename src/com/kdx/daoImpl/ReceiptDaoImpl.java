@@ -144,7 +144,7 @@ public class ReceiptDaoImpl implements ReceiptDao {
 
 	@SuppressWarnings({ "finally", "unchecked" })
 	@Override
-	public boolean changeState(String disId, String receiptId) {
+	public boolean getState(String disId, String receiptId) {
 		// TODO Auto-generated method stub
 		Connection conn = BaseDao.getConn();
 

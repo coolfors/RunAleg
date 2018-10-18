@@ -175,7 +175,7 @@ public class ReceiptServlet extends HttpServlet {
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
-		int  userId=Integer.valueOf(request.getParameter("userId"));
+		String  userId=request.getParameter("userId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
@@ -231,13 +231,15 @@ public class ReceiptServlet extends HttpServlet {
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
+
+		String  userId=request.getParameter("userId");
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize);
+		PageData<Evaluate> pd = es.waitEval(page, pageSize,userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);

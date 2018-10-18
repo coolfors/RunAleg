@@ -13,7 +13,7 @@ public interface EvaluateService {
 
 	PageData<Evaluate> queryEvalByPage(int page, int pageSize);// 查询所有评价
 
-	PageData<Evaluate> waitEval(int page, int pageSize);// 待评价订单
+	PageData<Evaluate> waitEval(int page, int pageSize,String userId);// 待评价订单
 
 	PageData<Evaluate> overEval(int page, int pageSize,String userId);// 已评价订单
 	PageData<Evaluate> waitEvaluate(int page, int pageSize,String courierId);// courier待评价订单
