@@ -71,11 +71,6 @@
 			
 			//注意：
 			//付款完成后，支付宝系统发送该交易状态通知
-			
-			//提交到UserInfoServlet更新余额,返回用户个人信息界面、
-			
-			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
-			
 		}
 		
 		out.println("success");
