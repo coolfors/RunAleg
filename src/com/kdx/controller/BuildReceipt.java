@@ -56,15 +56,11 @@ public class BuildReceipt extends HttpServlet {
 		// TODO Auto-generated method stub
 		AffairService as=new AffairServiceImpl();
 		String getDis=request.getParameter("getDistance");
-		String sendDis=request.getParameter("sendDis");
+		String sendDis=request.getParameter("sendDistance");
 		String disId=request.getParameter("disId");
 		String courierId=request.getParameter("courierId");
 		boolean flag=as.buildeReceipt(disId, courierId, Double.valueOf(getDis), Double.valueOf(sendDis));
-		if(flag) {
-			response.getWriter().print("<script>alert('抢单成功！');location.href='courier-main.jsp'<script>");
-		}else {
-			response.getWriter().print("<script>alert('抢单失败，下次要快点哦！');location.href='courier-main.jsp'<script>");
-		}
+		response.getWriter().print(flag);
 		
 	}
 
