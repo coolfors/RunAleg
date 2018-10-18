@@ -79,7 +79,7 @@ public class UserServlet extends HttpServlet {
 		if (op.equals("sock")) {
 			String userId = request.getParameter("userId");
 			String sockState = request.getParameter("sockState");
-			boolean flag = us.updateState(Integer.valueOf(userId), Integer.valueOf(sockState));
+			boolean flag = us.updateState(userId, Integer.valueOf(sockState));
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
@@ -87,7 +87,7 @@ public class UserServlet extends HttpServlet {
 		if (op.equals("type")) {
 			String userId = request.getParameter("userId");
 			String userType = request.getParameter("userType");
-			boolean flag = us.updateType(Integer.valueOf(userId), Integer.valueOf(userType));
+			boolean flag = us.updateType(userId, Integer.valueOf(userType));
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}

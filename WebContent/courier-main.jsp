@@ -29,14 +29,13 @@
 </head>
 <body>
 <div id="allmap" hidden="hidden"></div>
+<input id="targetAdd" name="targetAdd" hidden="hidden" value="" />
 	<input id="lng" name="lng" hidden="hidden" value="" />
 	<input id="lat" name="lat" hidden="hidden" value="" />
+	<div id="container" hidden="hidden"></div>
+	<input id="CourierPoint" name="CourierPoint" hidden="hidden" value="${sessionScope.Courier.address}" />
 	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
-	<div id="allmap" hidden="hidden"></div>
-	<input id="lng" name="lng" hidden="hidden" value="" />
-	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
 		<div class="container">
@@ -93,8 +92,11 @@
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2}">
-					<li class="active"><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==2}">
+					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				</c:if>
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -268,6 +270,34 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               查看位置
+            </h4>
+         </div>
+         <div class="modal-body" id="maps" >
+            <div id="l-maps"></div>
+            <div id="r-result"></div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭
+            </button>
+            <button type="button" class="btn btn-primary">
+               提交更改
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
 	<!--尾部-结束-->
 	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>

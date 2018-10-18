@@ -82,5 +82,13 @@ public class CourierDaoImpl implements CourierDao {
 		return BaseDao.execute(sql, cour.getTel(),cour.getAbleDistance(),cour.getAddress(),cour.getUserId())>0;
 
 	}
+	
+	@Override
+	public boolean changeState(String courierId, int sockState) {
+		// TODO Auto-generated method stub
+		String sql = "update courier set sockState=? where courierId=?";
+		return BaseDao.execute(sql, sockState, courierId) > 0;
+	}
+
 
 }

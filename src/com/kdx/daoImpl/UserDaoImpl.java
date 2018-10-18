@@ -76,14 +76,14 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean changeState(int userId, int sockState) {
+	public boolean changeState(String userId, int sockState) {
 		// TODO Auto-generated method stub
 		String sql = "update user set sockState=? where userId=?";
 		return BaseDao.execute(sql, sockState, userId) > 0;
 	}
 
 	@Override
-	public boolean changeType(int userId, int userType) {
+	public boolean changeType(String userId, int userType) {
 		// TODO Auto-generated method stub
 		String sql = "update user set userType=? where userId=?";
 		return BaseDao.execute(sql, userType, userId) > 0;

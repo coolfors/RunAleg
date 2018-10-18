@@ -53,6 +53,14 @@ public class DispatchServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		response.setContentType("application/json");
 
+		if (op.equals("sock")) {
+			String disId = request.getParameter("disId");
+			String disState = request.getParameter("disState");
+			boolean flag = ds.updateState(disId, Integer.valueOf(disState));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
+		
 		if ("suPwd".equals(op)) {
 			String userId = request.getParameter("userId");// 用户id
 			

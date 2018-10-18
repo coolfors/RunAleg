@@ -136,6 +136,20 @@ public class Courier implements Serializable {
 		this.userName = userName;
 	}
 
+	
+	public Courier(String courierId, double ableDistance, String address, double balance, int creditPoint,
+			double deposit, String iDcard, String tel) {
+		super();
+		this.courierId = courierId;
+		this.ableDistance = ableDistance;
+		this.address = address;
+		this.balance = balance;
+		this.creditPoint = creditPoint;
+		this.deposit = deposit;
+		IDcard = iDcard;
+		this.tel = tel;
+	}
+
 	/**
 	 * 显示所有
 	 * 

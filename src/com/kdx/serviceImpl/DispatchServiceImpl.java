@@ -40,6 +40,7 @@ public class DispatchServiceImpl implements DispatchService {
 		// TODO Auto-generated method stub
 		return dd.getDispatch();
 	}
+
 	@Override
 	public List<String> getBeginAndEnaAdd(String disId) {
 		// TODO Auto-generated method stub
@@ -52,5 +53,12 @@ public class DispatchServiceImpl implements DispatchService {
 			return dd.queryDispatch(page, pageSize, userId);
 		}
 
+
+
+	@Override
+	public boolean updateState(String disId, int disState) {
+		// TODO Auto-generated method stub
+		return dd.updateState(disId, disState);
+	}
 
 }

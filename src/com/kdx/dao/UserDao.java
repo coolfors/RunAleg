@@ -22,9 +22,9 @@ public interface UserDao {
 
 	User loginUser(String userName, String userPwd);// 用户登录
 
-	boolean changeState(int userId, int sockState);// 改变状态
+	boolean changeState(String userId, int sockState);// 改变状态
 
-	boolean changeType(int userId, int userType);// 改变类型
+	boolean changeType(String userId, int userType);// 改变类型
 	
 	User getUserById(String userId);//根据用户id获取用户
 	List<User> queryUserName(String userName);//用户名搜索用户

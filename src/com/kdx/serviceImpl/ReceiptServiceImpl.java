@@ -92,9 +92,9 @@ public class ReceiptServiceImpl implements ReceiptService {
 	}
 
 	@Override
-	public boolean changeState(String disId, String receiptId) {
+	public boolean updateState(String receiptId, int state) {
 		// TODO Auto-generated method stub
-		return rd.changeState(disId, receiptId);
+		return rd.changeState(receiptId, state);
 	}
 
 }

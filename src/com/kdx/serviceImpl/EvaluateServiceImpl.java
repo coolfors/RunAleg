@@ -44,5 +44,21 @@ public class EvaluateServiceImpl implements EvaluateService {
 		// TODO Auto-generated method stub
 		return ed.overEval(page, pageSize, userId);
 	}
+	/**
+	 * courier已评价订单
+	 */
+	@Override
+	public PageData<Evaluate> overEvaluate(int page, int pageSize, String courierId) {
+		// TODO Auto-generated method stub
+		return ed.overEvaluate(page, pageSize, courierId);
+	}
+	/**
+	 * courier待评价订单
+	 */
+	@Override
+	public PageData<Evaluate> waitEvaluate(int page, int pageSize, String courierId) {
+		// TODO Auto-generated method stub
+		return ed.waitEvaluate(page, pageSize, courierId);
+	}
 
 }

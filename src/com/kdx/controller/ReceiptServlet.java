@@ -70,6 +70,14 @@ public class ReceiptServlet extends HttpServlet {
 		} else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
 		}
+		
+		if (op.equals("sock")) {
+			String receiptId = request.getParameter("receiptId");
+			String state = request.getParameter("state");
+			boolean flag = rs.updateState(receiptId, Integer.valueOf(state));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
 
 	}
 
@@ -223,6 +231,7 @@ public class ReceiptServlet extends HttpServlet {
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
+
 		String  userId=request.getParameter("userId");
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));

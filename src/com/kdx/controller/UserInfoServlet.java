@@ -51,6 +51,22 @@ public class UserInfoServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		response.setContentType("application/json");
 
+		if (op.equals("findName")) {
+
+			List<Userinfo> list = uis.queryUserName();
+
+			Gson gson = new Gson();
+
+			String jsonList = gson.toJson(list);
+
+			PrintWriter out = response.getWriter();
+
+			out.print(jsonList);
+
+			out.close();
+
+		}
+
 		if (op.equals("sock")) {
 			String userName = request.getParameter("userName");
 			String sockState = request.getParameter("sockState");
@@ -58,24 +74,57 @@ public class UserInfoServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
-		else if (op.equals("edit")) {
+		if (op.equals("edit")) {
+
 			String userInfoId = request.getParameter("userInfoId");
+			String userName = request.getParameter("userName");
 			String userTel = request.getParameter("userTel");
 			String userAdd = request.getParameter("userAdd");
 			String userBalance = request.getParameter("userBalance");
 			String userSex = request.getParameter("userSex");
 
 			Userinfo uinfo = new Userinfo(userInfoId, userAdd, Double.valueOf(userBalance), userSex,
-					userTel);
+					userTel, userName);
 
-			// userDate, userName, userPwd,
-			// Integer.valueOf(userType));
 			boolean flag = uis.updateUserinfo(uinfo);
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
+		
+		if ("add".equals(op)) {
+
+			addUser(request, response);
+		}
 	}
 
+	private void addUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+
+		response.setCharacterEncoding("utf-8");
+
+		response.setContentType("application/json");
+
+		String userId = request.getParameter("userName");
+
+		String userAdd = request.getParameter("userAdd");
+
+		String userBalance = request.getParameter("userBalance");
+
+		String userSex = request.getParameter("userSex");
+
+		String userTel = request.getParameter("userTel");
+
+		Userinfo uif = new Userinfo(userId, userAdd, Double.valueOf(userBalance), userSex, userTel);
+
+		boolean flag = uis.addUserinfo(uif);
+
+		PrintWriter out = response.getWriter();
+
+		out.print(flag);
+
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -102,7 +151,7 @@ public class UserInfoServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-//		out.print(jsonString);
+		out.print(jsonString);
 		
 		
 		if (("userinfoEdit").equals(op)){

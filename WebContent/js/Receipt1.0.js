@@ -164,7 +164,6 @@ $(function () {
 	$("#allDispatch").click(function(){
 		$("#headName").html("所有订单");
 		var userId=$("#userId").val();
-		
 		$.ajax({
 	             type: "get",
 	             url: "rs.do?op=allDispatch&userId="+userId,
@@ -177,8 +176,7 @@ $(function () {
 	                        /* $('#resText').empty();*/   //清空resText里面的所有内容
 	                         //var html = ''; 
 	            	 $("thead").html("<tr><th>派单id</th><th>用户id</th><th>起送地</th><th>到达地</th><th>用户联系电话</th><th>配送价格</th><th>物品类型</th><th>物品介绍</th><th>派单状态</th></tr>");
-	         		alert("aaa");
-	            	 var jsonStr=JSON.stringify(data);
+	         		var jsonStr=JSON.stringify(data);
 	         		//alert(jsonStr);
 	    			var arr = JSON.parse(jsonStr);
 	         		var str = "";

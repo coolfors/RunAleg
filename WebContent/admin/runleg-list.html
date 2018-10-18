@@ -204,7 +204,7 @@
 		//路径配置
 		employee.url = "/"; // / 表示的是网站的根
 		employee.requestUrl = {
-			queryList : employee.url + "RunAleg2.0/CourierServlet.do" //访问servlet 一次请求所有数据
+			queryList : employee.url + "RunAleg-new/CourierServlet.do" //访问servlet 一次请求所有数据
 		};
 
 		employee.search = {
@@ -304,10 +304,6 @@
 												+ "\',\'" + c.IDcard + "\',\'"
 												+ c.address + "\')",
 										"type" : "primary"
-									}, {
-										"name" : "删除",
-										"fn" : "del(\'" + c.name + "\')",
-										"type" : "danger"
 									} ]
 						};
 						var html = template(context);
