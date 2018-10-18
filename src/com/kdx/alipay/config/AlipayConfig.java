@@ -27,10 +27,18 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1vsN+RI2BvRIf1kKXSJFpc0bJvHuCZSgI3cXnOdegJLDqfs6Ovh2Vl8MgQllxishzb66B8QiYn8PPA5orIskFZrc7IMZ/mcRrys49yEmVG5dX1zx0lHKjpgfSccJpCMxvYNuzAdvBGN7qXRuq82NccpH+0djKFDB1WFzxKyrw+K8SvlwFQmrfURNXpDWZObNFP9syn8/kST/DWfBvgvc1XI/0wVp+phroaGyPO36PCyc0uM1ziaHclXP+C0Q0dgE5w7+YD+3jpy22W6iHcr4JIoMhhQbASZY9xL2P5NMjeYfsQ0v8PgueVHswYPtAj8AIXdsT/BWtj+ycWejBZ4KnQIDAQAB";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
+<<<<<<< HEAD
 	public static String notify_url = "http://localhost:8080/RunAleg/notify_url.jsp";
+=======
+	public static String notify_url = "http://loaclhost:8080/RunAleg/alipay/notify_url.jsp";
+>>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
+<<<<<<< HEAD
 	public static String return_url = "http://localhost:8080/RunAleg/return_url.jsp";
+=======
+	public static String return_url = "http://loaclhost:8080/RunAleg/alipay/return_url.jsp";
+>>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
 
 	// 签名方式
 	public static String sign_type = "RSA2";
