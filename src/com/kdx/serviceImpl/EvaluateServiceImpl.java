@@ -8,7 +8,6 @@ import com.kdx.util.PageData;
 
 public class EvaluateServiceImpl implements EvaluateService {
 	private EvalDao ed = new EvalDaoImpl();
-	
 
 	@Override
 	public boolean addEval(Evaluate e) {
@@ -29,21 +28,21 @@ public class EvaluateServiceImpl implements EvaluateService {
 	}
 
 	@Override
-	public PageData<Evaluate> queryEvalByPage(int page, int pageSize) {
+	public PageData<Evaluate> queryEvalByPage(int page, int pageSize, String userId) {
 		// TODO Auto-generated method stub
-		return ed.queryEvalByPage(page, pageSize);
+		return ed.queryEvalByPage(page, pageSize, userId);
 	}
 
 	@Override
-	public PageData<Evaluate> waitEval(int page, int pageSize) {
+	public PageData<Evaluate> waitEval(int page, int pageSize, String userId) {
 		// TODO Auto-generated method stub
-		return ed.waitEval(page, pageSize);
+		return ed.waitEval(page, pageSize, userId);
 	}
 
 	@Override
-	public PageData<Evaluate> overEval(int page, int pageSize) {
+	public PageData<Evaluate> overEval(int page, int pageSize, String userId) {
 		// TODO Auto-generated method stub
-		return ed.overEval(page, pageSize);
+		return ed.overEval(page, pageSize, userId);
 	}
 
 }

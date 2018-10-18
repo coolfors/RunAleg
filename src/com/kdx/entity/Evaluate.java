@@ -14,12 +14,22 @@ public class Evaluate implements Serializable {
 
 	private String receiptId;//订单号
 	
+	private String userId;//订单号
+	
 	private int evaScore;//评价分
 	
 	private String evaInfo;//评价信息
 	
 	private int evaState;//评价状态
 	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public String getReceiptId() {
 		return receiptId;
 	}
@@ -82,12 +92,26 @@ public class Evaluate implements Serializable {
 		this.evaInfo = evaInfo;
 		this.evaState = evaState;
 	}
+	
+	
+
+	public Evaluate(String evaluateId, String receiptId, String userId, int evaScore, String evaInfo, int evaState) {
+		super();
+		this.evaluateId = evaluateId;
+		this.receiptId = receiptId;
+		this.userId = userId;
+		this.evaScore = evaScore;
+		this.evaInfo = evaInfo;
+		this.evaState = evaState;
+	}
 
 	@Override
 	public String toString() {
-		return "Evaluate [evaluateId=" + evaluateId + ", evaInfo=" + evaInfo + ", evaScore=" + evaScore + ", receiptId="
-				+ receiptId + "]";
+		return "Evaluate [evaluateId=" + evaluateId + ", receiptId=" + receiptId + ", userId=" + userId + ", evaScore="
+				+ evaScore + ", evaInfo=" + evaInfo + ", evaState=" + evaState + "]";
 	}
+
+	
 
 	
 }

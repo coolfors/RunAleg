@@ -27,8 +27,7 @@ public interface ReceiptDao {
 	
 	boolean changeState(String disId,String receiptId);
 	
-	PageData<Receipt> sendReceipt(int page, int pageSize,String userId);// user配送中的订单(根据用户自己的userId来查询)
-	PageData<Receipt> waitSendReceipt(int page, int pageSize,String userId);//  user待送订单(根据用户自己的userId来查询)
+
 	
 
 }
