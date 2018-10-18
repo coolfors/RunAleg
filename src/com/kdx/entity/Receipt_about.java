@@ -1,10 +1,12 @@
 package com.kdx.entity;
 
 public class Receipt_about {
+	private String receiptId;// 接单号
+
 	private String disId;// 派单号
-	
-	private String disTel;//收货人电话
-	
+
+	private String disTel;// 收货人电话
+
 	private String userName;// 配送员名称
 
 	private String userTel;// 用户电话
@@ -22,6 +24,14 @@ public class Receipt_about {
 	private double sendDistance;// 从起送点到目的地的距离
 
 	private int state;// 状态
+
+	public String getReceiptId() {
+		return receiptId;
+	}
+
+	public void setReceiptId(String receiptId) {
+		this.receiptId = receiptId;
+	}
 
 	public String getDisId() {
 		return disId;
@@ -127,16 +137,34 @@ public class Receipt_about {
 		this.state = state;
 	}
 
+	public Receipt_about(String receiptId, String disId, String disTel, String userName, String userTel,
+			String encryptionKey, String startTime, String endTime, String courierAdd, double getDistance,
+			double sendDistance, int state) {
+		super();
+		this.receiptId = receiptId;
+		this.disId = disId;
+		this.disTel = disTel;
+		this.userName = userName;
+		this.userTel = userTel;
+		this.encryptionKey = encryptionKey;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.courierAdd = courierAdd;
+		this.getDistance = getDistance;
+		this.sendDistance = sendDistance;
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
-		return "Receipt_about [disId=" + disId + ", disTel=" + disTel + ", userName=" + userName + ", userTel="
-				+ userTel + ", encryptionKey=" + encryptionKey + ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", courierAdd=" + courierAdd + ", getDistance=" + getDistance + ", sendDistance=" + sendDistance
-				+ ", state=" + state + "]";
+		return "Receipt_about [receiptId=" + receiptId + ", disId=" + disId + ", disTel=" + disTel + ", userName="
+				+ userName + ", userTel=" + userTel + ", encryptionKey=" + encryptionKey + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", courierAdd=" + courierAdd + ", getDistance=" + getDistance
+				+ ", sendDistance=" + sendDistance + ", state=" + state + "]";
 	}
 
 	public Receipt_about() {
-		
+
 	}
 
 }

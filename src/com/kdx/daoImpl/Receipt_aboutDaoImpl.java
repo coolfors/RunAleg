@@ -15,7 +15,7 @@ public class Receipt_aboutDaoImpl implements Receipt_aboutDao {
 		 * 	 
 		 */
 		
-		String sql="SELECT receipt.disId, userinfo.userTel, dispatch.disTel, receipt.startTime, receipt.encryptionKey, receipt.endTime, receipt.state, receipt.courierAdd, receipt.getDistance, receipt.sendDistance FROM userinfo, dispatch, receipt WHERE receipt.disId = dispatch.disId AND dispatch.userId = userinfo.userId AND dispatch.disState=1 and receipt.state = 1 and  courierId=?";
+		String sql="SELECT receipt.receiptId,receipt.disId, userinfo.userTel, dispatch.disTel, receipt.startTime, receipt.encryptionKey, receipt.endTime, receipt.state, receipt.courierAdd, receipt.getDistance, receipt.sendDistance FROM userinfo, dispatch, receipt WHERE receipt.disId = dispatch.disId AND dispatch.userId = userinfo.userId AND dispatch.disState=1 and receipt.state = 1 and  courierId=?";
 		return BaseDao.getPage(sql, page, pageSize, Receipt_about.class,courierId);
 	}
 	/**

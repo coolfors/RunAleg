@@ -177,7 +177,7 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
-		String  courierId=request.getParameter("courierId");
+		int  courierId=Integer.valueOf(request.getParameter("courierId"));
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
@@ -225,7 +225,7 @@ public class CourierServlet extends HttpServlet {
 		int page = 1;
 		int pageSize = 10;
 		
-		String  courierId=request.getParameter("courierId");
+		int  courierId=Integer.valueOf(request.getParameter("courierId"));
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
@@ -251,10 +251,11 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
+		String courierId=request.getParameter("courierId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize);
+		PageData<Evaluate> pd = es.waitEvaluate(page, pageSize, courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
@@ -275,17 +276,21 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
+
+
+		String courierId = request.getParameter("courierId");
+
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Evaluate> pd = es.overEval(page, pageSize);
+		PageData<Evaluate> pd = es.overEvaluate(page, pageSize, courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
 		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
-
+	
 	/**
 	 * 后台修改腿哥信息，Courier表
 	 * 

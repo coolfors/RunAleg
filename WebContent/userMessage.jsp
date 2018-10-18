@@ -163,7 +163,7 @@
 								<button class="btn btn-success btn-xs" data-toggle="modal"
 									data-target="#myModal">成为快递侠</button></li>
 							<li><span>账户余额：</span> <em>${sessionScope.Userinfo.userBalance}</em>
-							&nbsp;&nbsp;&nbsp;<button class="btn btn-success btn-xs" >点击充值</button>
+							&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-xs" href="alipay/index.jsp" >点击充值</a>
 							</li>
 						</ul>
 						<strong>基本信息</strong>

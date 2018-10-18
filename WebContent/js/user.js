@@ -33,8 +33,10 @@ $(function(){
 	});
 	//点击a标签事件，显示所有未评价订单，evaluate表
 	$("#waitEvaluate").click(function(){
+		var userId = $("#userId").val();
 		$("thead").html("<tr><th>评价id</th><th>订单号</th><th>评价分</th><th>评价信息</th><th>评价状态</th></tr>");
-		$.get("us.action?op=waitEvaluate",function(data,status){
+		$.get("us.action?op=waitEvaluate&userId="+userId+"",function(data,status){
+			alert('下单成功');
 			var arr = JSON.parse(data);
 			var str = "";
 			$.each(arr.data, function(index,a){

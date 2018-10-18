@@ -47,7 +47,7 @@ public class DispatchServiceImpl implements DispatchService {
 	}
 	//user 用户的所有订单(显示自己的所有订单)
 		@Override
-		public PageData<Dispatch> queryDispatch(int page, int pageSize, int userId) {
+		public PageData<Dispatch> queryDispatch(int page, int pageSize, String userId) {
 			// TODO Auto-generated method stub
 			return dd.queryDispatch(page, pageSize, userId);
 		}

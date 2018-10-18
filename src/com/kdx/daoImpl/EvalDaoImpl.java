@@ -51,7 +51,25 @@ public class EvalDaoImpl implements EvalDao {
 		// TODO Auto-generated method stub
 		return BaseDao.getPage("select * from evaluate where evaState = 1 ", page, pageSize, Evaluate.class);
 	}
-	
+	/**
+	 * courier待评价订单
+	 *  
+	 */
+	@Override
+	public PageData<Evaluate> waitEvaluate(int page, int pageSize, String courierId) {
+		// TODO Auto-generated method stub
+		String sql="SELECT evaluate.evaluateId, evaluate.receiptId, evaluate.evaState FROM evaluate INNER JOIN receipt ON evaluate.receiptId = receipt.receiptId WHERE evaState=0 and courierId=?";
+		return BaseDao.getPage(sql, page, pageSize, Evaluate.class, courierId);
+	}
+	/**
+	 * courier已评价订单
+	 */
+	@Override
+	public PageData<Evaluate> overEvaluate(int page, int pageSize, String courierId) {
+		// TODO Auto-generated method stub
+		String sql="SELECT evaluate.evaluateId, evaluate.receiptId, evaluate.evaState FROM evaluate INNER JOIN receipt ON evaluate.receiptId = receipt.receiptId WHERE evaState=1 and courierId=?";
+		return BaseDao.getPage(sql, page, pageSize, Evaluate.class, courierId);
+	}
 	
 
 }
