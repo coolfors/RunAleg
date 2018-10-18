@@ -98,8 +98,11 @@
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2}">
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				</c:if>
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">发布跑腿<span class="caret"></span></a>
