@@ -58,13 +58,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean updateState(int userId, int sockState) {
+	public boolean updateState(String userId, int sockState) {
 		// TODO Auto-generated method stub
 		return ud.changeState(userId, sockState);
 	}
 
 	@Override
-	public boolean updateType(int userId, int userType) {
+	public boolean updateType(String userId, int userType) {
 		// TODO Auto-generated method stub
 		return ud.changeType(userId, userType);
 	}

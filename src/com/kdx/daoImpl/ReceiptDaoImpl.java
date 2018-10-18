@@ -110,5 +110,13 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		String sql = "SELECT receipt.receiptId,receipt.encryptionKey,user.userName,receipt.disId,receipt.startTime,receipt.endTime,receipt.state,receipt.courierAdd,receipt.getDistance,receipt.sendDistance FROM (receipt,user) INNER JOIN courier ON courier.userId=user.userId AND receipt.courierId=courier.courierId";
 		return (List<Receipt>) BaseDao.select(sql, Receipt.class);
 	}
+	
+	@Override
+	public boolean changeState(String receiptId, int state) {
+		// TODO Auto-generated method stub
+
+		String sql = "update receipt set state=? where receiptId=?";
+		return BaseDao.execute(sql, state, receiptId) > 0;
+	}
 
 }

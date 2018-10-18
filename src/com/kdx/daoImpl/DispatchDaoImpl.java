@@ -76,5 +76,12 @@ public class DispatchDaoImpl implements DispatchDao {
 		String sql="SELECT dispatch.disId, dispatch.beginAdd, dispatch.endAdd, dispatch.disTel, dispatch.disPrice, dispatch.goodsType, dispatch.disPS, dispatch.disState, dispatch.userId FROM dispatch WHERE userId=? ";
 		return BaseDao.getPage(sql, page, pageSize, Dispatch.class, userId);
 	}
+	
+	@Override
+	public boolean changeState(String disId, int disState) {
+		// TODO Auto-generated method stub
+		String sql = "update dispatch set disState=? where disId=?";
+		return BaseDao.execute(sql, disState, disId) > 0;
+	}
 
 }

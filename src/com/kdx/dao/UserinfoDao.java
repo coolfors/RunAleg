@@ -27,4 +27,6 @@ public interface UserinfoDao {
 	boolean changeState(String userName, int sockState);// 改变状态
 
 	boolean updateUserinfoByQt(Userinfo uinfo);//前台修改用户信息
+	
+	List<Userinfo> queryUserName();//查找用户名
 }

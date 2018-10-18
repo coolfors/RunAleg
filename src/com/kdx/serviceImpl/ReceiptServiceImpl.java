@@ -71,4 +71,10 @@ public class ReceiptServiceImpl implements ReceiptService {
 		return rd.getReceipt();
 	}
 
+	@Override
+	public boolean updateState(String receiptId, int state) {
+		// TODO Auto-generated method stub
+		return rd.changeState(receiptId, state);
+	}
+
 }

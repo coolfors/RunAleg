@@ -22,5 +22,7 @@ public interface CourierDao {
 	
 	boolean updateAdd(String courierId,String add);
 	//前台修改腿哥信息
-	boolean updateCourierInForward(Courier cour);
+	boolean updateCourierInForward(Courier cour);	
+
+	boolean changeState(String courierId, int sockState);// 改变状态
 }

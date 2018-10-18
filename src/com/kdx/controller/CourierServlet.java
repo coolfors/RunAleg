@@ -90,6 +90,34 @@ public class CourierServlet extends HttpServlet {
 		else if (op.equals("xiugai")) {
 			updateCourierMessage(request,response);
 		}
+		
+		if (op.equals("edit")) {
+
+			String courierId = request.getParameter("courierId");
+			String ableDistance = request.getParameter("ableDistance");
+			String address = request.getParameter("address");
+			String balance = request.getParameter("balance");
+			String creditPoint = request.getParameter("creditPoint");
+			String deposit = request.getParameter("deposit");
+			String iDcard = request.getParameter("IDcard");
+			String tel = request.getParameter("tel");
+
+			Courier c = new Courier(courierId, Double.valueOf(ableDistance), address,
+					Double.valueOf(balance), Integer.valueOf(creditPoint), Double.valueOf(deposit), iDcard, tel);
+
+			boolean flag = cs.updateCourier(c);
+
+			PrintWriter out = response.getWriter();
+
+			out.print(flag);
+		}
+		if (op.equals("sock")) {
+			String courierId = request.getParameter("courierId");
+			String sockState = request.getParameter("sockState");
+			boolean flag = cs.updateState(courierId, Integer.valueOf(sockState));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
 
 	}
 
@@ -251,10 +279,11 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
+		String courierId=request.getParameter("courierId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize);
+		PageData<Evaluate> pd = es.waitEvaluate(page, pageSize, courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
@@ -275,17 +304,21 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
+
+
+		String courierId = request.getParameter("courierId");
+
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Evaluate> pd = es.overEval(page, pageSize);
+		PageData<Evaluate> pd = es.overEvaluate(page, pageSize, courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
 		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
-
+	
 	/**
 	 * 后台修改腿哥信息，Courier表
 	 * 

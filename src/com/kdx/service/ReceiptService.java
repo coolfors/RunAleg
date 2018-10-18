@@ -24,4 +24,6 @@ public interface ReceiptService {
 	PageData<Receipt> Receiptdispatch(int page, int pageSize);// 配送中的订单
 
 	List<Receipt> getReceipt();
+
+	boolean updateState(String receiptId, int state);// 改变状态
 }

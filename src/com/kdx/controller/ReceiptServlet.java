@@ -70,6 +70,14 @@ public class ReceiptServlet extends HttpServlet {
 		} else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
 		}
+		
+		if (op.equals("sock")) {
+			String receiptId = request.getParameter("receiptId");
+			String state = request.getParameter("state");
+			boolean flag = rs.updateState(receiptId, Integer.valueOf(state));
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
 
 	}
 

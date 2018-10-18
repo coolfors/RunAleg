@@ -79,7 +79,7 @@ public class UserServlet extends HttpServlet {
 		if (op.equals("sock")) {
 			String userId = request.getParameter("userId");
 			String sockState = request.getParameter("sockState");
-			boolean flag = us.updateState(Integer.valueOf(userId), Integer.valueOf(sockState));
+			boolean flag = us.updateState(userId, Integer.valueOf(sockState));
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
@@ -87,7 +87,7 @@ public class UserServlet extends HttpServlet {
 		if (op.equals("type")) {
 			String userId = request.getParameter("userId");
 			String userType = request.getParameter("userType");
-			boolean flag = us.updateType(Integer.valueOf(userId), Integer.valueOf(userType));
+			boolean flag = us.updateType(userId, Integer.valueOf(userType));
 			PrintWriter out = response.getWriter();
 			out.print(flag);
 		}
@@ -276,13 +276,19 @@ public class UserServlet extends HttpServlet {
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
+
+		String  userId=request.getParameter("userId");
+		
+		System.out.println(userId);
+		
+		
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize);
+		PageData<Evaluate> pd = es.waitEval(page, pageSize,userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);

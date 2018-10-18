@@ -2,7 +2,6 @@ package com.kdx.entity;
 
 import java.io.Serializable;
 
-
 /**
  * The persistent class for the userinfo database table.
  * 
@@ -10,20 +9,30 @@ import java.io.Serializable;
 public class Userinfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String userInfoId;//详情信息id
-	
-	private String userId;//用户id
+	private String userInfoId;// 详情信息id
 
-	private String userAdd;//用户地址
+	private String userId;// 用户id
 
-	private double userBalance;//用户余额
+	private String userAdd;// 用户地址
 
-	private String userSex;//用户性别
+	private double userBalance;// 用户余额
 
-	private String userTel;//用户手机
-	
-	private String userName;//用户名
-	
+	private String userSex;// 用户性别
+
+	private String userTel;// 用户手机
+
+	private String userName;// 用户名
+
+	private int sockState;
+
+	public int getSockState() {
+		return sockState;
+	}
+
+	public void setSockState(int sockState) {
+		this.sockState = sockState;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -83,7 +92,8 @@ public class Userinfo implements Serializable {
 		this.userId = userId;
 	}
 
-	public Userinfo(String userInfoId, String userId, String userAdd, double userBalance, String userSex, String userTel) {
+	public Userinfo(String userInfoId, String userId, String userAdd, double userBalance, String userSex,
+			String userTel) {
 		super();
 		this.userInfoId = userInfoId;
 		this.userId = userId;
@@ -92,9 +102,7 @@ public class Userinfo implements Serializable {
 		this.userSex = userSex;
 		this.userTel = userTel;
 	}
-	
-	
-		
+
 	public Userinfo(String userId, String userAdd, double userBalance, String userSex, String userTel) {
 		super();
 		this.userId = userId;
@@ -106,12 +114,13 @@ public class Userinfo implements Serializable {
 
 	/**
 	 * 前台修改个人信息
+	 * 
 	 * @param userId
 	 * @param userSex
 	 * @param userTel
 	 * @param userAdd
 	 */
-	public Userinfo(String userId,  String userTel, String userAdd,String userSex) {
+	public Userinfo(String userId, String userTel, String userAdd, String userSex) {
 		super();
 		this.userId = userId;
 		this.userAdd = userAdd;
@@ -119,11 +128,22 @@ public class Userinfo implements Serializable {
 		this.userTel = userTel;
 	}
 
+	public Userinfo(String userInfoId, String userAdd, double userBalance, String userSex, String userTel,
+			String userName) {
+		super();
+		this.userInfoId = userInfoId;
+		this.userAdd = userAdd;
+		this.userBalance = userBalance;
+		this.userSex = userSex;
+		this.userTel = userTel;
+		this.userName = userName;
+	}
 
 	@Override
 	public String toString() {
 		return "Userinfo [userInfoId=" + userInfoId + ", userId=" + userId + ", userAdd=" + userAdd + ", userBalance="
 				+ userBalance + ", userSex=" + userSex + ", userTel=" + userTel + ", userName=" + userName
-				+ "]";
+				+ ", sockState=" + sockState + "]";
 	}
+
 }

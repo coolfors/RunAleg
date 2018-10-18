@@ -57,4 +57,10 @@ public class CourierServiceImpl implements CourierService {
 		return cd.updateCourierInForward(cour);
 	}
 
+	@Override
+	public boolean updateState(String courierId, int sockState) {
+		// TODO Auto-generated method stub
+		return cd.changeState(courierId, sockState);
+	}
+
 }
