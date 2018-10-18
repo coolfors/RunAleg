@@ -132,22 +132,12 @@ public class AffairDaoImpl implements AffairDao {
 				String Date = df.format( new Date());
 				//执行增加增加receipt的操作
 				String sql2="insert into receipt values(?,?,?,?,?,XXX,0,?,?,?)";
-				List<String> strlist=ds.getBeginAndEnaAdd(disId);
-				Iterator<String> it=strlist.iterator();
 				//配送员当前位置
 				String add=cs.getCourierAdd(courierId);
-				//订单起点和终点
-				String beginAdd= it.next();
-				String endAdd=it.next();
 				
 				BaseDao.execute(sql2, conn, uuid1,uuid2,courierId,disId,Date,add,getGoodsDistance,sendGoodsDistance);
-				//执行生成账单信息的动作
-				BillDao bd=new BillDaoImpl();
-				List<Dispatch> listDis=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class, disId);
-				Dispatch disN=null;
-				Iterator<Dispatch> it1=listDis.iterator();
-				disN=it1.next();
-				BaseDao.execute("insert into bill values(?,?,?,?,'XXX')", UUIDUtils.getUUID(), disN.getUserId(), disId, Double.valueOf(disN.getDisPrice()));
+				
+				
 				//Bill b=new Bill(UUIDUtils.getUUID(), disN.getUserId(), disId, Double.valueOf(disN.getDisPrice()));
 				//手动提交
 				conn.commit();
