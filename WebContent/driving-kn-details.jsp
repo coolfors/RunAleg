@@ -26,6 +26,10 @@
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 </head>
 <body>
+<div id="allmap" hidden="hidden"></div>
+	<input id="lng" name="lng" hidden="hidden" value="" />
+	<input id="lat" name="lat" hidden="hidden" value="" />
+	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
 	<div id="allmap" hidden="hidden"></div>
 	<input id="lng" name="lng" hidden="hidden" value="" />
@@ -167,6 +171,5 @@
 <c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
-
 </body>
 </html>

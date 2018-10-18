@@ -230,6 +230,9 @@
     </div>
 </div>
 <!--尾部-结束-->
+<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+		<script src="js/GPS_GetLng&LatByBrow.js"></script>
+	</c:if>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">

@@ -37,6 +37,10 @@
 </script>
 </head>
 <body>
+<div id="allmap" hidden="hidden"></div>
+	<input id="lng" name="lng" hidden="hidden" value="" />
+	<input id="lat" name="lat" hidden="hidden" value="" />
+	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 <!--顶部-开始-->
 <div id="allmap" hidden="hidden"></div>
 	<input id="lng" name="lng" hidden="hidden" value="" />
@@ -195,6 +199,5 @@
 <c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
-
 </body>
 </html>
