@@ -271,10 +271,11 @@ public class CourierServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		int page = 1;
 		int pageSize = 10;
+		String courierId=request.getParameter("courierId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize, userId);
+		PageData<Evaluate> pd = es.waitEvaluate(page, pageSize, courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
@@ -296,18 +297,18 @@ public class CourierServlet extends HttpServlet {
 		int page = 1;
 		int pageSize = 10;
 
-		String userId = request.getParameter("userId");
+		String courierId = request.getParameter("courierId");
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Evaluate> pd = es.overEval(page, pageSize, userId);
+		PageData<Evaluate> pd = es.overEvaluate(page, pageSize, courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
 		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
-
+	
 	/**
 	 * 后台修改腿哥信息，Courier表
 	 * 

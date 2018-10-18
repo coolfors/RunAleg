@@ -567,10 +567,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("待评价订单");
+						var courierId = $("#CourierId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "CourierServlet.do?op=waitEvaluate",
+									url : "CourierServlet.do?op=waitEvaluate&courierId="+courierId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
@@ -705,10 +706,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("已评价订单");
+						var courierId = $("#CourierId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "CourierServlet.do?op=overEvaluate",
+									url : "CourierServlet.do?op=overEvaluate&courierId="+courierId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
