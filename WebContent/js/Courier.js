@@ -90,9 +90,12 @@ $(function(){
 	//点击a标签事件，显示所有待送订单，receipt表
 	$("#waitSendReceipt").click(function(){
 		$("#headName").html("待送订单");
+		
+		var courierId=$("#CourierId").val();
+		
 		$.ajax({
             type: "get",
-            url: "CourierServlet.do?op=waitSendReceipt",
+            url: "CourierServlet.do?op=waitSendReceipt&courierId="+courierId,
             /*data: {username:$("#username").val(),
             content:$("#content").val()
                },*/
@@ -165,11 +168,12 @@ $(function(){
 	//显示所有配送中的订单，有手机号码
 	$("#sendReceipt").click(function(){
 	
+		var courierId=$("#CourierId").val();
 		
 		$("#headName").html("配送中的订单");
 		$.ajax({
             type: "get",
-            url: "CourierServlet.do?op=sendReceipt",
+            url: "CourierServlet.do?op=sendReceipt&courierId="+courierId,
             data: {username:$("#username").val(),
             content:$("#content").val()
                },
@@ -232,7 +236,7 @@ $(function(){
    			});
             }
         });
-	});
+	});   
 	
 	/**
 	 * 设置一个用于遍历waitreceipt的函数waitUpdateReceipt

@@ -15,16 +15,19 @@ import com.kdx.entity.Courier;
 import com.kdx.entity.Dispatch;
 import com.kdx.entity.Evaluate;
 import com.kdx.entity.Receipt;
+import com.kdx.entity.Receipt_about;
 //import com.kdx.entity.Receipt_about;
 import com.kdx.service.CourierService;
 import com.kdx.service.DispatchService;
 import com.kdx.service.EvaluateService;
 import com.kdx.service.ReceiptService;
+import com.kdx.service.Receipt_aboutService;
 //import com.kdx.service.Receipt_aboutService;
 import com.kdx.serviceImpl.CourierServiceImpl;
 import com.kdx.serviceImpl.DispatchServiceImpl;
 import com.kdx.serviceImpl.EvaluateServiceImpl;
 import com.kdx.serviceImpl.ReceiptServiceImpl;
+import com.kdx.serviceImpl.Receipt_aboutServiceImpl;
 //import com.kdx.serviceImpl.Receipt_aboutServiceImpl;
 import com.kdx.util.MyDataTableData;
 import com.kdx.util.PageData;
@@ -39,6 +42,7 @@ public class CourierServlet extends HttpServlet {
 	private ReceiptService rs = new ReceiptServiceImpl();
 	private EvaluateService es = new EvaluateServiceImpl();
 	private CourierService cs = new CourierServiceImpl();
+	private Receipt_aboutService ras=new Receipt_aboutServiceImpl();
 //	private Receipt_aboutService ras=new Receipt_aboutServiceImpl();
 
 	/**
@@ -165,16 +169,19 @@ public class CourierServlet extends HttpServlet {
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
+	 * 
+	 * 
 	 */
 	protected void waitSendReceipt(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
+		int  courierId=Integer.valueOf(request.getParameter("courierId"));
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Dispatch> pd = ds.waitSendDispatch(page, pageSize);
+		PageData<Receipt_about> pd = ras.waitsendReceipt(page, pageSize, courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
@@ -215,17 +222,20 @@ public class CourierServlet extends HttpServlet {
 	protected void sendReceipt(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-/*		int page = 1;
+		int page = 1;
 		int pageSize = 10;
+		
+		int  courierId=Integer.valueOf(request.getParameter("courierId"));
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-		PageData<Receipt_about> pd = ras.disReceipt(page, pageSize);
+	
+		PageData<Receipt_about> pd = ras.sendReceipt(page, pageSize,courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
 		request.setAttribute("dataJson", data);
-		response.getWriter().println(data);*/
+		response.getWriter().println(data);
 	}
 
 	/**
