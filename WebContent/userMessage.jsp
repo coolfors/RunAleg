@@ -109,13 +109,13 @@
 						<ul class="erji">
 							<li><i>&nbsp;</i> <strong><a href="">个人资料</a></strong></li>
 						</ul></li>
-					<li><a class="yiji"><span>订单中心</span><em>&nbsp;</em></a>
+					<!-- <li><a class="yiji"><span>订单中心</span><em>&nbsp;</em></a>
 						<ul class="erji">
 							<li><i>&nbsp;</i> <strong><a href="">我的订单</a></strong></li>
 							<li><i>&nbsp;</i> <strong><a href="">我的账单</a></strong></li>
 							<li><i>&nbsp;</i> <strong><a href="">常发货物</a></strong></li>
 							<li><i>&nbsp;</i> <strong><a href="">常用联系人</a></strong></li>
-						</ul></li>
+						</ul></li> -->
 				</ul>
 			</div>
 			<div class="person_r">
@@ -162,7 +162,9 @@
 								&nbsp;&nbsp;&nbsp;
 								<button class="btn btn-success btn-xs" data-toggle="modal"
 									data-target="#myModal">成为快递侠</button></li>
-							<li><span>账户余额：</span> <em>${sessionScope.Userinfo.userBalance}</em></li>
+							<li><span>账户余额：</span> <em>${sessionScope.Userinfo.userBalance}</em>
+							&nbsp;&nbsp;&nbsp;<button class="btn btn-success btn-xs" >点击充值</button>
+							</li>
 						</ul>
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
@@ -195,7 +197,9 @@
 							<li><span>账户类型：</span> <em>${sessionScope.User.userType == 0 ? "管理员":(sessionScope.User.userType == 1 ? "普通用户":"跑腿用户")}</em>
 							</li>
 							<li><span>账户押金：</span> <em>${sessionScope.Courier.deposit}</em></li>
-							<li><span>账户余额：</span> <em>${sessionScope.Courier.balance}</em></li>
+							<li><span>账户余额：</span> <em>${sessionScope.Courier.balance}</em>
+							&nbsp;&nbsp;&nbsp;<button class="btn btn-success btn-xs" >点击充值</button>
+							</li>
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
@@ -239,7 +243,7 @@
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="form_data" method="post" action="BeCourier.do">
+				<form id="form_data" method="get" action="BeCourier.do">
 					<input type="hidden" name="op" value="toBeCourier" />
 					<input type="hidden" name="userId" value="${sessionScope.User.userId}" />
 					<input type="hidden" name="tel" value="${sessionScope.Userinfo.userTel}"/>
