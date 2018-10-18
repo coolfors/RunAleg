@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.kdx.dao.AffairDao;
+import com.kdx.dao.BillDao;
+import com.kdx.entity.Bill;
 import com.kdx.entity.Courier;
 import com.kdx.entity.Dispatch;
 import com.kdx.entity.User;
@@ -122,7 +124,7 @@ public class AffairDaoImpl implements AffairDao {
 				DispatchService ds=new DispatchServiceImpl();
 				String uuid1=UUIDUtils.getUUID();
 				String uuid2=UUIDUtils.getUUID();
-				//执行增加user的操作
+				//执行改变dispatch状态的动作
 				String sql1 = "update dispatch set disState=1";
 				BaseDao.execute(sql1, conn);
 				//获取当前时间作为起点时间
@@ -139,6 +141,14 @@ public class AffairDaoImpl implements AffairDao {
 				String endAdd=it.next();
 				
 				BaseDao.execute(sql2, conn, uuid1,uuid2,courierId,disId,Date,add,getGoodsDistance,sendGoodsDistance);
+				//执行生成账单信息的动作
+				BillDao bd=new BillDaoImpl();
+				List<Dispatch> listDis=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class, disId);
+				Dispatch disN=null;
+				Iterator<Dispatch> it1=listDis.iterator();
+				disN=it1.next();
+				BaseDao.execute("insert into bill values(?,?,?,?,'XXX')", UUIDUtils.getUUID(), disN.getUserId(), disId, Double.valueOf(disN.getDisPrice()));
+				//Bill b=new Bill(UUIDUtils.getUUID(), disN.getUserId(), disId, Double.valueOf(disN.getDisPrice()));
 				//手动提交
 				conn.commit();
 				flag=true;
