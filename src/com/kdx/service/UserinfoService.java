@@ -25,4 +25,6 @@ public interface UserinfoService {
 	boolean updateState(String userName, int sockState);// 改变状态
 
 	boolean updateUserinfoByQt(Userinfo editInfo);
+	
+	boolean updateUserinfoBalance(Double balance,String userId);//前台充值
 }

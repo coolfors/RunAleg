@@ -76,5 +76,15 @@ public class UserinfoDaoImpl implements UserinfoDao {
 		String sql = "update user set sockState=? where userName=?";
 		return BaseDao.execute(sql, sockState, userName) > 0;
 	}
+	
+	/**
+	 * 前台充值
+	 */
+	@Override
+	public boolean updateUserinfoBalance(Double balance,String userId) {
+		// TODO Auto-generated method stub
+		String sql="update userinfo set userBalance= userBalance + ? where userId=?";
+		return BaseDao.execute(sql, balance,userId)>0;
+	}
 
 }

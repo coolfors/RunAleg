@@ -61,4 +61,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 		return uid.updateUserinfoByQt(editInfo);
 	}
 
+	@Override
+	public boolean updateUserinfoBalance(Double balance, String userId) {
+		// TODO Auto-generated method stub
+		return uid.updateUserinfoBalance(balance, userId);
+	}
+
 }
