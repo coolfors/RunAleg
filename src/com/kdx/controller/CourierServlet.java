@@ -2,7 +2,6 @@ package com.kdx.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -43,8 +42,8 @@ public class CourierServlet extends HttpServlet {
 	private ReceiptService rs = new ReceiptServiceImpl();
 	private EvaluateService es = new EvaluateServiceImpl();
 	private CourierService cs = new CourierServiceImpl();
-	private Receipt_aboutService ras = new Receipt_aboutServiceImpl();
-	// private Receipt_aboutService ras=new Receipt_aboutServiceImpl();
+	private Receipt_aboutService ras=new Receipt_aboutServiceImpl();
+//	private Receipt_aboutService ras=new Receipt_aboutServiceImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -67,46 +66,31 @@ public class CourierServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		if ("allDispatch".equals(op)) {
 			allDispatch(request, response);
-		} else if ("waitSendReceipt".equals(op)) {
+		} 
+		else if ("waitSendReceipt".equals(op)) {
 			waitSendReceipt(request, response);
-		} else if ("waitUpdateReceipt".equals(op)) {
+		} 
+		else if ("waitUpdateReceipt".equals(op)) {
 			waitUpdateReceipt(request, response);
-		} else if ("waitEvaluate".equals(op)) {
+		} 
+		else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
-		} else if ("overEvaluate".equals(op)) {
+		} 
+		else if ("overEvaluate".equals(op)) {
 			overEvaluate(request, response);
-		} else if (op.equals("edit")) {
+		} 
+		else if (op.equals("edit")) {
 			editCourier(request, response);
-		} else if (op.equals("sendReceipt")) {
+		}
+		else if(op.equals("sendReceipt")) {
 			sendReceipt(request, response);
-		} else if (op.equals("updateAdd")) {
+		}else if(op.equals("updateAdd")) {
 			updateAdd(request, response);
-		} else if (op.equals("xiugai")) {
-			updateCourierMessage(request, response);
-		} else if ("getState".equals(op)) {
-			getState(request, response);
+		}
+		else if (op.equals("xiugai")) {
+			updateCourierMessage(request,response);
 		}
 
-	}
-
-	private void getState(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json");
-
-		String receiptId = request.getParameter("receiptId");
-		System.out.println(receiptId);
-		String disId = request.getParameter("disId");
-		System.out.println(disId);
-
-		boolean flag = rs.changeState(disId, receiptId);
-
-		PrintWriter out = response.getWriter();
-
-		out.print(flag);
-
-		out.close();
 	}
 
 	/**
@@ -130,7 +114,7 @@ public class CourierServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
 
-		// System.out.println(jsonString);
+		//System.out.println(jsonString);
 
 		PrintWriter out = response.getWriter();
 
@@ -161,7 +145,7 @@ public class CourierServlet extends HttpServlet {
 		if (pageSize == null) {
 			pageSize = "10";
 		}
-		// System.out.println(1);
+		//System.out.println(1);
 		// int page = 1;
 		// int pageSize = 6;
 		/*
@@ -171,10 +155,10 @@ public class CourierServlet extends HttpServlet {
 		PageData<Dispatch> pd = ds.queryDispatch(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
-		// System.out.println(pd);
+		//System.out.println(pd);
 		request.setAttribute("dataJson", data);
-		// System.out.println(data);
-		// request.getRequestDispatcher("courier-main.jsp").forward(request, response);
+		//System.out.println(data);
+		//request.getRequestDispatcher("courier-main.jsp").forward(request, response);
 		response.getWriter().println(data);
 	}
 
@@ -193,7 +177,7 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
-		String courierId = request.getParameter("courierId");
+		int  courierId=Integer.valueOf(request.getParameter("courierId"));
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
@@ -228,10 +212,8 @@ public class CourierServlet extends HttpServlet {
 		request.setAttribute("dataJson", data);
 		response.getWriter().println(data);
 	}
-
 	/**
 	 * 查询配送中有手机号码
-	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -242,13 +224,13 @@ public class CourierServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 10;
-
-		String courierId = request.getParameter("courierId");
+		
+		int  courierId=Integer.valueOf(request.getParameter("courierId"));
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
-
-		PageData<Receipt_about> pd = ras.sendReceipt(page, pageSize, courierId);
+	
+		PageData<Receipt_about> pd = ras.sendReceipt(page, pageSize,courierId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
@@ -267,8 +249,6 @@ public class CourierServlet extends HttpServlet {
 	protected void waitEvaluate(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String userId = request.getParameter("userId");
 		int page = 1;
 		int pageSize = 10;
 		String courierId=request.getParameter("courierId");
@@ -297,7 +277,9 @@ public class CourierServlet extends HttpServlet {
 		int page = 1;
 		int pageSize = 10;
 
+
 		String courierId = request.getParameter("courierId");
+
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
@@ -321,12 +303,10 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 获取页码信息
-
+		
 	}
-
 	/**
 	 * 前台修改腿哥信息，courier表
-	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -340,17 +320,15 @@ public class CourierServlet extends HttpServlet {
 		String ableDistance = request.getParameter("ableDistance");
 		Courier cour = new Courier(Double.parseDouble(ableDistance), address, tel, userId);
 		boolean flag = cs.updateCourierInForward(cour);
-		if (flag) {
+		if(flag) {
 			request.getSession().removeAttribute("Courier");
 			Courier courier = cs.getCourierById(cour.getUserId());
 			request.getSession().setAttribute("Courier", courier);
 			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 		}
 	}
-
 	/**
 	 * 用于更新courier的当前位置
-	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -359,12 +337,12 @@ public class CourierServlet extends HttpServlet {
 	protected void updateAdd(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// 获取经纬度和跑腿员id
-		String lng = request.getParameter("lng");
-		String lat = request.getParameter("lat");
-		String courierId = request.getParameter("CourierId");
-		String point = lng + "," + lat;
-		// 执行修改语句将位置信息更新到数据库
+		//获取经纬度和跑腿员id
+		String lng=request.getParameter("lng");
+		String lat=request.getParameter("lat");
+		String courierId=request.getParameter("CourierId");
+		String point=lng+","+lat;
+		//执行修改语句将位置信息更新到数据库
 		cs.updateAdd(courierId, point);
 	}
 

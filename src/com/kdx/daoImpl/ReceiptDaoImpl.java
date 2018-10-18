@@ -7,6 +7,7 @@ import java.util.List;
 import com.kdx.dao.ReceiptDao;
 import com.kdx.entity.Dispatch;
 import com.kdx.entity.Receipt;
+import com.kdx.entity.User;
 import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
 import com.kdx.util.UUIDUtils;
@@ -126,7 +127,6 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		return pd;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Receipt> getReceipt() {
 		// TODO Auto-generated method stub

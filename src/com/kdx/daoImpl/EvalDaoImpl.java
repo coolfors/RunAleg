@@ -22,9 +22,9 @@ public class EvalDaoImpl implements EvalDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public PageData<Evaluate> queryEvalByPage(int page, int pageSize,String userId) {
+	public PageData<Evaluate> queryEvalByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from evaluate where userId = ?", page, pageSize, Evaluate.class,userId);
+		return BaseDao.getPage("select * from evaluate ", page, pageSize, Evaluate.class);
 	}
 
 	@Override
@@ -38,18 +38,18 @@ public class EvalDaoImpl implements EvalDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public PageData<Evaluate> waitEval(int page, int pageSize,String userId) {
+	public PageData<Evaluate> waitEval(int page, int pageSize) {
 		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from evaluate where evaState = 0 and userId = ?", page, pageSize, Evaluate.class,userId);
+		return BaseDao.getPage("select * from evaluate where evaState = 0 ", page, pageSize, Evaluate.class);
 	}
 	/**
-	 * 已评价订单 
+	 * 已评价订单
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public PageData<Evaluate> overEval(int page, int pageSize,String userId) {
+	public PageData<Evaluate> overEval(int page, int pageSize) {
 		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from evaluate where evaState = 1 and userId = ? ", page, pageSize, Evaluate.class,userId);
+		return BaseDao.getPage("select * from evaluate where evaState = 1 ", page, pageSize, Evaluate.class);
 	}
 	/**
 	 * courier待评价订单
