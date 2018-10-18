@@ -114,6 +114,7 @@
 			</div>
 		</div>
 	</nav>
+	
 	<!--导航-结束-->
 
 	<!--内容-开始-->
@@ -162,6 +163,7 @@
 			 
 		</script>
 	</div>
+	<input type="hidden" id="CourierId" name="CourierId" value="${sessionScope.Courier.courierId}"/>
 	<!-- <div class="container">
 		货源地图
 		<h3>送单详情</h3>
