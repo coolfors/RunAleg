@@ -11,7 +11,7 @@ public interface EvaluateService {
 
 	boolean updateEval(Evaluate e);// 修改评价1
 
-	PageData<Evaluate> queryEvalByPage(int page, int pageSize);// 查询所有评价
+	PageData<Evaluate> queryEvalByPage(int page, int pageSize,String userId);// 查询所有评价
 
 	PageData<Evaluate> waitEval(int page, int pageSize,String userId);// 待评价订单
 
