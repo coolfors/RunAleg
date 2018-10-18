@@ -317,11 +317,9 @@
 		</div>
 	</div>
 	<!--尾部-结束-->
-<<<<<<< HEAD
 	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
-=======
 	<script type="text/javascript">
 		
 		 function fun(o){
@@ -329,6 +327,5 @@
 		 }
 		
 	</script>
->>>>>>> branch 'master' of https://github.com/coolfors/RunAleg.git
 </body>
 </html>

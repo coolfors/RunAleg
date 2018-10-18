@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -37,6 +38,10 @@
 </head>
 <body>
 <!--顶部-开始-->
+<div id="allmap" hidden="hidden"></div>
+	<input id="lng" name="lng" hidden="hidden" value="" />
+	<input id="lat" name="lat" hidden="hidden" value="" />
+	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 <div style=" background:#EBEBEB; width:100%; height:80px; line-height:80px;">
     <div class="container">
         <div class="row">
@@ -187,6 +192,9 @@
     </div>
 </div>
 <!--尾部-结束-->
+<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+		<script src="js/GPS_GetLng&LatByBrow.js"></script>
+	</c:if>
 
 </body>
 </html>
