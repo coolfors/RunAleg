@@ -66,5 +66,15 @@ public class DispatchDaoImpl implements DispatchDao {
 		}
 		return strlist;
 	}
+	/*
+	 * user 用户的所有订单(显示自己的所有订单)
+	 * 
+	 */
+	@Override
+	public PageData<Dispatch> queryDispatch(int page, int pageSize, int userId) {
+		// TODO Auto-generated method stub
+		String sql="SELECT dispatch.disId, dispatch.beginAdd, dispatch.endAdd, dispatch.disTel, dispatch.disPrice, dispatch.goodsType, dispatch.disPS, dispatch.disState, dispatch.userId FROM dispatch WHERE userId=? ";
+		return BaseDao.getPage(sql, page, pageSize, Dispatch.class, userId);
+	}
 
 }

@@ -32,10 +32,7 @@
 	<input id="lat" name="lat" hidden="hidden" value="" />
 	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
-	<div id="allmap" hidden="hidden"></div>
-	<input id="lng" name="lng" hidden="hidden" value="" />
-	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
+	
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
 		<div class="container">

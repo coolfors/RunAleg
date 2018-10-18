@@ -1,7 +1,7 @@
 package com.kdx.entity;
 
 public class Receipt_about {
-	private int disId;// 派单号
+	private String disId;// 派单号
 	
 	private String disTel;//收货人电话
 	
@@ -23,11 +23,11 @@ public class Receipt_about {
 
 	private int state;// 状态
 
-	public int getDisId() {
+	public String getDisId() {
 		return disId;
 	}
 
-	public void setDisId(int disId) {
+	public void setDisId(String disId) {
 		this.disId = disId;
 	}
 
@@ -111,7 +111,7 @@ public class Receipt_about {
 		this.state = state;
 	}
 
-	public Receipt_about(int disId, String disTel, String userName, String userTel, String encryptionKey,
+	public Receipt_about(String disId, String disTel, String userName, String userTel, String encryptionKey,
 			String startTime, String endTime, String courierAdd, double getDistance, double sendDistance, int state) {
 		super();
 		this.disId = disId;

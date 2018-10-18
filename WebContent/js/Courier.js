@@ -29,7 +29,7 @@ $(function(){
    			var courierId=$("#CourierId").val();
         		var str = "";
    			$.each(arr.data, function(index,a){
-				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+disId+"' href='#' onclick='getDistance("+a.beginAdd+","+a.endAdd+","+disId+","+courierId+")'>"+"未接单"+"</a></td></tr>";
+				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance("+a.beginAdd+","+a.endAdd+","+a.disId+","+courierId+")'>"+"未接单"+"</a></td></tr>";
    			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -68,7 +68,7 @@ $(function(){
    					    			//alert(arr.page);
    					         		var str = "";
    					    			$.each(arr.data, function(index,a){
-   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href='#' onclick='getDistance("+a.beginAdd+","+a.endAdd+","+disId+","+courierId+")'>"+"未接单"+"</a></td></tr>";
+   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance("+a.beginAdd+","+a.endAdd+","+a.disId+","+courierId+")'>"+"未接单"+"</a></td></tr>";
    					    			});
    					    			$("tbody").html(str);
    					    			
@@ -103,15 +103,13 @@ $(function(){
             success: function(data){
                        /* $('#resText').empty();*/   //清空resText里面的所有内容
                         //var html = ''; 
-            	$("thead").html("<tr><th>派单id</th><th>用户id</th><th>起送地</th><th>到达地</th><th>用户联系电话</th><th>配送价格</th><th>物品类型</th><th>物品介绍</th><th>派单状态</th></tr>");
-        		var jsonStr=JSON.stringify(data);
+            	$("thead").html("<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th></tr>");var jsonStr=JSON.stringify(data);
         		var courierId=$("#CourierId").val();
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
         		var str = "";
    			$.each(arr.data, function(index,a){
-   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href='#'>"+"待送"+"</a></td></tr>";
-   		   		
+   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td></tr>";
    			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -150,8 +148,7 @@ $(function(){
    					    			//alert(arr.page);
    					         		var str = "";
    					    			$.each(arr.data, function(index,a){
-   					    				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a href=''>"+(a.disState==0?'待送':'未接单')+"</a></td></tr>";
-   					    		   		});
+   					    				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td></tr>";});
    					    			$("tbody").html(str);
    					    			
    					             }

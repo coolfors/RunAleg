@@ -14,7 +14,7 @@ public class TestFeback {
 
 		FebackDao fd = new FebackDaoImpl();
 
-		PageData<Feedback> pd = fd.queryFebackByPage(2, 3,1);
+		PageData<Feedback> pd = fd.queryFebackByPage(2, 3,"1");
 
 		@SuppressWarnings("unchecked")
 		List<Feedback> list = pd.getData();

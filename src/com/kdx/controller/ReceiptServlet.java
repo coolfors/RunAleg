@@ -154,7 +154,7 @@ public class ReceiptServlet extends HttpServlet {
 	}
 
 	/**
-	 * 所有订单-dispatch所有内容
+	 * 所有订单-dispatch自己的所有订单
 	 * 
 	 * @param request
 	 * @param response
@@ -167,18 +167,20 @@ public class ReceiptServlet extends HttpServlet {
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
+		int  userId=Integer.valueOf(request.getParameter("userId"));
 		if (request.getParameter("pageIndex") != null) {
 			page = Integer.parseInt(request.getParameter("pageIndex"));
 		}
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Dispatch> pd = ds.queryDispatch(page, pageSize);
+		PageData<Dispatch> pd = ds.queryDispatch(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
 		response.getWriter().println(data);
 	}
+
 
 	/**
 	 * 待配送订单-dispatch中disState为0 的内容
