@@ -29,14 +29,13 @@
 </head>
 <body>
 <div id="allmap" hidden="hidden"></div>
+<input id="targetAdd" name="targetAdd" hidden="hidden" value="" />
 	<input id="lng" name="lng" hidden="hidden" value="" />
 	<input id="lat" name="lat" hidden="hidden" value="" />
+	<div id="container" hidden="hidden"></div>
+	<input id="CourierPoint" name="CourierPoint" hidden="hidden" value="${sessionScope.Courier.address}" />
 	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
-	<div id="allmap" hidden="hidden"></div>
-	<input id="lng" name="lng" hidden="hidden" value="" />
-	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
 		<div class="container">
@@ -93,8 +92,11 @@
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2}">
-					<li class="active"><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+				</c:if>
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
