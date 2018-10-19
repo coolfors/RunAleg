@@ -2,62 +2,7 @@
  * Courier查看
  */
 //取货距离的方法
-	/*function getDistanceGPS(beginPos,endPos,disId,courierId){
-			//创建一个地图实例
-			var map = new BMap.Map("map");
-	        //设置搜索结束时的回调函数
-	        localSearch.setSearchCompleteCallback(function (searchResult) {
-	        	var pois=new Array();
-	        	for(var i=0;i<=1;i++){
-		        	//获取搜索结果
-		            var poi = searchResult[i].getPoi(0);
-		            //创建标注
-		            var marker = new BMap.Marker(poi.point);
-		            //存储点
-		            pois.push(poi.point);
-		            //添加覆盖物
-		            map.addOverlay(marker);  
-	        	}
-	            //计算两点之间距离
-	            //$("input[name='distance']").val((map.getDistance(pois[0],pois[1])).toFixed(2)+'米');
-	        	var distance=map.getDistance(pois[0],pois[1]).toFixed(2);
-	        	//将距离输送到数据库
-	        	$.get("CourierServlet.do?op=setGetDistance&distance="+distance+"&CourierId="+courierId+"&disId="+disId,function (data,status) {
-					
-				});
-	        });
-	        //搜索起始位置和结束位置
-	        localSearch.search([beginPos,endPos]);
-	        
-		}
-	//送货距离的方法
-	function sendDistanceGPS(beginPos,endPos,disId,courierId){
-		//创建一个地图实例
-		var map = new BMap.Map("map");
-	    //设置搜索结束时的回调函数
-	    localSearch.setSearchCompleteCallback(function (searchResult) {
-	    	var pois=new Array();
-	    	for(var i=0;i<=1;i++){
-	        	//获取搜索结果
-	            var poi = searchResult[i].getPoi(0);
-	            //创建标注
-	            var marker = new BMap.Marker(poi.point);
-	            //存储点
-	            pois.push(poi.point);
-	            //添加覆盖物
-	            map.addOverlay(marker);  
-	    	}
-	        //计算两点之间距离
-	        //$("input[name='distance']").val((map.getDistance(pois[0],pois[1])).toFixed(2)+'米');
-	    	var distance=map.getDistance(pois[0],pois[1]).toFixed(2);
-	    	$.get("CourierServlet.do?op=setSendDistance&distance="+distance+"&CourierId="+courierId+"&disId="+disId,function (data,status) {
-				
-			});
-	    });
-	    //搜索起始位置和结束位置
-	    localSearch.search([beginPos,endPos]);
-	    
-	}*/
+
 //	执行获取距离的动作
 	function doDistance(beginAdd,endAdd,disId,courierId){
 //		console.log(beginAdd);
@@ -73,14 +18,58 @@
 				$("#"+disId+"").html("<font color='red'>抢单失败</font>");
 			}
 		});
+        
+        //搜索起始位置和结束位置
+        localSearch.search([beginPos,endPos]);
+        
 	}
 // 弹出模态窗获取地图
-function createMap(){
+function createMap(beginAdd,endAdd){
+	var a="古歌华苑";
+	var b="厦门中软";
 	var map = new BMap.Map("l-maps");
 	map.centerAndZoom(new BMap.Point(118.10388605,24.48923061), 11);
 	var walking = new BMap.WalkingRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
-	walking.search("古歌华苑", "厦门中软");
+	walking.search(a, b);
 }
+/*//送货距离的方法
+function sendDistanceGPS(beginPos,endPos,disId,courierId){
+	//创建一个地图实例
+	var map = new BMap.Map("map");
+    //设置搜索结束时的回调函数
+    localSearch.setSearchCompleteCallback(function (searchResult) {
+    	var pois=new Array();
+    	for(var i=0;i<=1;i++){
+        	//获取搜索结果
+            var poi = searchResult[i].getPoi(0);
+            //创建标注
+            var marker = new BMap.Marker(poi.point);
+            //存储点
+            pois.push(poi.point);
+            //添加覆盖物
+            map.addOverlay(marker);  
+    	}
+        //计算两点之间距离
+        //$("input[name='distance']").val((map.getDistance(pois[0],pois[1])).toFixed(2)+'米');
+    	var distance=map.getDistance(pois[0],pois[1]).toFixed(2);
+    	$.get("CourierServlet.do?op=updateAdd&add="+add+"&CourierId="+courierId,function (data,status) {
+			
+		});
+    });
+    //搜索起始位置和结束位置
+    localSearch.search([beginPos,endPos]);
+    
+}
+
+function doDistance(beginAdd,endAdd,disId,courierId){
+	$.get("BuildReceipt.do?op=buildReceipt&CourierId="+courierId+"&disId="+disId,function (data,status) {
+		getDistanceGPS(data,beginAdd);
+		sendDistanceGPS(beginAdd,endAdd);
+	});
+}*/
+
+
+
 
 $(function(){
 	
@@ -108,7 +97,6 @@ $(function(){
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
    			var courierId=$("#CourierId").val();
-   			//alert(courierId);
         		var str = "";
    			$.each(arr.data, function(index,a){
 				//str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance('"+a.beginAdd+"','"+a.endAdd+"','"+a.disId+"','"+courierId+"')'>"+"未接单"+"</a></td></tr>";
@@ -402,9 +390,10 @@ $(function(){
 	//点击a标签事件，显示所有未评价订单，evaluate表
 	$("#waitEvaluate").click(function(){
 		$("#headName").html("待评价订单");
+		var courierId=$("#CourierId").val();
 		$.ajax({
             type: "get",
-            url: "CourierServlet.do?op=waitEvaluate",
+            url: "CourierServlet.do?op=waitEvaluate&courierId="+courierId,
             /*data: {username:$("#username").val(),
             content:$("#content").val()
                },*/
@@ -478,9 +467,10 @@ $(function(){
 	//点击a标签事件，显示所有已评价订单，evaluate表
 	$("#overEvaluate").click(function(){
 		$("#headName").html("已评价订单");
+		var courierId=$("#CourierId").val();
 		$.ajax({
             type: "get",
-            url: "CourierServlet.do?op=overEvaluate",
+            url: "CourierServlet.do?op=overEvaluate&courierId="+courierId,
             /*data: {username:$("#username").val(),
             content:$("#content").val()
                },*/
