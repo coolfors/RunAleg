@@ -2,6 +2,7 @@ package com.kdx.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -58,6 +59,10 @@ public class UserServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		response.setContentType("application/json");
 
+		if ("evaSos".equals(op)) {
+			evaSos(request, response);
+		}
+
 		if (op.equals("add")) {
 			addUser(request, response);
 		}
@@ -101,6 +106,27 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 
+	private void evaSos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");// 相应编码
+		// String v=request.getParameter("表单中的文本名，select名字等等/参数名"); 接收请求参数的值
+		response.setContentType("text/html;charset=utf-8");
+		String evaluateId = request.getParameter("evaluateId");
+		String evaInfo = request.getParameter("evaInfo");
+		String evaScore = request.getParameter("creditPoint");
+		String userId = request.getParameter("userId");
+		Evaluate eval = new Evaluate(evaluateId, userId, Integer.valueOf(evaScore), evaInfo);
+		boolean flag = us.changeEval(eval);
+		PrintWriter out = response.getWriter();
+		if (flag) {
+			out.print("<script>alert('评价成功！');location.href='user-order-main.jsp'</script>");
+		} else {
+			out.print("<script>alert('服务器繁忙，请重试！');location.href='user-order-main.jsp'</script>");
+		}
+
+	}
+
 	private void resetUserPwd(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
@@ -126,8 +152,7 @@ public class UserServlet extends HttpServlet {
 		String userType = request.getParameter("userType");
 		String userDate = request.getParameter("userDate");
 		userPwd = MD5Util.getEncodeByMd5(userPwd);
-		User u = new User(userId, Integer.valueOf(sockState), userDate, userName, userPwd,
-				Integer.valueOf(userType));
+		User u = new User(userId, Integer.valueOf(sockState), userDate, userName, userPwd, Integer.valueOf(userType));
 		boolean flag = us.addUser(u);
 		PrintWriter out = response.getWriter();
 		out.print(flag);
@@ -277,18 +302,17 @@ public class UserServlet extends HttpServlet {
 		int pageSize = 10;// 默认一页有10条记录
 		// 如果用户传递的参数不为空
 
-		String  userId=request.getParameter("userId");
-		
+		String userId = request.getParameter("userId");
+
 		System.out.println(userId);
-		
-		
+
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize,userId);
+		PageData<Evaluate> pd = us.queryEvalByPage(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);

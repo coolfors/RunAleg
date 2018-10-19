@@ -2,7 +2,6 @@ package com.kdx.entity;
 
 import java.io.Serializable;
 
-
 /**
  * The persistent class for the evaluate database table.
  * 
@@ -10,18 +9,18 @@ import java.io.Serializable;
 public class Evaluate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String evaluateId;//评价id
+	private String evaluateId;// 评价id
 
-	private String receiptId;//订单号
-	
-	private String userId;//订单号
-	
-	private int evaScore;//评价分
-	
-	private String evaInfo;//评价信息
-	
-	private int evaState;//评价状态
-	
+	private String receiptId;// 订单号
+
+	private String userId;// 订单号
+
+	private int evaScore;// 评价分
+
+	private String evaInfo;// 评价信息
+
+	private int evaState;// 评价状态
+
 	public String getUserId() {
 		return userId;
 	}
@@ -61,7 +60,7 @@ public class Evaluate implements Serializable {
 	public void setEvaScore(int evaScore) {
 		this.evaScore = evaScore;
 	}
-	
+
 	public int getEvaState() {
 		return evaState;
 	}
@@ -69,15 +68,16 @@ public class Evaluate implements Serializable {
 	public void setEvaState(int evaState) {
 		this.evaState = evaState;
 	}
-	
+
 	/**
 	 * 无参构造
 	 */
 	public Evaluate() {
 	}
-	
+
 	/**
 	 * 有参构造
+	 * 
 	 * @param evaluateId
 	 * @param receiptId
 	 * @param evaScore
@@ -92,8 +92,6 @@ public class Evaluate implements Serializable {
 		this.evaInfo = evaInfo;
 		this.evaState = evaState;
 	}
-	
-	
 
 	public Evaluate(String evaluateId, String receiptId, String userId, int evaScore, String evaInfo, int evaState) {
 		super();
@@ -105,13 +103,18 @@ public class Evaluate implements Serializable {
 		this.evaState = evaState;
 	}
 
+	public Evaluate(String evaluateId, String userId, int evaScore, String evaInfo) {
+		super();
+		this.evaluateId = evaluateId;
+		this.userId = userId;
+		this.evaScore = evaScore;
+		this.evaInfo = evaInfo;
+	}
+
 	@Override
 	public String toString() {
 		return "Evaluate [evaluateId=" + evaluateId + ", receiptId=" + receiptId + ", userId=" + userId + ", evaScore="
 				+ evaScore + ", evaInfo=" + evaInfo + ", evaState=" + evaState + "]";
 	}
 
-	
-
-	
 }

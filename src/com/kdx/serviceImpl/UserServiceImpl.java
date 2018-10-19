@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kdx.dao.UserDao;
 import com.kdx.daoImpl.UserDaoImpl;
+import com.kdx.entity.Evaluate;
 import com.kdx.entity.User;
 import com.kdx.service.UserService;
 import com.kdx.util.PageData;
@@ -100,13 +101,16 @@ public class UserServiceImpl implements UserService {
 		return ud.findUserType(userName);
 	}
 
-	/* (non-Javadoc)管理员的登陆
-	 * @see com.kdx.service.UserService#loginUser(java.lang.String, java.lang.String, int)
-	 */
 	@Override
-	public User loginUserAdmin(String username, String password) {
+	public PageData<Evaluate> queryEvalByPage(int page, int pageSize, String userId) {
 		// TODO Auto-generated method stub
-		return ud.loginUserAdmin(username, password);
+		return ud.queryEvalByPage(page, pageSize, userId);
+	}
+
+	@Override
+	public boolean changeEval(Evaluate eval) {
+		// TODO Auto-generated method stub
+		return ud.changeEval(eval);
 	}
 
 }

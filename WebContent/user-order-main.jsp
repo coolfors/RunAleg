@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -20,13 +20,15 @@
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 </head>
 <body>
-<div id="allmap" hidden="hidden"></div>
+	<div id="allmap" hidden="hidden"></div>
 	<input id="lng" name="lng" hidden="hidden" value="" />
 	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
+	<input id="CourierId" name="CourierId" hidden="hidden"
+		value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
@@ -37,22 +39,21 @@
 					class="col-sm-4 col-xs-5" style="float: right"> <a
 					href="modify data.html" target="_blank" style="display: none">su23c0e</a>
 					<a href="" style="display: none">退出</a>
-				</span> <span class="col-sm-4 col-xs-5" style="float: right">
-				 <c:if test="${sessionScope.User==null }">
+				</span> <span class="col-sm-4 col-xs-5" style="float: right"> <c:if
+						test="${sessionScope.User==null }">
 						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-						href="register.html" target="_blank" id="reg">注册</a>
-					</c:if>
-					<c:if test="${sessionScope.User!=null }">
+							href="register.html" target="_blank" id="reg">注册</a>
+					</c:if> <c:if test="${sessionScope.User!=null }">
 						<ul class="right navbar-nav">
-							<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
-								${sessionScope.User.userName}
-								<b class="caret"></b></a>
+							<li class="dropdown"><a href="" class="dropdown-toggle"
+								data-toggle="dropdown"> ${sessionScope.User.userName} <b
+									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
-									<li><a href="pay.jsp">余额充值</a></li>								
+									<li><a href="#">余额充值</a></li>
 									<li><a href="LoginServlet.do?op=exchange">退出账号</a></li>
 								</ul></li>
-						</ul>	
+						</ul>
 					</c:if>
 				</span>
 			</div>
@@ -62,53 +63,92 @@
 
 	<!--导航-开始-->
 	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">首页</a></li>
-					<c:if test="${sessionScope.User==null}">
-					<li class="active"><a href="login.html">跑腿吧<span class="sr-only"></span></a></li>
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.jsp">首页</a></li>
+				<c:if test="${sessionScope.User==null}">
+					<li class="active"><a href="login.html">跑腿吧<span
+							class="sr-only"></span></a></li>
 				</c:if>
 				<c:if test="${sessionScope.User.userType==1}">
-					<li class="active"><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
+					<li class="active"><a href="user-order-main.jsp">跑腿吧<span
+							class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==2}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">发布跑腿<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="freight-info.jsp">信息发布</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">帮助<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="driving-knowledge.jsp">如何下单</a></li>
-						</ul></li>
-						<li><a href="alliance.jsp">关于我们</a></li>
-					<li><a href="contact-us.jsp">联系我们</a></li>
-				</ul>
-			</div>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">发布跑腿<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="freight-info.jsp">信息发布</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">帮助<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="driving-knowledge.jsp">如何下单</a></li>
+					</ul></li>
+				<li><a href="alliance.jsp">关于我们</a></li>
+				<li><a href="contact-us.jsp">联系我们</a></li>
+			</ul>
 		</div>
+	</div>
 	</nav>
 	<!--导航-结束-->
 
 	<!--内容-开始-->
+	<button class="btn btn-success btn-xs" data-toggle="modal"
+		data-target="#myModal">成为快递侠</button>
+	<!-- 模态框 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="form_data" method="get" action="us.action">
+					<div class="modal-body">
+					<input type="hidden" id="op" name="op"
+								value="evaSos"> 
+					<input type="hidden" id="userId" name="userId"
+								value="${sessionScope.User.userId}"> 
+						<div class="form-group ">
+							<label for="evaInfo">评价内容:</label> <input class="form-control"
+								type="text" id="evaInfo" name="evaInfo" />
+						</div>
+
+						<div class="form-group">
+							<label for="creditPoint">评价分数:</label><input class="form-control"
+								type="text" name="creditPoint" id="creditPoint">
+						</div>
+					</div>
+					<div id="sss"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button class="btn btn-primary" type="submit">保存</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!--  模态框结束-->
 	<!--货源信息-->
 	<div class="container">
 		<!--广告-->
@@ -168,7 +208,8 @@
 			});
 		</script> -->
 	</div>
-	<input type="hidden" id="userId" name="userId" value="${sessionScope.User.userId}"/>
+	<input type="hidden" id="userId" name="userId"
+		value="${sessionScope.User.userId}" />
 	<!-- <div class="container">
 		货源地图
 		<h3>送单详情</h3>
@@ -184,29 +225,35 @@
 						<img src="images/reader driver.png"> <span> 当前订单</span>
 					</h3>
 					<div class="col-md-3 col-xs-6">
-						<a id="waitSendDispatch"> <img src="images/tubiao_03.png" class="img-circle">
+						<a id="waitSendDispatch"> <img src="images/tubiao_03.png"
+							class="img-circle">
 							<p>待配送订单</p>
 						</a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a id="dispatching"> <img src="images/tubiao_09.png" class="img-circle">
-						<p>配送中订单</p>
+						<a id="dispatching"> <img src="images/tubiao_09.png"
+							class="img-circle">
+							<p>配送中订单</p>
 						</a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a id="allDispatch"><img src="images/trucks.png" class="img-circle">
-						<p>所有订单</p></a>
+						<a id="allDispatch"><img src="images/trucks.png"
+							class="img-circle">
+							<p>所有订单</p></a>
 					</div>
 					<div class="col-md-3 col-xs-6">
 						<!-- <a href="freight-info.jsp"><img src="images/06.png" class="img-circle">
 						<p>下单</p></a> -->
 						<c:if test="${sessionScope.User==null}">
-							<a href="login.html"><img src="images/06.png" class="img-circle">
-						<p>下单</p></a>
+							<a href="login.html"><img src="images/06.png"
+								class="img-circle">
+								<p>下单</p></a>
 						</c:if>
-						<c:if test="${sessionScope.User.userType==1||sessionScope.User.userType==2}">
-							<a href="freight-info.jsp"><img src="images/06.png" class="img-circle">
-						<p>下单</p></a>
+						<c:if
+							test="${sessionScope.User.userType==1||sessionScope.User.userType==2}">
+							<a href="freight-info.jsp"><img src="images/06.png"
+								class="img-circle">
+								<p>下单</p></a>
 						</c:if>
 					</div>
 				</div>
@@ -222,7 +269,7 @@
 							<p>待评价订单</p>
 						</a>
 					</div>
-					<div class="col-md-4 col-xs-6" > 
+					<div class="col-md-4 col-xs-6">
 						<a id="completeorder"> <img src="images/ttubiao_10.png"
 							class="img-circle">
 							<p>已完成订单</p>
@@ -233,34 +280,34 @@
 							class="img-circle">
 							<p>加入跑男</p>
 						</a> -->
-						
-						<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+
+						<c:if
+							test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 							<a href="courier-main.jsp"> <img src="images/ttubiao_12.png"
-							class="img-circle">
-							<p>加入跑男</p>
+								class="img-circle">
+								<p>加入跑男</p>
 						</c:if>
-						<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+						<c:if
+							test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
 							<!-- <a href="index.jsp"> <img src="images/ttubiao_12.png"
 							class="img-circle">
 							<p>加入跑男</p> -->
-							<a href="user-order-main.jsp" onclick="getMes1()"> <img src="images/ttubiao_12.png"
-							class="img-circle">
-							<p>加入跑男</p>
-							<script type="text/javascript">
-							function getMes1() {
-								alert("您的跑腿申请正在审核中！");
-							}
-							</script>
+							<a href="user-order-main.jsp" onclick="getMes1()"> <img
+								src="images/ttubiao_12.png" class="img-circle">
+								<p>加入跑男</p> <script type="text/javascript">
+									function getMes1() {
+										alert("您的跑腿申请正在审核中！");
+									}
+								</script>
 						</c:if>
 						<c:if test="${sessionScope.User.userType==1}">
-						<a href="user-order-main.jsp" onclick="getMes2()"> <img src="images/ttubiao_12.png"
-							class="img-circle">
-							<p>加入跑男</p>
-							<script type="text/javascript">
-							function getMes2() {
-								alert("您现在是普通用户，快提交申请成为跑腿用户吧！");
-							}
-							</script>
+							<a href="user-order-main.jsp" onclick="getMes2()"> <img
+								src="images/ttubiao_12.png" class="img-circle">
+								<p>加入跑男</p> <script type="text/javascript">
+									function getMes2() {
+										alert("您现在是普通用户，快提交申请成为跑腿用户吧！");
+									}
+								</script>
 						</c:if>
 					</div>
 				</div>
@@ -311,7 +358,11 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/Receipt.js"></script>
-	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/messages_zh.js"></script>
+	<c:if
+		test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
 </body>
