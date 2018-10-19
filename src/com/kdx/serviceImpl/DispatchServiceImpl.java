@@ -60,5 +60,10 @@ public class DispatchServiceImpl implements DispatchService {
 		// TODO Auto-generated method stub
 		return dd.updateState(disId, disState);
 	}
+	@Override
+	public Dispatch getOne(String disId) {
+		// TODO Auto-generated method stub
+		return dd.getOne(disId);
+	}
 
 }

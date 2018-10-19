@@ -76,7 +76,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.jsp">首页</a></li>
-					<c:if test="${sessionScope.User==null}">
+				<c:if test="${sessionScope.User==null}">
 					<li class="active"><a href="login.html">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<c:if test="${sessionScope.User.userType==1}">

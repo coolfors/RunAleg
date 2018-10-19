@@ -630,8 +630,8 @@ $(function() {
 	$("#waitEvaluate")
 			.click(
 					function() {
+						$("#headName").html("评价订单");
 						var userId = $("#userId").val();
-						$("#headName").html("待评价订单");
 						$
 								.ajax({
 									type : "get",
@@ -666,7 +666,13 @@ $(function() {
 																	+ a.evaScore
 																	+ "</td><td>"
 																	+ a.evaInfo
-																	+ "</td><td class='see'><a href=''>未评价</a></td></tr>";
+																	+ "</td><td><class='see'>"
+																	+ "<button  id="
+																	+ a.evaState
+																	+ " onclick='chaRec(this)'    >"
+																	+ ((a.evaState == 0) ? "点击评价"
+																			: "评价已完成")
+																	+ "</button></td></tr>";
 														});
 										$("tbody").html(str);
 										layui
@@ -709,12 +715,10 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "us.action?op=waitEvaluate&pageIndex="
+																							url : "rs.do?op=waitEvaluate&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
-																									+ obj.limit
-																									+ "&userId"
-																									+ userId,
+																									+ obj.limit,
 																							/*
 																							 * data:
 																							 * {username:$("#username").val(),
@@ -768,3 +772,49 @@ $(function() {
 								});
 					});
 })
+
+$(document).ready(function() {
+
+	$("#form_data").validate({
+		// 验证规则,
+		rules : {
+			evaInfo : {
+				required : true,
+				minlength : 8
+			},
+			creditPoint : {
+				required : true,
+				digits : true,
+				max : 100,
+				min : 0
+			}
+		},
+
+		messages : {
+			evaInfo : {
+				required : "请输入评价内容",
+				minlength : "内容不少于8个字"
+			},
+			creditPoint : {
+				required : "请输入评价分数",
+				digits : "请输入分数",
+				max : "最高为100分,感谢您的评价"
+			}
+
+		}
+	});
+
+});
+
+function chaRec(e) {
+	var btnValue = $(e).text();
+	var evaluateId = $(e).parents("tr").find("td").eq(0).text();
+	if (btnValue == "点击评价") {
+		var str = "<input type='hidden' id='evaluateId' name='evaluateId'  value=" + evaluateId + "> "
+		$("#sss").html(str);
+		$('#myModal').modal('show');
+	} else if (btnValue == "评价已完成") {
+		alert("评价已完成，感谢您的评价");
+	}
+
+}
