@@ -283,7 +283,7 @@ public class UserServlet extends HttpServlet {
 		PageData<Dispatch> pd = ds.waitSendDispatch(page, pageSize);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
-		// System.out.println(data);
+		System.out.println(data);
 		response.getWriter().println(data);
 	}
 

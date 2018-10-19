@@ -23,4 +23,5 @@ public interface DispatchService {
 
 	PageData<Dispatch> queryDispatch(int page,int pageSize,String userId);//user 用户的所有订单(显示自己的所有订单)
 
+	Dispatch getOne(String disId);//获得一个dispatch对象
 }

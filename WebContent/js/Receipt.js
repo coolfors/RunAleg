@@ -166,26 +166,32 @@ $(function() {
 										// var html = '';
 										$("thead")
 												.html(
-														"<tr><th>接单号</th><th>配送员id</th><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th></tr>");
+														"<tr><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>位置</th></tr>");
 										var jsonStr = JSON.stringify(data);
 										// alert(jsonStr);
 										var arr = JSON.parse(jsonStr);
 										var str = "";
-										$.each(arr.data, function(index, a) {
-											str = str + "<tr><td>"
-													+ a.receiptId + "</td><td>"
-													+ a.courierId + "</td><td>"
-													+ a.disId + "</td><td>"
-													+ a.encryptionKey
-													+ "</td><td>" + a.startTime
-													+ "</td><td>" + a.endTime
-													+ "</td><td>"
-													+ a.courierAdd
-													+ "</td><td>"
-													+ a.getDistance
-													+ "</td><td>"
-													+ a.sendDistance;
-										});
+										$
+												.each(
+														arr.data,
+														function(index, a) {
+															str = str
+																	+ "<tr><td>"
+																	+ a.disId
+																	+ "</td><td>"
+																	+ a.encryptionKey
+																	+ "</td><td>"
+																	+ a.startTime
+																	+ "</td><td>"
+																	+ a.endTime
+																	+ "</td><td>"
+																	+ a.courierAdd
+																	+ "</td><td>"
+																	+ a.getDistance
+																	+ "</td><td>"
+																	+ a.sendDistance
+																	+ "</td><td><button>查看位置</button></td></tr>";
+														});
 										$("tbody").html(str);
 										layui
 												.use(
@@ -259,10 +265,6 @@ $(function() {
 																														a) {
 																													str = str
 																															+ "<tr><td>"
-																															+ a.receiptId
-																															+ "</td><td>"
-																															+ a.courierId
-																															+ "</td><td>"
 																															+ a.disId
 																															+ "</td><td>"
 																															+ a.encryptionKey
@@ -275,7 +277,9 @@ $(function() {
 																															+ "</td><td>"
 																															+ a.getDistance
 																															+ "</td><td>"
-																															+ a.sendDistance;
+																															+ a.sendDistance
+																															+ "</td><td><button>查看位置</button></td></tr>";
+
 																												});
 																								$(
 																										"tbody")
@@ -483,7 +487,7 @@ $(function() {
 												.html(
 														"<tr><th>派单id</th><th>用户id</th><th>起送地</th><th>到达地</th><th>用户联系电话</th><th>配送价格</th><th>物品类型</th><th>物品介绍</th><th>派单状态</th></tr>");
 										var jsonStr = JSON.stringify(data);
-										// alert(jsonStr);
+										alert("代配送：" + jsonStr);
 										var arr = JSON.parse(jsonStr);
 										var str = "";
 										$
@@ -807,7 +811,7 @@ function chaRec(e) {
 	var btnValue = $(e).text();
 	var evaluateId = $(e).parents("tr").find("td").eq(0).text();
 	if (btnValue == "点击评价") {
-		var str = "<input type='hidden' id='evaluateId' name='evaluateId' value="
+		var str = "<input type='hidden' id='evaluateId' name='evaluateId'  value="
 				+ evaluateId + "> "
 		$("#sss").html(str);
 		$('#myModal').modal('show');

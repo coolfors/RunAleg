@@ -1,10 +1,12 @@
 package com.kdx.daoImpl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.kdx.dao.DispatchDao;
 import com.kdx.entity.Dispatch;
+import com.kdx.entity.Receipt;
 import com.kdx.entity.User;
 import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
@@ -82,6 +84,15 @@ public class DispatchDaoImpl implements DispatchDao {
 		// TODO Auto-generated method stub
 		String sql = "update dispatch set disState=? where disId=?";
 		return BaseDao.execute(sql, disState, disId) > 0;
+	}
+	@Override
+	public Dispatch getOne(String disId) {
+		// TODO Auto-generated method stub
+		List<Dispatch> list=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class, disId);
+		Iterator<Dispatch> it=list.iterator();
+		Dispatch d=null;
+		d=it.next();
+		return d;
 	}
 
 }

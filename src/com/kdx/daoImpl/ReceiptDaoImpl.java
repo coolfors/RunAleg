@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.kdx.dao.ReceiptDao;
 import com.kdx.entity.Dispatch;
+import com.kdx.entity.Evaluate;
 import com.kdx.entity.Receipt;
 import com.kdx.entity.User;
 import com.kdx.util.BaseDao;
