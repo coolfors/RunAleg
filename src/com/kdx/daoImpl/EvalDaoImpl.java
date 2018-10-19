@@ -50,7 +50,7 @@ public class EvalDaoImpl implements EvalDao {
 	@Override
 	public PageData<Evaluate> overEvaluate(int page, int pageSize, String courierId) {
 		// TODO Auto-generated method stub
-		String sql="SELECT evaluate.evaluateId, evaluate.receiptId, evaluate.evaState FROM evaluate INNER JOIN receipt ON evaluate.receiptId = receipt.receiptId WHERE evaState=1 and courierId=?";
+		String sql="SELECT evaluate.evaluateId, evaluate.receiptId, evaluate.evaState ,evaluate.evaInfo FROM evaluate INNER JOIN receipt ON evaluate.receiptId = receipt.receiptId WHERE evaState=1 and courierId=?";
 		return BaseDao.getPage(sql, page, pageSize, Evaluate.class, courierId);
 	}
 	
