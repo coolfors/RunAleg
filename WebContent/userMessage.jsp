@@ -276,7 +276,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="">真实姓名:</label><input class="form-control"
+							<label for="">用户名:</label><input class="form-control"
 								type="text" name="realName" id="realName">
 						</div>
 
@@ -287,7 +287,7 @@
 
 						<div class="form-group">
 							<label for="">押金:</label><em>500</em>
-							<button class="btn-link" id="pay" name="pay">点击付款</button>
+							<a class="btn btn-success btn-xs" href="pay.jsp">点击付款</a>
 						</div>
 					</div>
 					<div class="modal-footer">
