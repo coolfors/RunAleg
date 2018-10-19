@@ -32,18 +32,7 @@ public class EvaluateServiceImpl implements EvaluateService {
 		// TODO Auto-generated method stub
 		return ed.queryEvalByPage(page, pageSize, userId);
 	}
-
-	@Override
-	public PageData<Evaluate> waitEval(int page, int pageSize, String userId) {
-		// TODO Auto-generated method stub
-		return ed.waitEval(page, pageSize, userId);
-	}
-
-	@Override
-	public PageData<Evaluate> overEval(int page, int pageSize, String userId) {
-		// TODO Auto-generated method stub
-		return ed.overEval(page, pageSize, userId);
-	}
+	
 	/**
 	 * courier已评价订单
 	 */

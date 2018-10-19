@@ -33,24 +33,7 @@ public class EvalDaoImpl implements EvalDao {
 		String sql = "UPDATE user SET receiptId = ?,evaScore = ?,evaInfo = ?  where evaluateId = ?  ";
 		return BaseDao.execute(sql, e.getReceiptId(), e.getEvaScore(), e.getEvaInfo(), e.getEvaluateId()) > 0;
 	}
-	/**
-	 * 未评价订单
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public PageData<Evaluate> waitEval(int page, int pageSize ,String userId) {
-		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from evaluate where evaState = 0 and userId = ? ", page, pageSize, Evaluate.class);
-	}
-	/**
-	 * 已评价订单
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public PageData<Evaluate> overEval(int page, int pageSize,String userId) {
-		// TODO Auto-generated method stub
-		return BaseDao.getPage("select * from evaluate where evaState = 1 and userId = ? ", page, pageSize, Evaluate.class,userId);
-	}
+	
 	/**
 	 * courier待评价订单
 	 *  

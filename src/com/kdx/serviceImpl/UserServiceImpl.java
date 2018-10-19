@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kdx.dao.UserDao;
 import com.kdx.daoImpl.UserDaoImpl;
+import com.kdx.entity.Evaluate;
 import com.kdx.entity.User;
 import com.kdx.service.UserService;
 import com.kdx.util.PageData;
@@ -98,6 +99,18 @@ public class UserServiceImpl implements UserService {
 	public List<User> findUserType(String userName) {
 		// TODO Auto-generated method stub
 		return ud.findUserType(userName);
+	}
+
+	@Override
+	public PageData<Evaluate> queryEvalByPage(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		return ud.queryEvalByPage(page, pageSize, userId);
+	}
+
+	@Override
+	public boolean changeEval(Evaluate eval) {
+		// TODO Auto-generated method stub
+		return ud.changeEval(eval);
 	}
 
 }

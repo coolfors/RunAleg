@@ -67,10 +67,7 @@ public class ReceiptServlet extends HttpServlet {
 			allDispatch(request, response);
 		} else if ("waitSendDispatch".equals(op)) {
 			waitSendDispatch(request, response);
-		} else if ("waitEvaluate".equals(op)) {
-			waitEvaluate(request, response);
 		}
-		
 		if (op.equals("sock")) {
 			String receiptId = request.getParameter("receiptId");
 			String state = request.getParameter("state");
@@ -217,34 +214,5 @@ public class ReceiptServlet extends HttpServlet {
 		response.getWriter().println(data);
 	}
 
-	/**
-	 * 待评价订单：evaluate表中evaState为0的内容
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	protected void waitEvaluate(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int page = 1;// 默认第一页
-		int pageSize = 10;// 默认一页有10条记录
-		// 如果用户传递的参数不为空
-
-		String  userId=request.getParameter("userId");
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
-		if (request.getParameter("pageSize") != null) {
-			pageSize = Integer.parseInt(request.getParameter("pageSize"));
-		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize,userId);
-		Gson gson = new Gson();
-		String data = gson.toJson(pd);
-		// System.out.println(data);
-		response.getWriter().println(data);
-
-	}
 
 }

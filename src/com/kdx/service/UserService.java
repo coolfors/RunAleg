@@ -2,6 +2,7 @@ package com.kdx.service;
 
 import java.util.List;
 
+import com.kdx.entity.Evaluate;
 import com.kdx.entity.User;
 import com.kdx.util.PageData;
 
@@ -31,11 +32,15 @@ public interface UserService {
 	List<User> queryUsersById(int userId);
 	
 	boolean resetPwd(int userId, String userPwd);
-
+	
+	PageData<Evaluate> queryEvalByPage(int page, int pageSize,String userId);
 
 	User getUserById(String userId);
 	
 	List<User> againPwd(String userId);
+	
 	List<User> findUserType(String userName);//根据用户名查找用户类型
+	
+	boolean changeEval(Evaluate eval);//增加评价内容
 } 
 

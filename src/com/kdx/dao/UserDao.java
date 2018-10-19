@@ -2,6 +2,7 @@ package com.kdx.dao;
 
 import java.util.List;
 
+import com.kdx.entity.Evaluate;
 import com.kdx.entity.User;
 import com.kdx.util.PageData;
 
@@ -36,4 +37,9 @@ public interface UserDao {
 	List<User> againPwd(String userId);
 	
 	List<User> findUserType(String userName);//根据用户名查找用户类型
+	
+	PageData<Evaluate> queryEvalByPage(int page, int pageSize,String userId);// 查询所有评价
+	
+	boolean changeEval(Evaluate eval);//增加评价内容
+	
 }

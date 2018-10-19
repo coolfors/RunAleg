@@ -2,6 +2,7 @@ package com.kdx.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -57,6 +58,10 @@ public class UserServlet extends HttpServlet {
 		// String v=request.getParameter("表单中的文本名，select名字等等/参数名"); 接收请求参数的值
 		String op = request.getParameter("op");
 		response.setContentType("application/json");
+		
+		if("evaSos".equals(op)) {
+			evaSos(request, response);
+		}
 
 		if (op.equals("add")) {
 			addUser(request, response);
@@ -99,6 +104,27 @@ public class UserServlet extends HttpServlet {
 		} else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
 		}
+	}
+
+	private void evaSos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");// 相应编码
+		// String v=request.getParameter("表单中的文本名，select名字等等/参数名"); 接收请求参数的值
+		response.setContentType("text/html;charset=utf-8");
+		String evaluateId = request.getParameter("evaluateId");
+		String evaInfo = request.getParameter("evaInfo");
+		String evaScore = request.getParameter("creditPoint");
+		String userId = request.getParameter("userId");
+		Evaluate eval = new Evaluate(evaluateId, userId, Integer.valueOf(evaScore), evaInfo);
+		boolean flag = us.changeEval(eval);
+		PrintWriter out = response.getWriter();
+		if(flag) {
+			out.print("<script>alert('评价成功！');location.href='user-order-main.jsp'</script>");
+		}else {
+			out.print("<script>alert('服务器繁忙，请重试！');location.href='user-order-main.jsp'</script>");
+		}
+		
 	}
 
 	private void resetUserPwd(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -288,7 +314,7 @@ public class UserServlet extends HttpServlet {
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Evaluate> pd = es.waitEval(page, pageSize,userId);
+		PageData<Evaluate> pd = us.queryEvalByPage(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);

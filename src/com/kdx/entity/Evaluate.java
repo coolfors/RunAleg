@@ -105,6 +105,16 @@ public class Evaluate implements Serializable {
 		this.evaState = evaState;
 	}
 
+	
+	
+	public Evaluate(String evaluateId, String userId, int evaScore, String evaInfo) {
+		super();
+		this.evaluateId = evaluateId;
+		this.userId = userId;
+		this.evaScore = evaScore;
+		this.evaInfo = evaInfo;
+	}
+
 	@Override
 	public String toString() {
 		return "Evaluate [evaluateId=" + evaluateId + ", receiptId=" + receiptId + ", userId=" + userId + ", evaScore="

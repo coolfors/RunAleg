@@ -1,12 +1,17 @@
 package com.kdx.daoImpl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
 import com.kdx.dao.UserDao;
+import com.kdx.entity.Dispatch;
+import com.kdx.entity.Evaluate;
 import com.kdx.entity.User;
 import com.kdx.util.BaseDao;
 import com.kdx.util.PageData;
+import com.kdx.util.UUIDUtils;
 
 /**
  * UserDao的实现类
@@ -22,12 +27,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean addUser(User u) {
 		// TODO Auto-generated method stub
-		Object obj=BaseDao.select("select * from user where userName=?", User.class, u.getUserName());
-		if(obj!=null) {
+		Object obj = BaseDao.select("select * from user where userName=?", User.class, u.getUserName());
+		if (obj != null) {
 			return false;
-		}else {
-		String sql = "insert into user(userName,sockState,userPwd,userType,userdate) values(?,0,?,?,?)";
-		return BaseDao.execute(sql, u.getUserName(), u.getUserPwd(), u.getUserType(), u.getUserDate()) > 0;
+		} else {
+			String sql = "insert into user(userName,sockState,userPwd,userType,userdate) values(?,0,?,?,?)";
+			return BaseDao.execute(sql, u.getUserName(), u.getUserPwd(), u.getUserType(), u.getUserDate()) > 0;
 		}
 
 	}
@@ -88,14 +93,15 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update user set userType=? where userId=?";
 		return BaseDao.execute(sql, userType, userId) > 0;
 	}
+
 	@Override
 	public User getUserById(String userId) {
 		// TODO Auto-generated method stub
-		List<User> list=(List<User>) BaseDao.select("select * from user where userId=?", User.class, userId);
-		Iterator<User> it=list.iterator();
-		User u=null;
-		if(it.hasNext()) {
-			u=it.next();
+		List<User> list = (List<User>) BaseDao.select("select * from user where userId=?", User.class, userId);
+		Iterator<User> it = list.iterator();
+		User u = null;
+		if (it.hasNext()) {
+			u = it.next();
 		}
 		return u;
 	}
@@ -121,7 +127,7 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		String sql = "update user set userPwd = ? where userId = ?";
 		return BaseDao.execute(sql, userPwd, userId) > 0;
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -130,15 +136,29 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		String sql = "select * from user where userId = ?";
 		return (List<User>) BaseDao.select(sql, User.class, userId);
-		
+
 	}
-	
-	//根据用户名查找用户类型
+
+	// 根据用户名查找用户类型
 	@Override
 	public List<User> findUserType(String userName) {
 		// TODO Auto-generated method stub
 		String sql = "select * from user where userName = ?";
 		return (List<User>) BaseDao.select(sql, User.class, userName);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public PageData<Evaluate> queryEvalByPage(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		return BaseDao.getPage("select * from evaluate where userId = ?", page, pageSize, Evaluate.class, userId);
+	}
+
+	@Override
+	public boolean changeEval(Evaluate e) {
+		// TODO Auto-generated method stub
+		String sql = "update evaluate set evaInfo = ? ,evaScore = ? , evaState = '1' where evaluateId = ?";
+		return BaseDao.execute(sql, e.getEvaInfo(), e.getEvaScore(), e.getEvaluateId()) > 0;
 	}
 
 }
