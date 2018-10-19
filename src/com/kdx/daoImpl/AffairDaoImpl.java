@@ -37,7 +37,7 @@ public class AffairDaoImpl implements AffairDao {
 			List<User> list = (List<User>) BaseDao.select("select * from user where userName=?", User.class,
 					u.getUserName());
 			if (list.size() != 0) {
-				System.out.println(u.getUserName());
+				//System.out.println(u.getUserName());
 				flag = false;
 			} else {
 				String uuid1 = IDNumber.getIDNumber();
@@ -97,7 +97,7 @@ public class AffairDaoImpl implements AffairDao {
 				conn.rollback();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("执行事务失败");
 			}
 			e.printStackTrace();
 		}finally {
