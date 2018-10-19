@@ -13,6 +13,16 @@ public class EvalDaoImpl implements EvalDao {
 		String sql = "insert into evaluate(receiptId,evaScore,evaInfo) values( ?, ? , ?)";
 		return BaseDao.execute(sql, e.getReceiptId(), e.getEvaScore(), e.getEvaInfo()) > 0;
 	}
+	/**
+	 * // user查询已完成订单(评价)
+	 * 
+	 */
+	@Override
+	public PageData<Evaluate> queryReceiptcom(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		String sql="SELECT evaluate.evaluateId, evaluate.receiptId, evaluate.evaScore, evaluate.evaInfo, evaluate.evaState FROM evaluate where evaState=1 and userId=?";
+		return BaseDao.getPage(sql, page, pageSize,Evaluate.class , userId);
+	}
 
 	@Override
 	public boolean delEval(int evaluateId) {

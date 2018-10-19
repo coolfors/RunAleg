@@ -14,7 +14,11 @@ public class EvaluateServiceImpl implements EvaluateService {
 		// TODO Auto-generated method stub
 		return ed.addEval(e);
 	}
-
+	@Override
+	public PageData<Evaluate> queryReceiptcom(int page, int pageSize, String userId) {
+		// TODO Auto-generated method stub
+		return ed.queryReceiptcom(page, pageSize, userId);
+	}
 	@Override
 	public boolean delEval(int evaluateId) {
 		// TODO Auto-generated method stub
