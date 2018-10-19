@@ -26,4 +26,6 @@ public interface CourierService {
 	boolean updateCourierInForward(Courier cour);
 	
 	Courier getCourierByCourierId(String courierId);
+	
+	boolean topUpBalance(Double balance,String userId);//跑腿充值余额
 }

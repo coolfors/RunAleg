@@ -36,4 +36,13 @@ public interface UserDao {
 	List<User> againPwd(String userId);
 	
 	List<User> findUserType(String userName);//根据用户名查找用户类型
+
+	/**
+	 * 登陆后台
+	 * @param username
+	 * @param password
+	 * @param i
+	 * @return 返回用户对象
+	 */
+	User loginUserAdmin(String username, String password);
 }

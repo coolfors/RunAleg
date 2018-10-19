@@ -32,5 +32,7 @@ public interface UserinfoService {
 
 	List<Userinfo> queryUserName();
 	
+	boolean updateUserinfoSex(String userSex,String userId);//修改性别
+	
 
 }

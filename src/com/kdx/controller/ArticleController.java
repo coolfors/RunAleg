@@ -45,9 +45,10 @@ public class ArticleController extends HttpServlet {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String articledate = df.format( new Date());
 		String title = request.getParameter("title");
+		String userId = "25";
 		//添加数据到数据库
 		String uuid=UUIDUtils.getUUID();
-		Article at = new Article(uuid,articledate, title, article);
+		Article at = new Article(uuid,userId,articledate, title, article);
 		ArticleService as = new ArticleServiceImpl();
 		boolean flag  = as.addArticle(at);
 		if(flag) {

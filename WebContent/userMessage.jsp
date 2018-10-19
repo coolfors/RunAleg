@@ -21,13 +21,15 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
-			var userId1 = $("#userInfoId").val();
-			$.get("AlipayService?userId=" + userId1, function(data, statue) {
+			var userId = $("#userInfoId").val();
+			var userType = $("#userinfoType").val();
+			$.get("AlipayService?userId=" + userId+"&userType="+userType, function(data, statue) {
 			});
 		})
 		$(document).ready(function() {
-			var userId2 = $("#courierId").val();
-			$.get("AlipayService?userId=" + userId2, function(data, statue) {
+			var userId = $("#courierId").val();
+			var userType = $("#courierType").val();	
+			$.get("AlipayService?userId=" + userId+"&userType="+userType, function(data, statue) {
 			});
 		})
 	</script>
@@ -65,7 +67,7 @@
 									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
-									<li><a href="#">余额充值</a></li>
+									<li><a href="pay.jsp">余额充值</a></li>
 									<li><a href="LoginServlet.do?op=exchange">退出账号</a></li>
 								</ul></li>
 						</ul>
@@ -182,8 +184,8 @@
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
 						<form action="UserInfoServlet?op=userinfoEdit" method="post">
-							<input type="hidden" id="userInfoId" name="userInfoId"
-								value="${sessionScope.User.userId}" />
+							<input type="hidden" id="userInfoId" name="userInfoId" value="${sessionScope.User.userId}" />
+							<input type="hidden" id="userinfoType" value="${sessionScope.User.userType}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
@@ -220,11 +222,11 @@
 						<form action="CourierServlet.do" method="get">
 							<input type="hidden" name="op" value="xiugai" /> 
 							<input type="hidden" id="courierId" name="courierId" value="${sessionScope.User.userId}" />
+							<input type="hidden" id="courierType" value="${sessionScope.User.userType}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
-								<li><span>性别：</span> <select name="couriersex"
-									id="couriersex">
+								<li><span>性别：</span> <select name="couriersex" id="couriersex">
 										<option value="${sessionScope.Userinfo.userSex}">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value="女">女</option>

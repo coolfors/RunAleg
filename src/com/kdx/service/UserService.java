@@ -37,5 +37,12 @@ public interface UserService {
 	
 	List<User> againPwd(String userId);
 	List<User> findUserType(String userName);//根据用户名查找用户类型
+
+	/**
+	 * @param username
+	 * @param password
+	 * @return 返回数据库的用户对象
+	 */
+	User loginUserAdmin(String username, String password);
 } 
 

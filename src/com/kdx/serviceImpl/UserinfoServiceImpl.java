@@ -76,4 +76,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 
 	}
 
+	@Override
+	public boolean updateUserinfoSex(String userSex, String userId) {
+		// TODO Auto-generated method stub
+		return uid.updateUserinfoSex(userSex, userId);
+	}
+
 }

@@ -68,4 +68,10 @@ public class CourierServiceImpl implements CourierService {
 		// TODO Auto-generated method stub
 		return cd.getCourierByCourierId(courierId);
 	}
+
+	@Override
+	public boolean topUpBalance(Double balance, String userId) {
+		// TODO Auto-generated method stub
+		return cd.topUpBalance(balance, userId);
+	}
 }

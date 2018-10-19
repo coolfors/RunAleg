@@ -16,18 +16,21 @@ import com.kdx.entity.Dispatch;
 import com.kdx.entity.Evaluate;
 import com.kdx.entity.Receipt;
 import com.kdx.entity.Receipt_about;
+import com.kdx.entity.Userinfo;
 //import com.kdx.entity.Receipt_about;
 import com.kdx.service.CourierService;
 import com.kdx.service.DispatchService;
 import com.kdx.service.EvaluateService;
 import com.kdx.service.ReceiptService;
 import com.kdx.service.Receipt_aboutService;
+import com.kdx.service.UserinfoService;
 //import com.kdx.service.Receipt_aboutService;
 import com.kdx.serviceImpl.CourierServiceImpl;
 import com.kdx.serviceImpl.DispatchServiceImpl;
 import com.kdx.serviceImpl.EvaluateServiceImpl;
 import com.kdx.serviceImpl.ReceiptServiceImpl;
 import com.kdx.serviceImpl.Receipt_aboutServiceImpl;
+import com.kdx.serviceImpl.UserinfoServiceImpl;
 //import com.kdx.serviceImpl.Receipt_aboutServiceImpl;
 import com.kdx.util.MyDataTableData;
 import com.kdx.util.PageData;
@@ -42,6 +45,7 @@ public class CourierServlet extends HttpServlet {
 	private ReceiptService rs = new ReceiptServiceImpl();
 	private EvaluateService es = new EvaluateServiceImpl();
 	private CourierService cs = new CourierServiceImpl();
+	private UserinfoService uis = new UserinfoServiceImpl();
 	private Receipt_aboutService ras=new Receipt_aboutServiceImpl();
 //	private Receipt_aboutService ras=new Receipt_aboutServiceImpl();
 
@@ -139,7 +143,6 @@ public class CourierServlet extends HttpServlet {
 		mydata.setData(list);
 
 		// 返回json对象
-		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
 
 		//System.out.println(jsonString);
@@ -344,14 +347,21 @@ public class CourierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String userId = request.getParameter("courierId");
 		String tel = request.getParameter("courierTel");
+		String userSex = request.getParameter("couriersex");
+		@SuppressWarnings("unused")
+		//修改性别
+		boolean flagSex = uis.updateUserinfoSex(userSex, userId);
 		String address = request.getParameter("courierAdd");
 		String ableDistance = request.getParameter("ableDistance");
 		Courier cour = new Courier(Double.parseDouble(ableDistance), address, tel, userId);
 		boolean flag = cs.updateCourierInForward(cour);
 		if(flag) {
 			request.getSession().removeAttribute("Courier");
+			request.getSession().removeAttribute("Userinfo");
 			Courier courier = cs.getCourierById(cour.getUserId());
 			request.getSession().setAttribute("Courier", courier);
+			Userinfo userInfo = uis.getUserInfo(userId);
+			request.getSession().setAttribute("Userinfo", userInfo);
 			request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 		}
 	}

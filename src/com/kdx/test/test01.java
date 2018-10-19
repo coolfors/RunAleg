@@ -1,9 +1,11 @@
 package com.kdx.test;
 
-import com.kdx.entity.Courier;
-import com.kdx.service.AffairService;
-import com.kdx.serviceImpl.AffairServiceImpl;
-import com.kdx.util.IDNumber;
+import java.util.List;
+
+import com.kdx.dao.DispatchDao;
+import com.kdx.daoImpl.DispatchDaoImpl;
+import com.kdx.entity.Dispatch;
+import com.kdx.util.PageData;
 
 public class test01 {
 
@@ -20,5 +22,11 @@ public class test01 {
 		Courier cour = new Courier(courierId, address,Double.parseDouble(balance), realIDcard,tel, userId, userName);
 		boolean flag = as.toBeCourier(cour);
 		System.out.println(flag);*/
+		DispatchDao dd=new DispatchDaoImpl();
+		PageData<Dispatch> pd=dd.queryDispatch(1, 5, "KDX2018101881846");
+		List<Dispatch> list=pd.getData();
+		for (Dispatch dispatch : list) {
+			System.out.println(dispatch);
+		}
 	}
 }

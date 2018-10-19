@@ -100,4 +100,11 @@ public class UserinfoDaoImpl implements UserinfoDao {
 		String sql = "SELECT A.userId, A.userName FROM `user` A LEFT JOIN ( SELECT B.userName FROM `user` B INNER JOIN userinfo WHERE userinfo.userId = B.userId ) C ON A.userName = C.userName WHERE C.userName IS NULL";
 		return (List<Userinfo>) BaseDao.select(sql, Userinfo.class);
 	}
+
+	@Override
+	public boolean updateUserinfoSex(String userSex, String userId) {
+		// TODO Auto-generated method stub
+		String sql="update userinfo set userSex = ? where userId = ?";
+		return BaseDao.execute(sql, userSex,userId) > 0;
+	}
 }

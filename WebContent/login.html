@@ -3,13 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="icon" href="images/logo.ico">
-<title>快递侠-登录页面</title>
+</meta><link rel="icon" href="images/logo.ico"></link>
+<title>快递侠_登录页面</title>
 <link rel="stylesheet" href="css/login.css" />
+</head>
 <body>
 <div class="login-container">
     <h1>会员登录</h1>
-    <form action="LoginServlet.do" method="get" id="loginForm">
+    <form action="LoginServlet.do" method="post" id="loginForm">
     	<input type="hidden" id="op" name="op" value="login"/>
         <div>
 			<input type="text" name="userName" class="userName" placeholder="输入用户名" autocomplete="off" id="userName"/>
