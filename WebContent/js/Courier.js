@@ -58,7 +58,7 @@
 	    localSearch.search([beginPos,endPos]);
 	    
 	}*/
-
+//	执行获取距离的动作
 	function doDistance(beginAdd,endAdd,disId,courierId){
 //		console.log(beginAdd);
 //		console.log(endAdd);
@@ -74,6 +74,13 @@
 			}
 		});
 	}
+// 弹出模态窗获取地图
+function createMap(){
+	var map = new BMap.Map("l-maps");
+	map.centerAndZoom(new BMap.Point(118.10388605,24.48923061), 11);
+	var walking = new BMap.WalkingRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
+	walking.search("古歌华苑", "厦门中软");
+}
 
 $(function(){
 	
@@ -185,8 +192,9 @@ $(function(){
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
         		var str = "";
+        		
    			$.each(arr.data, function(index,a){
-   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td><td><button href=''>查看位置</button></td></tr>";
+   				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td><td><button onclick='createMap(\""+a.beginAdd+"\",\""+a.endAdd+"\",\""+a.disId+"\",\""+courierId+"\")' class='\"btn btn-primary btn-lg\"'  data-toggle='modal' data-target='#myModal'>查看位置</button></td></tr>";
    			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -225,7 +233,7 @@ $(function(){
    					    			//alert(arr.page);
    					         		var str = "";
    					    			$.each(arr.data, function(index,a){
-   					    				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td><td><button href=''>查看位置</button></td></tr>";});
+   					    				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>未配送</a></td><td><button onclick='createMap(\""+a.beginAdd+"\",\""+a.endAdd+"\",\""+a.disId+"\",\""+courierId+"\")' class='\"btn btn-primary btn-lg\"'  data-toggle='modal' data-target='#myModal'>查看位置</button></td></tr>";});
    					    			$("tbody").html(str);
    					    			
    					             }
@@ -259,7 +267,7 @@ $(function(){
    			var arr = JSON.parse(jsonStr);
         		var str = "";
    			$.each(arr.data, function(index,a){
-				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td><td><button href=''>查看位置</button></td></tr>";
+				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td><td><button onclick='createMap(\""+a.beginAdd+"\",\""+a.endAdd+"\",\""+a.disId+"\",\""+courierId+"\")' class='\"btn btn-primary btn-lg\"'  data-toggle='modal' data-target='#myModal'>查看位置</button></td></tr>";
    				   			});
    			$("tbody").html(str);
    			layui.use('laypage', function() {
@@ -296,7 +304,7 @@ $(function(){
    					    			//alert(arr.page);
    					         		var str = "";
    					    			$.each(arr.data, function(index,a){
-   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td><td><button href=''>查看位置</button></td></tr>";
+   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.disTel+"</td><td>"+a.userTel+"</td><td>"+a.encryptionKey+"</td><td>"+a.startTime+"</td><td>"+a.endTime+"</td><td>"+a.courierAdd+"</td><td>"+a.getDistance+"</td><td>"+a.sendDistance+"</td><td><class='see'><a href=''>配送中</a></td><td><button onclick='createMap(\""+a.beginAdd+"\",\""+a.endAdd+"\",\""+a.disId+"\",\""+courierId+"\")' class='\"btn btn-primary btn-lg\"'  data-toggle='modal' data-target='#myModal'>查看位置</button></td></tr>";
    					    				   					    			});
    					    			$("tbody").html(str);
    					    			

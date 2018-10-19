@@ -93,10 +93,10 @@
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==2}">
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -272,6 +272,12 @@
 			</div>
 		</div>
 	</div>
+	<style type="text/css">
+      #l-maps{height:300px;width:100%;}
+      
+      #r-result,#r-result table{width:100%;}
+   </style>
+	<!-- 模态窗 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
@@ -292,9 +298,6 @@
          <div class="modal-footer">
             <button type="button" class="btn btn-default" 
                data-dismiss="modal">关闭
-            </button>
-            <button type="button" class="btn btn-primary">
-               提交更改
             </button>
          </div>
       </div><!-- /.modal-content -->
