@@ -59,7 +59,35 @@ public class LoginServlet extends HttpServlet {
 			register(request,response);
 		}else if(op.equals("exchange")) {
 			exchange(request, response);
+		}else if(op.equals("LoginAdmin")) {
+			loginadmin(request, response);
 		}
+	}
+		
+	
+	/**
+	 * 后台登陆
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 */
+	private void loginadmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		String name = (String) request.getSession().getAttribute("user");
+		//获取请求的参数值为前台登陆页面的表单账号密码
+		String username =request.getParameter("username");
+		String password =request.getParameter("password");
+		String pswsecrite =MD5Util.getEncodeByMd5(password);
+		User user = us.loginUserAdmin(username, pswsecrite); 
+		System.out.println(user);
+//		登陆后跳转
+		if(user!=null) {
+			out.print("<script>alert('欢迎回来超级管理员');location.href='admin/index.html'</script>");
+		}else  {
+			out.print("<script>alert('登录失败！');location.href='admin/login.html'</script>");
+		}
+		
 	}
 
 	/**

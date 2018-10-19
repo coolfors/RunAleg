@@ -100,4 +100,13 @@ public class UserServiceImpl implements UserService {
 		return ud.findUserType(userName);
 	}
 
+	/* (non-Javadoc)管理员的登陆
+	 * @see com.kdx.service.UserService#loginUser(java.lang.String, java.lang.String, int)
+	 */
+	@Override
+	public User loginUserAdmin(String username, String password) {
+		// TODO Auto-generated method stub
+		return ud.loginUserAdmin(username, password);
+	}
+
 }

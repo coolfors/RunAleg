@@ -19,10 +19,11 @@
 <body class="login-bg">
     
     <div class="login layui-anim layui-anim-up">
-        <div class="message">RAL-管理登录</div>
+        <div class="message">快递侠后台管理系统</div>
         <div id="darkbannerwrap"></div>
         
-        <form method="post" class="layui-form" >
+        <form method="post" class="layui-form" action ="../LoginServlet.do" >
+        <input type="hidden" id="op" name="op" value="LoginAdmin"/>
             <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
             <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
@@ -33,7 +34,7 @@
     </div>
 
     <script>
-        $(function  () {
+   /*      $(function  () {
             layui.use('form', function(){
               var form = layui.form;
             
@@ -46,7 +47,7 @@
               });
             });
         })
-
+ */
         
     </script>
 

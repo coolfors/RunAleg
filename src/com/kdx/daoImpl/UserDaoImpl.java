@@ -141,4 +141,23 @@ public class UserDaoImpl implements UserDao {
 		return (List<User>) BaseDao.select(sql, User.class, userName);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.kdx.dao.UserDao#loginUser(java.lang.String, java.lang.String, int)
+	 */
+	@Override
+	public User loginUserAdmin(String username, String password) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				String sql = "SELECT * FROM user where username = ? and userpwd= ? and userType= 0";
+
+				@SuppressWarnings("unchecked")
+				List<User> list = (List<User>) BaseDao.select(sql, User.class, username, password);
+				Iterator<User> it = list.iterator();
+				User u = null;
+				if (it.hasNext()) {
+					u = it.next();
+				}
+				return u;
+	}
+
 }
