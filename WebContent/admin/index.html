@@ -16,7 +16,22 @@
 	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="./lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$.ajax({
+		url: "../LoginServlet.do?op = LoginAdmin",
+		type: "post",
+		success: function(data) {
+			$("#userName")[0].html() = data + "欢迎您！";
+			$("#userName").test("ces");
+		},
+		error: function(data) {
+			alert("系统出错");
+		}
 
+	})
+})
+</script>
 </head>
 <body>
 	<!-- 顶部开始 -->
@@ -30,7 +45,7 @@
 		&#xe6da;
 		<ul class="layui-nav right" lay-filter="">
 			<li class="layui-nav-item">
-			<a href="javascript:;">admin</a>
+			<a href="javascript:;"><span id="userName"></span></a>
 				<dl class="layui-nav-child">
 					<!-- 二级菜单 -->
 					<dd>

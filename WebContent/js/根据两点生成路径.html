@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Bootstrap 实例 - 模态框（Modal）插件</title>
+   <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5dEsfUlwMV0GdHlxoqgvlxE0"></script>  
+</head>
+<body>
+   <style type="text/css">
+      #l-maps{height:300px;width:100%;}
+      
+      #r-result,#r-result table{width:100%;}
+   </style>
+
+<h2>创建模态框（Modal）</h2>
+<!-- 按钮触发模态框 -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" 
+   data-target="#myModal" id="createMap">
+   开始演示模态框
+</button>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               查看位置
+            </h4>
+         </div>
+         <div class="modal-body" id="maps" >
+            <div id="l-maps"></div>
+            <div id="r-result"></div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭
+            </button>
+            <button type="button" class="btn btn-primary">
+               提交更改
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+$(function(){
+$("#createMap").click(function(){
+  var map = new BMap.Map("l-maps");
+   map.centerAndZoom(new BMap.Point(118.10388605,24.48923061), 11);
+   var walking = new BMap.WalkingRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
+   walking.search(new BMap.Point(118.182799,24.495174), new BMap.Point(118.183297,24.489036));
+});
+});
+</script>
+</body>
+</html>
+			

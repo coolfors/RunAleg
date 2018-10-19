@@ -151,10 +151,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("配送中的订单");
+						var userId=$("#userId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "rs.do?op=dispatching",
+									url : "rs.do?op=dispatching&userId="+userId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
@@ -304,10 +305,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("所有订单");
+						var userId=$("#userId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "rs.do?op=allDispatch",
+									url : "rs.do?op=allDispatch&userId="+userId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
@@ -346,7 +348,7 @@ $(function() {
 																	+ "</td><td>"
 																	+ a.disPS
 																	+ "</td><td><class='see'><a href=''>"
-																	+ (a.disState == 0 ? '已接单'
+																	+ (a.disState == 1 ? '已接单'
 																			: '未接单')
 																	+ "</a></td></tr>";
 														});
@@ -439,7 +441,7 @@ $(function() {
 																															+ "</td><td>"
 																															+ a.disPS
 																															+ "</td><td><class='see'><a href=''>"
-																															+ (a.disState == 0 ? '已接单'
+																															+ (a.disState == 1 ? '已接单'
 																																	: '未接单')
 																															+ "</a></td></tr>";
 																												});
@@ -466,10 +468,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("待配送订单");
+						var userId=$("#userId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "rs.do?op=waitSendDispatch",
+									url : "rs.do?op=waitSendDispatch&userId="+userId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },

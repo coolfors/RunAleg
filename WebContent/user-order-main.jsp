@@ -50,7 +50,11 @@
 									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
+<<<<<<< HEAD
 									<li><a href="#">余额充值</a></li>
+=======
+									<li><a href="pay.jsp">余额充值</a></li>								
+>>>>>>> branch 'master' of https://github.com/coolfors/RunAleg
 									<li><a href="LoginServlet.do?op=exchange">退出账号</a></li>
 								</ul></li>
 						</ul>
@@ -113,9 +117,6 @@
 	</nav>
 	<!--导航-结束-->
 
-	<!--内容-开始-->
-	<button class="btn btn-success btn-xs" data-toggle="modal"
-		data-target="#myModal">成为快递侠</button>
 	<!-- 模态框 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">

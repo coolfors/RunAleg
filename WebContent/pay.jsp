@@ -33,7 +33,7 @@ h2 {
 	border-bottom: solid #02aaf1 2px;
 	width: 200px;
 	height: 25px;
-	margin: 0;
+	margin-left: 35%;
 	float: left;
 	text-align: center;
 	font-size: 16px;
@@ -197,10 +197,6 @@ h2 {
 	<div id="main">
 		<div id="tabhead" class="tab-head">
 			<h2 id="tab1" class="selected" name="tab">付 款</h2>
-			<h2 id="tab2" name="tab">交 易 查 询</h2>
-			<h2 id="tab3" name="tab">退 款</h2>
-			<h2 id="tab4" name="tab">退 款 查 询</h2>
-			<h2 id="tab5" name="tab">交 易 关 闭</h2>
 		</div>
 		<form name=alipayment action=alipay.trade.page.pay.jsp method=post
 			target="_blank">
@@ -232,123 +228,6 @@ h2 {
 							<button class="new-btn-login" type="submit"
 								style="text-align: center;">付 款</button>
 						</span> <span class="note-help">如果您点击“付款”按钮，即表示您同意该次的执行操作。</span>
-					</dd>
-				</dl>
-			</div>
-		</form>
-		<form name=tradequery action=alipay.trade.query.jsp method=post
-			target="_blank">
-			<div id="body2" class="tab-content" name="divcontent">
-				<dl class="content">
-					<dt>商户订单号 ：</dt>
-					<dd>
-						<input id="WIDTQout_trade_no" name="WIDTQout_trade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt>支付宝交易号 ：</dt>
-					<dd>
-						<input id="WIDTQtrade_no" name="WIDTQtrade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt></dt>
-					<dd id="btn-dd">
-						<span class="new-btn-login-sp">
-							<button class="new-btn-login" type="submit"
-								style="text-align: center;">交 易 查 询</button>
-						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“交易查询”按钮，即表示您同意该次的执行操作。</span>
-					</dd>
-				</dl>
-			</div>
-		</form>
-		<form name=traderefund action=alipay.trade.refund.jsp method=post
-			target="_blank">
-			<div id="body3" class="tab-content" name="divcontent">
-				<dl class="content">
-					<dt>商户订单号 ：</dt>
-					<dd>
-						<input id="WIDTRout_trade_no" name="WIDTRout_trade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt>支付宝交易号 ：</dt>
-					<dd>
-						<input id="WIDTRtrade_no" name="WIDTRtrade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt>退款金额 ：</dt>
-					<dd>
-						<input id="WIDTRrefund_amount" name="WIDTRrefund_amount" />
-					</dd>
-					<hr class="one_line">
-					<dt>退款原因 ：</dt>
-					<dd>
-						<input id="WIDTRrefund_reason" name="WIDTRrefund_reason" />
-					</dd>
-					<hr class="one_line">
-					<dt>退款请求号 ：</dt>
-					<dd>
-						<input id="WIDTRout_request_no" name="WIDTRout_request_no" />
-					</dd>
-					<hr class="one_line">
-					<dt></dt>
-					<dd id="btn-dd">
-						<span class="new-btn-login-sp">
-							<button class="new-btn-login" type="submit"
-								style="text-align: center;">退 款</button>
-						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“退款”按钮，即表示您同意该次的执行操作。</span>
-					</dd>
-				</dl>
-			</div>
-		</form>
-		<form name=traderefundquery
-			action=alipay.trade.fastpay.refund.query.jsp method=post
-			target="_blank">
-			<div id="body4" class="tab-content" name="divcontent">
-				<dl class="content">
-					<dt>商户订单号 ：</dt>
-					<dd>
-						<input id="WIDRQout_trade_no" name="WIDRQout_trade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt>支付宝交易号 ：</dt>
-					<dd>
-						<input id="WIDRQtrade_no" name="WIDRQtrade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt>退款请求号 ：</dt>
-					<dd>
-						<input id="WIDRQout_request_no" name="WIDRQout_request_no" />
-					</dd>
-					<hr class="one_line">
-					<dt></dt>
-					<dd id="btn-dd">
-						<span class="new-btn-login-sp">
-							<button class="new-btn-login" type="submit"
-								style="text-align: center;">退 款 查 询</button>
-						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“退款查询”按钮，即表示您同意该次的执行操作。</span>
-					</dd>
-				</dl>
-			</div>
-		</form>
-		<form name=tradeclose action=alipay.trade.close.jsp method=post
-			target="_blank">
-			<div id="body5" class="tab-content" name="divcontent">
-				<dl class="content">
-					<dt>商户订单号 ：</dt>
-					<dd>
-						<input id="WIDTCout_trade_no" name="WIDTCout_trade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt>支付宝交易号 ：</dt>
-					<dd>
-						<input id="WIDTCtrade_no" name="WIDTCtrade_no" />
-					</dd>
-					<hr class="one_line">
-					<dt></dt>
-					<dd id="btn-dd">
-						<span class="new-btn-login-sp">
-							<button class="new-btn-login" type="submit"
-								style="text-align: center;">交 易 关 闭</button>
-						</span> <span class="note-help">商户订单号与支付宝交易号二选一，如果您点击“交易关闭”按钮，即表示您同意该次的执行操作。</span>
 					</dd>
 				</dl>
 			</div>
@@ -393,8 +272,8 @@ h2 {
 		sNow += String(vNow.getSeconds());
 		sNow += String(vNow.getMilliseconds());
 		document.getElementById("WIDout_trade_no").value =  sNow;
-		document.getElementById("WIDsubject").value = "押金";
-		document.getElementById("WIDtotal_amount").value = "500";
+		document.getElementById("WIDsubject").value = "充值余额";
+		document.getElementById("WIDtotal_amount").value = "0.01";
 	}
 	GetDateNow();
 </script>

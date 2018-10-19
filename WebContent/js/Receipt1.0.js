@@ -85,9 +85,10 @@ $(function () {
 	 */
 	$("#dispatching").click(function(){
 		$("#headName").html("配送中的订单");
+		var userId=$("#userId").val();
 		$.ajax({
 	             type: "get",
-	             url: "rs.do?op=dispatching",
+	             url: "rs.do?op=dispatching&userId="+userId,
 	             /*data: {username:$("#username").val(),
 	             content:$("#content").val()
 	                },*/
@@ -242,9 +243,10 @@ $(function () {
 	 */
 	$("#waitSendDispatch").click(function(){
 		$("#headName").html("未接订单");
+		var userId=$("#userId").val();
 		$.ajax({
 	             type: "get",
-	             url: "rs.do?op=waitSendDispatch",
+	             url: "rs.do?op=waitSendDispatch&userId="+userId,
 	             /*data: {username:$("#username").val(),
 	             content:$("#content").val()
 	                },*/

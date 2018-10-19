@@ -19,17 +19,33 @@
 <link rel="stylesheet" type="text/css" href="css/thems.css" />
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			var userId = $("#userInfoId").val();
+			var userType = $("#userinfoType").val();
+			$.get("AlipayService?userId=" + userId+"&userType="+userType, function(data, statue) {
+			});
+		})
+		$(document).ready(function() {
+			var userId = $("#courierId").val();
+			var userType = $("#courierType").val();	
+			$.get("AlipayService?userId=" + userId+"&userType="+userType, function(data, statue) {
+			});
+		})
+	</script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 </head>
 <body>
-<div id="allmap" hidden="hidden"></div>
+	<div id="allmap" hidden="hidden"></div>
 	<input id="lng" name="lng" hidden="hidden" value="" />
 	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
+	<input id="CourierId" name="CourierId" hidden="hidden"
+		value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
@@ -51,7 +67,7 @@
 									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
-									<li><a href="#">余额充值</a></li>
+									<li><a href="pay.jsp">余额充值</a></li>
 									<li><a href="LoginServlet.do?op=exchange">退出账号</a></li>
 								</ul></li>
 						</ul>
@@ -163,13 +179,13 @@
 								<button class="btn btn-success btn-xs" data-toggle="modal"
 									data-target="#myModal">成为快递侠</button></li>
 							<li><span>账户余额：</span> <em>${sessionScope.Userinfo.userBalance}</em>
-							&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-xs" href="alipay/index.jsp" >点击充值</a>
-							</li>
+								&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-xs" href="pay.jsp">点击充值</a></li>
 						</ul>
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
 						<form action="UserInfoServlet?op=userinfoEdit" method="post">
-							<input type="hidden" name="userInfoId" value="${sessionScope.User.userId}" />
+							<input type="hidden" id="userInfoId" name="userInfoId" value="${sessionScope.User.userId}" />
+							<input type="hidden" id="userinfoType" value="${sessionScope.User.userType}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
@@ -198,14 +214,15 @@
 							</li>
 							<li><span>账户押金：</span> <em>${sessionScope.Courier.deposit}</em></li>
 							<li><span>账户余额：</span> <em>${sessionScope.Courier.balance}</em>
-							&nbsp;&nbsp;&nbsp;<button class="btn btn-success btn-xs" >点击充值</button>
-							</li>
+								&nbsp;&nbsp;&nbsp;
+								<a class="btn btn-success btn-xs" href="pay.jsp">点击充值</a></li>
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
 						<form action="CourierServlet.do" method="get">
-						<input type="hidden" name="op" value="xiugai" />
-							<input type="hidden" name="courierId" value="${sessionScope.User.userId}" />
+							<input type="hidden" name="op" value="xiugai" /> 
+							<input type="hidden" id="courierId" name="courierId" value="${sessionScope.User.userId}" />
+							<input type="hidden" id="courierType" value="${sessionScope.User.userType}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
@@ -244,32 +261,34 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form id="form_data" method="get" action="BeCourier.do">
-					<input type="hidden" name="op" value="toBeCourier" />
-					<input type="hidden" name="userId" value="${sessionScope.User.userId}" />
-					<input type="hidden" name="tel" value="${sessionScope.Userinfo.userTel}"/>
-					<input type="hidden" name="address" value="${sessionScope.Userinfo.userAdd}"/>
-					<input type="hidden" name="balance" value="${sessionScope.Userinfo.userBalance}"/>
+					<input type="hidden" name="op" value="toBeCourier" /> <input
+						type="hidden" name="userId" value="${sessionScope.User.userId}" />
+					<input type="hidden" name="tel"
+						value="${sessionScope.Userinfo.userTel}" /> <input type="hidden"
+						name="address" value="${sessionScope.Userinfo.userAdd}" /> <input
+						type="hidden" name="balance"
+						value="${sessionScope.Userinfo.userBalance}" />
 					<div class="modal-body">
 						<div class="form-group ">
-							<label for="">证件照:</label>
-							<img id="idImg" src="" style="width: 80px;height: 60px"  />
-							<input type="file" id="selectImg" name="idImg" onchange="fun(this)" value=""/>
+							<label for="">证件照:</label> <img id="idImg" src=""
+								style="width: 80px; height: 60px" /> <input type="file"
+								id="selectImg" name="idImg" onchange="fun(this)" value="" />
 						</div>
-						
+
 						<div class="form-group">
 							<label for="">真实姓名:</label><input class="form-control"
 								type="text" name="realName" id="realName">
 						</div>
-						
+
 						<div class="form-group">
 							<label for="">身份证:</label> <input class="form-control"
 								type="text" name="realIDcard" id="realIDcard">
 						</div>
-						
+
 						<div class="form-group">
 							<label for="">押金:</label><em>500</em>
 							<button class="btn-link" id="pay" name="pay">点击付款</button>
-						</div>					
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -321,15 +340,15 @@
 		</div>
 	</div>
 	<!--尾部-结束-->
-	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+	<c:if
+		test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
 	<script type="text/javascript">
-		
-		 function fun(o){
-		 	document.getElementById("idImg").src=window.URL.createObjectURL(o.files[0]);
-		 }
-		
+		function fun(o) {
+			document.getElementById("idImg").src = window.URL
+					.createObjectURL(o.files[0]);
+		}
 	</script>
 </body>
 </html>

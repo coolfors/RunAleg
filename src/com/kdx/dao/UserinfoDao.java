@@ -28,5 +28,11 @@ public interface UserinfoDao {
 
 	boolean updateUserinfoByQt(Userinfo uinfo);//前台修改用户信息
 	
+
+	boolean updateUserinfoBalance(Double balance,String userId);//前台充值
+
 	List<Userinfo> queryUserName();//查找用户名
+	
+	boolean updateUserinfoSex(String userSex,String userId);//修改性别
+
 }

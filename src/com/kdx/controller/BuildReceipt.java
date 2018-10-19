@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kdx.entity.Courier;
 import com.kdx.service.AffairService;
+import com.kdx.service.CourierService;
 import com.kdx.serviceImpl.AffairServiceImpl;
+import com.kdx.serviceImpl.CourierServiceImpl;
 
 /**
  * Servlet implementation class BuildReceipt
@@ -55,11 +58,9 @@ public class BuildReceipt extends HttpServlet {
 	protected void buildReceipt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		AffairService as=new AffairServiceImpl();
-		String getDis=request.getParameter("getDistance");
-		String sendDis=request.getParameter("sendDistance");
 		String disId=request.getParameter("disId");
 		String courierId=request.getParameter("courierId");
-		boolean flag=as.buildeReceipt(disId, courierId, Double.valueOf(getDis), Double.valueOf(sendDis));
+		boolean flag=as.buildeReceipt(disId, courierId, 0.00, 0.00);
 		response.getWriter().print(flag);
 		
 	}

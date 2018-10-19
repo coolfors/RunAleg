@@ -25,4 +25,8 @@ public interface CourierDao {
 	boolean updateCourierInForward(Courier cour);	
 
 	boolean changeState(String courierId, int sockState);// 改变状态
+	
+	Courier getCourierByCourierId(String courierId);
+	
+	boolean topUpBalance(Double balance,String userId);//跑腿充值余额
 }

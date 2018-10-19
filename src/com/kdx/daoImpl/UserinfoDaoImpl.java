@@ -81,6 +81,16 @@ public class UserinfoDaoImpl implements UserinfoDao {
 		String sql = "update user set sockState=? where userName=?";
 		return BaseDao.execute(sql, sockState, userName) > 0;
 	}
+	
+	/**
+	 * 前台充值
+	 */
+	@Override
+	public boolean updateUserinfoBalance(Double balance,String userId) {
+		// TODO Auto-generated method stub
+		String sql="update userinfo set userBalance= userBalance + ? where userId=?";
+		return BaseDao.execute(sql, balance,userId)>0;
+	}
 
 	
 	@SuppressWarnings("unchecked")
@@ -89,5 +99,12 @@ public class UserinfoDaoImpl implements UserinfoDao {
 		// TODO Auto-generated method stub
 		String sql = "SELECT A.userId, A.userName FROM `user` A LEFT JOIN ( SELECT B.userName FROM `user` B INNER JOIN userinfo WHERE userinfo.userId = B.userId ) C ON A.userName = C.userName WHERE C.userName IS NULL";
 		return (List<Userinfo>) BaseDao.select(sql, Userinfo.class);
+	}
+
+	@Override
+	public boolean updateUserinfoSex(String userSex, String userId) {
+		// TODO Auto-generated method stub
+		String sql="update userinfo set userSex = ? where userId = ?";
+		return BaseDao.execute(sql, userSex,userId) > 0;
 	}
 }

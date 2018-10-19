@@ -42,4 +42,13 @@ public interface UserDao {
 	
 	boolean changeEval(Evaluate eval);//增加评价内容
 	
+
+	/**
+	 * 登陆后台
+	 * @param username
+	 * @param password
+	 * @param i
+	 * @return 返回用户对象
+	 */
+	User loginUserAdmin(String username, String password);
 }

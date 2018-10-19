@@ -65,9 +65,21 @@ public class UserinfoServiceImpl implements UserinfoService {
 	}
 
 	@Override
+	public boolean updateUserinfoBalance(Double balance, String userId) {
+		// TODO Auto-generated method stub
+		return uid.updateUserinfoBalance(balance, userId);
+	}
+
 	public List<Userinfo> queryUserName() {
 		// TODO Auto-generated method stub
 		return uid.queryUserName();
+
+	}
+
+	@Override
+	public boolean updateUserinfoSex(String userSex, String userId) {
+		// TODO Auto-generated method stub
+		return uid.updateUserinfoSex(userSex, userId);
 	}
 
 }

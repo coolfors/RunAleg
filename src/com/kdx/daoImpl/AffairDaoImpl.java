@@ -47,7 +47,7 @@ public class AffairDaoImpl implements AffairDao {
 				BaseDao.execute(sql1, conn, uuid1, u.getUserName(), u.getUserPwd(), u.getUserDate());
 
 				// 执行增加userinfo的操作
-				String sql2 = "insert into userinfo values(?,?,null,null,null,null)";
+				String sql2 = "insert into userinfo values(?,?,null,null,0,null)";
 				BaseDao.execute(sql2, conn, uuid2, uuid1);
 				// 手动提交
 				conn.commit();
@@ -131,7 +131,7 @@ public class AffairDaoImpl implements AffairDao {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String Date = df.format( new Date());
 				//执行增加增加receipt的操作
-				String sql2="insert into receipt values(?,?,?,?,?,XXX,0,?,?,?)";
+				String sql2="insert into receipt values(?,?,?,?,?,'XXX',0,?,?,?)";
 				//配送员当前位置
 				String add=cs.getCourierAdd(courierId);
 				
@@ -153,5 +153,7 @@ public class AffairDaoImpl implements AffairDao {
 			return flag;
 		}
 	}
+	
+	
 
 }

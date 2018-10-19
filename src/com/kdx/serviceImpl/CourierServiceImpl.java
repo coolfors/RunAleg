@@ -63,4 +63,15 @@ public class CourierServiceImpl implements CourierService {
 		return cd.changeState(courierId, sockState);
 	}
 
+	@Override
+	public Courier getCourierByCourierId(String courierId) {
+		// TODO Auto-generated method stub
+		return cd.getCourierByCourierId(courierId);
+	}
+
+	@Override
+	public boolean topUpBalance(Double balance, String userId) {
+		// TODO Auto-generated method stub
+		return cd.topUpBalance(balance, userId);
+	}
 }

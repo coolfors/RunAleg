@@ -27,6 +27,12 @@ public interface UserinfoService {
 	
 	boolean updateUserinfoByQt(Userinfo editInfo);
 	
+
+	boolean updateUserinfoBalance(Double balance,String userId);//前台充值
+
 	List<Userinfo> queryUserName();
 	
+	boolean updateUserinfoSex(String userSex,String userId);//修改性别
+	
+
 }

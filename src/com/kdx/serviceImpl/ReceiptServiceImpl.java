@@ -96,5 +96,11 @@ public class ReceiptServiceImpl implements ReceiptService {
 		// TODO Auto-generated method stub
 		return rd.changeState(receiptId, state);
 	}
+	
+	@Override
+	public boolean setGetDistance(String recId, double distance) {
+		// TODO Auto-generated method stub
+		return rd.setGetDistance(recId, distance);
+	}
 
 }
