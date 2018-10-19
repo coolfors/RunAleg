@@ -60,6 +60,7 @@ public class CourierDaoImpl implements CourierDao {
 	@Override
 	public String getCourierAdd(String courierId) {
 		// TODO Auto-generated method stub
+		@SuppressWarnings("unchecked")
 		List<Courier> list=(List<Courier>) BaseDao.select("select * from courier where courierId=?", Courier.class, courierId);
 		String add=null;
 		for (Courier courier : list) {
@@ -92,11 +93,19 @@ public class CourierDaoImpl implements CourierDao {
 	@Override
 	public Courier getCourierByCourierId(String courierId) {
 		// TODO Auto-generated method stub
+		@SuppressWarnings("unchecked")
 		List<Courier> list=(List<Courier>) BaseDao.select("select * from courier where courierId=?", Courier.class, courierId);
 		Iterator<Courier> it=list.iterator();
 		Courier cour=null;
 		cour=it.next();
 		return cour;
+	}
+
+	@Override
+	public boolean topUpBalance(Double balance, String userId) {
+		// TODO Auto-generated method stub
+		String sql="update courier set balance = balance + ? where userId = ?";
+		return BaseDao.execute(sql,balance,userId) > 0;
 	}
 
 }

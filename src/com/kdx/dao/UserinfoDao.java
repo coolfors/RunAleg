@@ -32,5 +32,7 @@ public interface UserinfoDao {
 	boolean updateUserinfoBalance(Double balance,String userId);//前台充值
 
 	List<Userinfo> queryUserName();//查找用户名
+	
+	boolean updateUserinfoSex(String userSex,String userId);//修改性别
 
 }

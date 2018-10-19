@@ -15,4 +15,5 @@ public interface AffairDao {
 
 	//升级为Courier
 	boolean toBeCourier(Courier cour);
+
 }

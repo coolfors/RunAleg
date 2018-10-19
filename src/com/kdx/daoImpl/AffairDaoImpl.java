@@ -47,7 +47,7 @@ public class AffairDaoImpl implements AffairDao {
 				BaseDao.execute(sql1, conn, uuid1, u.getUserName(), u.getUserPwd(), u.getUserDate());
 
 				// 执行增加userinfo的操作
-				String sql2 = "insert into userinfo values(?,?,null,null,null,null)";
+				String sql2 = "insert into userinfo values(?,?,null,null,0,null)";
 				BaseDao.execute(sql2, conn, uuid2, uuid1);
 				// 手动提交
 				conn.commit();
@@ -153,5 +153,7 @@ public class AffairDaoImpl implements AffairDao {
 			return flag;
 		}
 	}
+	
+	
 
 }

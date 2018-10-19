@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kdx.entity.Courier;
 import com.kdx.entity.Userinfo;
+import com.kdx.service.CourierService;
 import com.kdx.service.UserinfoService;
+import com.kdx.serviceImpl.CourierServiceImpl;
 import com.kdx.serviceImpl.UserinfoServiceImpl;
 
 /**
@@ -18,6 +21,8 @@ import com.kdx.serviceImpl.UserinfoServiceImpl;
 @WebServlet("/AlipayService")
 public class AlipayService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserinfoService uis = new UserinfoServiceImpl();
+	private CourierService cs =  new CourierServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,21 +37,38 @@ public class AlipayService extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//String token = (String) request.getSession().getAttribute("token")+"";
+		//获取支付成功传输过来的金额
 		Double userBalance =Double.parseDouble((String) request.getSession().getAttribute("userBalance"));
-		System.out.println("hah"+userBalance);
+		//获取userId
 		String userId = request.getParameter("userId");
-		System.out.println("haha"+userId);
-		UserinfoService uis = new UserinfoServiceImpl();
-		boolean flag = uis.updateUserinfoBalance(userBalance, userId);
-		System.out.println(flag);
-		if(flag){
-			System.out.println("falg"+flag);
-			request.getSession().removeAttribute("Userinfo");
-			request.getSession().removeAttribute("userBalance");
-			Userinfo userInfo = uis.getUserInfo(userId);
-			request.getSession().setAttribute("Userinfo",userInfo);	
+		//获取userType
+		String userType = request.getParameter("userType");
+		
+		if(userType.equals("1")) {
+			//执行添加数据库
+			boolean flag = uis.updateUserinfoBalance(userBalance, userId);
+			if(flag){
+				//释放Userinfo和userBalance的session信息
+				request.getSession().removeAttribute("Userinfo");
+				request.getSession().removeAttribute("userBalance");
+				Userinfo userInfo = uis.getUserInfo(userId);
+				//创建新的Userinfo的session信息
+				request.getSession().setAttribute("Userinfo",userInfo);	
+			}
+		}else {
+			boolean flag = cs.topUpBalance(userBalance, userId);
+			if(flag){
+				//释放Courier和userBalance的session信息
+				request.getSession().removeAttribute("Courier");
+				request.getSession().removeAttribute("userBalance");
+				Courier courier = cs.getCourierById(userId);
+				//创建新的courier的session信息
+				request.getSession().setAttribute("Courier",courier);	
+			}
 		}
+		
+		
+		
 	}
 
 	/**

@@ -11,13 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kdx.entity.Dispatch;
-import com.kdx.entity.Evaluate;
 import com.kdx.entity.Userinfo;
 import com.kdx.service.UserinfoService;
 import com.kdx.serviceImpl.UserinfoServiceImpl;
 import com.kdx.util.MyDataTableData;
-import com.kdx.util.PageData;
 
 /**
  * Servlet implementation class UserServlet
@@ -136,37 +133,28 @@ public class UserInfoServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		String op = request.getParameter("op");
-
 		// 查询并返回所有数据 的格式要注意咯
 		List<Userinfo> list = uis.getUserinfo();
-
 		MyDataTableData<Userinfo> mydata = new MyDataTableData<Userinfo>();
 		mydata.setData(list);
-
 		// 返回json对象
-		Gson gson = new Gson();
 		String jsonString = new Gson().toJson(mydata);
-
-		System.out.println(jsonString);
-
 		PrintWriter out = response.getWriter();
-
-		out.print(jsonString);
-		
-		
+		out.print(jsonString);	
 		if (("userinfoEdit").equals(op)){
 			request.getSession().removeAttribute("");
 			String userInfoId = request.getParameter("userInfoId");
 			String userInfoSex = request.getParameter("sexInfo");
 			String userTel = request.getParameter("userTelInfo");
-			String userAdd = request.getParameter("userAddInfo");			
+			String userAdd = request.getParameter("userAddInfo");		
 			Userinfo editInfo = new Userinfo(userInfoId,userTel, userAdd, userInfoSex);		
 			// userDate, userName, userPwd,
 			// Integer.valueOf(userType));
 			boolean flag = uis.updateUserinfoByQt(editInfo);
 			if(flag) {
 				request.getSession().removeAttribute("Userinfo");
-				request.getSession().setAttribute("Userinfo",editInfo);
+				Userinfo userInfo = uis.getUserInfo(userInfoId);
+				request.getSession().setAttribute("Userinfo",userInfo);
 				request.getRequestDispatcher("userMessage.jsp").forward(request, response);
 			}
 		}
