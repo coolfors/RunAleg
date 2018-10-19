@@ -152,10 +152,11 @@ public class ReceiptServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;
 		int pageSize = 6;
+		String userId=request.getParameter("userId");
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		PageData<Receipt> pd = rs.Receiptdispatch(page, pageSize);
+		PageData<Receipt> pd = rs.sendReceipt(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
@@ -205,6 +206,7 @@ public class ReceiptServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int page = 1;// 默认第一页
 		int pageSize = 10;// 默认一页有10条记录
+		String userId=request.getParameter("userId");
 		// 如果用户传递的参数不为空
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -212,7 +214,7 @@ public class ReceiptServlet extends HttpServlet {
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Dispatch> pd = ds.waitSendDispatch(page, pageSize);
+		PageData<Receipt> pd = rs.waitSendReceipt(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);
