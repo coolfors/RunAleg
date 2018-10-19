@@ -60,9 +60,7 @@
 		//付款金额
 		String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");	
 
-		//request.setAttribute("money",total_amount);
-		//String token = IDNumber.getIDNumber()+"";
-		//request.getSession().setAttribute("token", token);
+
 		request.getSession().setAttribute("userBalance", total_amount);
 
 		request.getRequestDispatcher("userMessage.jsp").forward(request, response);

@@ -54,6 +54,7 @@ public class AlipayService extends HttpServlet {
 				Userinfo userInfo = uis.getUserInfo(userId);
 				//创建新的Userinfo的session信息
 				request.getSession().setAttribute("Userinfo",userInfo);	
+	
 			}
 		}else {
 			boolean flag = cs.topUpBalance(userBalance, userId);
@@ -63,7 +64,7 @@ public class AlipayService extends HttpServlet {
 				request.getSession().removeAttribute("userBalance");
 				Courier courier = cs.getCourierById(userId);
 				//创建新的courier的session信息
-				request.getSession().setAttribute("Courier",courier);	
+				request.getSession().setAttribute("Courier",courier);				
 			}
 		}
 		
