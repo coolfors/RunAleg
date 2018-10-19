@@ -31,5 +31,6 @@ public interface ReceiptService {
 	
 	PageData<Receipt> waitSendReceipt(int page, int pageSize,String userId);//  user待送订单(根据用户自己的userId来查询)
 
-	boolean setGetDistance(String recId,double distance);
+	boolean setGetDistance(String disId,String courierId, double distance);
+	boolean setSendDistance(String disId,String courierId, double distance);
 }

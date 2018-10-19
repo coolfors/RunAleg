@@ -19,13 +19,14 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/Courier.js"></script>
 <!-- <script src="js/getUserName.js" type="text/javascript"></script> -->
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="js/Courier.js"></script>
 </head>
 <body>
 <div id="allmap" hidden="hidden"></div>

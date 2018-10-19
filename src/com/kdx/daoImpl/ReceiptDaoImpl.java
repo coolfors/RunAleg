@@ -192,10 +192,16 @@ public class ReceiptDaoImpl implements ReceiptDao {
 			return flag;
 		}
 	}
+	
 	@Override
-	public boolean setGetDistance(String recId,double distance) {
+	public boolean setGetDistance(String disId, String courierId, double distance) {
 		// TODO Auto-generated method stub
-		return BaseDao.execute("update receipt set getDistance=? where receiptId=?", distance,recId)>0;
+		return BaseDao.execute("update receipt set getDistance=? where courierId=? and disId=?", distance,courierId,disId)>0;
+	}
+	@Override
+	public boolean setSendDistance(String disId, String courierId, double distance) {
+		// TODO Auto-generated method stub
+		return BaseDao.execute("update receipt set sendDistance=? where courierId=? and disId=?", distance,courierId,disId)>0;
 	}
 
 }

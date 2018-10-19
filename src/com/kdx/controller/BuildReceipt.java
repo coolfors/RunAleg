@@ -12,6 +12,7 @@ import com.kdx.service.AffairService;
 import com.kdx.service.CourierService;
 import com.kdx.serviceImpl.AffairServiceImpl;
 import com.kdx.serviceImpl.CourierServiceImpl;
+import com.kdx.util.TurnMap;
 
 /**
  * Servlet implementation class BuildReceipt
@@ -58,10 +59,27 @@ public class BuildReceipt extends HttpServlet {
 	protected void buildReceipt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		AffairService as=new AffairServiceImpl();
+		CourierService cs=new CourierServiceImpl();
+		//地图类实例化
+		TurnMap map=new TurnMap();
+		//获得起止地点
+		String beginAdd=request.getParameter("beginAdd");
+		String endAdd=request.getParameter("endAdd");
 		String disId=request.getParameter("disId");
-		String courierId=request.getParameter("courierId");
-		boolean flag=as.buildeReceipt(disId, courierId, 0.00, 0.00);
-		response.getWriter().print(flag);
+		String courierId=request.getParameter("CourierId");
+		//System.out.println(courierId);
+		String courierAdd=cs.getCourierAdd(courierId);
+		//计算经纬度
+		String begin=map.getCoordinate(beginAdd)[1]+","+map.getCoordinate(beginAdd)[0];
+		String end=map.getCoordinate(endAdd)[1]+","+map.getCoordinate(endAdd)[0];
+		String cour=map.getCoordinate(courierAdd)[1]+","+map.getCoordinate(courierAdd)[0];
+		//System.out.println(begin+","+end+","+cour);
+		double getDistance=TurnMap.GetPointDistance(cour, begin);
+		double sendDistance=TurnMap.GetPointDistance(begin, end);
+		System.out.println(getDistance);
+		System.out.println(sendDistance);
+		boolean flag=as.buildeReceipt(disId, courierId, getDistance, sendDistance);
+		response.getWriter().print(flag==true?1:0);
 		
 	}
 
