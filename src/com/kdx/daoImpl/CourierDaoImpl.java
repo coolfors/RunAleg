@@ -61,11 +61,12 @@ public class CourierDaoImpl implements CourierDao {
 	public String getCourierAdd(String courierId) {
 		// TODO Auto-generated method stub
 		List<Courier> list=(List<Courier>) BaseDao.select("select * from courier where courierId=?", Courier.class, courierId);
-		String add=null;
-		for (Courier courier : list) {
-			add=courier.getAddress();
+		Courier cour=null;
+		Iterator<Courier> it=list.iterator();
+		if(it.hasNext()) {
+			cour=it.next();
 		}
-		return add;
+		return cour.getAddress();
 	}
 	@Override
 	public boolean updateAdd(String courierId,String add) {

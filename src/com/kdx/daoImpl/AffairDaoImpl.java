@@ -112,21 +112,25 @@ public class AffairDaoImpl implements AffairDao {
 		try {
 			// 在java中可以对支持事务的数据库完成事务的处理
 			conn.setAutoCommit(false);
-			List<Dispatch> list=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", User.class, disId);
+			//System.out.println(disId);
+			List<Dispatch> list=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class, disId);
 			Dispatch dis=null;
-			for (Dispatch dispatch : list) {
-				dis=dispatch;
-			}
-			if(dis.getDisState()==1) {
+			Iterator<Dispatch> it=list.iterator();
+			dis=it.next();
+			//System.out.println(dis);
+			if(dis.getDisState()!=0) {
+				System.out.println("jj");
 				flag=false;
 			}else {
 				CourierService cs=new CourierServiceImpl();
 				DispatchService ds=new DispatchServiceImpl();
 				String uuid1=UUIDUtils.getUUID();
 				String uuid2=UUIDUtils.getUUID();
+				//System.out.println(1);
 				//执行改变dispatch状态的动作
-				String sql1 = "update dispatch set disState=1";
-				BaseDao.execute(sql1, conn);
+				String sql1 = "update dispatch set disState=1 where disId=?";
+				BaseDao.execute(sql1, conn,disId);
+				//System.out.println(2);
 				//获取当前时间作为起点时间
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String Date = df.format( new Date());
@@ -134,9 +138,10 @@ public class AffairDaoImpl implements AffairDao {
 				String sql2="insert into receipt values(?,?,?,?,?,'XXX',0,?,?,?)";
 				//配送员当前位置
 				String add=cs.getCourierAdd(courierId);
+				//System.out.println(3);
 				
 				BaseDao.execute(sql2, conn, uuid1,uuid2,courierId,disId,Date,add,getGoodsDistance,sendGoodsDistance);
-				
+				//System.out.println(4);
 				
 				//Bill b=new Bill(UUIDUtils.getUUID(), disN.getUserId(), disId, Double.valueOf(disN.getDisPrice()));
 				//手动提交

@@ -70,7 +70,9 @@ public class ReceiptServlet extends HttpServlet {
 		} else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
 		}else if(op.equals("setGetDistance")) {
-			
+			setGetDistance(request, response);
+		}else if(op.equals("setSendDistance")) {
+			setSendDistance(request, response);
 		}
 		
 		if (op.equals("sock")) {
@@ -248,11 +250,31 @@ public class ReceiptServlet extends HttpServlet {
 		response.getWriter().println(data);
 
 	}
+	/**
+	 * 设置取货距离
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 			protected void setGetDistance(HttpServletRequest request, HttpServletResponse response)
 					throws ServletException, IOException {
 				// TODO Auto-generated method stub
-				
-
+				String disId=request.getParameter("disId");
+				String courierId=request.getParameter("CourierId");
+				String distance=request.getParameter("distance");
+				rs.setGetDistance(disId, courierId, Double.valueOf(distance));
+/**
+ * 设置送货距离
+ */
+			}
+			protected void setSendDistance(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
+				// TODO Auto-generated method stub
+				String disId=request.getParameter("disId");
+				String courierId=request.getParameter("CourierId");
+				String distance=request.getParameter("distance");
+				rs.setSendDistance(disId, courierId, Double.valueOf(distance));
 			}
 
 }

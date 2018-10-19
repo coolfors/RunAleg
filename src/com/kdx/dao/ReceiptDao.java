@@ -33,6 +33,7 @@ public interface ReceiptDao {
 	PageData<Receipt> sendReceipt(int page, int pageSize,String userId);// user配送中的订单(根据用户自己的userId来查询)
 	PageData<Receipt> waitSendReceipt(int page, int pageSize,String userId);//  user待送订单(根据用户自己的userId来查询)
 
-	boolean setGetDistance(String recId,double distance);
+	boolean setGetDistance(String disId,String courierId, double distance);
+	boolean setSendDistance(String disId,String courierId, double distance);
 
 }

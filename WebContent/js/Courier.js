@@ -2,13 +2,42 @@
  * Courier查看
  */
 //取货距离的方法
-function getDistanceGPS(beginPos,endPos,disId,courierId){
+	/*function getDistanceGPS(beginPos,endPos,disId,courierId){
+			//创建一个地图实例
+			var map = new BMap.Map("map");
+	        //设置搜索结束时的回调函数
+	        localSearch.setSearchCompleteCallback(function (searchResult) {
+	        	var pois=new Array();
+	        	for(var i=0;i<=1;i++){
+		        	//获取搜索结果
+		            var poi = searchResult[i].getPoi(0);
+		            //创建标注
+		            var marker = new BMap.Marker(poi.point);
+		            //存储点
+		            pois.push(poi.point);
+		            //添加覆盖物
+		            map.addOverlay(marker);  
+	        	}
+	            //计算两点之间距离
+	            //$("input[name='distance']").val((map.getDistance(pois[0],pois[1])).toFixed(2)+'米');
+	        	var distance=map.getDistance(pois[0],pois[1]).toFixed(2);
+	        	//将距离输送到数据库
+	        	$.get("CourierServlet.do?op=setGetDistance&distance="+distance+"&CourierId="+courierId+"&disId="+disId,function (data,status) {
+					
+				});
+	        });
+	        //搜索起始位置和结束位置
+	        localSearch.search([beginPos,endPos]);
+	        
+		}
+	//送货距离的方法
+	function sendDistanceGPS(beginPos,endPos,disId,courierId){
 		//创建一个地图实例
 		var map = new BMap.Map("map");
-        //设置搜索结束时的回调函数
-        localSearch.setSearchCompleteCallback(function (searchResult) {
-        	var pois=new Array();
-        	for(var i=0;i<=1;i++){
+	    //设置搜索结束时的回调函数
+	    localSearch.setSearchCompleteCallback(function (searchResult) {
+	    	var pois=new Array();
+	    	for(var i=0;i<=1;i++){
 	        	//获取搜索结果
 	            var poi = searchResult[i].getPoi(0);
 	            //创建标注
@@ -17,57 +46,34 @@ function getDistanceGPS(beginPos,endPos,disId,courierId){
 	            pois.push(poi.point);
 	            //添加覆盖物
 	            map.addOverlay(marker);  
-        	}
-            //计算两点之间距离
-            //$("input[name='distance']").val((map.getDistance(pois[0],pois[1])).toFixed(2)+'米');
-        	var distance=map.getDistance(pois[0],pois[1]).toFixed(2);
-        	//将距离输送到数据库
-        	$.get("CourierServlet.do?op=updateAdd&add="+add+"&CourierId="+courierId,function (data,status) {
+	    	}
+	        //计算两点之间距离
+	        //$("input[name='distance']").val((map.getDistance(pois[0],pois[1])).toFixed(2)+'米');
+	    	var distance=map.getDistance(pois[0],pois[1]).toFixed(2);
+	    	$.get("CourierServlet.do?op=setSendDistance&distance="+distance+"&CourierId="+courierId+"&disId="+disId,function (data,status) {
 				
 			});
-        });
-        //搜索起始位置和结束位置
-        localSearch.search([beginPos,endPos]);
-        
-	}
-//送货距离的方法
-function sendDistanceGPS(beginPos,endPos,disId,courierId){
-	//创建一个地图实例
-	var map = new BMap.Map("map");
-    //设置搜索结束时的回调函数
-    localSearch.setSearchCompleteCallback(function (searchResult) {
-    	var pois=new Array();
-    	for(var i=0;i<=1;i++){
-        	//获取搜索结果
-            var poi = searchResult[i].getPoi(0);
-            //创建标注
-            var marker = new BMap.Marker(poi.point);
-            //存储点
-            pois.push(poi.point);
-            //添加覆盖物
-            map.addOverlay(marker);  
-    	}
-        //计算两点之间距离
-        //$("input[name='distance']").val((map.getDistance(pois[0],pois[1])).toFixed(2)+'米');
-    	var distance=map.getDistance(pois[0],pois[1]).toFixed(2);
-    	$.get("CourierServlet.do?op=updateAdd&add="+add+"&CourierId="+courierId,function (data,status) {
-			
+	    });
+	    //搜索起始位置和结束位置
+	    localSearch.search([beginPos,endPos]);
+	    
+	}*/
+
+	function doDistance(beginAdd,endAdd,disId,courierId){
+//		console.log(beginAdd);
+//		console.log(endAdd);
+//		console.log(disId);
+//		console.log(courierId);
+		$.get("BuildReceipt.do?op=buildReceipt&CourierId="+courierId+"&disId="+disId+"&beginAdd="+beginAdd+"&endAdd="+endAdd,function (data,status) {
+			if(data==1){
+				alert("抢单成功！");
+				$("#"+disId+"").html("<font color='blue'>已抢单</font>");
+			}else{
+				alert("抢单失败，下次出手快点！");
+				$("#"+disId+"").html("<font color='red'>抢单失败</font>");
+			}
 		});
-    });
-    //搜索起始位置和结束位置
-    localSearch.search([beginPos,endPos]);
-    
-}
-
-function doDistance(beginAdd,endAdd,disId,courierId){
-	$.get("BuildReceipt.do?op=buildReceipt&CourierId="+courierId+"&disId="+disId,function (data,status) {
-		getDistanceGPS(data,beginAdd);
-		sendDistanceGPS(beginAdd,endAdd);
-	});
-}
-
-
-
+	}
 
 $(function(){
 	
@@ -95,6 +101,7 @@ $(function(){
         		//alert(jsonStr);
    			var arr = JSON.parse(jsonStr);
    			var courierId=$("#CourierId").val();
+   			//alert(courierId);
         		var str = "";
    			$.each(arr.data, function(index,a){
 				//str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance('"+a.beginAdd+"','"+a.endAdd+"','"+a.disId+"','"+courierId+"')'>"+"未接单"+"</a></td></tr>";
@@ -138,7 +145,7 @@ $(function(){
    					    			//alert(arr.page);
    					         		var str = "";
    					    			$.each(arr.data, function(index,a){
-   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='getDistance(\""+a.beginAdd+"\",\""+a.endAdd+"\",\""+a.disId+"\",\""+courierId+"\")'>"+"未接单"+"</a></td></tr>";
+   					 				str = str + "<tr><td>"+a.disId+"</td><td>"+a.userId+"</td><td>"+a.beginAdd+"</td><td>"+a.endAdd+"</td><td>"+a.disTel+"</td><td>"+a.disPrice+"</td><td>"+a.goodsType+"</td><td>"+a.disPS+"</td><td><class='see'><a id='"+a.disId+"' href='#' onclick='doDistance(\""+a.beginAdd+"\",\""+a.endAdd+"\",\""+a.disId+"\",\""+courierId+"\")'>"+"未接单"+"</a></td></tr>";
    					    			});
    					    			$("tbody").html(str);
    					    			
