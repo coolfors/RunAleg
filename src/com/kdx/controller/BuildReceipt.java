@@ -70,16 +70,22 @@ public class BuildReceipt extends HttpServlet {
 		//System.out.println(courierId);
 		String courierAdd=cs.getCourierAdd(courierId);
 		//计算经纬度
-		String begin=map.getCoordinate(beginAdd)[1]+","+map.getCoordinate(beginAdd)[0];
-		String end=map.getCoordinate(endAdd)[1]+","+map.getCoordinate(endAdd)[0];
-		String cour=map.getCoordinate(courierAdd)[1]+","+map.getCoordinate(courierAdd)[0];
-		//System.out.println(begin+","+end+","+cour);
-		double getDistance=TurnMap.GetPointDistance(cour, begin);
-		double sendDistance=TurnMap.GetPointDistance(begin, end);
-		System.out.println(getDistance);
-		System.out.println(sendDistance);
-		boolean flag=as.buildeReceipt(disId, courierId, getDistance, sendDistance);
-		response.getWriter().print(flag==true?1:0);
+		try {
+			String begin=map.getCoordinate(beginAdd)[1]+","+map.getCoordinate(beginAdd)[0];
+			String end=map.getCoordinate(endAdd)[1]+","+map.getCoordinate(endAdd)[0];
+			String cour=map.getCoordinate(courierAdd)[1]+","+map.getCoordinate(courierAdd)[0];
+			//System.out.println(begin+","+end+","+cour);
+			double getDistance=TurnMap.GetPointDistance(cour, begin);
+			double sendDistance=TurnMap.GetPointDistance(begin, end);
+			System.out.println(getDistance);
+			System.out.println(sendDistance);
+			boolean flag=as.buildeReceipt(disId, courierId, getDistance, sendDistance);
+			response.getWriter().print(flag==true?1:0);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			response.getWriter().print(0);
+		}
 		
 	}
 
