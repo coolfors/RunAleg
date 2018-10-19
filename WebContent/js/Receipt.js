@@ -807,8 +807,8 @@ function chaRec(e) {
 	var btnValue = $(e).text();
 	var evaluateId = $(e).parents("tr").find("td").eq(0).text();
 	if (btnValue == "点击评价") {
-		var str = "<input type='hidden' id=" + evaluateId + " name="
-				+ evaluateId + " value=" + evaluateId + "> "
+		var str = "<input type='hidden' id='evaluateId' name='evaluateId' value="
+				+ evaluateId + "> "
 		$("#sss").html(str);
 		$('#myModal').modal('show');
 	} else if (btnValue == "评价已完成") {

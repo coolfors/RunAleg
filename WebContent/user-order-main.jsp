@@ -113,9 +113,6 @@
 	</nav>
 	<!--导航-结束-->
 
-	<!--内容-开始-->
-	<button class="btn btn-success btn-xs" data-toggle="modal"
-		data-target="#myModal">成为快递侠</button>
 	<!-- 模态框 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -123,10 +120,9 @@
 			<div class="modal-content">
 				<form id="form_data" method="get" action="us.action">
 					<div class="modal-body">
-					<input type="hidden" id="op" name="op"
-								value="evaSos"> 
-					<input type="hidden" id="userId" name="userId"
-								value="${sessionScope.User.userId}"> 
+						<input type="hidden" id="op" name="op" value="evaSos"> <input
+							type="hidden" id="userId" name="userId"
+							value="${sessionScope.User.userId}">
 						<div class="form-group ">
 							<label for="evaInfo">评价内容:</label> <input class="form-control"
 								type="text" id="evaInfo" name="evaInfo" />
