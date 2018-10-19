@@ -132,7 +132,7 @@ public class ReceiptServlet extends HttpServlet {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		PageData<Evaluate> pd = es.queryReceiptcom(page, pageSize, userId);
+		PageData<Evaluate> pd = es.queryEvalByPage(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		//request.setAttribute("pd", data);
