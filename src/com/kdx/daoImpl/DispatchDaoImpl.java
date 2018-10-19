@@ -73,7 +73,7 @@ public class DispatchDaoImpl implements DispatchDao {
 	@Override
 	public PageData<Dispatch> queryDispatch(int page, int pageSize, String userId) {
 		// TODO Auto-generated method stub
-		String sql="SELECT dispatch.disId, dispatch.beginAdd, dispatch.endAdd, dispatch.disTel, dispatch.disPrice, dispatch.goodsType, dispatch.disPS, dispatch.disState FROM dispatch WHERE userId=? ";
+		String sql="SELECT dispatch.disId, dispatch.userId,dispatch.beginAdd, dispatch.endAdd, dispatch.disTel, dispatch.disPrice, dispatch.goodsType, dispatch.disPS, dispatch.disState FROM dispatch WHERE userId=? ";
 		return BaseDao.getPage(sql, page, pageSize, Dispatch.class, userId);
 	}
 	
