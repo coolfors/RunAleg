@@ -56,8 +56,8 @@
             </span>
             <span class="col-sm-4 col-xs-5" style="float:right">
             	<c:if test="${sessionScope.User==null }">
-						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-						href="register.html" target="_blank" id="reg">注册</a>
+						<a href="login.html" target="" id="login">登录</a>&nbsp; <a
+						href="register.html" target="" id="reg">注册</a>
 					</c:if>
 					<c:if test="${sessionScope.User!=null }">
 						<ul class="right navbar-nav">

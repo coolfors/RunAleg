@@ -25,5 +25,6 @@
     <filter-name>CU</filter-name>
     <url-pattern>/courier-main.jsp</url-pattern>
     <url-pattern>/user-order-main.jsp</url-pattern>
+    <url-pattern>/freight-info.jsp</url-pattern>
   </filter-mapping>
 </web-app>
