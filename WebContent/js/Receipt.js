@@ -9,10 +9,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("已完成的订单");
+						var userId = $("#userId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "rs.do?op=completeorder",
+									url : "rs.do?op=completeorder&userId="+userId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
@@ -80,7 +81,7 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "rs.do?op=completeorder&pageIndex="
+																							url : "rs.do?op=completeorder&userId="+userId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -151,10 +152,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("配送中的订单");
+						var userId = $("#userId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "rs.do?op=dispatching",
+									url : "rs.do?op=dispatching&userId="+userId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
@@ -233,7 +235,7 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "rs.do?op=dispatching&pageIndex="
+																							url : "rs.do?op=dispatching&userId="+userId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -308,10 +310,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("所有订单");
+						var userId = $("#userId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "rs.do?op=allDispatch",
+									url : "rs.do?op=allDispatch&userId="+userId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
@@ -395,7 +398,7 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "rs.do?op=allDispatch&pageIndex="
+																							url : "rs.do?op=allDispatch&userid="+userId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -470,10 +473,11 @@ $(function() {
 			.click(
 					function() {
 						$("#headName").html("待配送订单");
+						var userId = $("#userId").val();
 						$
 								.ajax({
 									type : "get",
-									url : "rs.do?op=waitSendDispatch",
+									url : "rs.do?op=waitSendDispatch&userId="+userId,
 									/*
 									 * data: {username:$("#username").val(),
 									 * content:$("#content").val() },
@@ -487,7 +491,7 @@ $(function() {
 												.html(
 														"<tr><th>派单id</th><th>用户id</th><th>起送地</th><th>到达地</th><th>用户联系电话</th><th>配送价格</th><th>物品类型</th><th>物品介绍</th><th>派单状态</th></tr>");
 										var jsonStr = JSON.stringify(data);
-										alert("代配送：" + jsonStr);
+										//alert("代配送：" + jsonStr);
 										var arr = JSON.parse(jsonStr);
 										var str = "";
 										$
@@ -557,7 +561,7 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "rs.do?op=waitSendDispatch&pageIndex="
+																							url : "rs.do?op=waitSendDispatch&userId="+userId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -716,7 +720,7 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "rs.do?op=waitEvaluate&pageIndex="
+																							url : "rs.do?op=waitEvaluate&userId="+userId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
