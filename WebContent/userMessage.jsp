@@ -19,20 +19,25 @@
 <link rel="stylesheet" type="text/css" href="css/thems.css" />
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src=js/layer.js></script>
 <script type="text/javascript">
-		$(document).ready(function() {
-			var userId = $("#userInfoId").val();
-			var userType = $("#userinfoType").val();
-			$.get("AlipayService?userId=" + userId+"&userType="+userType, function(data, statue) {
-			});
-		})
-		$(document).ready(function() {
-			var userId = $("#courierId").val();
-			var userType = $("#courierType").val();	
-			$.get("AlipayService?userId=" + userId+"&userType="+userType, function(data, statue) {
-			});
-		})
-	</script>
+	$(document).ready(
+			function() {
+				var userId = $("#userInfoId").val();
+				var userType = $("#userinfoType").val();
+				$.get("AlipayService?userId=" + userId + "&userType="
+						+ userType, function(data, statue) {
+				});
+			})
+	$(document).ready(
+			function() {
+				var userId = $("#courierId").val();
+				var userType = $("#courierType").val();
+				$.get("AlipayService?userId=" + userId + "&userType="
+						+ userType, function(data, statue) {
+				});
+			})
+</script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -58,8 +63,8 @@
 					<a href="" style="display: none">退出</a>
 				</span> <span class="col-sm-4 col-xs-5" style="float: right"> <c:if
 						test="${sessionScope.User==null }">
-						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-							href="register.html" target="_blank" id="reg">注册</a>
+						<a href="login.html" target="" id="login">登录</a>&nbsp; <a
+							href="register.html" target="" id="reg">注册</a>
 					</c:if> <c:if test="${sessionScope.User!=null }">
 						<ul class="right navbar-nav">
 							<li class="dropdown"><a href="" class="dropdown-toggle"
@@ -100,10 +105,12 @@
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -136,6 +143,10 @@
 						<ul class="erji">
 							<li><i>&nbsp;</i> <strong><a href="">个人资料</a></strong></li>
 						</ul></li>
+					<li><strong><a id="modal-546969"
+							href="#modal-container-546969" role="button" class="btn qupdate"
+							data-toggle="modal" onclick="editPassword()">修改密码</a></strong></li>
+
 					<!-- <li><a class="yiji"><span>订单中心</span><em>&nbsp;</em></a>
 						<ul class="erji">
 							<li><i>&nbsp;</i> <strong><a href="">我的订单</a></strong></li>
@@ -190,13 +201,15 @@
 								<button class="btn btn-success btn-xs" data-toggle="modal"
 									data-target="#myModal">成为快递侠</button></li>
 							<li><span>账户余额：</span> <em>${sessionScope.Userinfo.userBalance}</em>
-								&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-xs" href="pay.jsp">点击充值</a></li>
+								&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-xs"
+								href="pay.jsp">点击充值</a></li>
 						</ul>
 						<strong>基本信息</strong>
 						<!-- 普通用户信息显示修改 -->
 						<form action="UserInfoServlet?op=userinfoEdit" method="post">
-							<input type="hidden" id="userInfoId" name="userInfoId" value="${sessionScope.User.userId}" />
-							<input type="hidden" id="userinfoType" value="${sessionScope.User.userType}" />
+							<input type="hidden" id="userInfoId" name="userInfoId"
+								value="${sessionScope.User.userId}" /> <input type="hidden"
+								id="userinfoType" value="${sessionScope.User.userType}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
@@ -225,19 +238,21 @@
 							</li>
 							<li><span>账户押金：</span> <em>${sessionScope.Courier.deposit}</em></li>
 							<li><span>账户余额：</span> <em>${sessionScope.Courier.balance}</em>
-								&nbsp;&nbsp;&nbsp;
-								<a class="btn btn-success btn-xs" href="pay.jsp">点击充值</a></li>
+								&nbsp;&nbsp;&nbsp; <a class="btn btn-success btn-xs"
+								href="pay.jsp">点击充值</a></li>
 						</ul>
 						<!-- 跑腿用户信息显示修改 -->
 						<strong>基本信息</strong>
 						<form action="CourierServlet.do" method="get">
-							<input type="hidden" name="op" value="xiugai" /> 
-							<input type="hidden" id="courierId" name="courierId" value="${sessionScope.User.userId}" />
-							<input type="hidden" id="courierType" value="${sessionScope.User.userType}" />
+							<input type="hidden" name="op" value="xiugai" /> <input
+								type="hidden" id="courierId" name="courierId"
+								value="${sessionScope.User.userId}" /> <input type="hidden"
+								id="courierType" value="${sessionScope.User.userType}" />
 							<ul>
 								<li><span>用户ID:</span> <em>${sessionScope.User.userId}</em>
 								</li>
-								<li><span>性别：</span> <select name="couriersex" id="couriersex">
+								<li><span>性别：</span> <select name="couriersex"
+									id="couriersex">
 										<option value="${sessionScope.Userinfo.userSex}">${sessionScope.Userinfo.userSex}</option>
 										<option value="男">男</option>
 										<option value="女">女</option>
@@ -350,6 +365,85 @@
 			</div>
 		</div>
 	</div>
+	<!-- 修改密码 模态开始 -->
+
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="modal fade" id="modal-container-546969" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">密码修改</h4>
+						</div>
+						<div class="modal-body">
+
+							<form name="editForm" action="ChangPwdServlet" method="get"
+								class="form-horizontal" role="form">
+								<input type="hidden" id="userId" name="userId"
+									value="${sessionScope.User.userId}" /> <input type="hidden"
+									id="op" name="op" value="ChangPwd"> <input
+									type="hidden" name="userPwd" id="userPwd"
+									value="${sessionScope.User.userPwd}" />
+
+
+
+								<div class="form-group">
+
+									<label for="oldPwd" class="col-sm-2 control-label">旧密码</label>
+									<div class="col-sm-8">
+
+										<input type='password' id="oldpassword" class="form-control"
+											name="oldpassword" id="oldpassword" required
+											placeholder="原密码">
+										<div style="display: inline" id="tip1"></div>
+
+
+									</div>
+								</div>
+
+
+
+								<div class="form-group">
+									<label for="newPwd" class="col-sm-2 control-label">新密码</label>
+									<div class="col-sm-8">
+										<input type='password' id="newPwd" name="newPwd"
+											class="form-control" required placeholder="长度为: 6-18">
+										<div style="display: inline" id="tip2"></div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="surePwd" class="col-sm-2 control-label">确认密码</label>
+									<div class="col-sm-8">
+										<input type='password' id="surePwd" name="surePwd"
+											class="form-control" required placeholder="必须和第一次一样">
+										<div style="display: inline" id="tip3"></div>
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="submit" class="btn btn-primary"
+								onclick="surechange">确认修改</button>
+						</div>
+						</form>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!--  修改密码 模态结束 -->
+
+
+
 	<!--尾部-结束-->
 	<c:if
 		test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
@@ -360,6 +454,18 @@
 			document.getElementById("idImg").src = window.URL
 					.createObjectURL(o.files[0]);
 		}
+	</script>
+	<script>
+		/**
+		 * 判断用户是否在登录状态
+		 */
+		$("#modal-546969").click(function() {
+			var u = $("#userId").val();
+			if (u == "") {
+				alert('请先登录~');
+				window.location.href = "login.html";
+			}
+		});
 	</script>
 </body>
 </html>

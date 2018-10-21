@@ -1,7 +1,6 @@
 package com.kdx.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  * The persistent class for the feedback database table.

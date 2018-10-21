@@ -32,166 +32,175 @@ import com.kdx.util.MD5Util;
 @WebServlet("/LoginServlet.do")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserService us=new UserServiceImpl();
+	private UserService us = new UserServiceImpl();
 	private UserinfoService uis = new UserinfoServiceImpl();
 	private CourierService cs = new CourierServiceImpl();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String op=request.getParameter("op");
-		if("login".equals(op)) {
-			login(request,response);
+		String op = request.getParameter("op");
+		if ("login".equals(op)) {
+			login(request, response);
 		}
-		//注册表单的传送
-		else if("register".equals(op)) {
-			register(request,response);
-		}else if(op.equals("exchange")) {
+		// 注册表单的传送
+		else if ("register".equals(op)) {
+			register(request, response);
+		} else if (op.equals("exchange")) {
 			exchange(request, response);
-		}else if(op.equals("LoginAdmin")) {
+		} else if (op.equals("LoginAdmin")) {
 			loginadmin(request, response);
 		}
 	}
-		
-	
+
 	/**
-	 * 后台登陆 
+	 * 后台登陆
+	 * 
 	 * @param request
 	 * @param response
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	private void loginadmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String name = (String) request.getSession().getAttribute("user");
-		//获取请求的参数值为前台登陆页面的表单账号密码
-		String username =request.getParameter("username");
-		String password =request.getParameter("password");
-		String pswsecrite =MD5Util.getEncodeByMd5(password);
-		System.out.println(username+','+pswsecrite);
-		User user = us.loginUserAdmin(username, pswsecrite); 
+		// 获取请求的参数值为前台登陆页面的表单账号密码
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String pswsecrite = MD5Util.getEncodeByMd5(password);
+		System.out.println(username + ',' + pswsecrite);
+		User user = us.loginUserAdmin(username, pswsecrite);
 		System.out.println(user);
-		
-//		登陆后跳转
-		if(user!=null) {
-			//创建一个session
-			HttpSession session=request.getSession();
+
+		// 登陆后跳转
+		if (user != null) {
+			// 创建一个session
+			HttpSession session = request.getSession();
 			session.setAttribute("User", user);
 			session.setAttribute("UserType", user.getUserType());
-			//传递普通用户的全部信息
+			// 传递普通用户的全部信息
 			Userinfo userInfo = uis.getUserInfo(user.getUserId());
 			session.setAttribute("Userinfo", userInfo);
-			//实例化对象获取并封装cookie
-			 //添加到Cookie中
-	        Cookie c=new Cookie("userId", user.getUserId());
-	        
-	        //设置过期时间
-	        c.setMaxAge(600);
-	        
-	        //存储
-	        response.addCookie(c);
-	        
+			// 实例化对象获取并封装cookie
+			// 添加到Cookie中
+			Cookie c = new Cookie("userId", user.getUserId());
+
+			// 设置过期时间
+			c.setMaxAge(600);
+
+			// 存储
+			response.addCookie(c);
+
 			out.print("<script>alert('欢迎回来超级管理员');location.href='admin/index.html'</script>");
-		}else  {
+		} else {
 			out.print("<script>alert('登录失败！');location.href='admin/login.html'</script>");
 		}
-        out.flush();
-        out.close();
+		out.flush();
+		out.close();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 	/**
 	 * 登录
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void login(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out=response.getWriter();
-		String userName=request.getParameter("userName");
-		String password =MD5Util.getEncodeByMd5(request.getParameter("password"));
-		String check_code= request.getParameter("check_code");//获取用户文本框内的内容
+		PrintWriter out = response.getWriter();
+		String userName = request.getParameter("userName");
+		String password = MD5Util.getEncodeByMd5(request.getParameter("password"));
+		String check_code = request.getParameter("check_code");// 获取用户文本框内的内容
 		String code = (String) request.getSession().getAttribute("code"); // 获取存放在session中的验证码
 		User user = us.loginUser(userName, password);
-		if(user==null) {
+		if (user == null) {
 			out.print("<script>alert('账号或密码错误，登录失败！');location.href='login.html'</script>");
-		}else if(!check_code.equalsIgnoreCase(code)) {
+		} else if (!check_code.equalsIgnoreCase(code)) {
 			out.print("<script>alert('验证码错误，登录失败！');location.href='login.html'</script>");
-		}
-		else {
-			/*Gson gson=new Gson();
-			String user=gson.toJson(u);*/
-			HttpSession session=request.getSession();
+		} else {
+			/*
+			 * Gson gson=new Gson(); String user=gson.toJson(u);
+			 */
+			HttpSession session = request.getSession();
 			session.setAttribute("User", user);
-			//传递普通用户的全部信息
+			// 传递普通用户的全部信息
 			Userinfo userInfo = uis.getUserInfo(user.getUserId());
 			session.setAttribute("Userinfo", userInfo);
-			//传递跑腿用户的全部信息
+			// 传递跑腿用户的全部信息
 			Courier courier = cs.getCourierById(user.getUserId());
 			session.setAttribute("Courier", courier);
 			out.print("<script>alert('登录成功！');location.href='index.jsp'</script>");
 		}
 		out.close();
 	}
+
 	/**
 	 * 注册
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void register(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out=response.getWriter();
-		AffairService as=new AffairServiceImpl();
-		//获取表单传送的参数值
+		PrintWriter out = response.getWriter();
+		AffairService as = new AffairServiceImpl();
+		// 获取表单传送的参数值
 		String userName = request.getParameter("userName");
-		String password =MD5Util.getEncodeByMd5(request.getParameter("password"));
+		String password = MD5Util.getEncodeByMd5(request.getParameter("password"));
 		int userType = 1;
-		//获取系统当前时间
+		// 获取系统当前时间
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String userDate = df.format( new Date());
-		//创建对象
-		User user = new User(userName, password, userType,userDate);
+		String userDate = df.format(new Date());
+		// 创建对象
+		User user = new User(userName, password, userType, userDate);
 		boolean flag = as.addUserAndInfo(user);
-		//注册成跳转登录页面
-		if(flag==true)
-		{
+		// 注册成跳转登录页面
+		if (flag == true) {
 			out.print("<script>alert('注册成功！');location.href='login.html'</script>");
-		}
-		else {
+		} else {
 			out.print("<script>alert('注册失败！');location.href='register.html'</script>");
 		}
-				
+
 	}
-	protected void exchange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void exchange(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();
+		HttpSession session = request.getSession();
 		session.removeAttribute("User");
 		session.removeAttribute("Userinfo");
 		session.removeAttribute("Courier");
 		response.getWriter().print("<script>location.href='index.jsp';</script>");
 	}
-
 
 }

@@ -12,10 +12,20 @@ function doDistance(beginAdd, endAdd, disId, courierId) {
 			+ disId + "&beginAdd=" + beginAdd + "&endAdd=" + endAdd, function(
 			data, status) {
 		if (data == 1) {
-			alert("抢单成功！");
+			layer.alert('抢单成功！', {
+				skin : 'layui-layer-lan',
+				closeBtn : 0,
+				anim : 4
+			// 动画类型
+			});
 			$("#" + disId + "").html("<font color='blue'>已抢单</font>");
-		} else {
-			alert("抢单失败，下次出手快点！");
+		} else {// layer.msg
+			layer.alert('抢单失败，下次出手快点！', {
+				skin : 'layui-layer-lan',
+				closeBtn : 0,
+				anim : 4
+			// 动画类型
+			});
 			$("#" + disId + "").html("<font color='red'>抢单失败</font>");
 		}
 	});
@@ -305,7 +315,7 @@ $(function() {
 														"<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th><th>查看位置</th></tr>");
 										var jsonStr = JSON.stringify(data);
 										var courierId = $("#CourierId").val();
-										//alert(jsonStr);
+										// alert(jsonStr);
 										var jsonStr = JSON.stringify(data);
 										var arr = JSON.parse(jsonStr);
 										var str = "";
@@ -333,7 +343,9 @@ $(function() {
 																	+ a.getDistance
 																	+ "</td><td>"
 																	+ a.sendDistance
-																	+ "</td><td><class='see'><a href=''>未配送</a></td><td><button onclick='createMapGet(\""
+																	+ "</td><td><button onclick='getState(this)'  class='layui-btn layui-btn-primary' value="
+																	+ a.receiptId
+																	+ ">未配送</button></td><td><button onclick='createMapGet(\""
 																	+ a.disId
 																	+ "\",\""
 																	+ a.courierAdd
@@ -381,7 +393,8 @@ $(function() {
 																						.ajax({
 																							type : "get",
 																							url : "CourierServlet.do?op=waitSendReceipt&courierId="
-																								+ courierId+"&pageIndex="
+																									+ courierId
+																									+ "&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -430,7 +443,9 @@ $(function() {
 																															+ a.getDistance
 																															+ "</td><td>"
 																															+ a.sendDistance
-																															+ "</td><td><class='see'><a href=''>未配送</a></td><td><button onclick='createMapGet(\""
+																															+ "</td><td><button onclick='getState(this)'  class='layui-btn layui-btn-primary' value="
+																															+ a.receiptId
+																															+ ">未配送</button></td><td><button onclick='createMapGet(\""
 																															+ a.disId
 																															+ "\",\""
 																															+ a.courierAdd
@@ -501,7 +516,8 @@ $(function() {
 																	+ a.courierAdd
 																	+ "</td><td>"
 																	+ a.getDistance
-																	+ "</td><td>"// class="layui-btn layui-btn-normal"
+																	+ "</td><td>"// class="layui-btn
+																	// layui-btn-normal"
 																	+ a.sendDistance
 																	+ "</td><td><class='see'><button id='cState' data-method='offset' data-type='auto' class='layui-btn layui-btn-primary' onclick='changState(this)' value="
 																	+ a.receiptId
@@ -553,7 +569,8 @@ $(function() {
 																						.ajax({
 																							type : "get",
 																							url : "CourierServlet.do?op=sendReceipt&courierId="
-																								+ courierId+"&pageIndex="
+																									+ courierId
+																									+ "&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -746,7 +763,8 @@ $(function() {
 																						.ajax({
 																							type : "get",
 																							url : "CourierServlet.do?op=waitEvaluate&courierId="
-																								+ courierId+"&pageIndex="
+																									+ courierId
+																									+ "&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -891,7 +909,8 @@ $(function() {
 																						.ajax({
 																							type : "get",
 																							url : "CourierServlet.do?op=overEvaluate&courierId="
-																								+ courierId+"&pageIndex="
+																									+ courierId
+																									+ "&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -969,9 +988,52 @@ function changState(s) {
 				// console.log(data=="\"ok\"");
 				// alert("返回值" +data);
 				if (data) {
-					layer.msg('订单已完成');
+					// layer.msg('订单已完成');
+					layer.confirm('订单已完成~', {
+						btn : [ '好的', '查看评价' ]
+					// 按钮
+					}, function() {
+						// waitEvaluate
+						window.location.reload();
+					}, function() {
+						// $("#sendReceipt").click();
+						$("#waitEvaluate").click();
+					});
+
 				} else {
-					layer.msg('服务器繁忙');
+					layer.msg('服务器繁忙,请重试');
+				}
+			}
+		});
+	});
+
+}
+
+function getState(s) {
+	layer.confirm('开始配送？', {
+		btn : [ '是', '否' ]
+	// 按钮
+	}, function() {
+		$.ajax({
+			type : 'get',
+			url : "CourierServlet.do?op=getState",
+			data : {
+				// receiptId : $('#cState').val(),// receiptId
+				disId : $(s).parents("tr").find("td").eq(0).text()
+			},
+			success : function(data) {
+				if (data) {
+					// layer.msg('开始配送~');
+					layer.confirm('开始配送~', {
+						btn : [ '好的', '查看配送中的信息' ]
+					// 按钮
+					}, function() {
+						window.location.reload();
+					}, function() {
+						$("#sendReceipt").click();
+					});
+				} else {
+					layer.msg('服务器繁忙,请重试');
 				}
 			}
 		});

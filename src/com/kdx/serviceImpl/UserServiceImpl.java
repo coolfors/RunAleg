@@ -84,13 +84,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> queryUsersById(int userId) {
+	public List<User> queryUsersById(String userId) {
 		// TODO Auto-generated method stub
 		return ud.queryUserId(userId);
 	}
 
 	@Override
-	public boolean resetPwd(int userId, String userPwd) {
+	public boolean resetPwd(String userId, String userPwd) {
 		// TODO Auto-generated method stub
 		return ud.resetPwd(userId, userPwd);
 	}

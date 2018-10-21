@@ -28,4 +28,6 @@ public interface CourierService {
 	Courier getCourierByCourierId(String courierId);
 	
 	boolean topUpBalance(Double balance,String userId);//跑腿充值余额
+	
+	boolean getState(String disId);
 }

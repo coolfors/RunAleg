@@ -18,12 +18,16 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css">
 <link rel="stylesheet" href="css/LocationRange.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/freight-info.css">
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>  
-<script src="http://api.map.baidu.com/api?v=2.0&ak=Dc8o3GUube9RVOhmeuuhfNL9QRyzhuaj" type="text/javascript"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script
+	src="http://api.map.baidu.com/api?v=2.0&ak=Dc8o3GUube9RVOhmeuuhfNL9QRyzhuaj"
+	type="text/javascript"></script>
+<script src="js/layer.js"></script>
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
-<![endif]--> 
+<![endif]-->
 <!-- <script type="text/javascript" > 
 $(document).ready(function() {
 
@@ -33,16 +37,18 @@ $(document).ready(function() {
 </script>  -->
 </head>
 <body>
-<div id="allmap" hidden="hidden"></div>
+	<div id="allmap" hidden="hidden"></div>
 	<input id="lng" name="lng" hidden="hidden" value="" />
 	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
-	
+	<input id="CourierId" name="CourierId" hidden="hidden"
+		value="${sessionScope.Courier.courierId}" />
+
 	<!--顶部-开始-->
 	<div id="allmap" hidden="hidden"></div>
 	<input id="lng" name="lng" hidden="hidden" value="" />
 	<input id="lat" name="lat" hidden="hidden" value="" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
+	<input id="CourierId" name="CourierId" hidden="hidden"
+		value="${sessionScope.Courier.courierId}" />
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
 		<div class="container">
@@ -54,8 +60,8 @@ $(document).ready(function() {
 					<a href="" style="display: none">退出</a>
 				</span> <span class="col-sm-4 col-xs-5" style="float: right"> <c:if
 						test="${sessionScope.User==null }">
-						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-							href="register.html" target="_blank" id="reg">注册</a>
+						<a href="login.html" target="" id="login">登录</a>&nbsp; <a
+							href="register.html" target="" id="reg">注册</a>
 					</c:if> <c:if test="${sessionScope.User!=null }">
 						<ul class="right navbar-nav">
 							<li class="dropdown"><a href="" class="dropdown-toggle"
@@ -96,10 +102,12 @@ $(document).ready(function() {
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<li class="active" class="dropdown"><a href="#"
@@ -202,50 +210,52 @@ $(document).ready(function() {
 
 						<div class="new_tab_bottom form-group row">
 							<input class=" btn btn-info col-sm-1 col-sm-offset-9"
-								type="submit" id="sure" value="下单并付款" href="modal-container" data-toggle="modal" >
+								type="submit" id="sure" value="下单并付款" href="modal-container"
+								data-toggle="modal">
 							<!-- <input class=" btn btn-info col-sm-1 col-sm-offset-9" type="button" id="sure" value="下单并付款"> -->
-							
-							<input class=" btn btn-warning col-sm-1" type="reset" value="重置">					
-							<button class="btn btn-primary btn-lg" id="toModal" data-toggle="modal" data-target="#myModal">开始演示模态框</button>
-							
-								</div>
-					
+
+							<input class=" btn btn-warning col-sm-1" type="reset" value="重置">
+							<button class="btn btn-primary btn-lg" id="toModal"
+								data-toggle="modal" data-target="#myModal">这是一个彩蛋</button>
+
+						</div>
+
 					</form>
 				</div>
 
 			</div>
 		</div>
 	</div>
-	        <!-- 模态框（Modal） -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-             aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close"
-                                data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                       <h4 class="modal-title" id="myModalLabel">确认支付页面</h4>
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                    <label>支付密码</label> <input type="password" id="surePwd"
-							name="surePwd" placeholder="请输入支付密码">
-                    </div>
-                    <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button id="doPay" name="doPay" type="submit"
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">确认支付页面</h4>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<label>支付密码</label> <input type="password" id="surePwd"
+						name="surePwd" placeholder="请输入支付密码">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button id="doPay" name="doPay" type="submit"
+						class="btn btn-secondary" data-dismiss="modal"
+						onclick="pay(surePwd)">确认支付</button>
 
-							class="btn btn-secondary" data-dismiss="modal" onclick="pay(surePwd)">确认支付</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
 
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal -->
-        </div>
 
-	
-	
+
 	<div class="container row">
 		<p style="text-align: right; color: red; margin-right: 15px;">*
 			发布的信息只保留15天！</p>
@@ -287,7 +297,8 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<!--尾部-结束-->
-	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+	<c:if
+		test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
 	<script src="js/jquery.min.js"></script>
@@ -299,7 +310,7 @@ $(document).ready(function() {
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/messages_zh.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 $(document).ready(function() {
 
@@ -337,11 +348,12 @@ $(document).ready(function() {
 	<script src="js/LocationRange.js" type="text/javascript"></script>
 	<script src="js/jquery_003.js" type="text/javascript"></script>
 	<script src="js/freight.js" type="text/javascript"></script>
-	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+	<c:if
+		test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
 
-<script>
+	<script>
 
 /**
  * 判断用户是否在登录状态
@@ -349,7 +361,11 @@ $(document).ready(function() {
 	$("#sure").click(function(){
 		var  u = $("#userId").val();
 		if(u==""){
-			alert('请先登录再下单');
+			 layer.alert('请先登录再下单', {
+				    skin: 'layui-layer-molv'
+				    ,closeBtn: 0
+				    ,anim: 4 //动画类型
+				  });
 			window.location.href="login.html";
 		}
 	});

@@ -17,20 +17,20 @@
 <script src="./lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	$.ajax({
-		url: "../LoginServlet.do?op = LoginAdmin",
-		type: "post",
-		success: function(data) {
-			$("#userName")[0].html() = data + "欢迎您！";
-			$("#userName").test("ces");
-		},
-		error: function(data) {
-			alert("系统出错");
-		}
+	$(document).ready(function() {
+		$.ajax({
+			url : "../LoginServlet.do?op = LoginAdmin",
+			type : "post",
+			success : function(data) {
+				$("#userName")[0].html() = data + "欢迎您！";
+				$("#userName").test("ces");
+			},
+			error : function(data) {
+				alert("系统出错");
+			}
 
+		})
 	})
-})
 </script>
 </head>
 <body>
@@ -44,15 +44,14 @@ $(document).ready(function() {
 		</div>
 		&#xe6da;
 		<ul class="layui-nav right" lay-filter="">
-			<li class="layui-nav-item">
-			<a href="javascript:;"><span id="userName"></span></a>
+			<li class="layui-nav-item"><a href="javascript:;"><span
+					id="userName"></span></a>
 				<dl class="layui-nav-child">
 					<!-- 二级菜单 -->
 					<dd>
 						<a href="./login.html">退出</a>
 					</dd>
-				</dl>
-			</li>
+				</dl></li>
 			<li class="layui-nav-item"><a href="../">前往前台</a></li>
 		</ul>
 
@@ -68,15 +67,15 @@ $(document).ready(function() {
 				</a>
 					<ul class="sub-menu">
 						<li><a _href="member-list.html"> <i class="iconfont">&#xe6a7;</i>
-								<cite>派单用户</cite>
+								<cite>全部用户</cite>
 
 						</a></li>
 						<li><a _href="users-list.html"> <i class="iconfont">&#xe6a7;</i>
-								<cite>用户信息</cite>
+								<cite>用户详情</cite>
 
 						</a></li>
 						<li><a _href="runleg-list.html"> <i class="iconfont">&#xe6a7;</i>
-								<cite>腿哥信息</cite>
+								<cite>腿哥详情</cite>
 						</a></li>
 						<li>
 							<ul class="sub-menu">

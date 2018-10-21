@@ -53,10 +53,10 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div>
-		用户名：<input type="text" class="form-control" placeholder="请输入关键字查询"
-			data-column="2" id="col2_filter"> <br> 类 型：<input
+		派单用户：<input type="text" class="form-control" placeholder="请输入关键字查询"
+			data-column="2" id="col2_filter"> <br> 价格：<input
 			type="text" class="form-control" placeholder="请输入关键字查询"
-			data-column="5" id="col5_filter">
+			data-column="6" id="col6_filter">
 		<hr>
 		<table id="example" class="table table-striped table-bordered">
 			<thead>
@@ -131,7 +131,7 @@
 		//路径配置
 		employee.url = "/"; // / 表示的是网站的根
 		employee.requestUrl = {
-			queryList : employee.url + "RunAleg-new/DispatchServlet" //访问servlet 一次请求所有数据
+			queryList : employee.url + "RunAleg/DispatchServlet" //访问servlet 一次请求所有数据
 		};
 
 		employee.search = {
@@ -167,7 +167,7 @@
 					}
 
 				},
-				
+
 				{
 					//            对第5列内容进行替换处理
 					"targets" : 9,
@@ -175,7 +175,8 @@
 						var context = {
 							func : [ {
 								"name" : (c.disState == 0) ? "等待接单"
-										: ((c.disState == 1) ? "订单派送中" : "订单已完成"),
+										: ((c.disState == 1) ? "订单派送中"
+												: "订单已完成"),
 								"fn" : "dState(\'" + c.disId + "\',\'"
 										+ c.disState + "\')",
 								"type" : "danger"
@@ -495,46 +496,46 @@
 	</script>
 
 	<script>
-	function dState(disId, disState) {
-		var url = "../DispatchServlet?op=sock";
-		if (disState == "0") {
-			$.ajax({
-				url : url,
-				data : {
-					"disId" : disId,
-					"disState" : "1",
-				},
-				success : function(data) {	
-					reload();
-				}
-			});
-		} else if (disState == "1") {
-			$.ajax({
+		function dState(disId, disState) {
+			var url = "../DispatchServlet?op=sock";
+			if (disState == "0") {
+				$.ajax({
+					url : url,
+					data : {
+						"disId" : disId,
+						"disState" : "1",
+					},
+					success : function(data) {
+						reload();
+					}
+				});
+			} else if (disState == "1") {
+				$.ajax({
 
-				url : url,
-				data : {
-					"disId" : disId,
-					"disState" : "2",
-				},
-				success : function(data) {
-					reload();
-				}
-			});
-		} else  if (disState == "2") {
-			$.ajax({
+					url : url,
+					data : {
+						"disId" : disId,
+						"disState" : "2",
+					},
+					success : function(data) {
+						reload();
+					}
+				});
+			} else if (disState == "2") {
+				$.ajax({
 
-				url : url,
-				data : {
-					"disId" : disId,
-					"disState" : "0",
-				},
-				success : function(data) {
-					reload();
-				}
-			});
+					url : url,
+					data : {
+						"disId" : disId,
+						"disState" : "0",
+					},
+					success : function(data) {
+						reload();
+					}
+				});
 
-	   }
-	}
+			}
+		}
 	</script>
 
 	<script>

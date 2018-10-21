@@ -40,11 +40,13 @@ public class CourierServiceImpl implements CourierService {
 		// TODO Auto-generated method stub
 		return cd.getCourierById(userId);
 	}
+
 	@Override
 	public String getCourierAdd(String courierId) {
 		// TODO Auto-generated method stub
 		return cd.getCourierAdd(courierId);
 	}
+
 	@Override
 	public boolean updateAdd(String courierId, String add) {
 		// TODO Auto-generated method stub
@@ -73,5 +75,11 @@ public class CourierServiceImpl implements CourierService {
 	public boolean topUpBalance(Double balance, String userId) {
 		// TODO Auto-generated method stub
 		return cd.topUpBalance(balance, userId);
+	}
+
+	@Override
+	public boolean getState(String disId) {
+		// TODO Auto-generated method stub
+		return cd.getState(disId);
 	}
 }

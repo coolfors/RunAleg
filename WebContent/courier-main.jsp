@@ -52,8 +52,8 @@
 					<a href="" style="display: none">退出</a>
 				</span> <span id="showUserName" class="col-sm-4 col-xs-5"> <c:if
 						test="${sessionScope.User==null }">
-						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-							href="register.html" target="_blank" id="reg">注册</a>
+						<a href="login.html" target="" id="login">登录</a>&nbsp; <a
+							href="register.html" target="" id="reg">注册</a>
 					</c:if> <c:if test="${sessionScope.User!=null }">
 						<%-- <a href="" target="_blank" id="UserInfo">${sessionScope.User.userName}</a> --%>
 

@@ -30,9 +30,9 @@ public interface UserDao {
 	User getUserById(String userId);//根据用户id获取用户
 	List<User> queryUserName(String userName);//用户名搜索用户
 
-	List<User> queryUserId(int userId);//查询用户id
+	List<User> queryUserId(String userId);//查询用户id
 	
-	boolean resetPwd(int userId, String userPwd);//重置密码
+	boolean resetPwd(String userId, String userPwd);//重置密码
 	
 	List<User> againPwd(String userId);
 	

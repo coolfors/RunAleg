@@ -14,11 +14,13 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
+
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
+<script src="js/layer.js"></script>
 </head>
 <body>
 <!--顶部-开始-->
@@ -36,8 +38,8 @@
             </span>
             <span class="col-sm-4 col-xs-5" style="float:right">
             	<c:if test="${sessionScope.User==null }">
-						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-						href="register.html" target="_blank" id="reg">注册</a>
+						<a href="login.html" target="" id="login">登录</a>&nbsp; <a
+						href="register.html" target="" id="reg">注册</a>
 					</c:if>
 					<c:if test="${sessionScope.User!=null }">
 						<ul class="right navbar-nav">
