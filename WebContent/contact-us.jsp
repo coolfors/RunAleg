@@ -14,11 +14,13 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
+
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
+<script src="js/layer.js"></script>
 </head>
 <body>
 <!--顶部-开始-->

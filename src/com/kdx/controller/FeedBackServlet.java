@@ -22,69 +22,76 @@ import com.kdx.util.UUIDUtils;
 @WebServlet("/FeedBackServlet.do")
 public class FeedBackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FeedBackServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public FeedBackServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String op=request.getParameter("op");
-		if(op.equals("FeedBack")) {
+		String op = request.getParameter("op");
+		if (op.equals("FeedBack")) {
 			doFeedBack(request, response);
-		}else if(op.equals("getFeedBack")) {
+		} else if (op.equals("getFeedBack")) {
 			getFeedBack(request, response);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	protected void doFeedBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doFeedBack(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String UserId=request.getParameter("UserId");
-		String neirong=request.getParameter("neirong");
-		UserService us=new UserServiceImpl();
-		FebackService fs=new FebackServiceImpl();
-		User u=us.getUserById(UserId);//feedbackId
-		String uuid=UUIDUtils.getUUID();
-		Feedback f=new Feedback(uuid, neirong, UserId, null);
-		boolean flag=fs.addFeback(f);
-		if(flag) {
+		String UserId = request.getParameter("UserId");
+		String neirong = request.getParameter("neirong");
+		UserService us = new UserServiceImpl();
+		FebackService fs = new FebackServiceImpl();
+		User u = us.getUserById(UserId);// feedbackId
+		String uuid = UUIDUtils.getUUID();
+		Feedback f = new Feedback(uuid, neirong, UserId, null);
+		boolean flag = fs.addFeback(f);
+		if (flag) {
 			response.getWriter().print("<script>alert('感谢您的留言！');location.href='contact-us.jsp'</script>");
-			
-			
-		}else {
+
+		} else {
 			response.getWriter().print("<script>alert('留言失败，请重试！');</script>");
 		}
 	}
-	protected void getFeedBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void getFeedBack(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String UserId=request.getParameter("UserId");
-		String pageIndex=request.getParameter("pageIndex");
-		String pageSize=request.getParameter("pageSize");
-		if(pageIndex==null) {
-			pageIndex="1";
+		String UserId = request.getParameter("UserId");
+		String pageIndex = request.getParameter("pageIndex");
+		String pageSize = request.getParameter("pageSize");
+		if (pageIndex == null) {
+			pageIndex = "1";
 		}
-		if(pageSize==null) {
-			pageSize="5";
+		if (pageSize == null) {
+			pageSize = "5";
 		}
-		FebackService fs=new FebackServiceImpl();
-		PageData<Feedback> pd=fs.queryFebackByPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize), UserId);
+		FebackService fs = new FebackServiceImpl();
+		PageData<Feedback> pd = fs.queryFebackByPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize), UserId);
 		request.setAttribute("pd", pd);
 		request.getRequestDispatcher("contact-us.jsp").forward(request, response);
 	}

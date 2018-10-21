@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 		return u;
 
 	}
-	
+
 	// 用户登录后台
 	@Override
 	public User loginUserAdmin(String userName, String userPwd) {
@@ -132,7 +132,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> queryUserId(int userId) {
+	public List<User> queryUserId(String userId) {
 		// TODO Auto-generated method stub
 		String sql = "select * from user where userId = ?";
 		List<User> list = (List<User>) BaseDao.select(sql, User.class, userId);
@@ -140,7 +140,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean resetPwd(int userId, String userPwd) {
+	public boolean resetPwd(String userId, String userPwd) {
 		// TODO Auto-generated method stub
 		String sql = "update user set userPwd = ? where userId = ?";
 		return BaseDao.execute(sql, userPwd, userId) > 0;
