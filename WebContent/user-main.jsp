@@ -85,7 +85,7 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">帮助<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="driving-knowledge.jsp">如何下单</a></li>
+							<li><a href="heplist.jsp">如何下单</a></li>
 						</ul></li>
 						<li><a href="alliance.jsp">关于我们</a></li>
 					<li><a href="contact-us.jsp">联系我们</a></li>
