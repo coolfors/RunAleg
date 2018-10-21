@@ -116,26 +116,24 @@
 	</div>
 	</nav>
 	<!--导航-结束-->
-
+<!-- 正文开始 -->
 <div class="container">
 	<ol class="breadcrumb">
     	<li>当前位置：</li>
         <li><a href="index.jsp">首页</a></li>
         <li><a href="driving-knowledge.jsp">帮助</a></li>
-        <li class="active">正文</li>
+        <li class="active"><%= request.getAttribute("title") %></li>
     </ol>
     <div class="row neirong">
     	<div class="col-sm-8">
             <div id= "contentshow">
              <%= request.getAttribute("content") %>
-            <div>
-            	<p><span>上一篇： </span><a href="">如何合理的选择物品价格</a></p>
-                <p><span>下一篇： </span><a href="">如何加入跑男团队月入过万</a></p>
-            </div>
+           
         </div>
     </div>
 </div>
 </div>
+<!-- 正文结束 -->
 
 <!--尾部-开始-->
 <div class="footer" style="background:#525252; width:100%; padding-bottom:20px; margin-top:30px;">
