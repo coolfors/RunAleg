@@ -37,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return ud.queryArticle();
 	}
 	@Override
-	public Article queryByIdArticle(int articleId) {
+	public Article queryByIdArticle(String articleId) {
 		// TODO Auto-generated method stub
 		return ud.queryByIdArticle(articleId);
 	}

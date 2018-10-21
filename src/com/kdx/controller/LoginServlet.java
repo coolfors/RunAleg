@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 		
 	
 	/**
-	 * 后台登陆
+	 * 后台登陆 
 	 * @param request
 	 * @param response
 	 * @throws IOException 
@@ -79,14 +80,37 @@ public class LoginServlet extends HttpServlet {
 		String username =request.getParameter("username");
 		String password =request.getParameter("password");
 		String pswsecrite =MD5Util.getEncodeByMd5(password);
+		System.out.println(username+','+pswsecrite);
 		User user = us.loginUserAdmin(username, pswsecrite); 
 		System.out.println(user);
+		
 //		登陆后跳转
 		if(user!=null) {
+			//创建一个session
+			HttpSession session=request.getSession();
+			session.setAttribute("User", user);
+			session.setAttribute("UserType", user.getUserType());
+			//传递普通用户的全部信息
+			Userinfo userInfo = uis.getUserInfo(user.getUserId());
+			session.setAttribute("Userinfo", userInfo);
+			//实例化对象获取并封装cookie
+			 //添加到Cookie中
+	        Cookie c=new Cookie("userId", user.getUserId());
+	        
+	        //设置过期时间
+	        c.setMaxAge(600);
+	        
+	        //存储
+	        response.addCookie(c);
+	        
 			out.print("<script>alert('欢迎回来超级管理员');location.href='admin/index.html'</script>");
 		}else  {
 			out.print("<script>alert('登录失败！');location.href='admin/login.html'</script>");
 		}
+        out.flush();
+        out.close();
+
+		
 		
 	}
 

@@ -40,13 +40,13 @@ public class ArticleShowListSevlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		int articleId = Integer.parseInt(request.getParameter("id"));
+		String articleId = request.getParameter("id");
 		Article article = at.queryByIdArticle(articleId);
 		String webcontent =article.getContent();
 		//根据id查询文章
 		// 获取请求参数
 		// 先获取id然后打印到网页上
-		if(articleId != 0) {
+		if(articleId != null) {
         request.setAttribute("content", webcontent);
  		//从当前的控制器跳转到jsp页面，跳转的方法叫做转发
  		request.getRequestDispatcher("driving-kn-details.jsp").forward(request, response);
@@ -61,7 +61,7 @@ public class ArticleShowListSevlet extends HttpServlet {
 	 */
 	private void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		String articleId = request.getParameter("articleId");
 		Article article = at.queryByIdArticle(articleId);
 		request.setAttribute("article", article);
 		request.getRequestDispatcher("driving-knowledge.jsp").forward(request, response);

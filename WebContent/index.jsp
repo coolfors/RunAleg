@@ -15,7 +15,9 @@
 <meta name="keywords" content="物流,跑腿,跑男,快递侠">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" href="css/layui.css" media="all">
+<link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
 <!--js -->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 <script src="js/jquery.min.js"></script>
@@ -24,7 +26,6 @@
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 </head>
 <body>
 	<div id="allmap" hidden="hidden"></div>
@@ -116,68 +117,36 @@
 	</nav>
 	<!--导航-结束-->
 	<!-- 中间内容开始 -->
-	<!-- 中间内容的css 开始-->
-	<style type="text/css">
-.btn01 {
-	position: absolute;
-	top: 400px;
-	right: 200px;
-	height: 35px;
-	width: 90px;
-	background-color: cornflowerblue;
-}
 
-.img01 {
-	position: relative;
-	top: 50px;
-	left: 240px;
-	width: 150px;
-	float: left;
-}
-</style>
-	<!-- 中间的部分 css 结束-->
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="carousel slide" id="carousel-564098">
-				<ol class="carousel-indicators">
-					<li data-slide-to="0" data-target="#carousel-564098"></li>
-					<li data-slide-to="1" data-target="#carousel-564098" class="active"></li>
-					<li data-slide-to="2" data-target="#carousel-564098"></li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="item">
-						<a href="" target="_blank"><img alt="" src="images/center.jpg" /></a>
-						<div class="carousel-caption">
-							<h4>一键下单</h4>
-							<p>做快递我们是专业的</p>
-						</div>
-					</div>
-					<div class="item active">
-						<img alt="" src="images/center.jpg" />
-						<div class="carousel-caption">
-							<h4>跑腿1</h4>
-							<p>
-								冲浪是以海浪为动力，利用自身的高超技巧和平衡能力，搏击海浪的一项运动。运动员站立在冲浪板上，或利用腹板、跪板、充气的橡皮垫、划艇、皮艇等驾驭海浪的一项水上运动。
-							</p>
-						</div>
-					</div>
-					<div class="item">
-						<img alt="" src="images/center.jpg" />
-						<div class="carousel-caption">
-							<h4>自行车</h4>
-							<p>
-								以自行车为工具比赛骑行速度的体育运动。1896年第一届奥林匹克运动会上被列为正式比赛项目。环法赛为最著名的世界自行车锦标赛。</p>
-						</div>
-					</div>
-				</div>
-				<a data-slide="prev" href="#carousel-564098"
-					class="left carousel-control">‹</a> <a data-slide="next"
-					href="#carousel-564098" class="right carousel-control">›</a>
-			</div>
+	<div id="myCarousel" class="carousel slide">
+	<!-- 轮播（Carousel）指标 -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>   
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner">
+		<div class="item active">
+			<img src="images/center.jpg" alt="First slide">
+		</div>
+		<div class="item">
+			<img src="images/center.jpg" alt="Second slide">
+		</div>
+		<div class="item">
+			<img src="images/center.jpg" alt="Third slide">
 		</div>
 	</div>
-
-	
+	<!-- 轮播（Carousel）导航 -->
+	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div> 
 	<!--内容-结束-->
 	<div class="row">
 		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4  ">
@@ -191,6 +160,7 @@
 			<img src="images/last_tip.png" class=" img-responsive center-block" />
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block text-center text-info">
 			<h3>随叫随到</h3>
@@ -206,7 +176,7 @@
 			<p>下单后，将在最短时间内为您服务到位，无需再担心时效问题。</p>
 		</div>
 	</div>
-
+		
 
 
 

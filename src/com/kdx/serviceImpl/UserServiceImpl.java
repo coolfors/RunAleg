@@ -46,6 +46,13 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return ud.loginUser(userName, userPwd);
 	}
+	
+	//用于后台登陆
+	@Override
+	public User loginUserAdmin(String username, String pswsecrite) {
+		// TODO Auto-generated method stub
+		return ud.loginUserAdmin(username, pswsecrite);
+	}
 	//前台显示用户信息
 	@Override
 	public List<User> getUser() {

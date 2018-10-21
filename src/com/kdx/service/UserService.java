@@ -42,5 +42,12 @@ public interface UserService {
 	List<User> findUserType(String userName);//根据用户名查找用户类型
 	
 	boolean changeEval(Evaluate eval);//增加评价内容
+
+	/**
+	 * 用于后台登陆
+	 * @param username
+	 * @param pswsecrite
+	 */
+	User loginUserAdmin(String username, String pswsecrite);
 } 
 

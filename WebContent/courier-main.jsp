@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -19,23 +19,27 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/layer.js"></script>
 <!-- <script src="js/getUserName.js" type="text/javascript"></script> -->
 <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=2.0&ak=oMN1mtyewGGM1EIbHzDmHk0nR1sxU2WA"></script>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="js/Courier.js"></script>
 </head>
 <body>
-<div id="allmap" hidden="hidden"></div>
-<input id="targetAdd" name="targetAdd" hidden="hidden" value="" />
+	<div id="allmap" hidden="hidden"></div>
+	<input id="targetAdd" name="targetAdd" hidden="hidden" value="" />
 	<input id="lng" name="lng" hidden="hidden" value="" />
 	<input id="lat" name="lat" hidden="hidden" value="" />
 	<div id="container" hidden="hidden"></div>
-	<input id="CourierPoint" name="CourierPoint" hidden="hidden" value="${sessionScope.Courier.address}" />
-	<input id="CourierId" name="CourierId" hidden="hidden" value="${sessionScope.Courier.courierId}" />
+	<input id="CourierPoint" name="CourierPoint" hidden="hidden"
+		value="${sessionScope.Courier.address}" />
+	<input id="CourierId" name="CourierId" hidden="hidden"
+		value="${sessionScope.Courier.courierId}" />
 	<!--顶部-开始-->
 	<div
 		style="background: #EBEBEB; width: 100%; height: 80px; line-height: 80px;">
@@ -46,24 +50,23 @@
 					class="col-sm-4 col-xs-5" style="float: right"> <a
 					href="modify data.html" target="_blank" style="display: none">su23c0e</a>
 					<a href="" style="display: none">退出</a>
-				</span> <span id="showUserName" class="col-sm-4 col-xs-5">
-					<c:if test="${sessionScope.User==null }">
+				</span> <span id="showUserName" class="col-sm-4 col-xs-5"> <c:if
+						test="${sessionScope.User==null }">
 						<a href="login.html" target="_blank" id="login">登录</a>&nbsp; <a
-						href="register.html" target="_blank" id="reg">注册</a>
-					</c:if>
-					<c:if test="${sessionScope.User!=null }">
+							href="register.html" target="_blank" id="reg">注册</a>
+					</c:if> <c:if test="${sessionScope.User!=null }">
 						<%-- <a href="" target="_blank" id="UserInfo">${sessionScope.User.userName}</a> --%>
 
 						<ul class="right navbar-nav">
-							<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
-								${sessionScope.User.userName}
-								<b class="caret"></b></a>
+							<li class="dropdown"><a href="" class="dropdown-toggle"
+								data-toggle="dropdown"> ${sessionScope.User.userName} <b
+									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="userMessage.jsp">个人信息</a></li>
-									<li><a href="pay.jsp">余额充值</a></li>								
+									<li><a href="pay.jsp">余额充值</a></li>
 									<li><a href="LoginServlet.do?op=exchange">退出账号</a></li>
 								</ul></li>
-						</ul>					
+						</ul>
 					</c:if>
 				</span>
 			</div>
@@ -73,51 +76,53 @@
 
 	<!--导航-开始-->
 	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">首页</a></li>
-					<c:if test="${sessionScope.User==null}">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.jsp">首页</a></li>
+				<c:if test="${sessionScope.User==null}">
 					<li><a href="login.html">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
 				<c:if test="${sessionScope.User.userType==1}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 					<li><a href="courier-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-				<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
+				<c:if
+					test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==0}">
 					<li><a href="user-order-main.jsp">跑腿吧<span class="sr-only"></span></a></li>
 				</c:if>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">发布跑腿<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="freight-info.jsp">信息发布</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">帮助<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="driving-knowledge.jsp">如何下单</a></li>
-						</ul></li>
-					<li><a href="alliance.jsp">关于我们</a></li>
-					<li><a href="contact-us.jsp">联系我们</a></li>
-				</ul>
-			</div>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">发布跑腿<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="freight-info.jsp">信息发布</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">帮助<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="driving-knowledge.jsp">如何下单</a></li>
+					</ul></li>
+				<li><a href="alliance.jsp">关于我们</a></li>
+				<li><a href="contact-us.jsp">联系我们</a></li>
+			</ul>
 		</div>
+	</div>
 	</nav>
-	
+
 	<!--导航-结束-->
 
 	<!--内容-开始-->
@@ -163,10 +168,11 @@
 		<script src="layui/layui.js" charset="utf-8"></script>
 		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 		<script id="layuiJs">
-			 
+			
 		</script>
 	</div>
-	<input type="hidden" id="CourierId" name="CourierId" value="${sessionScope.Courier.courierId}"/>
+	<input type="hidden" id="CourierId" name="CourierId"
+		value="${sessionScope.Courier.courierId}" />
 	<!-- <div class="container">
 		货源地图
 		<h3>送单详情</h3>
@@ -199,7 +205,8 @@
 							<p>所有订单</p></a>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<a href="user-order-main.jsp"><img src="images/06.png" class="img-circle">
+						<a href="user-order-main.jsp"><img src="images/06.png"
+							class="img-circle">
 							<p>我的派单</p></a>
 					</div>
 				</div>
@@ -273,39 +280,43 @@
 		</div>
 	</div>
 	<style type="text/css">
-      #l-maps{height:300px;width:100%;}
-      
-      #r-result,#r-result table{width:100%;}
-   </style>
+#l-maps {
+	height: 300px;
+	width: 100%;
+}
+
+#r-result, #r-result table {
+	width: 100%;
+}
+</style>
 	<!-- 模态窗 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
-   aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" 
-               data-dismiss="modal" aria-hidden="true">
-                  &times;
-            </button>
-            <h4 class="modal-title" id="myModalLabel">
-               查看位置
-            </h4>
-         </div>
-         <div class="modal-body" id="maps" >
-            <div id="l-maps"></div>
-            <div id="r-result"></div>
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" 
-               data-dismiss="modal">关闭
-            </button>
-         </div>
-      </div><!-- /.modal-content -->
-</div><!-- /.modal -->
-</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">查看位置</h4>
+				</div>
+				<div class="modal-body" id="maps">
+					<div id="l-maps"></div>
+					<div id="r-result"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
 	<!--尾部-结束-->
-	<c:if test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
+	<c:if
+		test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>
 	</c:if>
+
 </body>
 </html>

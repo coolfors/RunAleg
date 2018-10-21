@@ -22,11 +22,11 @@ public class ArticleDaoImpl implements ArticleDao {
 	@Override
 	public boolean addArticle(Article u) {
 		// TODO Auto-generated method stub
-		String sql="insert into article(articleId,articledate,title,content) values(?,?,?,?)";
+		String sql="insert into article(articleId,userId,articledate,title,content) values(?,?,?,?,?)";
 		//插入系统时间
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String articledate = df.format( new Date());
-		return BaseDao.execute(sql,u.getArticleId(),articledate,u.getTitle(),u.getContent())>0;
+		return BaseDao.execute(sql,u.getArticleId(),u.getUserId(),articledate,u.getTitle(),u.getContent())>0;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	}
 
 	@Override
-	public Article queryByIdArticle(int articleId) {
+	public Article queryByIdArticle(String articleId) {
 		// TODO Auto-generated method stub
 		List<Article> list = (List<Article>) BaseDao.select("SELECT content FROM article WHERE articleId like ?" ,Article.class,articleId);
 		Iterator<Article> it = list.iterator();

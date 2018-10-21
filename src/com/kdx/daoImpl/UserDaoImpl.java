@@ -70,6 +70,23 @@ public class UserDaoImpl implements UserDao {
 		return u;
 
 	}
+	
+	// 用户登录后台
+	@Override
+	public User loginUserAdmin(String userName, String userPwd) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM user where username = ? and userpwd= ? and userType=0 ";
+
+		@SuppressWarnings("unchecked")
+		List<User> list = (List<User>) BaseDao.select(sql, User.class, userName, userPwd);
+		Iterator<User> it = list.iterator();
+		User u = null;
+		if (it.hasNext()) {
+			u = it.next();
+		}
+		return u;
+
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

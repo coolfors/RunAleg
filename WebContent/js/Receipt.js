@@ -755,7 +755,12 @@ $(function() {
 																															+ a.evaScore
 																															+ "</td><td>"
 																															+ a.evaInfo
-																															+ "</td><td><class='see'><a href=''>未评价</a></td></tr>";
+																															+ "</td><td><class='see'><button  id="
+																															+ a.evaState
+																															+ " onclick='chaRec(this)'    >"
+																															+ ((a.evaState == 0) ? "点击评价"
+																																	: "评价已完成")
+																															+ "</button></td></tr>";
 																												});
 																								$(
 																										"tbody")

@@ -41,5 +41,7 @@ public interface UserDao {
 	PageData<Evaluate> queryEvalByPage(int page, int pageSize,String userId);// 查询所有评价
 	
 	boolean changeEval(Evaluate eval);//增加评价内容
+
+	User loginUserAdmin(String userName, String userPwd);//用于后台登陆
 	
 }
