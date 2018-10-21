@@ -56,7 +56,7 @@ public class LoginFilter implements Filter {
 	        }
 
 	        //超时处理，ajax请求超时设置超时状态，页面请求超时则返回提示并重定向，session.getAttribute("")是获取到登录人的session信息
-	        if (session.getAttribute("UserType") != "0") {
+	        if (session.getAttribute("User") == null) {
 	            // 判断是否为ajax请求
 	            if (httpRequest.getHeader("x-requested-with") != null
 	                    && httpRequest.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
