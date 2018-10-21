@@ -1,6 +1,32 @@
 /**
  * 前端用户界面订单的展示
  */
+// 弹出模态窗获取地图
+function createMapUser(disId, courierAdd) {
+	setInterval(acmain,10000);
+	function acmain(){
+		
+		// 获得
+		$.get("GpsServlet.do?op=getEndAdd&disId=" + disId,
+				function(data, status) {
+			
+			// var a="古歌华苑";
+			// var b="厦门中软";
+			var map = new BMap.Map("l-maps");
+			map
+			.centerAndZoom(
+					new BMap.Point(118.10388605, 24.48923061), 11);
+			var walking = new BMap.WalkingRoute(map, {
+				renderOptions : {
+					map : map,
+					panel : "r-result",
+					autoViewport : true
+				}
+			});
+			walking.search(courierAdd, data);
+		});
+	}
+}
 $(function() {
 	/**
 	 * 用户界面已完成订单
@@ -168,7 +194,7 @@ $(function() {
 										// var html = '';
 										$("thead")
 												.html(
-														"<tr><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>位置</th></tr>");
+														"<tr><th>派单号</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th><th>位置</th></tr>");
 										var jsonStr = JSON.stringify(data);
 										// alert(jsonStr);
 										var arr = JSON.parse(jsonStr);
@@ -192,7 +218,11 @@ $(function() {
 																	+ a.getDistance
 																	+ "</td><td>"
 																	+ a.sendDistance
-																	+ "</td><td><button>查看位置</button></td></tr>";
+																	+ "</td><td><class='see'><a href=''>未配送</a></td><td><button onclick='createMapUser(\""
+																	+ a.disId
+																	+ "\",\""
+																	+ a.courierAdd
+																	+ "\")' class='\"btn btn-primary btn-lg\"'  data-toggle='modal' data-target='#myModalUser'>查看位置</button></td></tr>";
 														});
 										$("tbody").html(str);
 										layui
@@ -280,7 +310,11 @@ $(function() {
 																															+ a.getDistance
 																															+ "</td><td>"
 																															+ a.sendDistance
-																															+ "</td><td><button>查看位置</button></td></tr>";
+																															+ "</td><td><class='see'><a href=''>未配送</a></td><td><button onclick='createMapUser(\""
+																															+ a.disId
+																															+ "\",\""
+																															+ a.courierAdd
+																															+ "\")' class='\"btn btn-primary btn-lg\"'  data-toggle='modal' data-target='#myModalUser'>查看位置</button></td></tr>";
 
 																												});
 																								$(

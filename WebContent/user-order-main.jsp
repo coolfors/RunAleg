@@ -351,6 +351,38 @@
 			</div>
 		</div>
 	</div>
+	<style type="text/css">
+#l-maps {
+	height: 300px;
+	width: 100%;
+}
+
+#r-result, #r-result table {
+	width: 100%;
+}
+</style>
+	<!-- 模态窗 -->
+	<div class="modal fade" id="myModalUser" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">查看位置</h4>
+				</div>
+				<div class="modal-body" id="maps">
+					<div id="l-maps"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
 	<!--尾部-结束-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
