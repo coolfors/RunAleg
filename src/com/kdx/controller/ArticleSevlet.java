@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kdx.entity.Article;
-import com.kdx.entity.User;
 import com.kdx.service.ArticleService;
 import com.kdx.serviceImpl.ArticleServiceImpl;
 import com.kdx.util.MyDataTableData;
@@ -118,7 +117,6 @@ public class ArticleSevlet extends HttpServlet {
 		PageData<Article> art = at.getArticlesByPage(page, pageSize);
 		Gson gson = new Gson();
 		String data = gson.toJson(art);
-		// System.out.println(data);
 		response.getWriter().println(data);
 	}
 

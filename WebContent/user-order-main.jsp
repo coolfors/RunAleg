@@ -35,7 +35,7 @@
 		<div class="container">
 			<div class="row">
 				<span class="col-sm-7 col-sm-offset-1 col-xs-6 col-xs-offset-1"><img
-					src="images/logo.png" class="img-responsive" alt="新广货运联盟"></span> <span
+					src="images/logo.png" class="img-responsive" alt="快递侠"></span> <span
 					class="col-sm-4 col-xs-5" style="float: right"> <a
 					href="modify data.html" target="_blank" style="display: none">su23c0e</a>
 					<a href="" style="display: none">退出</a>
@@ -125,8 +125,9 @@
 					<input type="hidden" id="userId" name="userId"
 								value="${sessionScope.User.userId}"> 
 						<div class="form-group ">
-							<label for="evaInfo">评价内容:</label> <input class="form-control"
-								type="text" id="evaInfo" name="evaInfo" />
+							<label for="evaInfo">评价内容:</label> <textarea class="form-control"
+								 id="evaInfo" name="evaInfo" /></textarea>
+								
 						</div>
 
 						<div class="form-group">
@@ -146,75 +147,29 @@
 		<!-- /.modal -->
 	</div>
 	<!--  模态框结束-->
-	<!--货源信息-->
+	<!--主体信息-->
 	<div class="container">
 		<!--广告-->
 		<a href="" target="_blank"><img src="images/ggt_03.png"
 			class="img-responsive" style="width: 100%; height: auto;"></a>
 	</div>
 	<div class="container">
-		<!--货源信息-->
+		<!--主体信息-->
 		<h3 id="headName"></h3>
 		<table class="table table-bordered">
 			<thead>
-				<!-- <tr>
-
-					<th>派单id</th>
-					<th>用户id</th>
-					<th>起送地</th>
-					<th>到达地</th>
-					<th>用户联系电话</th>
-					<th>配送价格</th>
-					<th>物品类型</th>
-					<th>物品介绍</th>
-					<th>派单状态</th>
-				</tr> -->
 			</thead>
 			<tbody>
-				<!-- <tr>
-					<td>1</td>
-					<td>1</td>
-					<td>厦门中软海晟1楼</td>
-					<td>厦门中软海晟2楼</td>
-					<td>13011111111</td>
-					<td>12</td>
-					<td>花瓶</td>
-					<td>一个大花瓶</td>
-					<td class="see"><a href="">抢单</a></td>
-				</tr> -->
 			</tbody>
 		</table>
 		<div id="test1" class="text-center"></div>
-		<script src="admin/lib/layui/layui.js" charset="utf-8"></script>
-		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-		<!-- <script>
-			layui.use([ 'laypage', 'layer' ], function() {
-				var laypage = layui.laypage, layer = layui.layer;
-				//完整功能
-				laypage.render({
-					elem : 'test1',
-					count : 100,
-					layout : [ 'count', 'prev', 'page', 'next', 'limit',
-							'refresh', 'skip' ],
-					jump : function(obj, first) { //跳转
-						if (!first) {
-							location.href = "#";
-						}
-					}
-				});
-			});
-		</script> -->
+
 	</div>
 	<input type="hidden" id="userId" name="userId"
 		value="${sessionScope.User.userId}" />
-	<!-- <div class="container">
-		货源地图
-		<h3>送单详情</h3>
-
-	</div> -->
 	<!--<hr class="featurette-divider">	-->
 	<div class="container">
-		<!--司机读本、行内互动-->
+		<!--导航框-->
 		<div class="row" style="margin: 0;">
 			<div class="col-sm-5" style="border: 1px solid #ccc;">
 				<div class="row reader">
@@ -390,6 +345,7 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/messages_zh.js"></script>
+			<script src="admin/lib/layui/layui.js" charset="utf-8"></script>
 	<c:if
 		test="${sessionScope.User.userType==2&&sessionScope.Courier.sockState==1}">
 		<script src="js/GPS_GetLng&LatByBrow.js"></script>

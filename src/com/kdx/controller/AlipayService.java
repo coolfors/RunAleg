@@ -14,7 +14,9 @@ import com.kdx.service.CourierService;
 import com.kdx.service.UserinfoService;
 import com.kdx.serviceImpl.CourierServiceImpl;
 import com.kdx.serviceImpl.UserinfoServiceImpl;
-
+/**
+ * @author 快递侠
+ */
 /**
  * Servlet implementation class Alipay
  */
@@ -35,6 +37,7 @@ public class AlipayService extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//获取支付成功传输过来的金额
@@ -44,7 +47,7 @@ public class AlipayService extends HttpServlet {
 		//获取userType
 		String userType = request.getParameter("userType");
 		
-		if(userType.equals("1")) {
+		if(("1").equals(userType)) {
 			//执行添加数据库
 			boolean flag = uis.updateUserinfoBalance(userBalance, userId);
 			if(flag){
@@ -74,6 +77,7 @@ public class AlipayService extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

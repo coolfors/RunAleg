@@ -82,18 +82,7 @@ public class DispatchServlet extends HttpServlet {
 			out.print(flag);
 		}
 		if (op.equals("edit")) {
-//			 String userId = request.getParameter("userId");
-//			 String userName = request.getParameter("userName");
-//			 String userPwd = request.getParameter("userPwd");
-//			 String sockState = request.getParameter("sockState");
-//			 String userType = request.getParameter("userType");
-//			 String userDate = request.getParameter("userDate");
-//			 User u = new User(Integer.valueOf(userId), Integer.valueOf(sockState),
-//			 userDate, userName, userPwd,
-//			 Integer.valueOf(userType));
-//			 boolean flag = us.updateUser(u);
-//			 PrintWriter out = response.getWriter();
-//			 out.print(flag);
+
 		}
 		else if (op.equals("addDispatch")) {
 			
@@ -113,9 +102,7 @@ public class DispatchServlet extends HttpServlet {
 
 			String disPS = request.getParameter("disPS");// 物品介绍
 
-			//String disState = request.getParameter("disState");// 派单状态
 			
-			//String surepwd = request.getParameter("surepwd");// 用户输入的支付密码
 			// 创建对象
 			Dispatch dis = new Dispatch(disId, userId, beginAdd, endAdd, disTel, Double.parseDouble(disPrice),
 					goodsType, disPS, 0);
