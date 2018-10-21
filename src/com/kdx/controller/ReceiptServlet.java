@@ -224,7 +224,7 @@ public class ReceiptServlet extends HttpServlet {
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		PageData<Receipt> pd = rs.waitSendReceipt(page, pageSize, userId);
+		PageData<Dispatch> pd = ds.queryDispatch(page, pageSize, userId);
 		Gson gson = new Gson();
 		String data = gson.toJson(pd);
 		// System.out.println(data);

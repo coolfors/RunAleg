@@ -305,7 +305,7 @@ $(function() {
 														"<tr><th>派单号</th><th>收货人电话</th><th>发货人电话</th><th>订单号加密码</th><th>起送时间</th><th>结束时间</th><th>配送员位置</th><th>配送员到起送点的距离</th><th>从起送点到目的地的距离</th><th>状态</th><th>查看位置</th></tr>");
 										var jsonStr = JSON.stringify(data);
 										var courierId = $("#CourierId").val();
-										// alert(jsonStr);
+										//alert(jsonStr);
 										var jsonStr = JSON.stringify(data);
 										var arr = JSON.parse(jsonStr);
 										var str = "";
@@ -380,7 +380,8 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "CourierServlet.do?op=waitSendReceipt&pageIndex="
+																							url : "CourierServlet.do?op=waitSendReceipt&courierId="
+																								+ courierId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -551,7 +552,8 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "CourierServlet.do?op=sendReceipt&pageIndex="
+																							url : "CourierServlet.do?op=sendReceipt&courierId="
+																								+ courierId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -743,7 +745,8 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "CourierServlet.do?op=waitEvaluate&pageIndex="
+																							url : "CourierServlet.do?op=waitEvaluate&courierId="
+																								+ courierId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
@@ -887,7 +890,8 @@ $(function() {
 																				$
 																						.ajax({
 																							type : "get",
-																							url : "CourierServlet.do?op=overEvaluate&pageIndex="
+																							url : "CourierServlet.do?op=overEvaluate&courierId="
+																								+ courierId+"&pageIndex="
 																									+ obj.curr
 																									+ "&pageSize="
 																									+ obj.limit,
