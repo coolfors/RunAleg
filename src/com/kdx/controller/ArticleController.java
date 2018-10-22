@@ -56,7 +56,6 @@ public class ArticleController extends HttpServlet {
 			String jsonstr = gson.toJson(at);
 			// 添加成功转发到所有文章界面
 			request.setAttribute("pd", jsonstr);
-			request.getRequestDispatcher("admin/article.html").forward(request, response);
 			out.print("<script>alert('添加帮助成功');location.href='index.html'</script>");
 
 			response.setContentType("text/html;charset=utf-8");

@@ -21,7 +21,6 @@ public class BaseDao {
 	private static final String USER = "demoRunaleg"; // 用户名
 	private static final String PASSWORD = "ZhRiGJbadhr3pA8H";// 密码
 
-	
 	/**
 	 * 获取连接对象
 	 * 

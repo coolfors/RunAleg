@@ -113,7 +113,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="active"><a href="driving-knowledge.jsp">如何下单</a></li>
+                        <li class="active"><a href="heplist.jsp">如何下单</a></li>
                     </ul>
                 </li>
                 <li><a href="alliance.jsp">关于我们</a></li>
@@ -151,16 +151,7 @@
                         	<span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                        	<span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                    
                 </ul>
             </nav>
         </div>

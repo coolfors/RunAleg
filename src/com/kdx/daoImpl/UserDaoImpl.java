@@ -177,5 +177,12 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update evaluate set evaInfo = ? ,evaScore = ? , evaState = '1' where evaluateId = ?";
 		return BaseDao.execute(sql, e.getEvaInfo(), e.getEvaScore(), e.getEvaluateId()) > 0;
 	}
+	//后台文章删除
+	@Override
+	public boolean delWen(String articleId) {
+		// TODO Auto-generated method stub
+		String sql ="DELETE FROM article WHERE articleId=?";
+		return BaseDao.execute(sql, articleId)>0;
+	}
 
 }

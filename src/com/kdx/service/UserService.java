@@ -50,4 +50,6 @@ public interface UserService {
 	 * @param pswsecrite
 	 */
 	User loginUserAdmin(String username, String pswsecrite);
+	
+	boolean delWen(String articleId);//临时文章删除
 }

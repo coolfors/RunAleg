@@ -16,7 +16,7 @@ public class DispatchDaoImpl implements DispatchDao {
 	@Override
 	public boolean addDispatch(Dispatch dis) {
 		// TODO Auto-generated method stub
-		return BaseDao.execute("insert into dispatch values(?,?,?,?,?,?,?,?,?)", dis.getDisId(),dis.getUserId(),
+		return BaseDao.execute("insert into dispatch values(?,?,?,?,?,?,?,?,?)", dis.getDisId(), dis.getUserId(),
 				dis.getBeginAdd(), dis.getEndAdd(), dis.getDisTel(), dis.getDisPrice(), dis.getGoodsType(),
 				dis.getDisPS(), dis.getDisState()) > 0;
 	}
@@ -57,17 +57,20 @@ public class DispatchDaoImpl implements DispatchDao {
 		String sql = "SELECT dispatch.disId,user.userName,dispatch.beginAdd,dispatch.endAdd,dispatch.disTel,dispatch.disPrice,dispatch.goodsType,dispatch.disPS,dispatch.disState FROM dispatch INNER JOIN user ON dispatch.userId=user.userId";
 		return (List<Dispatch>) BaseDao.select(sql, Dispatch.class);
 	}
+
 	@Override
 	public List<String> getBeginAndEnaAdd(String disId) {
 		// TODO Auto-generated method stub
-		List<Dispatch> list=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class, disId);
-		List<String> strlist=new ArrayList<>();
+		List<Dispatch> list = (List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class,
+				disId);
+		List<String> strlist = new ArrayList<>();
 		for (Dispatch dis : list) {
 			strlist.add(dis.getBeginAdd());
 			strlist.add(dis.getEndAdd());
 		}
 		return strlist;
 	}
+
 	/*
 	 * user 用户的所有订单(显示自己的所有订单)
 	 * 
@@ -75,23 +78,25 @@ public class DispatchDaoImpl implements DispatchDao {
 	@Override
 	public PageData<Dispatch> queryDispatch(int page, int pageSize, String userId) {
 		// TODO Auto-generated method stub
-		String sql="SELECT dispatch.disId, dispatch.userId,dispatch.beginAdd, dispatch.endAdd, dispatch.disTel, dispatch.disPrice, dispatch.goodsType, dispatch.disPS, dispatch.disState FROM dispatch WHERE userId=? ";
+		String sql = "SELECT dispatch.disId, dispatch.userId,dispatch.beginAdd, dispatch.endAdd, dispatch.disTel, dispatch.disPrice, dispatch.goodsType, dispatch.disPS, dispatch.disState FROM dispatch WHERE userId=? ";
 		return BaseDao.getPage(sql, page, pageSize, Dispatch.class, userId);
 	}
-	
+
 	@Override
 	public boolean updateState(String disId, int disState) {
 		// TODO Auto-generated method stub
 		String sql = "update dispatch set disState=? where disId=?";
 		return BaseDao.execute(sql, disState, disId) > 0;
 	}
+
 	@Override
 	public Dispatch getOne(String disId) {
 		// TODO Auto-generated method stub
-		List<Dispatch> list=(List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class, disId);
-		Iterator<Dispatch> it=list.iterator();
-		Dispatch d=null;
-		d=it.next();
+		List<Dispatch> list = (List<Dispatch>) BaseDao.select("select * from dispatch where disId=?", Dispatch.class,
+				disId);
+		Iterator<Dispatch> it = list.iterator();
+		Dispatch d = null;
+		d = it.next();
 		return d;
 	}
 

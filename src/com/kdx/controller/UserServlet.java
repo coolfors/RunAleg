@@ -104,6 +104,13 @@ public class UserServlet extends HttpServlet {
 		} else if ("waitEvaluate".equals(op)) {
 			waitEvaluate(request, response);
 		}
+		if("del".equals(op)) {//文章
+			System.out.println("aaaaaaaaaaa");
+			String articleId = request.getParameter("articleId");
+			boolean flag = us.delWen(articleId);
+			PrintWriter out = response.getWriter();
+			out.print(flag);
+		}
 	}
 
 	private void evaSos(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -135,7 +142,7 @@ public class UserServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = "123";
 		userPwd = MD5Util.getEncodeByMd5(userPwd);
-		boolean flag = us.resetPwd(Integer.valueOf(userId), userPwd);
+		boolean flag = us.resetPwd(userId, userPwd);
 		PrintWriter out = response.getWriter();
 		out.print(flag);
 	}
@@ -174,7 +181,7 @@ public class UserServlet extends HttpServlet {
 
 			String userId = request.getParameter("userId");
 
-			List<User> list = us.queryUsersById(Integer.parseInt(userId));
+			List<User> list = us.queryUsersById(userId);
 
 			boolean flag = false;
 

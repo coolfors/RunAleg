@@ -135,7 +135,8 @@
 	<div class="container">
 		<!--货源信息-->
 		<h3 id="headName"></h3>
-		<table class="table table-bordered">
+		<div class="table-responsive">
+		<table class="table">
 			<thead>
 				<!-- <tr>
 
@@ -164,6 +165,7 @@
 				</tr> -->
 			</tbody>
 		</table>
+		</div>
 		<div id="test1" class="text-center"></div>
 		<script src="layui/layui.js" charset="utf-8"></script>
 		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->

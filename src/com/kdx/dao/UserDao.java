@@ -44,4 +44,6 @@ public interface UserDao {
 
 	User loginUserAdmin(String userName, String userPwd);//用于后台登陆
 	
+	boolean delWen(String articleId);//后台文章删除
+	
 }

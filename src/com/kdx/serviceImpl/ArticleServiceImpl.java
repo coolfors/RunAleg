@@ -42,4 +42,5 @@ public class ArticleServiceImpl implements ArticleService {
 		return ud.queryByIdArticle(articleId);
 	}
 	
+	
 }
